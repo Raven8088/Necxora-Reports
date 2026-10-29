@@ -1,0 +1,208 @@
+{
+  "id" : "6fb20f2a-fab4-4caf-bfc6-256d3988c84f",
+  "dataSourceId" : "40d88cc6-d9c8-4c8b-b08e-c3363683a128",
+  "formatVersion" : "nexora-logical-plan/1",
+  "fingerprint" : "8127e5855610411035ee47fa4a9baf261644c3fff91923c5bd2e76c626f089b8",
+  "createdBy" : "service-1357357540468",
+  "createdAt" : "2026-10-21T00:02:29.830765Z",
+  "plan" : {
+    "base" : {
+      "objectId" : "5ded74bd-03de-45cf-9478-033ea09351aa",
+      "naturalKey" : "\"finance\".\"transactions\""
+    },
+    "joins" : [ {
+      "order" : 1,
+      "joinType" : "INNER",
+      "optional" : false,
+      "conditions" : [ {
+        "toColumnId" : "17777c83-bcdc-4694-8c53-1aba1643806d",
+        "fromColumnId" : "a0c9a8c6-23e0-41c7-b94d-dd3d9bf574d0"
+      }, {
+        "toColumnId" : "a7f057c1-4f5b-485d-950d-ccb1369f8c81",
+        "fromColumnId" : "e4cdc07a-b1c2-4612-bf64-0346b1d886cd"
+      } ],
+      "navigation" : "FORWARD",
+      "toObjectId" : "229de1ff-a87b-4f7a-81d8-8fe2ecb9d7e7",
+      "fromObjectId" : "5ded74bd-03de-45cf-9478-033ea09351aa",
+      "relationshipId" : "31251a2a-8ef3-496f-aef8-52d0b3cb5182",
+      "rowPreservation" : "UNMATCHED_ROWS_EXCLUDED",
+      "multiplicationRisk" : "NONE_BY_PRIMARY_KEY",
+      "relationshipVersion" : 1,
+      "joinedSideUniqueness" : "PRIMARY_KEY"
+    } ],
+    "safety" : "JOINS_TO_PRIMARY_KEY_ONLY",
+    "request" : {
+      "filters" : [ ],
+      "metrics" : [ "645d2f17-06bb-4399-85b9-4a71882f3695" ],
+      "dimensions" : [ "ab610f4a-4bff-4f98-b4d0-39d0f35ec4a4" ],
+      "timeGranularities" : [ ],
+      "preferredRelationships" : [ ]
+    },
+    "tenantId" : "f3e391c4-2201-4dff-9e65-8b2766ab54bb",
+    "inputGrain" : {
+      "objectId" : "5ded74bd-03de-45cf-9478-033ea09351aa",
+      "rowIdentity" : "PRIMARY_KEY",
+      "primaryKeyColumns" : [ "id" ]
+    },
+    "operations" : [ {
+      "kind" : "SCAN",
+      "order" : 1,
+      "references" : [ ]
+    }, {
+      "kind" : "JOIN",
+      "order" : 2,
+      "references" : [ 1 ]
+    }, {
+      "kind" : "GROUP_AND_AGGREGATE",
+      "order" : 3,
+      "references" : [ ]
+    } ],
+    "definitions" : [ {
+      "id" : "645d2f17-06bb-4399-85b9-4a71882f3695",
+      "key" : "importe",
+      "kind" : "METRIC",
+      "name" : "importe",
+      "version" : 1,
+      "conceptId" : "dcda0a4e-90f6-42dd-a1d2-9cf9dabf9c86",
+      "aggregation" : "SUM",
+      "granularities" : [ ],
+      "columnObjectId" : "b06e8733-7393-495d-b357-d481fecf1c72"
+    }, {
+      "id" : "ab610f4a-4bff-4f98-b4d0-39d0f35ec4a4",
+      "key" : "titulo",
+      "kind" : "DIMENSION",
+      "name" : "titulo",
+      "version" : 1,
+      "conceptId" : "1190e4db-21cb-4363-83fb-3dffd290e2f4",
+      "dimensionType" : "CATEGORICAL",
+      "granularities" : [ ],
+      "columnObjectId" : "3a37f607-d6e8-4496-8681-6ab572c3d993"
+    }, {
+      "id" : "dcda0a4e-90f6-42dd-a1d2-9cf9dabf9c86",
+      "key" : "movimientos",
+      "kind" : "CONCEPT",
+      "name" : "movimientos",
+      "version" : 1,
+      "granularities" : [ ],
+      "relationObjectId" : "5ded74bd-03de-45cf-9478-033ea09351aa"
+    }, {
+      "id" : "1190e4db-21cb-4363-83fb-3dffd290e2f4",
+      "key" : "documentos",
+      "kind" : "CONCEPT",
+      "name" : "documentos",
+      "version" : 1,
+      "granularities" : [ ],
+      "relationObjectId" : "229de1ff-a87b-4f7a-81d8-8fe2ecb9d7e7"
+    } ],
+    "fingerprint" : "8127e5855610411035ee47fa4a9baf261644c3fff91923c5bd2e76c626f089b8",
+    "outputGrain" : [ {
+      "key" : "titulo",
+      "type" : "CATEGORICAL",
+      "objectId" : "229de1ff-a87b-4f7a-81d8-8fe2ecb9d7e7",
+      "valueType" : "TEXT",
+      "dimensionId" : "ab610f4a-4bff-4f98-b4d0-39d0f35ec4a4",
+      "columnObjectId" : "3a37f607-d6e8-4496-8681-6ab572c3d993"
+    } ],
+    "aggregations" : [ {
+      "key" : "importe",
+      "order" : 1,
+      "metricId" : "645d2f17-06bb-4399-85b9-4a71882f3695",
+      "aggregation" : "SUM",
+      "columnObjectId" : "b06e8733-7393-495d-b357-d481fecf1c72"
+    } ],
+    "dataSourceId" : "40d88cc6-d9c8-4c8b-b08e-c3363683a128",
+    "formatVersion" : "nexora-logical-plan/1",
+    "relationships" : [ {
+      "id" : "31251a2a-8ef3-496f-aef8-52d0b3cb5182",
+      "name" : "\"finance\".\"transactions\"->\"docs\".\"documents\"",
+      "pairs" : [ {
+        "sourceColumnId" : "a0c9a8c6-23e0-41c7-b94d-dd3d9bf574d0",
+        "targetColumnId" : "17777c83-bcdc-4694-8c53-1aba1643806d",
+        "sourceNaturalKey" : "\"finance\".\"transactions\".\"company_code\"",
+        "targetNaturalKey" : "\"docs\".\"documents\".\"company_code\""
+      }, {
+        "sourceColumnId" : "e4cdc07a-b1c2-4612-bf64-0346b1d886cd",
+        "targetColumnId" : "a7f057c1-4f5b-485d-950d-ccb1369f8c81",
+        "sourceNaturalKey" : "\"finance\".\"transactions\".\"document_number\"",
+        "targetNaturalKey" : "\"docs\".\"documents\".\"number\""
+      } ],
+      "origin" : "SEMANTIC",
+      "version" : 1,
+      "foreignKey" : "NOT_DECLARED",
+      "sourceObjectId" : "5ded74bd-03de-45cf-9478-033ea09351aa",
+      "targetObjectId" : "229de1ff-a87b-4f7a-81d8-8fe2ecb9d7e7",
+      "allowedJoinTypes" : [ "INNER" ],
+      "sourceUniqueness" : "UNKNOWN",
+      "targetUniqueness" : "PRIMARY_KEY",
+      "sourceToTargetRisk" : "NONE_BY_PRIMARY_KEY",
+      "targetToSourceRisk" : "POSSIBLE",
+      "declaredCardinality" : "MANY_TO_ONE",
+      "cardinalityAssurance" : "BACKED_BY_PRIMARY_KEY"
+    } ],
+    "physicalObjects" : [ {
+      "type" : "TABLE",
+      "objectId" : "229de1ff-a87b-4f7a-81d8-8fe2ecb9d7e7",
+      "naturalKey" : "\"docs\".\"documents\"",
+      "fingerprint" : "aab383b58dbda512ceff68f7d0986d55ea08f47e51b7e10d6ac38ebb377bebe4",
+      "lastSeenSnapshotId" : "12079af3-7b49-4295-888b-a2ea9883469d"
+    }, {
+      "type" : "COLUMN",
+      "dataType" : "bpchar",
+      "nullable" : false,
+      "objectId" : "17777c83-bcdc-4694-8c53-1aba1643806d",
+      "naturalKey" : "\"docs\".\"documents\".\"company_code\"",
+      "fingerprint" : "7ce6b5723e38d50402eab9f253a81718452780f82f1df9bae843a4ecdcd6006e",
+      "lastSeenSnapshotId" : "12079af3-7b49-4295-888b-a2ea9883469d"
+    }, {
+      "type" : "COLUMN",
+      "dataType" : "varchar",
+      "nullable" : true,
+      "objectId" : "a7f057c1-4f5b-485d-950d-ccb1369f8c81",
+      "naturalKey" : "\"docs\".\"documents\".\"number\"",
+      "fingerprint" : "a286a7050d48debbc890bacf7297aa25eb00d33aa9db6935f5bb78acb54f423b",
+      "lastSeenSnapshotId" : "12079af3-7b49-4295-888b-a2ea9883469d"
+    }, {
+      "type" : "COLUMN",
+      "dataType" : "varchar",
+      "nullable" : true,
+      "objectId" : "3a37f607-d6e8-4496-8681-6ab572c3d993",
+      "naturalKey" : "\"docs\".\"documents\".\"title\"",
+      "fingerprint" : "c86138f8f3217c3ced97cfb0380534f2aba309c8ba5787289c3cb1a3c9c999c7",
+      "lastSeenSnapshotId" : "12079af3-7b49-4295-888b-a2ea9883469d"
+    }, {
+      "type" : "TABLE",
+      "objectId" : "5ded74bd-03de-45cf-9478-033ea09351aa",
+      "naturalKey" : "\"finance\".\"transactions\"",
+      "fingerprint" : "355127c9690268730c0fb2ae054e1bb4ab0d98900c2cae516351281e48812fe9",
+      "lastSeenSnapshotId" : "12079af3-7b49-4295-888b-a2ea9883469d"
+    }, {
+      "type" : "COLUMN",
+      "dataType" : "numeric",
+      "nullable" : false,
+      "objectId" : "b06e8733-7393-495d-b357-d481fecf1c72",
+      "naturalKey" : "\"finance\".\"transactions\".\"amount\"",
+      "fingerprint" : "eebd764821c5d81d6379dabae0139a5ddb6e37f71174e9b8a93826ad6da11c7b",
+      "lastSeenSnapshotId" : "12079af3-7b49-4295-888b-a2ea9883469d"
+    }, {
+      "type" : "COLUMN",
+      "dataType" : "bpchar",
+      "nullable" : false,
+      "objectId" : "a0c9a8c6-23e0-41c7-b94d-dd3d9bf574d0",
+      "naturalKey" : "\"finance\".\"transactions\".\"company_code\"",
+      "fingerprint" : "d5e68a7674fa685cf14071cf7ce4bee88e45e421180217e1063103e36c7f9440",
+      "lastSeenSnapshotId" : "12079af3-7b49-4295-888b-a2ea9883469d"
+    }, {
+      "type" : "COLUMN",
+      "dataType" : "varchar",
+      "nullable" : true,
+      "objectId" : "e4cdc07a-b1c2-4612-bf64-0346b1d886cd",
+      "naturalKey" : "\"finance\".\"transactions\".\"document_number\"",
+      "fingerprint" : "eca3d02c68a8c50963d3e00a51ba45b24453258ec00c0eb9f66c112cf6280355",
+      "lastSeenSnapshotId" : "12079af3-7b49-4295-888b-a2ea9883469d"
+    } ],
+    "metadataSnapshotId" : "12079af3-7b49-4295-888b-a2ea9883469d",
+    "preAggregationFilters" : [ ],
+    "resolutionFingerprint" : "c403309e72e021ea9e9978a2a525820923898aee00282e8836ef94584a96d0e5",
+    "postAggregationFilters" : [ ]
+  }
+}

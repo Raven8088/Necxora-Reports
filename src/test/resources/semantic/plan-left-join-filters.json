@@ -1,0 +1,235 @@
+{
+  "id" : "0714be87-ae75-4e9c-9056-e5d87ca8db66",
+  "dataSourceId" : "40d88cc6-d9c8-4c8b-b08e-c3363683a128",
+  "formatVersion" : "nexora-logical-plan/1",
+  "fingerprint" : "c41e06ca1ab3379b266d334eeb0d81e5fb82ded80cafc921f313947a8f33c465",
+  "createdBy" : "service-1357357540468",
+  "createdAt" : "2026-10-21T00:02:29.947799Z",
+  "plan" : {
+    "base" : {
+      "objectId" : "5cc61ba1-876c-45d5-839e-810c9d6fd926",
+      "naturalKey" : "\"plant\".\"measurements\""
+    },
+    "joins" : [ {
+      "order" : 1,
+      "joinType" : "LEFT",
+      "optional" : true,
+      "conditions" : [ {
+        "toColumnId" : "9d076f91-014e-4eea-b295-e7e5a2bb79c7",
+        "fromColumnId" : "cb08a215-49fb-451c-af3c-698b4dbc2e18"
+      } ],
+      "navigation" : "FORWARD",
+      "toObjectId" : "fad3dbf4-4fe8-48be-8710-20acf30d4d38",
+      "fromObjectId" : "5cc61ba1-876c-45d5-839e-810c9d6fd926",
+      "relationshipId" : "c0ab8538-d4cc-4222-9ea2-dfe305c86fa4",
+      "rowPreservation" : "PRESERVED",
+      "multiplicationRisk" : "NONE_BY_PRIMARY_KEY",
+      "relationshipVersion" : 1,
+      "joinedSideUniqueness" : "PRIMARY_KEY"
+    } ],
+    "safety" : "JOINS_TO_PRIMARY_KEY_ONLY",
+    "request" : {
+      "filters" : [ {
+        "values" : [ "descartada" ],
+        "operator" : "NE",
+        "definitionId" : "16a9b488-e933-4e1e-abce-daa3ee140107"
+      }, {
+        "values" : [ "1000" ],
+        "operator" : "LTE",
+        "definitionId" : "b8e34c79-c443-4255-b6dd-f643187272de"
+      } ],
+      "metrics" : [ "b8e34c79-c443-4255-b6dd-f643187272de" ],
+      "dimensions" : [ "b1516d28-6d28-473f-9b17-679834853a07" ],
+      "timeGranularities" : [ ],
+      "preferredRelationships" : [ "c0ab8538-d4cc-4222-9ea2-dfe305c86fa4" ]
+    },
+    "tenantId" : "f3e391c4-2201-4dff-9e65-8b2766ab54bb",
+    "inputGrain" : {
+      "objectId" : "5cc61ba1-876c-45d5-839e-810c9d6fd926",
+      "rowIdentity" : "PRIMARY_KEY",
+      "primaryKeyColumns" : [ "id" ]
+    },
+    "operations" : [ {
+      "kind" : "SCAN",
+      "order" : 1,
+      "references" : [ ]
+    }, {
+      "kind" : "JOIN",
+      "order" : 2,
+      "references" : [ 1 ]
+    }, {
+      "kind" : "FILTER_ROWS",
+      "order" : 3,
+      "references" : [ 1 ]
+    }, {
+      "kind" : "GROUP_AND_AGGREGATE",
+      "order" : 4,
+      "references" : [ ]
+    }, {
+      "kind" : "FILTER_GROUPS",
+      "order" : 5,
+      "references" : [ 1 ]
+    } ],
+    "definitions" : [ {
+      "id" : "b8e34c79-c443-4255-b6dd-f643187272de",
+      "key" : "suma_valor",
+      "kind" : "METRIC",
+      "name" : "suma_valor",
+      "version" : 1,
+      "conceptId" : "1c3dbfcd-e955-4dee-9b6c-6d3d4eeb6708",
+      "aggregation" : "SUM",
+      "granularities" : [ ],
+      "columnObjectId" : "fd282e43-d7ba-441e-9ea3-c9b4e97b9136"
+    }, {
+      "id" : "b1516d28-6d28-473f-9b17-679834853a07",
+      "key" : "nombre_equipo",
+      "kind" : "DIMENSION",
+      "name" : "nombre_equipo",
+      "version" : 1,
+      "conceptId" : "b5b1fc53-ea35-444f-8b38-c408c3e711c2",
+      "dimensionType" : "CATEGORICAL",
+      "granularities" : [ ],
+      "columnObjectId" : "af088611-13e1-48d2-93ce-292988fec1ca"
+    }, {
+      "id" : "16a9b488-e933-4e1e-abce-daa3ee140107",
+      "key" : "nota",
+      "kind" : "DIMENSION",
+      "name" : "nota",
+      "version" : 1,
+      "conceptId" : "1c3dbfcd-e955-4dee-9b6c-6d3d4eeb6708",
+      "dimensionType" : "CATEGORICAL",
+      "granularities" : [ ],
+      "columnObjectId" : "e285747a-7100-48ca-a189-b78b3491d744"
+    }, {
+      "id" : "1c3dbfcd-e955-4dee-9b6c-6d3d4eeb6708",
+      "key" : "lecturas",
+      "kind" : "CONCEPT",
+      "name" : "lecturas",
+      "version" : 1,
+      "granularities" : [ ],
+      "relationObjectId" : "5cc61ba1-876c-45d5-839e-810c9d6fd926"
+    }, {
+      "id" : "b5b1fc53-ea35-444f-8b38-c408c3e711c2",
+      "key" : "equipos",
+      "kind" : "CONCEPT",
+      "name" : "equipos",
+      "version" : 1,
+      "granularities" : [ ],
+      "relationObjectId" : "fad3dbf4-4fe8-48be-8710-20acf30d4d38"
+    } ],
+    "fingerprint" : "c41e06ca1ab3379b266d334eeb0d81e5fb82ded80cafc921f313947a8f33c465",
+    "outputGrain" : [ {
+      "key" : "nombre_equipo",
+      "type" : "CATEGORICAL",
+      "objectId" : "fad3dbf4-4fe8-48be-8710-20acf30d4d38",
+      "valueType" : "TEXT",
+      "dimensionId" : "b1516d28-6d28-473f-9b17-679834853a07",
+      "columnObjectId" : "af088611-13e1-48d2-93ce-292988fec1ca"
+    } ],
+    "aggregations" : [ {
+      "key" : "suma_valor",
+      "order" : 1,
+      "metricId" : "b8e34c79-c443-4255-b6dd-f643187272de",
+      "aggregation" : "SUM",
+      "columnObjectId" : "fd282e43-d7ba-441e-9ea3-c9b4e97b9136"
+    } ],
+    "dataSourceId" : "40d88cc6-d9c8-4c8b-b08e-c3363683a128",
+    "formatVersion" : "nexora-logical-plan/1",
+    "relationships" : [ {
+      "id" : "c0ab8538-d4cc-4222-9ea2-dfe305c86fa4",
+      "name" : "\"plant\".\"measurements\"->\"plant\".\"equipment\"",
+      "pairs" : [ {
+        "sourceColumnId" : "cb08a215-49fb-451c-af3c-698b4dbc2e18",
+        "targetColumnId" : "9d076f91-014e-4eea-b295-e7e5a2bb79c7",
+        "sourceNaturalKey" : "\"plant\".\"measurements\".\"equipment_dbid\"",
+        "targetNaturalKey" : "\"plant\".\"equipment\".\"id\""
+      } ],
+      "origin" : "SEMANTIC",
+      "version" : 1,
+      "foreignKey" : "NOT_DECLARED",
+      "sourceObjectId" : "5cc61ba1-876c-45d5-839e-810c9d6fd926",
+      "targetObjectId" : "fad3dbf4-4fe8-48be-8710-20acf30d4d38",
+      "allowedJoinTypes" : [ "INNER", "LEFT" ],
+      "sourceUniqueness" : "UNKNOWN",
+      "targetUniqueness" : "PRIMARY_KEY",
+      "sourceToTargetRisk" : "NONE_BY_PRIMARY_KEY",
+      "targetToSourceRisk" : "POSSIBLE",
+      "declaredCardinality" : "MANY_TO_ONE",
+      "cardinalityAssurance" : "BACKED_BY_PRIMARY_KEY"
+    } ],
+    "physicalObjects" : [ {
+      "type" : "TABLE",
+      "objectId" : "fad3dbf4-4fe8-48be-8710-20acf30d4d38",
+      "naturalKey" : "\"plant\".\"equipment\"",
+      "fingerprint" : "500be86f93e1ca9e1a3d4c134b08c3b0e91adc5e2eafa634fd619f98665f8b0d",
+      "lastSeenSnapshotId" : "12079af3-7b49-4295-888b-a2ea9883469d"
+    }, {
+      "type" : "COLUMN",
+      "dataType" : "int8",
+      "nullable" : false,
+      "objectId" : "9d076f91-014e-4eea-b295-e7e5a2bb79c7",
+      "naturalKey" : "\"plant\".\"equipment\".\"id\"",
+      "fingerprint" : "fd352688c90617cf67ca963e12461d25f0e349a1173c6dde50bf500391b937c9",
+      "lastSeenSnapshotId" : "12079af3-7b49-4295-888b-a2ea9883469d"
+    }, {
+      "type" : "COLUMN",
+      "dataType" : "varchar",
+      "nullable" : true,
+      "objectId" : "af088611-13e1-48d2-93ce-292988fec1ca",
+      "naturalKey" : "\"plant\".\"equipment\".\"name\"",
+      "fingerprint" : "5be2aad144998b686c96efe7c0b62484e6c7731149915a68fcf04b5d007a21bb",
+      "lastSeenSnapshotId" : "12079af3-7b49-4295-888b-a2ea9883469d"
+    }, {
+      "type" : "TABLE",
+      "objectId" : "5cc61ba1-876c-45d5-839e-810c9d6fd926",
+      "naturalKey" : "\"plant\".\"measurements\"",
+      "fingerprint" : "aa5268a5d214340e5ec941a57d1e31b9857ea8bdcfd12bcee71c54f4527ffb0b",
+      "lastSeenSnapshotId" : "12079af3-7b49-4295-888b-a2ea9883469d"
+    }, {
+      "type" : "COLUMN",
+      "dataType" : "int8",
+      "nullable" : false,
+      "objectId" : "cb08a215-49fb-451c-af3c-698b4dbc2e18",
+      "naturalKey" : "\"plant\".\"measurements\".\"equipment_dbid\"",
+      "fingerprint" : "ae5a50024ebbe67a1b4163a12e13a1d765ebc48504185c6baf1d9aea5f2ece67",
+      "lastSeenSnapshotId" : "12079af3-7b49-4295-888b-a2ea9883469d"
+    }, {
+      "type" : "COLUMN",
+      "dataType" : "varchar",
+      "nullable" : true,
+      "objectId" : "e285747a-7100-48ca-a189-b78b3491d744",
+      "naturalKey" : "\"plant\".\"measurements\".\"note\"",
+      "fingerprint" : "58ccb088037deb7a7d87aa5e60fc135840aed08283bc1091c98c3bdf1772fc9d",
+      "lastSeenSnapshotId" : "12079af3-7b49-4295-888b-a2ea9883469d"
+    }, {
+      "type" : "COLUMN",
+      "dataType" : "numeric",
+      "nullable" : true,
+      "objectId" : "fd282e43-d7ba-441e-9ea3-c9b4e97b9136",
+      "naturalKey" : "\"plant\".\"measurements\".\"value\"",
+      "fingerprint" : "bd8fa159a9d115de7146db298da2af3803318f3048110883cb08305fd968abb2",
+      "lastSeenSnapshotId" : "12079af3-7b49-4295-888b-a2ea9883469d"
+    } ],
+    "metadataSnapshotId" : "12079af3-7b49-4295-888b-a2ea9883469d",
+    "preAggregationFilters" : [ {
+      "order" : 1,
+      "values" : [ "descartada" ],
+      "objectId" : "5cc61ba1-876c-45d5-839e-810c9d6fd926",
+      "operator" : "NE",
+      "valueType" : "TEXT",
+      "definitionId" : "16a9b488-e933-4e1e-abce-daa3ee140107",
+      "columnObjectId" : "e285747a-7100-48ca-a189-b78b3491d744",
+      "definitionKind" : "DIMENSION"
+    } ],
+    "resolutionFingerprint" : "5a1fbcfebae4c82796b758f8ec429d428ea84d9e95f59ae8973b52cae3ba7a9b",
+    "postAggregationFilters" : [ {
+      "order" : 1,
+      "values" : [ "1000" ],
+      "operator" : "LTE",
+      "valueType" : "NUMERIC",
+      "definitionId" : "b8e34c79-c443-4255-b6dd-f643187272de",
+      "columnObjectId" : "fd282e43-d7ba-441e-9ea3-c9b4e97b9136",
+      "definitionKind" : "METRIC"
+    } ]
+  }
+}

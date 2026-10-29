@@ -1,0 +1,11 @@
+{
+  "planId" : "dfb3fe2c-2b92-47b2-8176-6f7fe48b8030",
+  "status" : "CURRENT_WITH_CHANGES",
+  "issues" : [ {
+    "code" : "PHYSICAL_OBJECT_CHANGED",
+    "blocking" : false,
+    "kind" : "PHYSICAL_OBJECT",
+    "referenceId" : "fd282e43-d7ba-441e-9ea3-c9b4e97b9136",
+    "message" : "observed attributes changed without affecting the plan's types"
+  } ]
+}

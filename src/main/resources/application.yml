@@ -1,0 +1,90 @@
+# Nexora Reports R1. Every secret comes from the environment; nothing secret is committed.
+spring:
+  application:
+    name: nexora-reports
+  # Reports' own database (execution audit only). Never an enterprise database.
+  datasource:
+    url: ${REPORTS_DB_URL:jdbc:postgresql://localhost:5434/nexora_reports?currentSchema=reports}
+    username: ${REPORTS_DB_USER:nexora_reports_app}
+    password: ${REPORTS_DB_PASSWORD:}
+    hikari:
+      maximum-pool-size: ${REPORTS_DB_POOL_SIZE:5}
+  flyway:
+    user: ${REPORTS_DB_OWNER_USER:${REPORTS_DB_USER:nexora_reports_app}}
+    password: ${REPORTS_DB_OWNER_PASSWORD:${REPORTS_DB_PASSWORD:}}
+    schemas: reports
+    default-schema: reports
+    placeholders:
+      appRole: ${REPORTS_DB_APP_USER:nexora_reports_app}
+  jackson:
+    # Unknown properties are rejected: clients cannot smuggle SQL, plans, tenants or connection details.
+    deserialization:
+      fail-on-unknown-properties: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # Mandatory: without an issuer the application refuses to start.
+          issuer-uri: ${REPORTS_OIDC_ISSUER_URI:http://localhost:8180/realms/nexora}
+          audiences: ${REPORTS_OIDC_AUDIENCE:nexora-reports}
+  mvc:
+    problemdetails:
+      enabled: false
+  web:
+    error:
+      include-message: never
+      include-stacktrace: never
+      include-binding-errors: never
+      include-exception: false
+
+server:
+  port: ${REPORTS_PORT:8090}
+
+nexora:
+  reports:
+    security:
+      tenant-claim: ${REPORTS_TENANT_CLAIM:tenant}
+      principal-type-claim: ${REPORTS_PRINCIPAL_TYPE_CLAIM:principal_type}
+      roles-claim: ${REPORTS_ROLES_CLAIM:roles}
+    execution:
+      default-max-rows: ${REPORTS_DEFAULT_MAX_ROWS:1000}
+      max-rows-ceiling: ${REPORTS_MAX_ROWS_CEILING:10000}
+      statement-timeout: ${REPORTS_STATEMENT_TIMEOUT:30s}
+      lock-timeout: ${REPORTS_LOCK_TIMEOUT:2s}
+      max-duration: ${REPORTS_MAX_DURATION:60s}
+      fetch-size: ${REPORTS_FETCH_SIZE:500}
+      acquire-timeout: ${REPORTS_ACQUIRE_TIMEOUT:2s}
+      max-concurrent-executions: ${REPORTS_MAX_CONCURRENT_EXECUTIONS:16}
+    semantic:
+      base-url: ${REPORTS_SEMANTIC_BASE_URL:http://localhost:8080}
+      token-uri: ${REPORTS_SEMANTIC_TOKEN_URI:http://localhost:8180/realms/nexora/protocol/openid-connect/token}
+      expected-audience: ${REPORTS_SEMANTIC_AUDIENCE:nexora-semantic}
+      connect-timeout: ${REPORTS_SEMANTIC_CONNECT_TIMEOUT:2s}
+      read-timeout: ${REPORTS_SEMANTIC_READ_TIMEOUT:10s}
+      max-response-bytes: 4194304
+      # One REPORTS_CLIENT service account per tenant. Configure through the environment, for example:
+      # NEXORA_REPORTS_SEMANTIC_SERVICEACCOUNTS_0_TENANTID / _CLIENTID / _CLIENTSECRET
+      service-accounts: []
+    enterprise:
+      # Destination policy: exact hosts and ports enterprise connections may target.
+      allowed-hosts: []
+      allowed-ports: []
+      # One entry per (tenant, data source), for example through the environment:
+      # NEXORA_REPORTS_ENTERPRISE_SOURCES_0_TENANTID, _DATASOURCEID, _HOST, _PORT, _DATABASE, _USERNAME,
+      # _PASSWORD, _SSLMODE, _MAXCONCURRENT
+      sources: []
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: never
+      probes:
+        enabled: true
+
+logging:
+  pattern:
+    level: "%5p [cid:%X{correlationId:-}]"

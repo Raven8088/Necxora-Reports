@@ -1,0 +1,26 @@
+# Local development only: PostgreSQL for Reports' audit database plus a SYNTHETIC enterprise database.
+# Keycloak and Nexora Semantic are the ones of the Nexora-Semantic repository (docker compose there).
+# All passwords come from docker/.env (copy docker/.env.example); nothing secret is committed.
+services:
+  reports-postgres:
+    image: postgres:17.6
+    container_name: nexora-reports-postgres
+    ports:
+      - "127.0.0.1:5434:5432"
+    environment:
+      POSTGRES_USER: ${REPORTS_DB_OWNER_USER:-nexora_reports_owner}
+      POSTGRES_PASSWORD: ${REPORTS_DB_OWNER_PASSWORD:?set REPORTS_DB_OWNER_PASSWORD in docker/.env}
+      POSTGRES_DB: nexora_reports
+      REPORTS_DB_APP_PASSWORD: ${REPORTS_DB_APP_PASSWORD:?set REPORTS_DB_APP_PASSWORD in docker/.env}
+      SYNTHETIC_READER_PASSWORD: ${SYNTHETIC_READER_PASSWORD:?set SYNTHETIC_READER_PASSWORD in docker/.env}
+    volumes:
+      - ./postgres/init:/docker-entrypoint-initdb.d:ro
+      - reports-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d nexora_reports"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  reports-pgdata:

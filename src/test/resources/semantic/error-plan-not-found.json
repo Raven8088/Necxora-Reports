@@ -1,0 +1,9 @@
+{
+  "detail" : "Resource not found",
+  "instance" : "/api/v1/data-sources/40d88cc6-d9c8-4c8b-b08e-c3363683a128/logical-plans/0c1ccd54-265e-408d-b9f2-7b9ac005b3a9",
+  "status" : 404,
+  "title" : "Not Found",
+  "type" : "about:blank",
+  "code" : "not_found",
+  "correlationId" : "8315957f-fc8e-42cf-947d-4dbed2d41ced"
+}

@@ -1,0 +1,13 @@
+{
+  "id" : "40d88cc6-d9c8-4c8b-b08e-c3363683a128",
+  "key" : "erp-126c95cf3525",
+  "name" : "ERP",
+  "engine" : "postgresql",
+  "databaseName" : "erp",
+  "status" : "ACTIVE",
+  "createdAt" : "2026-10-21T00:02:28.845420Z",
+  "createdBy" : "human-1357303046842",
+  "updatedAt" : "2026-10-21T00:02:28.845420Z",
+  "updatedBy" : "human-1357303046842",
+  "version" : 0
+}

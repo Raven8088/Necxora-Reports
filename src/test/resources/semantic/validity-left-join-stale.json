@@ -1,0 +1,11 @@
+{
+  "planId" : "5380fb4a-3a15-4f38-99d9-1ff5f9651579",
+  "status" : "STALE",
+  "issues" : [ {
+    "code" : "RELATIONSHIP_NOT_USABLE",
+    "blocking" : true,
+    "kind" : "RELATIONSHIP",
+    "referenceId" : "99b5f962-58a1-4732-a2f2-b7f6bc29ea81",
+    "message" : "the relationship is no longer APPROVED and physically valid"
+  } ]
+}

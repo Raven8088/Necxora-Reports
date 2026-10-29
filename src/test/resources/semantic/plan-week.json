@@ -1,0 +1,109 @@
+{
+  "id" : "f1328f11-3539-482e-8b04-af4815c7dc78",
+  "dataSourceId" : "40d88cc6-d9c8-4c8b-b08e-c3363683a128",
+  "formatVersion" : "nexora-logical-plan/1",
+  "fingerprint" : "9988980dde4fc09aa755c90c6afbad0168c4cb492ceb04af0e6894c0a644cdbd",
+  "createdBy" : "service-1357357540468",
+  "createdAt" : "2026-10-21T00:02:29.722645Z",
+  "plan" : {
+    "base" : {
+      "objectId" : "5cc61ba1-876c-45d5-839e-810c9d6fd926",
+      "naturalKey" : "\"plant\".\"measurements\""
+    },
+    "joins" : [ ],
+    "safety" : "SINGLE_OBJECT",
+    "request" : {
+      "filters" : [ ],
+      "metrics" : [ "96c2e945-5d96-40d3-9f47-f919f36acb17" ],
+      "dimensions" : [ "ca36b5e6-3323-4e60-9c4f-eec6f0fa2b19" ],
+      "timeGranularities" : [ {
+        "dimensionId" : "ca36b5e6-3323-4e60-9c4f-eec6f0fa2b19",
+        "granularity" : "WEEK"
+      } ],
+      "preferredRelationships" : [ ]
+    },
+    "tenantId" : "f3e391c4-2201-4dff-9e65-8b2766ab54bb",
+    "inputGrain" : {
+      "objectId" : "5cc61ba1-876c-45d5-839e-810c9d6fd926",
+      "rowIdentity" : "PRIMARY_KEY",
+      "primaryKeyColumns" : [ "id" ]
+    },
+    "operations" : [ {
+      "kind" : "SCAN",
+      "order" : 1,
+      "references" : [ ]
+    }, {
+      "kind" : "GROUP_AND_AGGREGATE",
+      "order" : 2,
+      "references" : [ ]
+    } ],
+    "definitions" : [ {
+      "id" : "96c2e945-5d96-40d3-9f47-f919f36acb17",
+      "key" : "num_lecturas",
+      "kind" : "METRIC",
+      "name" : "num_lecturas",
+      "version" : 1,
+      "conceptId" : "1c3dbfcd-e955-4dee-9b6c-6d3d4eeb6708",
+      "aggregation" : "COUNT",
+      "granularities" : [ ]
+    }, {
+      "id" : "ca36b5e6-3323-4e60-9c4f-eec6f0fa2b19",
+      "key" : "fecha",
+      "kind" : "DIMENSION",
+      "name" : "fecha",
+      "version" : 1,
+      "timeZone" : "UTC",
+      "conceptId" : "1c3dbfcd-e955-4dee-9b6c-6d3d4eeb6708",
+      "dimensionType" : "TEMPORAL",
+      "granularities" : [ "DAY", "WEEK", "MONTH", "QUARTER", "YEAR" ],
+      "columnObjectId" : "09959c15-85ae-4747-9592-906ed072c97e"
+    }, {
+      "id" : "1c3dbfcd-e955-4dee-9b6c-6d3d4eeb6708",
+      "key" : "lecturas",
+      "kind" : "CONCEPT",
+      "name" : "lecturas",
+      "version" : 1,
+      "granularities" : [ ],
+      "relationObjectId" : "5cc61ba1-876c-45d5-839e-810c9d6fd926"
+    } ],
+    "fingerprint" : "9988980dde4fc09aa755c90c6afbad0168c4cb492ceb04af0e6894c0a644cdbd",
+    "outputGrain" : [ {
+      "key" : "fecha",
+      "type" : "TEMPORAL",
+      "objectId" : "5cc61ba1-876c-45d5-839e-810c9d6fd926",
+      "timeZone" : "UTC",
+      "valueType" : "TIMESTAMP_TZ",
+      "dimensionId" : "ca36b5e6-3323-4e60-9c4f-eec6f0fa2b19",
+      "granularity" : "WEEK",
+      "columnObjectId" : "09959c15-85ae-4747-9592-906ed072c97e"
+    } ],
+    "aggregations" : [ {
+      "key" : "num_lecturas",
+      "order" : 1,
+      "metricId" : "96c2e945-5d96-40d3-9f47-f919f36acb17",
+      "aggregation" : "COUNT"
+    } ],
+    "dataSourceId" : "40d88cc6-d9c8-4c8b-b08e-c3363683a128",
+    "formatVersion" : "nexora-logical-plan/1",
+    "relationships" : [ ],
+    "physicalObjects" : [ {
+      "type" : "TABLE",
+      "objectId" : "5cc61ba1-876c-45d5-839e-810c9d6fd926",
+      "naturalKey" : "\"plant\".\"measurements\"",
+      "fingerprint" : "aa5268a5d214340e5ec941a57d1e31b9857ea8bdcfd12bcee71c54f4527ffb0b",
+      "lastSeenSnapshotId" : "12079af3-7b49-4295-888b-a2ea9883469d"
+    }, {
+      "type" : "COLUMN",
+      "dataType" : "timestamptz",
+      "nullable" : false,
+      "objectId" : "09959c15-85ae-4747-9592-906ed072c97e",
+      "naturalKey" : "\"plant\".\"measurements\".\"measured_at\"",
+      "fingerprint" : "6f56fe8ae1f19e0d4693f8daf7e05a373ba6b8d54d4755804ce342a531df2f51",
+      "lastSeenSnapshotId" : "12079af3-7b49-4295-888b-a2ea9883469d"
+    } ],
+    "metadataSnapshotId" : "12079af3-7b49-4295-888b-a2ea9883469d",
+    "preAggregationFilters" : [ ],
+    "resolutionFingerprint" : "9186782fcf6c1b98713eea23377afb7ec331ecb178664390e9eef9fec79e467e",
+    "postAggregationFilters" : [ ]
+  }
+}

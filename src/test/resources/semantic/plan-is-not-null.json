@@ -1,0 +1,120 @@
+{
+  "id" : "5cc4449b-1be0-4b06-8865-004975e94eba",
+  "dataSourceId" : "40d88cc6-d9c8-4c8b-b08e-c3363683a128",
+  "formatVersion" : "nexora-logical-plan/1",
+  "fingerprint" : "1d0daf26b22c81a1cb9663a3a2169ca825f5ab90721675fe6fb50704147a19b2",
+  "createdBy" : "service-1357357540468",
+  "createdAt" : "2026-10-21T00:02:29.978466Z",
+  "plan" : {
+    "base" : {
+      "objectId" : "5cc61ba1-876c-45d5-839e-810c9d6fd926",
+      "naturalKey" : "\"plant\".\"measurements\""
+    },
+    "joins" : [ ],
+    "safety" : "SINGLE_OBJECT",
+    "request" : {
+      "filters" : [ {
+        "values" : [ ],
+        "operator" : "IS_NOT_NULL",
+        "definitionId" : "16a9b488-e933-4e1e-abce-daa3ee140107"
+      } ],
+      "metrics" : [ "96c2e945-5d96-40d3-9f47-f919f36acb17" ],
+      "dimensions" : [ "16a9b488-e933-4e1e-abce-daa3ee140107" ],
+      "timeGranularities" : [ ],
+      "preferredRelationships" : [ ]
+    },
+    "tenantId" : "f3e391c4-2201-4dff-9e65-8b2766ab54bb",
+    "inputGrain" : {
+      "objectId" : "5cc61ba1-876c-45d5-839e-810c9d6fd926",
+      "rowIdentity" : "PRIMARY_KEY",
+      "primaryKeyColumns" : [ "id" ]
+    },
+    "operations" : [ {
+      "kind" : "SCAN",
+      "order" : 1,
+      "references" : [ ]
+    }, {
+      "kind" : "FILTER_ROWS",
+      "order" : 2,
+      "references" : [ 1 ]
+    }, {
+      "kind" : "GROUP_AND_AGGREGATE",
+      "order" : 3,
+      "references" : [ ]
+    } ],
+    "definitions" : [ {
+      "id" : "96c2e945-5d96-40d3-9f47-f919f36acb17",
+      "key" : "num_lecturas",
+      "kind" : "METRIC",
+      "name" : "num_lecturas",
+      "version" : 1,
+      "conceptId" : "1c3dbfcd-e955-4dee-9b6c-6d3d4eeb6708",
+      "aggregation" : "COUNT",
+      "granularities" : [ ]
+    }, {
+      "id" : "16a9b488-e933-4e1e-abce-daa3ee140107",
+      "key" : "nota",
+      "kind" : "DIMENSION",
+      "name" : "nota",
+      "version" : 1,
+      "conceptId" : "1c3dbfcd-e955-4dee-9b6c-6d3d4eeb6708",
+      "dimensionType" : "CATEGORICAL",
+      "granularities" : [ ],
+      "columnObjectId" : "e285747a-7100-48ca-a189-b78b3491d744"
+    }, {
+      "id" : "1c3dbfcd-e955-4dee-9b6c-6d3d4eeb6708",
+      "key" : "lecturas",
+      "kind" : "CONCEPT",
+      "name" : "lecturas",
+      "version" : 1,
+      "granularities" : [ ],
+      "relationObjectId" : "5cc61ba1-876c-45d5-839e-810c9d6fd926"
+    } ],
+    "fingerprint" : "1d0daf26b22c81a1cb9663a3a2169ca825f5ab90721675fe6fb50704147a19b2",
+    "outputGrain" : [ {
+      "key" : "nota",
+      "type" : "CATEGORICAL",
+      "objectId" : "5cc61ba1-876c-45d5-839e-810c9d6fd926",
+      "valueType" : "TEXT",
+      "dimensionId" : "16a9b488-e933-4e1e-abce-daa3ee140107",
+      "columnObjectId" : "e285747a-7100-48ca-a189-b78b3491d744"
+    } ],
+    "aggregations" : [ {
+      "key" : "num_lecturas",
+      "order" : 1,
+      "metricId" : "96c2e945-5d96-40d3-9f47-f919f36acb17",
+      "aggregation" : "COUNT"
+    } ],
+    "dataSourceId" : "40d88cc6-d9c8-4c8b-b08e-c3363683a128",
+    "formatVersion" : "nexora-logical-plan/1",
+    "relationships" : [ ],
+    "physicalObjects" : [ {
+      "type" : "TABLE",
+      "objectId" : "5cc61ba1-876c-45d5-839e-810c9d6fd926",
+      "naturalKey" : "\"plant\".\"measurements\"",
+      "fingerprint" : "aa5268a5d214340e5ec941a57d1e31b9857ea8bdcfd12bcee71c54f4527ffb0b",
+      "lastSeenSnapshotId" : "12079af3-7b49-4295-888b-a2ea9883469d"
+    }, {
+      "type" : "COLUMN",
+      "dataType" : "varchar",
+      "nullable" : true,
+      "objectId" : "e285747a-7100-48ca-a189-b78b3491d744",
+      "naturalKey" : "\"plant\".\"measurements\".\"note\"",
+      "fingerprint" : "58ccb088037deb7a7d87aa5e60fc135840aed08283bc1091c98c3bdf1772fc9d",
+      "lastSeenSnapshotId" : "12079af3-7b49-4295-888b-a2ea9883469d"
+    } ],
+    "metadataSnapshotId" : "12079af3-7b49-4295-888b-a2ea9883469d",
+    "preAggregationFilters" : [ {
+      "order" : 1,
+      "values" : [ ],
+      "objectId" : "5cc61ba1-876c-45d5-839e-810c9d6fd926",
+      "operator" : "IS_NOT_NULL",
+      "valueType" : "TEXT",
+      "definitionId" : "16a9b488-e933-4e1e-abce-daa3ee140107",
+      "columnObjectId" : "e285747a-7100-48ca-a189-b78b3491d744",
+      "definitionKind" : "DIMENSION"
+    } ],
+    "resolutionFingerprint" : "c5bc09dd2b32a0c887631bf8bcd230fe61ce225397bbc30271aeb8fe685b7b6e",
+    "postAggregationFilters" : [ ]
+  }
+}

@@ -1,0 +1,204 @@
+{
+  "id" : "dfb3fe2c-2b92-47b2-8176-6f7fe48b8030",
+  "dataSourceId" : "40d88cc6-d9c8-4c8b-b08e-c3363683a128",
+  "formatVersion" : "nexora-logical-plan/1",
+  "fingerprint" : "62228166d4efa4b62d4d1c49862218782b91e4d41d0e727c53a94ec98a2ca0c9",
+  "createdBy" : "service-1357357540468",
+  "createdAt" : "2026-10-21T00:02:29.646807Z",
+  "plan" : {
+    "base" : {
+      "objectId" : "5cc61ba1-876c-45d5-839e-810c9d6fd926",
+      "naturalKey" : "\"plant\".\"measurements\""
+    },
+    "joins" : [ ],
+    "safety" : "SINGLE_OBJECT",
+    "request" : {
+      "filters" : [ {
+        "values" : [ "ok", "revisar" ],
+        "operator" : "IN",
+        "definitionId" : "16a9b488-e933-4e1e-abce-daa3ee140107"
+      }, {
+        "values" : [ "2025-12-31T23:00Z" ],
+        "operator" : "GTE",
+        "definitionId" : "ca36b5e6-3323-4e60-9c4f-eec6f0fa2b19"
+      }, {
+        "values" : [ "100" ],
+        "operator" : "GT",
+        "definitionId" : "b8e34c79-c443-4255-b6dd-f643187272de"
+      } ],
+      "metrics" : [ "b8e34c79-c443-4255-b6dd-f643187272de", "96c2e945-5d96-40d3-9f47-f919f36acb17" ],
+      "dimensions" : [ "ca36b5e6-3323-4e60-9c4f-eec6f0fa2b19", "16a9b488-e933-4e1e-abce-daa3ee140107" ],
+      "timeGranularities" : [ {
+        "dimensionId" : "ca36b5e6-3323-4e60-9c4f-eec6f0fa2b19",
+        "granularity" : "MONTH"
+      } ],
+      "preferredRelationships" : [ ]
+    },
+    "tenantId" : "f3e391c4-2201-4dff-9e65-8b2766ab54bb",
+    "inputGrain" : {
+      "objectId" : "5cc61ba1-876c-45d5-839e-810c9d6fd926",
+      "rowIdentity" : "PRIMARY_KEY",
+      "primaryKeyColumns" : [ "id" ]
+    },
+    "operations" : [ {
+      "kind" : "SCAN",
+      "order" : 1,
+      "references" : [ ]
+    }, {
+      "kind" : "FILTER_ROWS",
+      "order" : 2,
+      "references" : [ 1, 2 ]
+    }, {
+      "kind" : "GROUP_AND_AGGREGATE",
+      "order" : 3,
+      "references" : [ ]
+    }, {
+      "kind" : "FILTER_GROUPS",
+      "order" : 4,
+      "references" : [ 1 ]
+    } ],
+    "definitions" : [ {
+      "id" : "b8e34c79-c443-4255-b6dd-f643187272de",
+      "key" : "suma_valor",
+      "kind" : "METRIC",
+      "name" : "suma_valor",
+      "version" : 1,
+      "conceptId" : "1c3dbfcd-e955-4dee-9b6c-6d3d4eeb6708",
+      "aggregation" : "SUM",
+      "granularities" : [ ],
+      "columnObjectId" : "fd282e43-d7ba-441e-9ea3-c9b4e97b9136"
+    }, {
+      "id" : "96c2e945-5d96-40d3-9f47-f919f36acb17",
+      "key" : "num_lecturas",
+      "kind" : "METRIC",
+      "name" : "num_lecturas",
+      "version" : 1,
+      "conceptId" : "1c3dbfcd-e955-4dee-9b6c-6d3d4eeb6708",
+      "aggregation" : "COUNT",
+      "granularities" : [ ]
+    }, {
+      "id" : "ca36b5e6-3323-4e60-9c4f-eec6f0fa2b19",
+      "key" : "fecha",
+      "kind" : "DIMENSION",
+      "name" : "fecha",
+      "version" : 1,
+      "timeZone" : "UTC",
+      "conceptId" : "1c3dbfcd-e955-4dee-9b6c-6d3d4eeb6708",
+      "dimensionType" : "TEMPORAL",
+      "granularities" : [ "DAY", "WEEK", "MONTH", "QUARTER", "YEAR" ],
+      "columnObjectId" : "09959c15-85ae-4747-9592-906ed072c97e"
+    }, {
+      "id" : "16a9b488-e933-4e1e-abce-daa3ee140107",
+      "key" : "nota",
+      "kind" : "DIMENSION",
+      "name" : "nota",
+      "version" : 1,
+      "conceptId" : "1c3dbfcd-e955-4dee-9b6c-6d3d4eeb6708",
+      "dimensionType" : "CATEGORICAL",
+      "granularities" : [ ],
+      "columnObjectId" : "e285747a-7100-48ca-a189-b78b3491d744"
+    }, {
+      "id" : "1c3dbfcd-e955-4dee-9b6c-6d3d4eeb6708",
+      "key" : "lecturas",
+      "kind" : "CONCEPT",
+      "name" : "lecturas",
+      "version" : 1,
+      "granularities" : [ ],
+      "relationObjectId" : "5cc61ba1-876c-45d5-839e-810c9d6fd926"
+    } ],
+    "fingerprint" : "62228166d4efa4b62d4d1c49862218782b91e4d41d0e727c53a94ec98a2ca0c9",
+    "outputGrain" : [ {
+      "key" : "fecha",
+      "type" : "TEMPORAL",
+      "objectId" : "5cc61ba1-876c-45d5-839e-810c9d6fd926",
+      "timeZone" : "UTC",
+      "valueType" : "TIMESTAMP_TZ",
+      "dimensionId" : "ca36b5e6-3323-4e60-9c4f-eec6f0fa2b19",
+      "granularity" : "MONTH",
+      "columnObjectId" : "09959c15-85ae-4747-9592-906ed072c97e"
+    }, {
+      "key" : "nota",
+      "type" : "CATEGORICAL",
+      "objectId" : "5cc61ba1-876c-45d5-839e-810c9d6fd926",
+      "valueType" : "TEXT",
+      "dimensionId" : "16a9b488-e933-4e1e-abce-daa3ee140107",
+      "columnObjectId" : "e285747a-7100-48ca-a189-b78b3491d744"
+    } ],
+    "aggregations" : [ {
+      "key" : "suma_valor",
+      "order" : 1,
+      "metricId" : "b8e34c79-c443-4255-b6dd-f643187272de",
+      "aggregation" : "SUM",
+      "columnObjectId" : "fd282e43-d7ba-441e-9ea3-c9b4e97b9136"
+    }, {
+      "key" : "num_lecturas",
+      "order" : 2,
+      "metricId" : "96c2e945-5d96-40d3-9f47-f919f36acb17",
+      "aggregation" : "COUNT"
+    } ],
+    "dataSourceId" : "40d88cc6-d9c8-4c8b-b08e-c3363683a128",
+    "formatVersion" : "nexora-logical-plan/1",
+    "relationships" : [ ],
+    "physicalObjects" : [ {
+      "type" : "TABLE",
+      "objectId" : "5cc61ba1-876c-45d5-839e-810c9d6fd926",
+      "naturalKey" : "\"plant\".\"measurements\"",
+      "fingerprint" : "aa5268a5d214340e5ec941a57d1e31b9857ea8bdcfd12bcee71c54f4527ffb0b",
+      "lastSeenSnapshotId" : "12079af3-7b49-4295-888b-a2ea9883469d"
+    }, {
+      "type" : "COLUMN",
+      "dataType" : "timestamptz",
+      "nullable" : false,
+      "objectId" : "09959c15-85ae-4747-9592-906ed072c97e",
+      "naturalKey" : "\"plant\".\"measurements\".\"measured_at\"",
+      "fingerprint" : "6f56fe8ae1f19e0d4693f8daf7e05a373ba6b8d54d4755804ce342a531df2f51",
+      "lastSeenSnapshotId" : "12079af3-7b49-4295-888b-a2ea9883469d"
+    }, {
+      "type" : "COLUMN",
+      "dataType" : "varchar",
+      "nullable" : true,
+      "objectId" : "e285747a-7100-48ca-a189-b78b3491d744",
+      "naturalKey" : "\"plant\".\"measurements\".\"note\"",
+      "fingerprint" : "58ccb088037deb7a7d87aa5e60fc135840aed08283bc1091c98c3bdf1772fc9d",
+      "lastSeenSnapshotId" : "12079af3-7b49-4295-888b-a2ea9883469d"
+    }, {
+      "type" : "COLUMN",
+      "dataType" : "numeric",
+      "nullable" : true,
+      "objectId" : "fd282e43-d7ba-441e-9ea3-c9b4e97b9136",
+      "naturalKey" : "\"plant\".\"measurements\".\"value\"",
+      "fingerprint" : "bd8fa159a9d115de7146db298da2af3803318f3048110883cb08305fd968abb2",
+      "lastSeenSnapshotId" : "12079af3-7b49-4295-888b-a2ea9883469d"
+    } ],
+    "metadataSnapshotId" : "12079af3-7b49-4295-888b-a2ea9883469d",
+    "preAggregationFilters" : [ {
+      "order" : 1,
+      "values" : [ "ok", "revisar" ],
+      "objectId" : "5cc61ba1-876c-45d5-839e-810c9d6fd926",
+      "operator" : "IN",
+      "valueType" : "TEXT",
+      "definitionId" : "16a9b488-e933-4e1e-abce-daa3ee140107",
+      "columnObjectId" : "e285747a-7100-48ca-a189-b78b3491d744",
+      "definitionKind" : "DIMENSION"
+    }, {
+      "order" : 2,
+      "values" : [ "2025-12-31T23:00Z" ],
+      "objectId" : "5cc61ba1-876c-45d5-839e-810c9d6fd926",
+      "operator" : "GTE",
+      "valueType" : "TIMESTAMP_TZ",
+      "definitionId" : "ca36b5e6-3323-4e60-9c4f-eec6f0fa2b19",
+      "columnObjectId" : "09959c15-85ae-4747-9592-906ed072c97e",
+      "definitionKind" : "DIMENSION"
+    } ],
+    "resolutionFingerprint" : "b4eb8ab7181148bc56211a2494caea98f15787135a8393eaba3432b0492ca1cc",
+    "postAggregationFilters" : [ {
+      "order" : 1,
+      "values" : [ "100" ],
+      "operator" : "GT",
+      "valueType" : "NUMERIC",
+      "definitionId" : "b8e34c79-c443-4255-b6dd-f643187272de",
+      "columnObjectId" : "fd282e43-d7ba-441e-9ea3-c9b4e97b9136",
+      "definitionKind" : "METRIC"
+    } ]
+  }
+}
