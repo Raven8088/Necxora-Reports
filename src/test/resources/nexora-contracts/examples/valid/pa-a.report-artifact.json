@@ -1,0 +1,15 @@
+{
+  "format": "nexora-report-artifact/1",
+  "artifactId": "7a3f0000-0000-4000-8000-000000000090",
+  "runId": "7a3f0000-0000-4000-8000-000000000091",
+  "mediaType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+  "excelContract": "nexora-excel-report/1",
+  "sha256": "fd984bad363e9a30021460091726467b65bb1e88c31752d93c68ade87e4946e4",
+  "sizeBytes": 18432,
+  "sheets": [
+    "Reporte",
+    "Metodología"
+  ],
+  "createdAt": "2026-11-01T10:42:05-06:00",
+  "expiresAt": "2026-11-08T10:42:05-06:00"
+}

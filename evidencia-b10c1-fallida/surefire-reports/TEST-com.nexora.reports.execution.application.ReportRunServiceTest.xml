@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.5" tests="53" errors="0" skipped="0" failures="0" flakes="0">
+  <properties>
+    <property name="java.specification.version" value="21"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.class.path" value="D:\desarrollo\java\Nexora AI\Nexora-Reports\target\test-classes;D:\desarrollo\java\Nexora AI\Nexora-Reports\target\classes;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-starter-webmvc\4.1.1\spring-boot-starter-webmvc-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-starter\4.1.1\spring-boot-starter-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-starter-logging\4.1.1\spring-boot-starter-logging-4.1.1.jar;C:\Users\Raven\.m2\repository\ch\qos\logback\logback-classic\1.5.38\logback-classic-1.5.38.jar;C:\Users\Raven\.m2\repository\ch\qos\logback\logback-core\1.5.38\logback-core-1.5.38.jar;C:\Users\Raven\.m2\repository\org\apache\logging\log4j\log4j-to-slf4j\2.25.5\log4j-to-slf4j-2.25.5.jar;C:\Users\Raven\.m2\repository\org\slf4j\jul-to-slf4j\2.0.18\jul-to-slf4j-2.0.18.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-autoconfigure\4.1.1\spring-boot-autoconfigure-4.1.1.jar;C:\Users\Raven\.m2\repository\jakarta\annotation\jakarta.annotation-api\3.0.0\jakarta.annotation-api-3.0.0.jar;C:\Users\Raven\.m2\repository\org\yaml\snakeyaml\2.6\snakeyaml-2.6.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-starter-jackson\4.1.1\spring-boot-starter-jackson-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-jackson\4.1.1\spring-boot-jackson-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-starter-tomcat\4.1.1\spring-boot-starter-tomcat-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-starter-tomcat-runtime\4.1.1\spring-boot-starter-tomcat-runtime-4.1.1.jar;C:\Users\Raven\.m2\repository\org\apache\tomcat\embed\tomcat-embed-core\11.0.24\tomcat-embed-core-11.0.24.jar;C:\Users\Raven\.m2\repository\org\apache\tomcat\embed\tomcat-embed-websocket\11.0.24\tomcat-embed-websocket-11.0.24.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-tomcat\4.1.1\spring-boot-tomcat-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-http-converter\4.1.1\spring-boot-http-converter-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot\4.1.1\spring-boot-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\spring-context\7.0.9\spring-context-7.0.9.jar;C:\Users\Raven\.m2\repository\org\springframework\spring-web\7.0.9\spring-web-7.0.9.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-webmvc\4.1.1\spring-boot-webmvc-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-servlet\4.1.1\spring-boot-servlet-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\spring-webmvc\7.0.9\spring-webmvc-7.0.9.jar;C:\Users\Raven\.m2\repository\org\springframework\spring-expression\7.0.9\spring-expression-7.0.9.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-starter-validation\4.1.1\spring-boot-starter-validation-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-validation\4.1.1\spring-boot-validation-4.1.1.jar;C:\Users\Raven\.m2\repository\org\apache\tomcat\embed\tomcat-embed-el\11.0.24\tomcat-embed-el-11.0.24.jar;C:\Users\Raven\.m2\repository\org\hibernate\validator\hibernate-validator\9.1.3.Final\hibernate-validator-9.1.3.Final.jar;C:\Users\Raven\.m2\repository\jakarta\validation\jakarta.validation-api\3.1.1\jakarta.validation-api-3.1.1.jar;C:\Users\Raven\.m2\repository\org\jboss\logging\jboss-logging\3.6.3.Final\jboss-logging-3.6.3.Final.jar;C:\Users\Raven\.m2\repository\com\fasterxml\classmate\1.7.3\classmate-1.7.3.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-starter-security\4.1.1\spring-boot-starter-security-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-security\4.1.1\spring-boot-security-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\security\spring-security-config\7.1.1\spring-security-config-7.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\security\spring-security-core\7.1.1\spring-security-core-7.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\security\spring-security-crypto\7.1.1\spring-security-crypto-7.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\security\spring-security-web\7.1.1\spring-security-web-7.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\spring-aop\7.0.9\spring-aop-7.0.9.jar;C:\Users\Raven\.m2\repository\org\springframework\spring-beans\7.0.9\spring-beans-7.0.9.jar;C:\Users\Raven\.m2\repository\org\springframework\spring-core\7.0.9\spring-core-7.0.9.jar;C:\Users\Raven\.m2\repository\commons-logging\commons-logging\1.3.6\commons-logging-1.3.6.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-starter-security-oauth2-resource-server\4.1.1\spring-boot-starter-security-oauth2-resource-server-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-security-oauth2-resource-server\4.1.1\spring-boot-security-oauth2-resource-server-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\security\spring-security-oauth2-jose\7.1.1\spring-security-oauth2-jose-7.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\security\spring-security-oauth2-core\7.1.1\spring-security-oauth2-core-7.1.1.jar;C:\Users\Raven\.m2\repository\com\nimbusds\nimbus-jose-jwt\10.9.1\nimbus-jose-jwt-10.9.1.jar;C:\Users\Raven\.m2\repository\org\springframework\security\spring-security-oauth2-resource-server\7.1.1\spring-security-oauth2-resource-server-7.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-starter-jdbc\4.1.1\spring-boot-starter-jdbc-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-jdbc\4.1.1\spring-boot-jdbc-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-sql\4.1.1\spring-boot-sql-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-transaction\4.1.1\spring-boot-transaction-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-persistence\4.1.1\spring-boot-persistence-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\spring-tx\7.0.9\spring-tx-7.0.9.jar;C:\Users\Raven\.m2\repository\org\springframework\spring-jdbc\7.0.9\spring-jdbc-7.0.9.jar;C:\Users\Raven\.m2\repository\com\zaxxer\HikariCP\7.0.2\HikariCP-7.0.2.jar;C:\Users\Raven\.m2\repository\org\slf4j\slf4j-api\2.0.18\slf4j-api-2.0.18.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-starter-actuator\4.1.1\spring-boot-starter-actuator-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-starter-micrometer-metrics\4.1.1\spring-boot-starter-micrometer-metrics-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-micrometer-metrics\4.1.1\spring-boot-micrometer-metrics-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-micrometer-observation\4.1.1\spring-boot-micrometer-observation-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-actuator-autoconfigure\4.1.1\spring-boot-actuator-autoconfigure-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-actuator\4.1.1\spring-boot-actuator-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-health\4.1.1\spring-boot-health-4.1.1.jar;C:\Users\Raven\.m2\repository\io\micrometer\micrometer-observation\1.17.1\micrometer-observation-1.17.1.jar;C:\Users\Raven\.m2\repository\org\jspecify\jspecify\1.0.1\jspecify-1.0.1.jar;C:\Users\Raven\.m2\repository\io\micrometer\micrometer-commons\1.17.1\micrometer-commons-1.17.1.jar;C:\Users\Raven\.m2\repository\io\micrometer\micrometer-jakarta9\1.17.1\micrometer-jakarta9-1.17.1.jar;C:\Users\Raven\.m2\repository\io\micrometer\micrometer-core\1.17.1\micrometer-core-1.17.1.jar;C:\Users\Raven\.m2\repository\org\hdrhistogram\HdrHistogram\2.2.2\HdrHistogram-2.2.2.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-starter-flyway\4.1.1\spring-boot-starter-flyway-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-flyway\4.1.1\spring-boot-flyway-4.1.1.jar;C:\Users\Raven\.m2\repository\org\flywaydb\flyway-database-postgresql\12.4.0\flyway-database-postgresql-12.4.0.jar;C:\Users\Raven\.m2\repository\org\flywaydb\flyway-core\12.4.0\flyway-core-12.4.0.jar;C:\Users\Raven\.m2\repository\tools\jackson\core\jackson-databind\3.1.5\jackson-databind-3.1.5.jar;C:\Users\Raven\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.21\jackson-annotations-2.21.jar;C:\Users\Raven\.m2\repository\tools\jackson\core\jackson-core\3.1.5\jackson-core-3.1.5.jar;C:\Users\Raven\.m2\repository\org\postgresql\postgresql\42.7.13\postgresql-42.7.13.jar;C:\Users\Raven\.m2\repository\org\checkerframework\checker-qual\3.55.1\checker-qual-3.55.1.jar;C:\Users\Raven\.m2\repository\org\apache\poi\poi-ooxml\5.4.0\poi-ooxml-5.4.0.jar;C:\Users\Raven\.m2\repository\org\apache\poi\poi\5.4.0\poi-5.4.0.jar;C:\Users\Raven\.m2\repository\commons-codec\commons-codec\1.21.0\commons-codec-1.21.0.jar;C:\Users\Raven\.m2\repository\org\apache\commons\commons-math3\3.6.1\commons-math3-3.6.1.jar;C:\Users\Raven\.m2\repository\com\zaxxer\SparseBitSet\1.3\SparseBitSet-1.3.jar;C:\Users\Raven\.m2\repository\org\apache\poi\poi-ooxml-lite\5.4.0\poi-ooxml-lite-5.4.0.jar;C:\Users\Raven\.m2\repository\org\apache\xmlbeans\xmlbeans\5.3.0\xmlbeans-5.3.0.jar;C:\Users\Raven\.m2\repository\org\apache\commons\commons-compress\1.27.1\commons-compress-1.27.1.jar;C:\Users\Raven\.m2\repository\org\apache\commons\commons-lang3\3.20.0\commons-lang3-3.20.0.jar;C:\Users\Raven\.m2\repository\commons-io\commons-io\2.18.0\commons-io-2.18.0.jar;C:\Users\Raven\.m2\repository\com\github\virtuald\curvesapi\1.08\curvesapi-1.08.jar;C:\Users\Raven\.m2\repository\org\apache\logging\log4j\log4j-api\2.25.5\log4j-api-2.25.5.jar;C:\Users\Raven\.m2\repository\org\apache\commons\commons-collections4\4.4\commons-collections4-4.4.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-starter-webmvc-test\4.1.1\spring-boot-starter-webmvc-test-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-starter-jackson-test\4.1.1\spring-boot-starter-jackson-test-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-starter-test\4.1.1\spring-boot-starter-test-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-test\4.1.1\spring-boot-test-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-test-autoconfigure\4.1.1\spring-boot-test-autoconfigure-4.1.1.jar;C:\Users\Raven\.m2\repository\com\jayway\jsonpath\json-path\2.10.0\json-path-2.10.0.jar;C:\Users\Raven\.m2\repository\jakarta\xml\bind\jakarta.xml.bind-api\4.0.5\jakarta.xml.bind-api-4.0.5.jar;C:\Users\Raven\.m2\repository\jakarta\activation\jakarta.activation-api\2.1.4\jakarta.activation-api-2.1.4.jar;C:\Users\Raven\.m2\repository\net\minidev\json-smart\2.6.0\json-smart-2.6.0.jar;C:\Users\Raven\.m2\repository\net\minidev\accessors-smart\2.6.0\accessors-smart-2.6.0.jar;C:\Users\Raven\.m2\repository\org\ow2\asm\asm\9.7.1\asm-9.7.1.jar;C:\Users\Raven\.m2\repository\org\assertj\assertj-core\3.27.7\assertj-core-3.27.7.jar;C:\Users\Raven\.m2\repository\net\bytebuddy\byte-buddy\1.18.11\byte-buddy-1.18.11.jar;C:\Users\Raven\.m2\repository\org\awaitility\awaitility\4.3.0\awaitility-4.3.0.jar;C:\Users\Raven\.m2\repository\org\hamcrest\hamcrest\3.0\hamcrest-3.0.jar;C:\Users\Raven\.m2\repository\org\junit\jupiter\junit-jupiter\6.0.3\junit-jupiter-6.0.3.jar;C:\Users\Raven\.m2\repository\org\junit\jupiter\junit-jupiter-api\6.0.3\junit-jupiter-api-6.0.3.jar;C:\Users\Raven\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\Raven\.m2\repository\org\junit\platform\junit-platform-commons\6.0.3\junit-platform-commons-6.0.3.jar;C:\Users\Raven\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\Raven\.m2\repository\org\junit\jupiter\junit-jupiter-params\6.0.3\junit-jupiter-params-6.0.3.jar;C:\Users\Raven\.m2\repository\org\junit\jupiter\junit-jupiter-engine\6.0.3\junit-jupiter-engine-6.0.3.jar;C:\Users\Raven\.m2\repository\org\mockito\mockito-core\5.23.0\mockito-core-5.23.0.jar;C:\Users\Raven\.m2\repository\net\bytebuddy\byte-buddy-agent\1.18.11\byte-buddy-agent-1.18.11.jar;C:\Users\Raven\.m2\repository\org\objenesis\objenesis\3.3\objenesis-3.3.jar;C:\Users\Raven\.m2\repository\org\mockito\mockito-junit-jupiter\5.23.0\mockito-junit-jupiter-5.23.0.jar;C:\Users\Raven\.m2\repository\org\skyscreamer\jsonassert\1.5.3\jsonassert-1.5.3.jar;C:\Users\Raven\.m2\repository\com\vaadin\external\google\android-json\0.0.20131108.vaadin1\android-json-0.0.20131108.vaadin1.jar;C:\Users\Raven\.m2\repository\org\springframework\spring-test\7.0.9\spring-test-7.0.9.jar;C:\Users\Raven\.m2\repository\org\xmlunit\xmlunit-core\2.11.0\xmlunit-core-2.11.0.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-webmvc-test\4.1.1\spring-boot-webmvc-test-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-web-server\4.1.1\spring-boot-web-server-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-resttestclient\4.1.1\spring-boot-resttestclient-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-starter-security-oauth2-resource-server-test\4.1.1\spring-boot-starter-security-oauth2-resource-server-test-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-starter-security-test\4.1.1\spring-boot-starter-security-test-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-security-test\4.1.1\spring-boot-security-test-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\security\spring-security-test\7.1.1\spring-security-test-7.1.1.jar;C:\Users\Raven\.m2\repository\org\testcontainers\testcontainers-junit-jupiter\2.0.5\testcontainers-junit-jupiter-2.0.5.jar;C:\Users\Raven\.m2\repository\org\testcontainers\testcontainers\2.0.5\testcontainers-2.0.5.jar;C:\Users\Raven\.m2\repository\org\rnorth\duct-tape\duct-tape\1.0.8\duct-tape-1.0.8.jar;C:\Users\Raven\.m2\repository\org\jetbrains\annotations\17.0.0\annotations-17.0.0.jar;C:\Users\Raven\.m2\repository\com\github\docker-java\docker-java-api\3.7.1\docker-java-api-3.7.1.jar;C:\Users\Raven\.m2\repository\com\github\docker-java\docker-java-transport-zerodep\3.7.1\docker-java-transport-zerodep-3.7.1.jar;C:\Users\Raven\.m2\repository\com\github\docker-java\docker-java-transport\3.7.1\docker-java-transport-3.7.1.jar;C:\Users\Raven\.m2\repository\net\java\dev\jna\jna\5.18.1\jna-5.18.1.jar;C:\Users\Raven\.m2\repository\org\testcontainers\testcontainers-postgresql\2.0.5\testcontainers-postgresql-2.0.5.jar;C:\Users\Raven\.m2\repository\org\testcontainers\testcontainers-jdbc\2.0.5\testcontainers-jdbc-2.0.5.jar;C:\Users\Raven\.m2\repository\org\testcontainers\testcontainers-database-commons\2.0.5\testcontainers-database-commons-2.0.5.jar;C:\Users\Raven\.m2\repository\com\tngtech\archunit\archunit-junit5\1.4.2\archunit-junit5-1.4.2.jar;C:\Users\Raven\.m2\repository\com\tngtech\archunit\archunit-junit5-api\1.4.2\archunit-junit5-api-1.4.2.jar;C:\Users\Raven\.m2\repository\com\tngtech\archunit\archunit\1.4.2\archunit-1.4.2.jar;C:\Users\Raven\.m2\repository\com\tngtech\archunit\archunit-junit5-engine\1.4.2\archunit-junit5-engine-1.4.2.jar;C:\Users\Raven\.m2\repository\com\tngtech\archunit\archunit-junit5-engine-api\1.4.2\archunit-junit5-engine-api-1.4.2.jar;C:\Users\Raven\.m2\repository\org\junit\platform\junit-platform-engine\6.0.3\junit-platform-engine-6.0.3.jar;"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="user.variant" value=""/>
+    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="catalina.useNaming" value="false"/>
+    <property name="user.timezone" value="America/Toronto"/>
+    <property name="org.jboss.logging.provider" value="slf4j"/>
+    <property name="os.name" value="Windows 11"/>
+    <property name="java.vm.specification.version" value="21"/>
+    <property name="APPLICATION_NAME" value="nexora-reports"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="419"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-21\bin"/>
+    <property name="sun.java.command" value="C:\Users\Raven\AppData\Local\Temp\surefire3649535599096142460\surefirebooter-20261102092646416_3.jar C:\Users\Raven\AppData\Local\Temp\surefire3649535599096142460 2026-11-02T09-26-46_303-jvmRun1 surefire-20261102092646416_1tmp surefire_0-20261102092646416_2tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="D:\desarrollo\java\Nexora AI\Nexora-Reports\target\test-classes;D:\desarrollo\java\Nexora AI\Nexora-Reports\target\classes;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-starter-webmvc\4.1.1\spring-boot-starter-webmvc-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-starter\4.1.1\spring-boot-starter-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-starter-logging\4.1.1\spring-boot-starter-logging-4.1.1.jar;C:\Users\Raven\.m2\repository\ch\qos\logback\logback-classic\1.5.38\logback-classic-1.5.38.jar;C:\Users\Raven\.m2\repository\ch\qos\logback\logback-core\1.5.38\logback-core-1.5.38.jar;C:\Users\Raven\.m2\repository\org\apache\logging\log4j\log4j-to-slf4j\2.25.5\log4j-to-slf4j-2.25.5.jar;C:\Users\Raven\.m2\repository\org\slf4j\jul-to-slf4j\2.0.18\jul-to-slf4j-2.0.18.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-autoconfigure\4.1.1\spring-boot-autoconfigure-4.1.1.jar;C:\Users\Raven\.m2\repository\jakarta\annotation\jakarta.annotation-api\3.0.0\jakarta.annotation-api-3.0.0.jar;C:\Users\Raven\.m2\repository\org\yaml\snakeyaml\2.6\snakeyaml-2.6.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-starter-jackson\4.1.1\spring-boot-starter-jackson-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-jackson\4.1.1\spring-boot-jackson-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-starter-tomcat\4.1.1\spring-boot-starter-tomcat-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-starter-tomcat-runtime\4.1.1\spring-boot-starter-tomcat-runtime-4.1.1.jar;C:\Users\Raven\.m2\repository\org\apache\tomcat\embed\tomcat-embed-core\11.0.24\tomcat-embed-core-11.0.24.jar;C:\Users\Raven\.m2\repository\org\apache\tomcat\embed\tomcat-embed-websocket\11.0.24\tomcat-embed-websocket-11.0.24.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-tomcat\4.1.1\spring-boot-tomcat-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-http-converter\4.1.1\spring-boot-http-converter-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot\4.1.1\spring-boot-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\spring-context\7.0.9\spring-context-7.0.9.jar;C:\Users\Raven\.m2\repository\org\springframework\spring-web\7.0.9\spring-web-7.0.9.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-webmvc\4.1.1\spring-boot-webmvc-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-servlet\4.1.1\spring-boot-servlet-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\spring-webmvc\7.0.9\spring-webmvc-7.0.9.jar;C:\Users\Raven\.m2\repository\org\springframework\spring-expression\7.0.9\spring-expression-7.0.9.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-starter-validation\4.1.1\spring-boot-starter-validation-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-validation\4.1.1\spring-boot-validation-4.1.1.jar;C:\Users\Raven\.m2\repository\org\apache\tomcat\embed\tomcat-embed-el\11.0.24\tomcat-embed-el-11.0.24.jar;C:\Users\Raven\.m2\repository\org\hibernate\validator\hibernate-validator\9.1.3.Final\hibernate-validator-9.1.3.Final.jar;C:\Users\Raven\.m2\repository\jakarta\validation\jakarta.validation-api\3.1.1\jakarta.validation-api-3.1.1.jar;C:\Users\Raven\.m2\repository\org\jboss\logging\jboss-logging\3.6.3.Final\jboss-logging-3.6.3.Final.jar;C:\Users\Raven\.m2\repository\com\fasterxml\classmate\1.7.3\classmate-1.7.3.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-starter-security\4.1.1\spring-boot-starter-security-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-security\4.1.1\spring-boot-security-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\security\spring-security-config\7.1.1\spring-security-config-7.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\security\spring-security-core\7.1.1\spring-security-core-7.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\security\spring-security-crypto\7.1.1\spring-security-crypto-7.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\security\spring-security-web\7.1.1\spring-security-web-7.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\spring-aop\7.0.9\spring-aop-7.0.9.jar;C:\Users\Raven\.m2\repository\org\springframework\spring-beans\7.0.9\spring-beans-7.0.9.jar;C:\Users\Raven\.m2\repository\org\springframework\spring-core\7.0.9\spring-core-7.0.9.jar;C:\Users\Raven\.m2\repository\commons-logging\commons-logging\1.3.6\commons-logging-1.3.6.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-starter-security-oauth2-resource-server\4.1.1\spring-boot-starter-security-oauth2-resource-server-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-security-oauth2-resource-server\4.1.1\spring-boot-security-oauth2-resource-server-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\security\spring-security-oauth2-jose\7.1.1\spring-security-oauth2-jose-7.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\security\spring-security-oauth2-core\7.1.1\spring-security-oauth2-core-7.1.1.jar;C:\Users\Raven\.m2\repository\com\nimbusds\nimbus-jose-jwt\10.9.1\nimbus-jose-jwt-10.9.1.jar;C:\Users\Raven\.m2\repository\org\springframework\security\spring-security-oauth2-resource-server\7.1.1\spring-security-oauth2-resource-server-7.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-starter-jdbc\4.1.1\spring-boot-starter-jdbc-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-jdbc\4.1.1\spring-boot-jdbc-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-sql\4.1.1\spring-boot-sql-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-transaction\4.1.1\spring-boot-transaction-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-persistence\4.1.1\spring-boot-persistence-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\spring-tx\7.0.9\spring-tx-7.0.9.jar;C:\Users\Raven\.m2\repository\org\springframework\spring-jdbc\7.0.9\spring-jdbc-7.0.9.jar;C:\Users\Raven\.m2\repository\com\zaxxer\HikariCP\7.0.2\HikariCP-7.0.2.jar;C:\Users\Raven\.m2\repository\org\slf4j\slf4j-api\2.0.18\slf4j-api-2.0.18.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-starter-actuator\4.1.1\spring-boot-starter-actuator-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-starter-micrometer-metrics\4.1.1\spring-boot-starter-micrometer-metrics-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-micrometer-metrics\4.1.1\spring-boot-micrometer-metrics-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-micrometer-observation\4.1.1\spring-boot-micrometer-observation-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-actuator-autoconfigure\4.1.1\spring-boot-actuator-autoconfigure-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-actuator\4.1.1\spring-boot-actuator-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-health\4.1.1\spring-boot-health-4.1.1.jar;C:\Users\Raven\.m2\repository\io\micrometer\micrometer-observation\1.17.1\micrometer-observation-1.17.1.jar;C:\Users\Raven\.m2\repository\org\jspecify\jspecify\1.0.1\jspecify-1.0.1.jar;C:\Users\Raven\.m2\repository\io\micrometer\micrometer-commons\1.17.1\micrometer-commons-1.17.1.jar;C:\Users\Raven\.m2\repository\io\micrometer\micrometer-jakarta9\1.17.1\micrometer-jakarta9-1.17.1.jar;C:\Users\Raven\.m2\repository\io\micrometer\micrometer-core\1.17.1\micrometer-core-1.17.1.jar;C:\Users\Raven\.m2\repository\org\hdrhistogram\HdrHistogram\2.2.2\HdrHistogram-2.2.2.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-starter-flyway\4.1.1\spring-boot-starter-flyway-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-flyway\4.1.1\spring-boot-flyway-4.1.1.jar;C:\Users\Raven\.m2\repository\org\flywaydb\flyway-database-postgresql\12.4.0\flyway-database-postgresql-12.4.0.jar;C:\Users\Raven\.m2\repository\org\flywaydb\flyway-core\12.4.0\flyway-core-12.4.0.jar;C:\Users\Raven\.m2\repository\tools\jackson\core\jackson-databind\3.1.5\jackson-databind-3.1.5.jar;C:\Users\Raven\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.21\jackson-annotations-2.21.jar;C:\Users\Raven\.m2\repository\tools\jackson\core\jackson-core\3.1.5\jackson-core-3.1.5.jar;C:\Users\Raven\.m2\repository\org\postgresql\postgresql\42.7.13\postgresql-42.7.13.jar;C:\Users\Raven\.m2\repository\org\checkerframework\checker-qual\3.55.1\checker-qual-3.55.1.jar;C:\Users\Raven\.m2\repository\org\apache\poi\poi-ooxml\5.4.0\poi-ooxml-5.4.0.jar;C:\Users\Raven\.m2\repository\org\apache\poi\poi\5.4.0\poi-5.4.0.jar;C:\Users\Raven\.m2\repository\commons-codec\commons-codec\1.21.0\commons-codec-1.21.0.jar;C:\Users\Raven\.m2\repository\org\apache\commons\commons-math3\3.6.1\commons-math3-3.6.1.jar;C:\Users\Raven\.m2\repository\com\zaxxer\SparseBitSet\1.3\SparseBitSet-1.3.jar;C:\Users\Raven\.m2\repository\org\apache\poi\poi-ooxml-lite\5.4.0\poi-ooxml-lite-5.4.0.jar;C:\Users\Raven\.m2\repository\org\apache\xmlbeans\xmlbeans\5.3.0\xmlbeans-5.3.0.jar;C:\Users\Raven\.m2\repository\org\apache\commons\commons-compress\1.27.1\commons-compress-1.27.1.jar;C:\Users\Raven\.m2\repository\org\apache\commons\commons-lang3\3.20.0\commons-lang3-3.20.0.jar;C:\Users\Raven\.m2\repository\commons-io\commons-io\2.18.0\commons-io-2.18.0.jar;C:\Users\Raven\.m2\repository\com\github\virtuald\curvesapi\1.08\curvesapi-1.08.jar;C:\Users\Raven\.m2\repository\org\apache\logging\log4j\log4j-api\2.25.5\log4j-api-2.25.5.jar;C:\Users\Raven\.m2\repository\org\apache\commons\commons-collections4\4.4\commons-collections4-4.4.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-starter-webmvc-test\4.1.1\spring-boot-starter-webmvc-test-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-starter-jackson-test\4.1.1\spring-boot-starter-jackson-test-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-starter-test\4.1.1\spring-boot-starter-test-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-test\4.1.1\spring-boot-test-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-test-autoconfigure\4.1.1\spring-boot-test-autoconfigure-4.1.1.jar;C:\Users\Raven\.m2\repository\com\jayway\jsonpath\json-path\2.10.0\json-path-2.10.0.jar;C:\Users\Raven\.m2\repository\jakarta\xml\bind\jakarta.xml.bind-api\4.0.5\jakarta.xml.bind-api-4.0.5.jar;C:\Users\Raven\.m2\repository\jakarta\activation\jakarta.activation-api\2.1.4\jakarta.activation-api-2.1.4.jar;C:\Users\Raven\.m2\repository\net\minidev\json-smart\2.6.0\json-smart-2.6.0.jar;C:\Users\Raven\.m2\repository\net\minidev\accessors-smart\2.6.0\accessors-smart-2.6.0.jar;C:\Users\Raven\.m2\repository\org\ow2\asm\asm\9.7.1\asm-9.7.1.jar;C:\Users\Raven\.m2\repository\org\assertj\assertj-core\3.27.7\assertj-core-3.27.7.jar;C:\Users\Raven\.m2\repository\net\bytebuddy\byte-buddy\1.18.11\byte-buddy-1.18.11.jar;C:\Users\Raven\.m2\repository\org\awaitility\awaitility\4.3.0\awaitility-4.3.0.jar;C:\Users\Raven\.m2\repository\org\hamcrest\hamcrest\3.0\hamcrest-3.0.jar;C:\Users\Raven\.m2\repository\org\junit\jupiter\junit-jupiter\6.0.3\junit-jupiter-6.0.3.jar;C:\Users\Raven\.m2\repository\org\junit\jupiter\junit-jupiter-api\6.0.3\junit-jupiter-api-6.0.3.jar;C:\Users\Raven\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\Raven\.m2\repository\org\junit\platform\junit-platform-commons\6.0.3\junit-platform-commons-6.0.3.jar;C:\Users\Raven\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\Raven\.m2\repository\org\junit\jupiter\junit-jupiter-params\6.0.3\junit-jupiter-params-6.0.3.jar;C:\Users\Raven\.m2\repository\org\junit\jupiter\junit-jupiter-engine\6.0.3\junit-jupiter-engine-6.0.3.jar;C:\Users\Raven\.m2\repository\org\mockito\mockito-core\5.23.0\mockito-core-5.23.0.jar;C:\Users\Raven\.m2\repository\net\bytebuddy\byte-buddy-agent\1.18.11\byte-buddy-agent-1.18.11.jar;C:\Users\Raven\.m2\repository\org\objenesis\objenesis\3.3\objenesis-3.3.jar;C:\Users\Raven\.m2\repository\org\mockito\mockito-junit-jupiter\5.23.0\mockito-junit-jupiter-5.23.0.jar;C:\Users\Raven\.m2\repository\org\skyscreamer\jsonassert\1.5.3\jsonassert-1.5.3.jar;C:\Users\Raven\.m2\repository\com\vaadin\external\google\android-json\0.0.20131108.vaadin1\android-json-0.0.20131108.vaadin1.jar;C:\Users\Raven\.m2\repository\org\springframework\spring-test\7.0.9\spring-test-7.0.9.jar;C:\Users\Raven\.m2\repository\org\xmlunit\xmlunit-core\2.11.0\xmlunit-core-2.11.0.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-webmvc-test\4.1.1\spring-boot-webmvc-test-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-web-server\4.1.1\spring-boot-web-server-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-resttestclient\4.1.1\spring-boot-resttestclient-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-starter-security-oauth2-resource-server-test\4.1.1\spring-boot-starter-security-oauth2-resource-server-test-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-starter-security-test\4.1.1\spring-boot-starter-security-test-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\boot\spring-boot-security-test\4.1.1\spring-boot-security-test-4.1.1.jar;C:\Users\Raven\.m2\repository\org\springframework\security\spring-security-test\7.1.1\spring-security-test-7.1.1.jar;C:\Users\Raven\.m2\repository\org\testcontainers\testcontainers-junit-jupiter\2.0.5\testcontainers-junit-jupiter-2.0.5.jar;C:\Users\Raven\.m2\repository\org\testcontainers\testcontainers\2.0.5\testcontainers-2.0.5.jar;C:\Users\Raven\.m2\repository\org\rnorth\duct-tape\duct-tape\1.0.8\duct-tape-1.0.8.jar;C:\Users\Raven\.m2\repository\org\jetbrains\annotations\17.0.0\annotations-17.0.0.jar;C:\Users\Raven\.m2\repository\com\github\docker-java\docker-java-api\3.7.1\docker-java-api-3.7.1.jar;C:\Users\Raven\.m2\repository\com\github\docker-java\docker-java-transport-zerodep\3.7.1\docker-java-transport-zerodep-3.7.1.jar;C:\Users\Raven\.m2\repository\com\github\docker-java\docker-java-transport\3.7.1\docker-java-transport-3.7.1.jar;C:\Users\Raven\.m2\repository\net\java\dev\jna\jna\5.18.1\jna-5.18.1.jar;C:\Users\Raven\.m2\repository\org\testcontainers\testcontainers-postgresql\2.0.5\testcontainers-postgresql-2.0.5.jar;C:\Users\Raven\.m2\repository\org\testcontainers\testcontainers-jdbc\2.0.5\testcontainers-jdbc-2.0.5.jar;C:\Users\Raven\.m2\repository\org\testcontainers\testcontainers-database-commons\2.0.5\testcontainers-database-commons-2.0.5.jar;C:\Users\Raven\.m2\repository\com\tngtech\archunit\archunit-junit5\1.4.2\archunit-junit5-1.4.2.jar;C:\Users\Raven\.m2\repository\com\tngtech\archunit\archunit-junit5-api\1.4.2\archunit-junit5-api-1.4.2.jar;C:\Users\Raven\.m2\repository\com\tngtech\archunit\archunit\1.4.2\archunit-1.4.2.jar;C:\Users\Raven\.m2\repository\com\tngtech\archunit\archunit-junit5-engine\1.4.2\archunit-junit5-engine-1.4.2.jar;C:\Users\Raven\.m2\repository\com\tngtech\archunit\archunit-junit5-engine-api\1.4.2\archunit-junit5-engine-api-1.4.2.jar;C:\Users\Raven\.m2\repository\org\junit\platform\junit-platform-engine\6.0.3\junit-platform-engine-6.0.3.jar;"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="C:\Users\Raven"/>
+    <property name="user.language" value="es"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2025-01-21"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk-21"/>
+    <property name="file.separator" value="\"/>
+    <property name="basedir" value="D:\desarrollo\java\Nexora AI\Nexora-Reports"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="FILE_LOG_CHARSET" value="UTF-8"/>
+    <property name="java.awt.headless" value="true"/>
+    <property name="nexora.test.postgres-image" value="postgres:17.6"/>
+    <property name="surefire.real.class.path" value="C:\Users\Raven\AppData\Local\Temp\surefire3649535599096142460\surefirebooter-20261102092646416_3.jar"/>
+    <property name="LOG_LEVEL_PATTERN" value="%5p [cid:%X{correlationId:-}]"/>
+    <property name="user.script" value=""/>
+    <property name="polyglot.engine.WarnInterpreterOnly" value="false"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="21.0.6+8-LTS-188"/>
+    <property name="user.name" value="Raven"/>
+    <property name="stdout.encoding" value="Cp1252"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="localRepository" value="C:\Users\Raven\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="C:\Users\Raven\AppData\Local\Temp\"/>
+    <property name="com.zaxxer.hikari.pool_number" value="6"/>
+    <property name="catalina.home" value="C:\Users\Raven\AppData\Local\Temp\tomcat.0.7125487029111567285"/>
+    <property name="java.version" value="21.0.6"/>
+    <property name="user.dir" value="D:\desarrollo\java\Nexora AI\Nexora-Reports"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="PID" value="63608"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="CONSOLE_LOG_CHARSET" value="UTF-8"/>
+    <property name="catalina.base" value="C:\Users\Raven\AppData\Local\Temp\tomcat.0.7125487029111567285"/>
+    <property name="native.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk-21\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files\MapTiler Engine 14.1.2;C:\Program Files\Java\jdk-21\bin;C:\Program Files\maven\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files\Microsoft\jdk-11.0.16.101-hotspot\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;F:\desarollo\platform-tools;C:\Program Files\dotnet\;C:\Users\Raven\AppData\Local\Pub\Cache\bin;F:\desarollo\flutter\bin;C:\Program Files\Git\cmd;C:\Users\Raven\AppData\Local\Microsoft\WindowsApps;C:\Users\Raven\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Raven\AppData\Roaming\npm;C:\Program Files\maven\bin;C:\Program Files\NVIDIA Corporation\NVIDIA app\NvDLISR;C:\Program Files\Android\Android Studio\plugins\Kotlin\kotlinc\bin;C:\Program Files\JetBrains\IntelliJ IDEA 2024.3.5\bin;;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\nodejs\;C:\Users\Raven\AppData\Local\Muse Hub\lib;C:\Program Files\WireGuard\;C:\Users\Raven\.local\bin;C:\Program Files\Java\jdk-21\bin;C:\Users\Raven\AppData\Local\Microsoft\WindowsApps;F:\desarollo\flutter\bin;F:\desarollo\platform-tools;C:\Users\Raven\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\maven\bin;C:\Program Files\JetBrains\IntelliJ IDEA 2024.3.5\bin;;C:\Program Files\Android\Android Studio\plugins\Kotlin\kotlinc\bin;C:\gradle-8.14.1\bin;C:\Users\Raven\AppData\Roaming\npm;C:\Users\Raven\AppData\Local\Muse Hub\lib;C:\Users\Raven\AppData\Local\Programs\Microsoft VS Code\bin\copilot-shim;C:\Users\Raven\AppData\Local\Programs\Ollama;."/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="stderr.encoding" value="Cp1252"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.version" value="21.0.6+8-LTS-188"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="65.0"/>
+    <property name="LOGGED_APPLICATION_NAME" value="[nexora-reports] "/>
+  </properties>
+  <testcase name="aDestinationOfAnotherSourceIsNotAConfiguredSource" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.019"/>
+  <testcase name="aReadThatIsRefusedOrFailsIsARefusedRunWithItsStableCode(String)[1]" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.01">
+    <system-out><![CDATA[2026-11-02T09:28:29.161-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run dae23613-75f5-4f02-97ce-f723d6208110 refused while reading: TENANT_SCOPE_UNVERIFIED
+2026-11-02T09:28:29.161-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run dae23613-75f5-4f02-97ce-f723d6208110 recorded as REFUSED tenant_scope_unverified
+]]></system-out>
+  </testcase>
+  <testcase name="aReadThatIsRefusedOrFailsIsARefusedRunWithItsStableCode(String)[2]" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.005">
+    <system-out><![CDATA[2026-11-02T09:28:29.168-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run fa14134b-5812-48bf-a7be-1683caf900a9 refused while reading: PHYSICAL_SCHEMA_MISMATCH
+2026-11-02T09:28:29.168-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run fa14134b-5812-48bf-a7be-1683caf900a9 recorded as REFUSED physical_schema_mismatch
+]]></system-out>
+  </testcase>
+  <testcase name="aReadThatIsRefusedOrFailsIsARefusedRunWithItsStableCode(String)[3]" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.003">
+    <system-out><![CDATA[2026-11-02T09:28:29.171-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run af1ed3a6-bf01-4c06-a5f8-0f5834920f1e refused while reading: TOO_MANY_EXECUTIONS
+2026-11-02T09:28:29.171-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run af1ed3a6-bf01-4c06-a5f8-0f5834920f1e recorded as REFUSED too_many_executions
+]]></system-out>
+  </testcase>
+  <testcase name="aReadThatIsRefusedOrFailsIsARefusedRunWithItsStableCode(String)[4]" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.005">
+    <system-out><![CDATA[2026-11-02T09:28:29.176-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run 5606a07f-008c-4b38-b081-c89fb06c9217 refused while reading: RESULT_TOO_LARGE
+2026-11-02T09:28:29.176-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run 5606a07f-008c-4b38-b081-c89fb06c9217 recorded as REFUSED result_too_large
+]]></system-out>
+  </testcase>
+  <testcase name="aReadThatIsRefusedOrFailsIsARefusedRunWithItsStableCode(String)[5]" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.004">
+    <system-out><![CDATA[2026-11-02T09:28:29.181-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run 7971ecc9-039b-48fb-b201-cee6fc8e0402 refused while reading: DATA_SOURCE_UNAVAILABLE
+2026-11-02T09:28:29.181-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run 7971ecc9-039b-48fb-b201-cee6fc8e0402 recorded as REFUSED data_source_unavailable
+]]></system-out>
+  </testcase>
+  <testcase name="aReadThatIsRefusedOrFailsIsARefusedRunWithItsStableCode(String)[6]" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.004">
+    <system-out><![CDATA[2026-11-02T09:28:29.185-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run a26846fe-ad1c-4454-a7b9-a113ed62c842 refused while reading: EXECUTION_TIMEOUT
+2026-11-02T09:28:29.185-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run a26846fe-ad1c-4454-a7b9-a113ed62c842 recorded as REFUSED execution_timeout
+]]></system-out>
+  </testcase>
+  <testcase name="aReadThatIsRefusedOrFailsIsARefusedRunWithItsStableCode(String)[7]" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.003">
+    <system-out><![CDATA[2026-11-02T09:28:29.190-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run 503ebdd8-db4f-41d6-8f65-8b413032eac7 refused while reading: DATA_SOURCE_ROLE_NOT_READ_ONLY
+2026-11-02T09:28:29.190-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run 503ebdd8-db4f-41d6-8f65-8b413032eac7 recorded as REFUSED data_source_role_not_read_only
+]]></system-out>
+  </testcase>
+  <testcase name="aSourceThatIsNotAnActivePostgresqlSourceIsRefusedBeforeStarting" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.004"/>
+  <testcase name="aDownloadWritesTheVerifiedBytesAndRecordsTheDeliveryAfterThem" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.018">
+    <system-out><![CDATA[2026-11-02T09:28:29.211-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run f2b645c8-ecb8-4fbc-9d50-44119114545c recorded as COMPLETED 
+]]></system-out>
+  </testcase>
+  <testcase name="anArtifactOverItsSizeLimitIsARefusal" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.004">
+    <system-out><![CDATA[2026-11-02T09:28:29.215-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run a9e40466-2ca5-439a-b215-edae035056f4 not presented: ARTIFACT_TOO_LARGE
+2026-11-02T09:28:29.216-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run a9e40466-2ca5-439a-b215-edae035056f4 recorded as REFUSED artifact_too_large
+]]></system-out>
+  </testcase>
+  <testcase name="aPlanThatChangesDuringTheReadIsRefusedAndItsRowsDiscarded" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.005">
+    <system-out><![CDATA[2026-11-02T09:28:29.220-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run b70ec979-883c-4b0a-b708-098f2bd0e384: report plan not current [OBJECT_CHANGED]
+2026-11-02T09:28:29.220-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run b70ec979-883c-4b0a-b708-098f2bd0e384 recorded as REFUSED plan_changed_during_execution
+]]></system-out>
+  </testcase>
+  <testcase name="anUnknownReportPlanIsNotFound" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.003"/>
+  <testcase name="theArtifactOfAnotherOwnerOrOfARefusedRunIsNotFound" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.023">
+    <system-out><![CDATA[2026-11-02T09:28:29.243-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run 9e827052-36b4-4b82-a182-ba712a5db629 recorded as COMPLETED 
+2026-11-02T09:28:29.244-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run 4bbb7c40-56dd-4ea3-97a0-1285953554af: report plan not current [OBJECT_CHANGED]
+2026-11-02T09:28:29.244-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run 4bbb7c40-56dd-4ea3-97a0-1285953554af recorded as REFUSED plan_stale
+]]></system-out>
+  </testcase>
+  <testcase name="aStalePlanIsRefusedBeforeAnythingIsRead" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.003">
+    <system-out><![CDATA[2026-11-02T09:28:29.251-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run 361e681e-859d-4126-bae3-171a58675c47: report plan not current [OBJECT_CHANGED]
+2026-11-02T09:28:29.251-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run 361e681e-859d-4126-bae3-171a58675c47 recorded as REFUSED plan_stale
+]]></system-out>
+  </testcase>
+  <testcase name="aTruncatedDatasetMakesThePartialRunWithAGeneratedWarning" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.017">
+    <system-out><![CDATA[2026-11-02T09:28:29.268-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run 8ebd8efd-4bab-4ee7-b26e-26335190aa00 recorded as PARTIAL 
+]]></system-out>
+  </testcase>
+  <testcase name="readingTheRunGivesExactlyTheDocumentOfItsAnswer" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.019">
+    <system-out><![CDATA[2026-11-02T09:28:29.287-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run 36668c0f-0de1-4b77-8e31-149955433b37 recorded as COMPLETED 
+]]></system-out>
+  </testcase>
+  <testcase name="theSourceNameFromSemanticIsAKnownFactOfTheHeader" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.018">
+    <system-out><![CDATA[2026-11-02T09:28:29.305-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run 545f32a8-d4c9-4321-9d30-a323824fca81 recorded as COMPLETED 
+]]></system-out>
+  </testcase>
+  <testcase name="anUnexpectedErrorIsRecordedAsAnInternalFailureOnce" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.006">
+    <system-out><![CDATA[2026-11-02T09:28:29.311-05:00  WARN [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run 2504e56c-70ff-4ce3-9a3a-bfd188418105 failed internally
+
+com.nexora.reports.execution.domain.RedactedFailure: message withheld; java.lang.IllegalStateException
+	at com.nexora.reports.execution.application.ReportRunServiceTest.anUnexpectedErrorIsRecordedAsAnInternalFailureOnce(ReportRunServiceTest.java:698) ~[test-classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:701) ~[junit-platform-commons-6.0.3.jar:6.0.3]
+	at org.junit.platform.commons.support.ReflectionSupport.invokeMethod(ReflectionSupport.java:502) ~[junit-platform-commons-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.support.MethodReflectionUtils.invoke(MethodReflectionUtils.java:45) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:61) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:124) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:163) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:148) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:123) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:105) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:99) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:66) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:47) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:39) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:104) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:98) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invokeVoid(InterceptingExecutableInvoker.java:71) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$0(TestMethodTestDescriptor.java:219) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:215) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:157) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:70) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$2(NodeTestTask.java:176) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$1(NodeTestTask.java:166) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:138) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$0(NodeTestTask.java:164) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:163) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:116) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596) ~[na:na]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:42) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$2(NodeTestTask.java:180) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$1(NodeTestTask.java:166) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:138) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$0(NodeTestTask.java:164) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:163) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:116) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596) ~[na:na]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:42) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$2(NodeTestTask.java:180) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$1(NodeTestTask.java:166) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:138) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$0(NodeTestTask.java:164) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:163) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:116) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:36) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:52) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:58) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.executeEngine(EngineExecutionOrchestrator.java:246) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.failOrExecuteEngine(EngineExecutionOrchestrator.java:218) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:179) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:108) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:66) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:157) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:65) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:125) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:114) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:58) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.InterceptingLauncher.lambda$execute$2(InterceptingLauncher.java:57) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.ClasspathAlignmentCheckingLauncherInterceptor.intercept(ClasspathAlignmentCheckingLauncherInterceptor.java:25) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.InterceptingLauncher.execute(InterceptingLauncher.java:56) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:58) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.apache.maven.surefire.api.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:125) ~[surefire-api-3.5.6.jar:3.5.6]
+	at org.apache.maven.surefire.junitplatform.LauncherAdapter.executeWithCancellationToken(LauncherAdapter.java:68) ~[surefire-junit-platform-3.5.6.jar:3.5.6]
+	at org.apache.maven.surefire.junitplatform.LauncherAdapter.execute(LauncherAdapter.java:54) ~[surefire-junit-platform-3.5.6.jar:3.5.6]
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:203) ~[surefire-junit-platform-3.5.6.jar:3.5.6]
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:168) ~[surefire-junit-platform-3.5.6.jar:3.5.6]
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:136) ~[surefire-junit-platform-3.5.6.jar:3.5.6]
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385) ~[surefire-booter-3.5.6.jar:3.5.6]
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162) ~[surefire-booter-3.5.6.jar:3.5.6]
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507) ~[surefire-booter-3.5.6.jar:3.5.6]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495) ~[surefire-booter-3.5.6.jar:3.5.6]
+
+2026-11-02T09:28:29.312-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run 2504e56c-70ff-4ce3-9a3a-bfd188418105 recorded as FAILED internal_error
+]]></system-out>
+  </testcase>
+  <testcase name="aRegistryThatCannotRecordTheOutcomeAnswersWithTheRunIdForTheReconciliation" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.019"/>
+  <testcase name="aDataSourceDocumentOfAnotherSourceIsAContractViolationOfSemantic" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.003"/>
+  <testcase name="aRenderingFailureIsAFailedRunWithoutDocumentButWithItsId" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.005">
+    <system-out><![CDATA[2026-11-02T09:28:29.339-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run 52f75e71-f098-453f-89c2-145bf8cdde19 not presented: RENDER_FAILED
+2026-11-02T09:28:29.339-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run 52f75e71-f098-453f-89c2-145bf8cdde19 recorded as FAILED render_failed
+]]></system-out>
+  </testcase>
+  <testcase name="anUnexpectedFailureOfTheCredentialProviderIsAnInternalFailure" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.005">
+    <system-out><![CDATA[2026-11-02T09:28:29.343-05:00  WARN [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run 053fa0f7-7da7-430a-97e9-308d55639d23 failed internally
+
+com.nexora.reports.execution.domain.RedactedFailure: message withheld; java.lang.IllegalStateException
+	at com.nexora.reports.execution.application.ReportRunServiceTest.anUnexpectedFailureOfTheCredentialProviderIsAnInternalFailure(ReportRunServiceTest.java:634) ~[test-classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:701) ~[junit-platform-commons-6.0.3.jar:6.0.3]
+	at org.junit.platform.commons.support.ReflectionSupport.invokeMethod(ReflectionSupport.java:502) ~[junit-platform-commons-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.support.MethodReflectionUtils.invoke(MethodReflectionUtils.java:45) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:61) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:124) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:163) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:148) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:123) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:105) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:99) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:66) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:47) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:39) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:104) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:98) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invokeVoid(InterceptingExecutableInvoker.java:71) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$0(TestMethodTestDescriptor.java:219) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:215) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:157) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:70) ~[junit-jupiter-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$2(NodeTestTask.java:176) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$1(NodeTestTask.java:166) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:138) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$0(NodeTestTask.java:164) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:163) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:116) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596) ~[na:na]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:42) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$2(NodeTestTask.java:180) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$1(NodeTestTask.java:166) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:138) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$0(NodeTestTask.java:164) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:163) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:116) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596) ~[na:na]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:42) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$2(NodeTestTask.java:180) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$1(NodeTestTask.java:166) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:138) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$0(NodeTestTask.java:164) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:163) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:116) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:36) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:52) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:58) ~[junit-platform-engine-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.executeEngine(EngineExecutionOrchestrator.java:246) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.failOrExecuteEngine(EngineExecutionOrchestrator.java:218) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:179) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:108) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:66) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:157) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:65) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:125) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:114) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:58) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.InterceptingLauncher.lambda$execute$2(InterceptingLauncher.java:57) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.ClasspathAlignmentCheckingLauncherInterceptor.intercept(ClasspathAlignmentCheckingLauncherInterceptor.java:25) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.InterceptingLauncher.execute(InterceptingLauncher.java:56) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:58) ~[junit-platform-launcher-6.0.3.jar:6.0.3]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.apache.maven.surefire.api.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:125) ~[surefire-api-3.5.6.jar:3.5.6]
+	at org.apache.maven.surefire.junitplatform.LauncherAdapter.executeWithCancellationToken(LauncherAdapter.java:68) ~[surefire-junit-platform-3.5.6.jar:3.5.6]
+	at org.apache.maven.surefire.junitplatform.LauncherAdapter.execute(LauncherAdapter.java:54) ~[surefire-junit-platform-3.5.6.jar:3.5.6]
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:203) ~[surefire-junit-platform-3.5.6.jar:3.5.6]
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:168) ~[surefire-junit-platform-3.5.6.jar:3.5.6]
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:136) ~[surefire-junit-platform-3.5.6.jar:3.5.6]
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385) ~[surefire-booter-3.5.6.jar:3.5.6]
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162) ~[surefire-booter-3.5.6.jar:3.5.6]
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507) ~[surefire-booter-3.5.6.jar:3.5.6]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495) ~[surefire-booter-3.5.6.jar:3.5.6]
+
+2026-11-02T09:28:29.345-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run 053fa0f7-7da7-430a-97e9-308d55639d23 recorded as FAILED internal_error
+]]></system-out>
+  </testcase>
+  <testcase name="anUnreachableSemanticLeavesNoRun" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.003"/>
+  <testcase name="aRunWithoutOutcomeIsInProgressUntilItsDeadlineAndInterruptedAfter" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.003"/>
+  <testcase name="aValidityThatCannotBeConfirmedIsRefusedNeverAssumed" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.003">
+    <system-out><![CDATA[2026-11-02T09:28:29.355-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run c7889dd4-7888-439e-a82c-e63012211210 recorded as REFUSED plan_validity_unconfirmed
+]]></system-out>
+  </testcase>
+  <testcase name="aSpecificationThatIsNotTheValidatedOneIsRefusedWithTheTrustedFingerprint" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.002">
+    <system-out><![CDATA[2026-11-02T09:28:29.358-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run db82e41b-a055-454b-a498-21c3b11e85e4 refused by validation: FINGERPRINT at spec
+2026-11-02T09:28:29.358-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run db82e41b-a055-454b-a498-21c3b11e85e4 recorded as REFUSED fingerprint_mismatch
+]]></system-out>
+  </testcase>
+  <testcase name="anAiPrincipalNeitherReadsNorDownloads" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.022">
+    <system-out><![CDATA[2026-11-02T09:28:29.377-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run 3ff00f5d-8616-490d-9d0c-20c6d00180ff recorded as COMPLETED 
+]]></system-out>
+  </testcase>
+  <testcase name="anExpiredArtifactIsGoneAndACorruptOneIsNeverDelivered" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.02">
+    <system-out><![CDATA[2026-11-02T09:28:29.398-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run 5067fba7-504f-4be6-9fdb-9085b294da51 recorded as COMPLETED 
+]]></system-out>
+  </testcase>
+  <testcase name="aRegistryThatCannotStartTheRunReadsNothing" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.003"/>
+  <testcase name="overTheTenantQuotaTheRunIsRefusedAndKeepsNoArtifact" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.03">
+    <system-out><![CDATA[2026-11-02T09:28:29.421-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run aa4f6f85-2c80-4db1-815a-1f010569262b recorded as REFUSED artifact_quota_exceeded
+]]></system-out>
+  </testcase>
+  <testcase name="aReportPlanWhoseOwnFingerprintIsWrongIsRefusedWithoutAReportRunDocument" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.002">
+    <system-out><![CDATA[2026-11-02T09:28:29.437-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run bae29cea-9482-4522-95ab-79d5338f0878 refused by validation: FINGERPRINT at report-plan.fingerprint
+2026-11-02T09:28:29.438-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run bae29cea-9482-4522-95ab-79d5338f0878 recorded as REFUSED fingerprint_mismatch
+]]></system-out>
+  </testcase>
+  <testcase name="noFreePresentationSlotIsARefusalToRetry" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.004">
+    <system-out><![CDATA[2026-11-02T09:28:29.442-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run 5d95adcd-6ac2-4d28-b704-4866de34c5d3 not presented: TOO_MANY_PRESENTATIONS
+2026-11-02T09:28:29.442-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run 5d95adcd-6ac2-4d28-b704-4866de34c5d3 recorded as REFUSED too_many_executions
+]]></system-out>
+  </testcase>
+  <testcase name="aClientThatGoesAwayLeavesADeliveryFailure" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.018">
+    <system-out><![CDATA[2026-11-02T09:28:29.460-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run 11428260-b85b-47aa-b836-3f14337c87e3 recorded as COMPLETED 
+]]></system-out>
+  </testcase>
+  <testcase name="theStagedFileIsDeletedAfterTheRun" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.017">
+    <system-out><![CDATA[2026-11-02T09:28:29.479-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run 64cb083d-2cfa-4934-87ca-e65daedb19d0 recorded as COMPLETED 
+]]></system-out>
+  </testcase>
+  <testcase name="aDestinationNoLongerAllowedWhenResolvingIsARefusalWithoutReading" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.004">
+    <system-out><![CDATA[2026-11-02T09:28:29.483-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run cd81e624-d961-47f6-b59b-eb30957c7cbe refused before reading: DATA_SOURCE_TARGET_NOT_ALLOWED
+2026-11-02T09:28:29.483-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run cd81e624-d961-47f6-b59b-eb30957c7cbe recorded as REFUSED data_source_target_not_allowed
+]]></system-out>
+  </testcase>
+  <testcase name="aDestinationThatChangedAfterTheStartIsRefusedWithoutReading(String, DataSourceCredentials)[1]" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.004">
+    <system-out><![CDATA[2026-11-02T09:28:29.488-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run 9b498ca1-66a1-4455-8e04-35bee7037fbc refused before reading: DATA_SOURCE_CONFIGURATION_CHANGED
+2026-11-02T09:28:29.488-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run 9b498ca1-66a1-4455-8e04-35bee7037fbc recorded as REFUSED data_source_configuration_changed
+]]></system-out>
+  </testcase>
+  <testcase name="aDestinationThatChangedAfterTheStartIsRefusedWithoutReading(String, DataSourceCredentials)[2]" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.005">
+    <system-out><![CDATA[2026-11-02T09:28:29.493-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run 40ac3f76-1069-4230-9720-2150b155532b refused before reading: DATA_SOURCE_CONFIGURATION_CHANGED
+2026-11-02T09:28:29.493-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run 40ac3f76-1069-4230-9720-2150b155532b recorded as REFUSED data_source_configuration_changed
+]]></system-out>
+  </testcase>
+  <testcase name="aDestinationThatChangedAfterTheStartIsRefusedWithoutReading(String, DataSourceCredentials)[3]" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.003">
+    <system-out><![CDATA[2026-11-02T09:28:29.497-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run f3594f0f-21ac-48eb-9d8e-9779e06ab08a refused before reading: DATA_SOURCE_CONFIGURATION_CHANGED
+2026-11-02T09:28:29.497-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run f3594f0f-21ac-48eb-9d8e-9779e06ab08a recorded as REFUSED data_source_configuration_changed
+]]></system-out>
+  </testcase>
+  <testcase name="aDestinationThatChangedAfterTheStartIsRefusedWithoutReading(String, DataSourceCredentials)[4]" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.003">
+    <system-out><![CDATA[2026-11-02T09:28:29.501-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run 19ce5176-00c1-44fe-8635-ee6421c82beb refused before reading: DATA_SOURCE_CONFIGURATION_CHANGED
+2026-11-02T09:28:29.501-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run 19ce5176-00c1-44fe-8635-ee6421c82beb recorded as REFUSED data_source_configuration_changed
+]]></system-out>
+  </testcase>
+  <testcase name="aDestinationThatChangedAfterTheStartIsRefusedWithoutReading(String, DataSourceCredentials)[5]" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.005">
+    <system-out><![CDATA[2026-11-02T09:28:29.505-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run a33bf431-01e6-4ebc-9a64-e01c5a015e32 refused before reading: DATA_SOURCE_CONFIGURATION_CHANGED
+2026-11-02T09:28:29.505-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run a33bf431-01e6-4ebc-9a64-e01c5a015e32 recorded as REFUSED data_source_configuration_changed
+]]></system-out>
+  </testcase>
+  <testcase name="aDestinationThatChangedAfterTheStartIsRefusedWithoutReading(String, DataSourceCredentials)[6]" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.003">
+    <system-out><![CDATA[2026-11-02T09:28:29.509-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run 21b6a1ef-b464-405d-aaca-7021feeff5c4 refused before reading: DATA_SOURCE_CONFIGURATION_CHANGED
+2026-11-02T09:28:29.509-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run 21b6a1ef-b464-405d-aaca-7021feeff5c4 recorded as REFUSED data_source_configuration_changed
+]]></system-out>
+  </testcase>
+  <testcase name="aDestinationThatChangedAfterTheStartIsRefusedWithoutReading(String, DataSourceCredentials)[7]" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.012">
+    <system-out><![CDATA[2026-11-02T09:28:29.520-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run 8cd9aa1b-2fe9-4fb8-942c-c6d0cdc9de15 refused before reading: DATA_SOURCE_CONFIGURATION_CHANGED
+2026-11-02T09:28:29.520-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run 8cd9aa1b-2fe9-4fb8-942c-c6d0cdc9de15 recorded as REFUSED data_source_configuration_changed
+]]></system-out>
+  </testcase>
+  <testcase name="aDestinationThatChangedAfterTheStartIsRefusedWithoutReading(String, DataSourceCredentials)[8]" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.003">
+    <system-out><![CDATA[2026-11-02T09:28:29.525-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run 2a9ed059-1726-4fc4-99ce-1eee42d71da8 refused before reading: DATA_SOURCE_CONFIGURATION_CHANGED
+2026-11-02T09:28:29.525-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run 2a9ed059-1726-4fc4-99ce-1eee42d71da8 recorded as REFUSED data_source_configuration_changed
+]]></system-out>
+  </testcase>
+  <testcase name="anAiPrincipalRunsNothingAndStartsNothing" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.003"/>
+  <testcase name="downloadsBeyondTheirLimitAreRefusedToRetry" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.034">
+    <system-out><![CDATA[2026-11-02T09:28:29.561-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run 35303d0e-3f55-4d4b-a0a2-795c36ec6fbf recorded as COMPLETED 
+]]></system-out>
+  </testcase>
+  <testcase name="aForbiddenDestinationIsRefusedBeforeAnythingIsAskedOrStarted" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.003"/>
+  <testcase name="withoutReadOnlyCredentialsNothingIsAskedOrStarted" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.002"/>
+  <testcase name="aChangedPasswordAloneIsNotAChangeOfDestination" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.016">
+    <system-out><![CDATA[2026-11-02T09:28:29.584-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run 9887d6c2-01db-4895-940f-60f80bc15556 recorded as COMPLETED 
+]]></system-out>
+  </testcase>
+  <testcase name="aReportPlanOfAnotherTenantIsRefusedAsAnIdentityMismatch" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.003">
+    <system-out><![CDATA[2026-11-02T09:28:29.588-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run 386d53b5-9794-49df-aa8c-c3d7be097a09 refused by validation: IDENTITY at report-plan.tenantId
+2026-11-02T09:28:29.588-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run 386d53b5-9794-49df-aa8c-c3d7be097a09 recorded as REFUSED identity_mismatch
+]]></system-out>
+  </testcase>
+  <testcase name="aCompletedRunIsAValidReportRunWithItsStoredArtifact" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.017">
+    <system-out><![CDATA[2026-11-02T09:28:29.604-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run 7e706c32-9cc8-4d3f-8fd8-56d9d0b860e2 recorded as COMPLETED 
+]]></system-out>
+  </testcase>
+  <testcase name="credentialsThatDisappearAfterTheStartAreARefusalWithoutReading" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.004">
+    <system-out><![CDATA[2026-11-02T09:28:29.609-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run 6a850779-f69f-4a7d-8c20-0be3b728079f refused before reading: DATA_SOURCE_NOT_CONFIGURED
+2026-11-02T09:28:29.609-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run 6a850779-f69f-4a7d-8c20-0be3b728079f recorded as REFUSED data_source_not_configured
+]]></system-out>
+  </testcase>
+  <testcase name="aRunOfAnotherOwnerSourceOrTenantIsNotFound" classname="com.nexora.reports.execution.application.ReportRunServiceTest" time="0.018">
+    <system-out><![CDATA[2026-11-02T09:28:29.626-05:00  INFO [cid:] 63608 --- [nexora-reports] [           main] c.n.r.e.application.ReportRunService     : run 7305884c-7699-4060-b0d5-e52a5de96329 recorded as COMPLETED 
+]]></system-out>
+  </testcase>
+</testsuite>

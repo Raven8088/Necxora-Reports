@@ -1,0 +1,43 @@
+{
+  "format": "nexora-report-plan/1",
+  "tenantId": "7a3f0000-0000-4000-8000-000000000001",
+  "dataSourceId": "7a3f0000-0000-4000-8000-000000000002",
+  "profile": "basic-a",
+  "specFingerprint": "5b1ae22de609609f3f46461ba92e56e056828883aea822ef582eefd9455cf7f5",
+  "plans": [
+    {
+      "datasetId": "resumen",
+      "planId": "7a3f0000-0000-4000-8000-000000000080",
+      "planFingerprint": "6a3c3d394d961d8b56c68ea8f668613b70d790ec6c3bce4df5c3586b53841b27"
+    },
+    {
+      "datasetId": "total",
+      "planId": "7a3f0000-0000-4000-8000-000000000081",
+      "planFingerprint": "124b174868f9809df7a9b1b709a5f0a776fd537fa56e3a98bc8dc9df0f2b4dcc"
+    },
+    {
+      "datasetId": "detalle",
+      "planId": "7a3f0000-0000-4000-8000-000000000082",
+      "planFingerprint": "2d2f8b9951a999cd841fe8864972f91890abefda1b448fa3e5132f59bd0d6aa1"
+    }
+  ],
+  "consistency": {
+    "mode": "SINGLE_READ_ONLY_TRANSACTION",
+    "isolation": "REPEATABLE_READ",
+    "readOnly": true,
+    "schemaVerification": "IN_TRANSACTION",
+    "onPlanFailure": "REFUSE_RUN"
+  },
+  "scope": {
+    "rules": []
+  },
+  "compositions": [],
+  "budget": {
+    "maxPlans": 3,
+    "maxRowsPerPlan": 10000,
+    "maxTotalRows": 30000,
+    "statementTimeoutMs": 30000,
+    "maxDurationMs": 60000
+  },
+  "fingerprint": "5e6ab3808fe7a929aecb6a965d6d2f42ae6f478c1aec771b6832c1c0715d0e3d"
+}

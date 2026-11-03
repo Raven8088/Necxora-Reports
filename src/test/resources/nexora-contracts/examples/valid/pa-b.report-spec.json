@@ -1,0 +1,229 @@
+{
+  "format": "nexora-report-spec/1",
+  "profile": "basic-b",
+  "status": "READY",
+  "title": "Empresas y sus usuarios",
+  "request": {
+    "text": "Genera un reporte de las empresas de mi organización y sus usuarios: por empresa, su código, operador y empresa matriz, y cuántos usuarios activos e inactivos tiene; después, el listado de usuarios con nombre, apellido y usuario, ordenado por empresa y apellido.",
+    "language": "es"
+  },
+  "parameters": {
+    "timeZone": "America/Mexico_City",
+    "labelLanguage": "es"
+  },
+  "datasets": [
+    {
+      "id": "resumen",
+      "mode": "AGGREGATE",
+      "base": {
+        "alias": "u",
+        "object": "7a3f0000-0000-4000-8000-000000000020"
+      },
+      "joins": [
+        {
+          "alias": "e",
+          "from": "u",
+          "via": {
+            "relationship": "7a3f0000-0000-4000-8000-000000000050"
+          }
+        },
+        {
+          "alias": "o",
+          "from": "e",
+          "via": {
+            "relationship": "7a3f0000-0000-4000-8000-000000000051"
+          }
+        },
+        {
+          "alias": "m",
+          "from": "e",
+          "via": {
+            "relationship": "7a3f0000-0000-4000-8000-000000000052"
+          }
+        }
+      ],
+      "select": [
+        {
+          "id": "empresa",
+          "label": "Empresa",
+          "origin": "GOVERNED",
+          "column": {
+            "alias": "e",
+            "object": "7a3f0000-0000-4000-8000-000000000032"
+          }
+        },
+        {
+          "id": "codigo",
+          "label": "Código",
+          "origin": "INFERRED",
+          "column": {
+            "alias": "e",
+            "object": "7a3f0000-0000-4000-8000-000000000033"
+          }
+        },
+        {
+          "id": "operador",
+          "label": "Operador",
+          "origin": "INFERRED",
+          "column": {
+            "alias": "o",
+            "object": "7a3f0000-0000-4000-8000-000000000042"
+          }
+        },
+        {
+          "id": "matriz",
+          "label": "Empresa matriz",
+          "origin": "INFERRED",
+          "column": {
+            "alias": "m",
+            "object": "7a3f0000-0000-4000-8000-000000000032"
+          }
+        },
+        {
+          "id": "activo",
+          "label": "Activo",
+          "origin": "GOVERNED",
+          "definition": "7a3f0000-0000-4000-8000-000000000060"
+        },
+        {
+          "id": "usuarios",
+          "label": "Usuarios",
+          "origin": "INFERRED",
+          "measure": {
+            "aggregation": "COUNT"
+          }
+        }
+      ],
+      "groupBy": [
+        "empresa",
+        "codigo",
+        "operador",
+        "matriz",
+        "activo"
+      ],
+      "filters": [],
+      "orderBy": [
+        {
+          "select": "empresa",
+          "direction": "ASC",
+          "nulls": "LAST",
+          "collation": "C"
+        },
+        {
+          "select": "activo",
+          "direction": "DESC",
+          "nulls": "LAST",
+          "collation": "C"
+        }
+      ]
+    },
+    {
+      "id": "detalle",
+      "mode": "DETAIL",
+      "base": {
+        "alias": "u",
+        "object": "7a3f0000-0000-4000-8000-000000000020"
+      },
+      "joins": [
+        {
+          "alias": "e",
+          "from": "u",
+          "via": {
+            "relationship": "7a3f0000-0000-4000-8000-000000000050"
+          }
+        }
+      ],
+      "select": [
+        {
+          "id": "empresa",
+          "label": "Empresa",
+          "origin": "GOVERNED",
+          "column": {
+            "alias": "e",
+            "object": "7a3f0000-0000-4000-8000-000000000032"
+          }
+        },
+        {
+          "id": "nombre",
+          "label": "Nombre",
+          "origin": "INFERRED",
+          "column": {
+            "alias": "u",
+            "object": "7a3f0000-0000-4000-8000-000000000022"
+          }
+        },
+        {
+          "id": "apellido",
+          "label": "Apellido",
+          "origin": "INFERRED",
+          "column": {
+            "alias": "u",
+            "object": "7a3f0000-0000-4000-8000-000000000023"
+          }
+        },
+        {
+          "id": "usuario",
+          "label": "Usuario",
+          "origin": "INFERRED",
+          "column": {
+            "alias": "u",
+            "object": "7a3f0000-0000-4000-8000-000000000024"
+          }
+        }
+      ],
+      "groupBy": [],
+      "filters": [],
+      "orderBy": [
+        {
+          "select": "empresa",
+          "direction": "ASC",
+          "nulls": "LAST",
+          "collation": "C"
+        },
+        {
+          "select": "apellido",
+          "direction": "ASC",
+          "nulls": "LAST",
+          "collation": "C"
+        }
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "id": "empresas",
+      "title": "Empresas y usuarios",
+      "items": [
+        {
+          "type": "summaryTable",
+          "dataset": "resumen"
+        },
+        {
+          "type": "table",
+          "dataset": "detalle"
+        }
+      ]
+    }
+  ],
+  "compositions": [],
+  "provenance": {
+    "terms": [
+      {
+        "text": "empresas",
+        "resolution": "GOVERNED",
+        "target": "definición «Empresa» (etp_company)"
+      },
+      {
+        "text": "activos e inactivos",
+        "resolution": "GOVERNED",
+        "target": "definición «Usuario activo»"
+      },
+      {
+        "text": "mi organización",
+        "resolution": "PARAMETER",
+        "target": "alcance: empresa del usuario y sus hijas directas"
+      }
+    ]
+  },
+  "clarifications": []
+}

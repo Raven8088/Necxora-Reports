@@ -1,7 +1,9 @@
 package com.nexora.reports.credentials.infrastructure;
 
 import com.nexora.reports.credentials.domain.DataSourceCredentials;
+import com.nexora.reports.credentials.domain.SourceTarget;
 import com.nexora.reports.execution.application.port.CredentialProvider;
+import com.nexora.reports.execution.application.port.SourceAvailability;
 import com.nexora.reports.execution.domain.ExecutionException;
 import com.nexora.reports.execution.domain.ExecutionException.ErrorCode;
 
@@ -17,8 +19,12 @@ import java.util.UUID;
  * pair (tenant, data source), so a source configured for another tenant is invisible. The destination policy is
  * applied at startup (fail fast) and again at every resolution. It is meant to be replaced by a secret-manager
  * implementation of {@link CredentialProvider} without touching the rest of the service.
+ * <p>
+ * B10-O3: it also answers {@link SourceAvailability} (the destination without its secret). Here every secret is
+ * read from the configuration at startup and kept in memory, and neither the sources nor the policy change while
+ * the application runs; a secret-manager implementation would resolve the secret only in {@link #resolve}.
  */
-public class ConfiguredCredentialProvider implements CredentialProvider {
+public class ConfiguredCredentialProvider implements CredentialProvider, SourceAvailability {
 
     private static final Set<String> SSL_MODES = Set.of("disable", "allow", "prefer", "require", "verify-ca",
             "verify-full");
@@ -43,7 +49,8 @@ public class ConfiguredCredentialProvider implements CredentialProvider {
             }
             DataSourceCredentials credentials = new DataSourceCredentials(s.tenantId(), s.dataSourceId(), s.host(),
                     s.port(), s.database(), s.username(), s.password(), sslMode,
-                    s.maxConcurrent() < 1 ? 4 : s.maxConcurrent());
+                    s.maxConcurrent() < 1 ? 4 : s.maxConcurrent(),
+                    s.sslRootCert() == null || s.sslRootCert().isBlank() ? null : s.sslRootCert());
             if (sources.putIfAbsent(new Key(s.tenantId(), s.dataSourceId()), credentials) != null) {
                 throw new IllegalStateException("data source " + s.dataSourceId() + " configured twice");
             }
@@ -55,6 +62,16 @@ public class ConfiguredCredentialProvider implements CredentialProvider {
 
     @Override
     public Optional<DataSourceCredentials> resolve(UUID tenantId, UUID dataSourceId) {
+        return allowed(tenantId, dataSourceId);
+    }
+
+    @Override
+    public Optional<SourceTarget> configured(UUID tenantId, UUID dataSourceId) {
+        return allowed(tenantId, dataSourceId).map(DataSourceCredentials::target);
+    }
+
+    /** The same lookup and the same destination policy for both ports. */
+    private Optional<DataSourceCredentials> allowed(UUID tenantId, UUID dataSourceId) {
         DataSourceCredentials credentials = sources.get(new Key(tenantId, dataSourceId));
         if (credentials == null) {
             return Optional.empty();

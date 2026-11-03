@@ -1,0 +1,242 @@
+{
+  "format": "nexora-logical-plan/2",
+  "tenantId": "7a3f0000-0000-4000-8000-000000000001",
+  "dataSourceId": "7a3f0000-0000-4000-8000-000000000002",
+  "metadataSnapshotId": "7a3f0000-0000-4000-8000-000000000003",
+  "specFingerprint": "5b1ae22de609609f3f46461ba92e56e056828883aea822ef582eefd9455cf7f5",
+  "datasetId": "detalle",
+  "objects": [
+    {
+      "id": "7a3f0000-0000-4000-8000-000000000010",
+      "type": "TABLE",
+      "naturalKey": {
+        "schema": "wellnode_sintetico",
+        "name": "wm_well"
+      },
+      "uniqueKeys": [
+        {
+          "kind": "PRIMARY_KEY",
+          "columns": [
+            "7a3f0000-0000-4000-8000-000000000011"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "7a3f0000-0000-4000-8000-000000000011",
+      "type": "COLUMN",
+      "naturalKey": {
+        "schema": "wellnode_sintetico",
+        "name": "wm_well",
+        "column": "dbid"
+      },
+      "parentId": "7a3f0000-0000-4000-8000-000000000010",
+      "typeCategory": "NUMERIC",
+      "nullable": false
+    },
+    {
+      "id": "7a3f0000-0000-4000-8000-000000000012",
+      "type": "COLUMN",
+      "naturalKey": {
+        "schema": "wellnode_sintetico",
+        "name": "wm_well",
+        "column": "name"
+      },
+      "parentId": "7a3f0000-0000-4000-8000-000000000010",
+      "typeCategory": "TEXT",
+      "nullable": false
+    },
+    {
+      "id": "7a3f0000-0000-4000-8000-000000000013",
+      "type": "COLUMN",
+      "naturalKey": {
+        "schema": "wellnode_sintetico",
+        "name": "wm_well",
+        "column": "field"
+      },
+      "parentId": "7a3f0000-0000-4000-8000-000000000010",
+      "typeCategory": "TEXT",
+      "nullable": true
+    },
+    {
+      "id": "7a3f0000-0000-4000-8000-000000000014",
+      "type": "COLUMN",
+      "naturalKey": {
+        "schema": "wellnode_sintetico",
+        "name": "wm_well",
+        "column": "country"
+      },
+      "parentId": "7a3f0000-0000-4000-8000-000000000010",
+      "typeCategory": "TEXT",
+      "nullable": true
+    },
+    {
+      "id": "7a3f0000-0000-4000-8000-000000000015",
+      "type": "COLUMN",
+      "naturalKey": {
+        "schema": "wellnode_sintetico",
+        "name": "wm_well",
+        "column": "state"
+      },
+      "parentId": "7a3f0000-0000-4000-8000-000000000010",
+      "typeCategory": "TEXT",
+      "nullable": true
+    },
+    {
+      "id": "7a3f0000-0000-4000-8000-000000000016",
+      "type": "COLUMN",
+      "naturalKey": {
+        "schema": "wellnode_sintetico",
+        "name": "wm_well",
+        "column": "statuswell"
+      },
+      "parentId": "7a3f0000-0000-4000-8000-000000000010",
+      "typeCategory": "TEXT",
+      "nullable": true
+    }
+  ],
+  "definitions": [
+    {
+      "id": "3b0f0565-dac5-3385-ac6d-3e85dffcc940",
+      "kind": "CONCEPT",
+      "origin": "DERIVED"
+    }
+  ],
+  "relationships": [],
+  "parameters": [],
+  "operations": [
+    {
+      "op": "SCAN",
+      "alias": "w",
+      "object": "7a3f0000-0000-4000-8000-000000000010"
+    },
+    {
+      "op": "PROJECT",
+      "columns": [
+        {
+          "output": "nombre",
+          "column": {
+            "alias": "w",
+            "column": "7a3f0000-0000-4000-8000-000000000012"
+          }
+        },
+        {
+          "output": "campo",
+          "column": {
+            "alias": "w",
+            "column": "7a3f0000-0000-4000-8000-000000000013"
+          }
+        },
+        {
+          "output": "pais",
+          "column": {
+            "alias": "w",
+            "column": "7a3f0000-0000-4000-8000-000000000014"
+          }
+        },
+        {
+          "output": "estado",
+          "column": {
+            "alias": "w",
+            "column": "7a3f0000-0000-4000-8000-000000000015"
+          }
+        },
+        {
+          "output": "estatus",
+          "column": {
+            "alias": "w",
+            "column": "7a3f0000-0000-4000-8000-000000000016"
+          }
+        },
+        {
+          "output": "row_key",
+          "column": {
+            "alias": "w",
+            "column": "7a3f0000-0000-4000-8000-000000000011"
+          }
+        }
+      ]
+    },
+    {
+      "op": "ORDER",
+      "keys": [
+        {
+          "output": "pais",
+          "direction": "ASC",
+          "nulls": "LAST",
+          "collation": "C"
+        },
+        {
+          "output": "nombre",
+          "direction": "ASC",
+          "nulls": "LAST",
+          "collation": "C"
+        },
+        {
+          "output": "row_key",
+          "direction": "ASC",
+          "nulls": "LAST"
+        }
+      ],
+      "tieBreaker": {
+        "kind": "UNIQUE_KEY",
+        "outputs": [
+          "row_key"
+        ]
+      }
+    },
+    {
+      "op": "LIMIT",
+      "maxRows": 10000,
+      "detectTruncation": true
+    }
+  ],
+  "output": {
+    "columns": [
+      {
+        "output": "nombre",
+        "label": "Nombre",
+        "valueType": "TEXT",
+        "role": "DETAIL",
+        "origin": "INFERRED"
+      },
+      {
+        "output": "campo",
+        "label": "Campo",
+        "valueType": "TEXT",
+        "role": "DETAIL",
+        "origin": "INFERRED"
+      },
+      {
+        "output": "pais",
+        "label": "País",
+        "valueType": "TEXT",
+        "role": "DETAIL",
+        "origin": "INFERRED"
+      },
+      {
+        "output": "estado",
+        "label": "Estado o región",
+        "valueType": "TEXT",
+        "role": "DETAIL",
+        "origin": "INFERRED"
+      },
+      {
+        "output": "estatus",
+        "label": "Estatus",
+        "valueType": "TEXT",
+        "role": "DETAIL",
+        "origin": "INFERRED"
+      },
+      {
+        "output": "row_key",
+        "label": "dbid",
+        "valueType": "INTEGER",
+        "role": "KEY",
+        "origin": "INFERRED",
+        "hidden": true
+      }
+    ]
+  },
+  "fingerprint": "2d2f8b9951a999cd841fe8864972f91890abefda1b448fa3e5132f59bd0d6aa1"
+}

@@ -1,0 +1,9 @@
+c08771ec0c937603dd153ecacac5b166eae85074137714e88e82d0b6a018d3ee  report-run/1/nexora-report-run-1.schema.json
+4ebdade9e615d66ba623d5fc9afd897492a9d84c54abb296ddfc871d19af551c  report-run/1/nexora-report-artifact-1.schema.json
+707beb8b697485bff13522809080a4ea360128290164e3d5dc785bb1d1975daf  examples/valid/pa-a.report-run.json
+217e055c42d567e74a4b35fa88da27344ab349754d64e4f37db34ec163f49a79  examples/valid/volumen.report-run.partial.json
+249c62df9924a68e200b418add007c3cb17e23d4922568904499f758ffeb39bd  examples/valid/pa-a.report-run.refused.json
+f011aca6f2a2a425d8f07da02a90a3c36ab2a875716040e68fa734167bca12e8  examples/valid/pa-a.report-artifact.json
+876e901440feb168f65df7d64ff0a9ee02a487bb7011a756bb3c5ab743759f4c  examples/invalid/run-varias-transacciones.json
+99c87eb5147d2eda9f082ba4c13fef2671be915a4b27c01a5c54d2c673f7c6a6  examples/invalid/run-truncado-como-completo.json
+38245c5c5bb08d10fa0a858842edcb21ac885e7917a6b454bf35a8503f5fde78  examples/invalid/run-rechazado-con-archivo.json

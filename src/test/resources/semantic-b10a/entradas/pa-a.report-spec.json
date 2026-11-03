@@ -1,0 +1,218 @@
+{
+  "format": "nexora-report-spec/1",
+  "profile": "basic-a",
+  "status": "READY",
+  "title": "Reporte de pozos registrados",
+  "request": {
+    "text": "Genera un reporte de los pozos registrados: un resumen por país y campo con cuántos pozos hay en cada uno y el total general, y el listado de pozos con nombre, campo, país, estado o región y estatus, ordenado por país y nombre.",
+    "language": "es"
+  },
+  "parameters": {
+    "timeZone": "America/Mexico_City",
+    "labelLanguage": "es"
+  },
+  "datasets": [
+    {
+      "id": "resumen",
+      "title": "Pozos por país y campo",
+      "mode": "AGGREGATE",
+      "base": {
+        "alias": "w",
+        "object": "c0a89dea-95c9-46cb-b0fd-f036c6e653c9"
+      },
+      "joins": [],
+      "select": [
+        {
+          "id": "pais",
+          "label": "País",
+          "origin": "INFERRED",
+          "column": {
+            "alias": "w",
+            "object": "e73e1477-2c48-4e44-8c69-81b35fd39dcb"
+          }
+        },
+        {
+          "id": "campo",
+          "label": "Campo",
+          "origin": "INFERRED",
+          "column": {
+            "alias": "w",
+            "object": "248a033b-bb45-478c-84bb-b24dc5d78170"
+          }
+        },
+        {
+          "id": "pozos",
+          "label": "Pozos",
+          "origin": "INFERRED",
+          "measure": {
+            "aggregation": "COUNT"
+          }
+        }
+      ],
+      "groupBy": [
+        "pais",
+        "campo"
+      ],
+      "filters": [],
+      "orderBy": [
+        {
+          "select": "pais",
+          "direction": "ASC",
+          "nulls": "LAST",
+          "collation": "C"
+        },
+        {
+          "select": "campo",
+          "direction": "ASC",
+          "nulls": "LAST",
+          "collation": "C"
+        }
+      ]
+    },
+    {
+      "id": "total",
+      "title": "Total general",
+      "mode": "AGGREGATE",
+      "base": {
+        "alias": "w",
+        "object": "c0a89dea-95c9-46cb-b0fd-f036c6e653c9"
+      },
+      "joins": [],
+      "select": [
+        {
+          "id": "pozos",
+          "label": "Total de pozos",
+          "origin": "INFERRED",
+          "measure": {
+            "aggregation": "COUNT"
+          }
+        }
+      ],
+      "groupBy": [],
+      "filters": [],
+      "orderBy": []
+    },
+    {
+      "id": "detalle",
+      "title": "Listado de pozos",
+      "mode": "DETAIL",
+      "base": {
+        "alias": "w",
+        "object": "c0a89dea-95c9-46cb-b0fd-f036c6e653c9"
+      },
+      "joins": [],
+      "select": [
+        {
+          "id": "nombre",
+          "label": "Nombre",
+          "origin": "INFERRED",
+          "column": {
+            "alias": "w",
+            "object": "75420aa4-bc43-4014-8b6f-2a3cafa55f56"
+          }
+        },
+        {
+          "id": "campo",
+          "label": "Campo",
+          "origin": "INFERRED",
+          "column": {
+            "alias": "w",
+            "object": "248a033b-bb45-478c-84bb-b24dc5d78170"
+          }
+        },
+        {
+          "id": "pais",
+          "label": "País",
+          "origin": "INFERRED",
+          "column": {
+            "alias": "w",
+            "object": "e73e1477-2c48-4e44-8c69-81b35fd39dcb"
+          }
+        },
+        {
+          "id": "estado",
+          "label": "Estado o región",
+          "origin": "INFERRED",
+          "column": {
+            "alias": "w",
+            "object": "1946a543-61f6-41f4-9ba4-a419faa3fdcc"
+          }
+        },
+        {
+          "id": "estatus",
+          "label": "Estatus",
+          "origin": "INFERRED",
+          "column": {
+            "alias": "w",
+            "object": "af5345d1-fd37-4ba5-89f4-d6ac23b34a1c"
+          }
+        }
+      ],
+      "groupBy": [],
+      "filters": [],
+      "orderBy": [
+        {
+          "select": "pais",
+          "direction": "ASC",
+          "nulls": "LAST",
+          "collation": "C"
+        },
+        {
+          "select": "nombre",
+          "direction": "ASC",
+          "nulls": "LAST",
+          "collation": "C"
+        }
+      ],
+      "maxRows": 10000
+    }
+  ],
+  "sections": [
+    {
+      "id": "pozos",
+      "title": "Pozos registrados",
+      "items": [
+        {
+          "type": "summaryTable",
+          "dataset": "resumen",
+          "total": "total"
+        },
+        {
+          "type": "table",
+          "dataset": "detalle"
+        }
+      ]
+    }
+  ],
+  "compositions": [],
+  "provenance": {
+    "terms": [
+      {
+        "text": "pozos registrados",
+        "resolution": "INFERRED",
+        "target": "wellnode_sintetico.wm_well (una fila por pozo)"
+      },
+      {
+        "text": "país",
+        "resolution": "INFERRED",
+        "target": "wm_well.country"
+      },
+      {
+        "text": "campo",
+        "resolution": "INFERRED",
+        "target": "wm_well.field"
+      },
+      {
+        "text": "estado o región",
+        "resolution": "INFERRED",
+        "target": "wm_well.state"
+      },
+      {
+        "text": "estatus",
+        "resolution": "INFERRED",
+        "target": "wm_well.statuswell"
+      }
+    ]
+  },
+  "clarifications": []
+}

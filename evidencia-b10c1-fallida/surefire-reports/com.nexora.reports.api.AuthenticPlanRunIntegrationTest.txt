@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+Test set: com.nexora.reports.api.AuthenticPlanRunIntegrationTest
+-------------------------------------------------------------------------------
+Tests run: 16, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 12.64 s <<< FAILURE! -- in com.nexora.reports.api.AuthenticPlanRunIntegrationTest
+com.nexora.reports.api.AuthenticPlanRunIntegrationTest.anotherTenantNeitherReachesTheSourceNorUsesTheseDocuments -- Time elapsed: 0.085 s <<< FAILURE!
+java.lang.AssertionError: Status expected:<201> but was:<502>
+	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:62)
+	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:129)
+	at org.springframework.test.web.servlet.result.StatusResultMatchers.lambda$matcher$0(StatusResultMatchers.java:600)
+	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:212)
+	at com.nexora.reports.api.AuthenticPlanRunIntegrationTest.anotherTenantNeitherReachesTheSourceNorUsesTheseDocuments(AuthenticPlanRunIntegrationTest.java:311)
+

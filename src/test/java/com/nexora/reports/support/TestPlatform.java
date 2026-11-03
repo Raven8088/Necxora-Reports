@@ -21,9 +21,11 @@ import java.net.InetSocketAddress;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.time.Instant;
+import java.util.ArrayDeque;
 import java.util.Base64;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Deque;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -50,6 +52,8 @@ public final class TestPlatform {
     private static final RSAKey UNTRUSTED = generate("untrusted");
     private static final Map<String, Client> CLIENTS = new ConcurrentHashMap<>();
     private static final Map<String, Response> SEMANTIC = new ConcurrentHashMap<>();
+    /** A4-B10: answers given in order, one per call; the last one repeats. They take precedence over SEMANTIC. */
+    private static final Map<String, Deque<Response>> SEQUENCES = new ConcurrentHashMap<>();
     private static final List<Call> CALLS = new CopyOnWriteArrayList<>();
     private static String base;
 
@@ -92,6 +96,17 @@ public final class TestPlatform {
 
     public static void semantic(UUID tenant, String path, int status, String body) {
         SEMANTIC.put(tenant + " " + path, new Response(status, body));
+    }
+
+    /**
+     * A4-B10: answers {@code path} for {@code tenant} with {@code responses} in order, one per call, repeating the
+     * last one (for example CURRENT before reading and STALE after it).
+     */
+    public static void semanticSequence(UUID tenant, String path, Response... responses) {
+        if (responses.length == 0) {
+            throw new IllegalArgumentException("at least one response");
+        }
+        SEQUENCES.put(tenant + " " + path, new ArrayDeque<>(List.of(responses)));
     }
 
     public static List<Call> calls() {
@@ -203,12 +218,22 @@ public final class TestPlatform {
             return;
         }
         CALLS.add(new Call(tenant, path));
-        Response response = SEMANTIC.get(tenant + " " + path);
+        Response response = next(tenant + " " + path);
         if (response == null) {
             respond(exchange, 404, "{\"status\":404,\"code\":\"not_found\",\"detail\":\"Resource not found\"}");
             return;
         }
         respond(exchange, response.status(), response.body());
+    }
+
+    private static Response next(String key) {
+        Deque<Response> sequence = SEQUENCES.get(key);
+        if (sequence == null) {
+            return SEMANTIC.get(key);
+        }
+        synchronized (sequence) {
+            return sequence.size() > 1 ? sequence.pollFirst() : sequence.peekFirst();
+        }
     }
 
     private static void respond(HttpExchange exchange, int status, String json) throws IOException {

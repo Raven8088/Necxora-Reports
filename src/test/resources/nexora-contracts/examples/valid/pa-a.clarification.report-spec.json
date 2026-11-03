@@ -1,0 +1,42 @@
+{
+  "format": "nexora-report-spec/1",
+  "profile": "basic-a",
+  "status": "NEEDS_CLARIFICATION",
+  "title": "Reporte de pozos registrados",
+  "request": {
+    "text": "Genera un reporte de los pozos con nombre, país y estado.",
+    "language": "es"
+  },
+  "parameters": {
+    "timeZone": "America/Mexico_City",
+    "labelLanguage": "es"
+  },
+  "datasets": [],
+  "sections": [],
+  "compositions": [],
+  "provenance": {
+    "terms": [
+      {
+        "text": "pozos",
+        "resolution": "INFERRED",
+        "target": "wm_well"
+      }
+    ]
+  },
+  "clarifications": [
+    {
+      "id": "estado",
+      "question": "¿«Estado» se refiere a la región geográfica o al estatus operativo del pozo?",
+      "options": [
+        {
+          "id": "region",
+          "label": "Estado o región (wm_well.state)"
+        },
+        {
+          "id": "estatus",
+          "label": "Estatus del pozo (wm_well.statuswell)"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,864 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nexora.ai/contracts/logical-plan/2",
+  "title": "nexora-logical-plan/2",
+  "description": "Plan lógico autocontenido de UN dataset. Lo construye Semantic y lo revalida Reports. Lista tipada de operaciones; sin SQL.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "format": {
+      "const": "nexora-logical-plan/2"
+    },
+    "tenantId": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "dataSourceId": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "metadataSnapshotId": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "specFingerprint": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "datasetId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]{0,62}$"
+    },
+    "objects": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/object"
+      }
+    },
+    "definitions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/definition"
+      }
+    },
+    "relationships": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/relationship"
+      }
+    },
+    "parameters": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]{0,62}$"
+          },
+          "source": {
+            "enum": [
+              "REQUEST",
+              "IDENTITY",
+              "INSTALLATION"
+            ]
+          },
+          "valueType": {
+            "enum": [
+              "TEXT",
+              "NUMBER",
+              "BOOLEAN",
+              "DATE",
+              "TIMESTAMP"
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "source",
+          "valueType"
+        ]
+      }
+    },
+    "operations": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "$ref": "#/$defs/operation"
+      }
+    },
+    "output": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "columns": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/outputColumn"
+          }
+        }
+      },
+      "required": [
+        "columns"
+      ]
+    },
+    "fingerprint": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  },
+  "required": [
+    "format",
+    "tenantId",
+    "dataSourceId",
+    "metadataSnapshotId",
+    "specFingerprint",
+    "datasetId",
+    "objects",
+    "definitions",
+    "relationships",
+    "parameters",
+    "operations",
+    "output",
+    "fingerprint"
+  ],
+  "$defs": {
+    "planColumn": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "alias": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]{0,62}$"
+        },
+        "column": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        }
+      },
+      "required": [
+        "alias",
+        "column"
+      ]
+    },
+    "object": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        "type": {
+          "enum": [
+            "TABLE",
+            "VIEW",
+            "COLUMN"
+          ]
+        },
+        "naturalKey": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "schema": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "column": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "schema",
+            "name"
+          ]
+        },
+        "parentId": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        "typeCategory": {
+          "enum": [
+            "NUMERIC",
+            "TEXT",
+            "BOOLEAN",
+            "DATE",
+            "TIMESTAMP",
+            "TIMESTAMP_TZ",
+            "TIME",
+            "UUID",
+            "OTHER"
+          ]
+        },
+        "nullable": {
+          "type": "boolean"
+        },
+        "uniqueKeys": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "kind": {
+                "enum": [
+                  "PRIMARY_KEY",
+                  "UNIQUE_CONSTRAINT"
+                ]
+              },
+              "columns": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                }
+              }
+            },
+            "required": [
+              "kind",
+              "columns"
+            ]
+          }
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "naturalKey"
+      ]
+    },
+    "definition": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        "kind": {
+          "enum": [
+            "CONCEPT",
+            "METRIC",
+            "DIMENSION"
+          ]
+        },
+        "origin": {
+          "enum": [
+            "GOVERNED",
+            "DERIVED"
+          ]
+        },
+        "key": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "origin"
+      ]
+    },
+    "relationship": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        "origin": {
+          "enum": [
+            "DECLARED_FK",
+            "SEMANTIC",
+            "DERIVED_FK"
+          ]
+        },
+        "status": {
+          "enum": [
+            "APPROVED",
+            "OBSERVED"
+          ]
+        },
+        "pairs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "source": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+              },
+              "target": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+              }
+            },
+            "required": [
+              "source",
+              "target"
+            ]
+          }
+        },
+        "targetUniqueness": {
+          "enum": [
+            "PRIMARY_KEY",
+            "UNIQUE_CONSTRAINT"
+          ]
+        },
+        "allowedJoinTypes": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "enum": [
+              "LEFT",
+              "INNER"
+            ]
+          }
+        }
+      },
+      "required": [
+        "id",
+        "origin",
+        "status",
+        "pairs",
+        "targetUniqueness",
+        "allowedJoinTypes"
+      ]
+    },
+    "operation": {
+      "$comment": "C-4 (1 nov 2026): SCOPE retirada. El alcance por fila y las restricciones de acceso no se representan en /2; llegarán como operación nueva ligada a una política de acceso obligatoria, nunca al catálogo opcional ni al modelo de lenguaje.",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/opSCAN"
+        },
+        {
+          "$ref": "#/$defs/opJOIN"
+        },
+        {
+          "$ref": "#/$defs/opFILTER"
+        },
+        {
+          "$ref": "#/$defs/opAGGREGATE"
+        },
+        {
+          "$ref": "#/$defs/opPROJECT"
+        },
+        {
+          "$ref": "#/$defs/opGROUP_FILTER"
+        },
+        {
+          "$ref": "#/$defs/opORDER"
+        },
+        {
+          "$ref": "#/$defs/opLIMIT"
+        }
+      ]
+    },
+    "opSCAN": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "op": {
+          "const": "SCAN"
+        },
+        "alias": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]{0,62}$"
+        },
+        "object": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        }
+      },
+      "required": [
+        "op",
+        "alias",
+        "object"
+      ]
+    },
+    "opJOIN": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "op": {
+          "const": "JOIN"
+        },
+        "alias": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]{0,62}$"
+        },
+        "from": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]{0,62}$"
+        },
+        "relationship": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        "direction": {
+          "enum": [
+            "FORWARD",
+            "REVERSE"
+          ]
+        },
+        "type": {
+          "enum": [
+            "LEFT",
+            "INNER"
+          ]
+        },
+        "uniqueness": {
+          "enum": [
+            "PRIMARY_KEY",
+            "UNIQUE_CONSTRAINT"
+          ]
+        },
+        "conditions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "oneOf": [
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "left": {
+                    "$ref": "#/$defs/planColumn"
+                  },
+                  "right": {
+                    "$ref": "#/$defs/planColumn"
+                  }
+                },
+                "required": [
+                  "left",
+                  "right"
+                ]
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "left": {
+                    "$ref": "#/$defs/planColumn"
+                  },
+                  "parameter": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]{0,62}$"
+                  }
+                },
+                "required": [
+                  "left",
+                  "parameter"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "required": [
+        "op",
+        "alias",
+        "from",
+        "relationship",
+        "direction",
+        "type",
+        "uniqueness",
+        "conditions"
+      ]
+    },
+    "opFILTER": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "op": {
+          "const": "FILTER"
+        },
+        "predicates": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "column": {
+                "$ref": "#/$defs/planColumn"
+              },
+              "operator": {
+                "enum": [
+                  "EQ",
+                  "NE",
+                  "GT",
+                  "GTE",
+                  "LT",
+                  "LTE",
+                  "IN",
+                  "IS_NULL",
+                  "IS_NOT_NULL"
+                ]
+              },
+              "values": {
+                "type": "array",
+                "maxItems": 100,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "type": {
+                      "enum": [
+                        "TEXT",
+                        "NUMBER",
+                        "BOOLEAN",
+                        "DATE",
+                        "TIMESTAMP"
+                      ]
+                    },
+                    "value": {
+                      "type": "string",
+                      "maxLength": 1000
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "value"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "column",
+              "operator",
+              "values"
+            ]
+          }
+        }
+      },
+      "required": [
+        "op",
+        "predicates"
+      ]
+    },
+    "opAGGREGATE": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "op": {
+          "const": "AGGREGATE"
+        },
+        "groupBy": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "output": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_]{0,62}$"
+              },
+              "column": {
+                "$ref": "#/$defs/planColumn"
+              }
+            },
+            "required": [
+              "output",
+              "column"
+            ]
+          }
+        },
+        "measures": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "output": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_]{0,62}$"
+              },
+              "aggregation": {
+                "enum": [
+                  "COUNT",
+                  "COUNT_DISTINCT",
+                  "SUM",
+                  "AVG",
+                  "MIN",
+                  "MAX"
+                ]
+              },
+              "column": {
+                "$ref": "#/$defs/planColumn"
+              }
+            },
+            "required": [
+              "output",
+              "aggregation"
+            ]
+          }
+        }
+      },
+      "required": [
+        "op",
+        "groupBy",
+        "measures"
+      ]
+    },
+    "opPROJECT": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "op": {
+          "const": "PROJECT"
+        },
+        "columns": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "output": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_]{0,62}$"
+              },
+              "column": {
+                "$ref": "#/$defs/planColumn"
+              }
+            },
+            "required": [
+              "output",
+              "column"
+            ]
+          }
+        }
+      },
+      "required": [
+        "op",
+        "columns"
+      ]
+    },
+    "opGROUP_FILTER": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "op": {
+          "const": "GROUP_FILTER"
+        },
+        "predicates": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "output": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_]{0,62}$"
+              },
+              "operator": {
+                "enum": [
+                  "EQ",
+                  "NE",
+                  "GT",
+                  "GTE",
+                  "LT",
+                  "LTE"
+                ]
+              },
+              "values": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "type": {
+                      "enum": [
+                        "TEXT",
+                        "NUMBER",
+                        "BOOLEAN",
+                        "DATE",
+                        "TIMESTAMP"
+                      ]
+                    },
+                    "value": {
+                      "type": "string",
+                      "maxLength": 1000
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "value"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "output",
+              "operator",
+              "values"
+            ]
+          }
+        }
+      },
+      "required": [
+        "op",
+        "predicates"
+      ]
+    },
+    "opORDER": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "op": {
+          "const": "ORDER"
+        },
+        "keys": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "output": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_]{0,62}$"
+              },
+              "direction": {
+                "enum": [
+                  "ASC",
+                  "DESC"
+                ]
+              },
+              "nulls": {
+                "enum": [
+                  "LAST",
+                  "FIRST"
+                ]
+              },
+              "collation": {
+                "enum": [
+                  "C"
+                ]
+              }
+            },
+            "required": [
+              "output",
+              "direction",
+              "nulls"
+            ]
+          }
+        },
+        "tieBreaker": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "enum": [
+                "GROUP_KEYS",
+                "UNIQUE_KEY",
+                "SINGLE_ROW"
+              ]
+            },
+            "outputs": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_]{0,62}$"
+              }
+            }
+          },
+          "required": [
+            "kind",
+            "outputs"
+          ]
+        }
+      },
+      "required": [
+        "op",
+        "keys",
+        "tieBreaker"
+      ]
+    },
+    "opLIMIT": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "op": {
+          "const": "LIMIT"
+        },
+        "maxRows": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1000000
+        },
+        "detectTruncation": {
+          "const": true
+        }
+      },
+      "required": [
+        "op",
+        "maxRows",
+        "detectTruncation"
+      ]
+    },
+    "outputColumn": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "output": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]{0,62}$"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "valueType": {
+          "enum": [
+            "TEXT",
+            "NUMBER",
+            "INTEGER",
+            "BOOLEAN",
+            "DATE",
+            "TIMESTAMP",
+            "TIMESTAMP_TZ"
+          ]
+        },
+        "role": {
+          "enum": [
+            "DIMENSION",
+            "MEASURE",
+            "DETAIL",
+            "KEY"
+          ]
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "origin": {
+          "enum": [
+            "GOVERNED",
+            "INFERRED"
+          ]
+        }
+      },
+      "required": [
+        "output",
+        "label",
+        "valueType",
+        "role",
+        "origin"
+      ]
+    }
+  }
+}

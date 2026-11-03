@@ -29,12 +29,15 @@ public record EnterpriseSourcesProperties(List<String> allowedHosts, List<Intege
     }
 
     /**
-     * @param sslMode       PostgreSQL JDBC sslmode; {@code verify-full} is recommended outside local development
+     * @param sslMode       PostgreSQL JDBC sslmode; {@code verify-full} is recommended outside local development and
+     *                      required by every {@code /2} report run and tenancy registration (A4-B5)
      * @param maxConcurrent simultaneous executions allowed against this source
+     * @param sslRootCert   A4-B9 (B5-O3): optional path of the CA certificate that {@code verify-full} trusts; absent,
+     *                      the driver's default location is used (R1 behaviour unchanged)
      */
     public record Source(@NotNull UUID tenantId, @NotNull UUID dataSourceId, @NotBlank String host, int port,
                          @NotBlank String database, @NotBlank String username, @NotBlank String password,
-                         String sslMode, int maxConcurrent) {
+                         String sslMode, int maxConcurrent, String sslRootCert) {
 
         @Override
         public String toString() {

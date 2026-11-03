@@ -1,0 +1,167 @@
+{
+  "format": "nexora-logical-plan/2",
+  "tenantId": "7a3f0000-0000-4000-8000-000000000001",
+  "dataSourceId": "7a3f0000-0000-4000-8000-000000000002",
+  "metadataSnapshotId": "7a3f0000-0000-4000-8000-000000000003",
+  "specFingerprint": "5b1ae22de609609f3f46461ba92e56e056828883aea822ef582eefd9455cf7f5",
+  "datasetId": "resumen",
+  "objects": [
+    {
+      "id": "7a3f0000-0000-4000-8000-000000000010",
+      "type": "TABLE",
+      "naturalKey": {
+        "schema": "wellnode_sintetico",
+        "name": "wm_well"
+      },
+      "uniqueKeys": [
+        {
+          "kind": "PRIMARY_KEY",
+          "columns": [
+            "7a3f0000-0000-4000-8000-000000000011"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "7a3f0000-0000-4000-8000-000000000011",
+      "type": "COLUMN",
+      "naturalKey": {
+        "schema": "wellnode_sintetico",
+        "name": "wm_well",
+        "column": "dbid"
+      },
+      "parentId": "7a3f0000-0000-4000-8000-000000000010",
+      "typeCategory": "NUMERIC",
+      "nullable": false
+    },
+    {
+      "id": "7a3f0000-0000-4000-8000-000000000014",
+      "type": "COLUMN",
+      "naturalKey": {
+        "schema": "wellnode_sintetico",
+        "name": "wm_well",
+        "column": "country"
+      },
+      "parentId": "7a3f0000-0000-4000-8000-000000000010",
+      "typeCategory": "TEXT",
+      "nullable": true
+    },
+    {
+      "id": "7a3f0000-0000-4000-8000-000000000013",
+      "type": "COLUMN",
+      "naturalKey": {
+        "schema": "wellnode_sintetico",
+        "name": "wm_well",
+        "column": "field"
+      },
+      "parentId": "7a3f0000-0000-4000-8000-000000000010",
+      "typeCategory": "TEXT",
+      "nullable": true
+    }
+  ],
+  "definitions": [
+    {
+      "id": "7a3f0000-0000-4000-8000-000000000070",
+      "kind": "CONCEPT",
+      "origin": "DERIVED"
+    },
+    {
+      "id": "7a3f0000-0000-4000-8000-000000000071",
+      "kind": "METRIC",
+      "origin": "DERIVED"
+    },
+    {
+      "id": "7a3f0000-0000-4000-8000-000000000072",
+      "kind": "DIMENSION",
+      "origin": "DERIVED"
+    },
+    {
+      "id": "7a3f0000-0000-4000-8000-000000000073",
+      "kind": "DIMENSION",
+      "origin": "DERIVED"
+    }
+  ],
+  "relationships": [],
+  "parameters": [],
+  "operations": [
+    {
+      "op": "SCAN",
+      "alias": "w",
+      "object": "7a3f0000-0000-4000-8000-000000000010"
+    },
+    {
+      "op": "AGGREGATE",
+      "groupBy": [
+        {
+          "output": "pais",
+          "column": {
+            "alias": "w",
+            "column": "7a3f0000-0000-4000-8000-000000000014"
+          }
+        },
+        {
+          "output": "campo",
+          "column": {
+            "alias": "w",
+            "column": "7a3f0000-0000-4000-8000-000000000013"
+          }
+        }
+      ],
+      "measures": [
+        {
+          "output": "pozos",
+          "aggregation": "COUNT"
+        }
+      ]
+    },
+    {
+      "op": "ORDER",
+      "keys": [
+        {
+          "output": "pais",
+          "direction": "ASC",
+          "nulls": "LAST",
+          "collation": "C"
+        }
+      ],
+      "tieBreaker": {
+        "kind": "GROUP_KEYS",
+        "outputs": [
+          "pais",
+          "campo"
+        ]
+      }
+    },
+    {
+      "op": "LIMIT",
+      "maxRows": 10000,
+      "detectTruncation": true
+    }
+  ],
+  "output": {
+    "columns": [
+      {
+        "output": "pais",
+        "label": "País",
+        "valueType": "TEXT",
+        "role": "DIMENSION",
+        "origin": "INFERRED"
+      },
+      {
+        "output": "campo",
+        "label": "Campo",
+        "valueType": "TEXT",
+        "role": "DIMENSION",
+        "origin": "INFERRED"
+      },
+      {
+        "output": "pozos",
+        "label": "Pozos",
+        "valueType": "INTEGER",
+        "role": "MEASURE",
+        "origin": "INFERRED"
+      }
+    ]
+  },
+  "fingerprint": "244064b765edf9bd44cc0b3b6b687f56648d49448ede35fe8bbb2402972dcc36"
+}

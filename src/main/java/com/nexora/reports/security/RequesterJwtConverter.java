@@ -25,7 +25,8 @@ import java.util.regex.Pattern;
  * tenant-scoped, so there are no tenant-less principals in Reports.
  * <p>
  * Defense in depth: AI principals never receive {@link Permission#EXECUTE}, whatever roles the identity provider
- * assigns, because no delegation and authorization policy for AI executors exists yet.
+ * assigns, because no delegation and authorization policy for AI executors exists yet; and only persons receive
+ * {@link Permission#TENANCY_MANAGE} (A4-B9).
  */
 public class RequesterJwtConverter implements Converter<Jwt, JwtAuthenticationToken> {
 
@@ -56,6 +57,10 @@ public class RequesterJwtConverter implements Converter<Jwt, JwtAuthenticationTo
                 .forEach(name -> Permission.Role.fromName(name).ifPresent(r -> permissions.addAll(r.permissions())));
         if (type == PrincipalType.AI) {
             permissions.clear();
+        }
+        if (type != PrincipalType.HUMAN) {
+            // A4-B9 (D-B9-5): tenancy is managed by persons only, never by a service or an AI principal.
+            permissions.remove(Permission.TENANCY_MANAGE);
         }
         Requester requester = new Requester(subject, type, UUID.fromString((String) tenant));
         List<SimpleGrantedAuthority> authorities = permissions.stream()

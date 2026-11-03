@@ -1,3 +1,5 @@
 * text=auto
 *.sh text eol=lf
 *.sql text eol=lf
+# B10-c.1: documentos auténticos de Semantic, verificados por SHA-256 byte a byte
+src/test/resources/semantic-b10a/** -text

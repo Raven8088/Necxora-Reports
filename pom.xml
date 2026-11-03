@@ -21,8 +21,13 @@
         <java.version>21</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <archunit.version>1.4.2</archunit.version>
+        <!-- A4 (decision D-A4-1): Apache POI 5.4.0 fixes CVE-2025-31672. Only the Excel adapter (..render..) may use it;
+             ArchitectureTest enforces that. Dependency review: docs/ARCHITECTURE.md, section 14. -->
+        <poi.version>5.4.0</poi.version>
         <!-- PostgreSQL image used by Testcontainers; override with -Dnexora.test.postgres-image=... -->
         <nexora.test.postgres-image>postgres:17.6</nexora.test.postgres-image>
+        <!-- A4-B10-c.2 (D-C2-1): JOL measures the retained size of the rows read, only in tests. -->
+        <jol.version>0.17</jol.version>
     </properties>
 
     <dependencies>
@@ -63,6 +68,12 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
         </dependency>
+        <!-- A4: .xlsx artifacts (nexora-excel-report/1), always written with SXSSFWorkbook (streaming). -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>${poi.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -90,6 +101,12 @@
             <version>${archunit.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.openjdk.jol</groupId>
+            <artifactId>jol-core</artifactId>
+            <version>${jol.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -104,8 +121,31 @@
                 <configuration>
                     <systemPropertyVariables>
                         <nexora.test.postgres-image>${nexora.test.postgres-image}</nexora.test.postgres-image>
+                        <!-- A4-B10-c.2: JOL 0.17 cannot get field offsets of records on Java 16+ without it (Windows,
+                             2026-11-02); JolLayoutCheck checks the sizes it then reports against the JVM's own. -->
+                        <jol.magicFieldOffset>true</jol.magicFieldOffset>
                     </systemPropertyVariables>
                 </configuration>
+                <executions>
+                    <!-- A4-B10-c.2 (B10c2-O3): the memory estimate must also bound HotSpot without compressed
+                         references (16-byte headers, 8-byte references), as with a heap of 32 GB or more. Only
+                         ResultSizeEstimateLayoutTest runs again, in its own JVM and its own reports directory; every
+                         other test runs once, in the default execution. -->
+                    <execution>
+                        <id>b10c2-sin-referencias-comprimidas</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                        <configuration>
+                            <argLine>-XX:-UseCompressedOops -XX:-UseCompressedClassPointers</argLine>
+                            <includes>
+                                <include>**/ResultSizeEstimateLayoutTest.java</include>
+                            </includes>
+                            <reportsDirectory>${project.build.directory}/surefire-reports-sin-referencias-comprimidas</reportsDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

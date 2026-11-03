@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.nexora.reports.api.ReportRunSafeguardsIntegrationTest
+-------------------------------------------------------------------------------
+Tests run: 18, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 38.85 s -- in com.nexora.reports.api.ReportRunSafeguardsIntegrationTest

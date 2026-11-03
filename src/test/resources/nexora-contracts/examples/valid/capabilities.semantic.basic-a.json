@@ -1,0 +1,61 @@
+{
+  "format": "nexora-capabilities/1",
+  "service": "semantic",
+  "serviceVersion": "0.2.0",
+  "contracts": [
+    "nexora-report-spec/1",
+    "nexora-report-plan/1",
+    "nexora-logical-plan/2",
+    "nexora-logical-plan/1"
+  ],
+  "profiles": [
+    {
+      "name": "basic-a",
+      "maxDatasets": 3,
+      "maxSections": 1,
+      "maxJoinsPerDataset": 2,
+      "datasetModes": [
+        "DETAIL",
+        "AGGREGATE"
+      ],
+      "aggregations": [
+        "COUNT"
+      ],
+      "filterOperators": [
+        "EQ",
+        "NE",
+        "GT",
+        "GTE",
+        "LT",
+        "LTE",
+        "IN",
+        "IS_NULL",
+        "IS_NOT_NULL"
+      ],
+      "itemTypes": [
+        "table",
+        "summaryTable"
+      ],
+      "compositions": [],
+      "planOperations": [
+        "SCAN",
+        "JOIN",
+        "FILTER",
+        "AGGREGATE",
+        "PROJECT",
+        "ORDER",
+        "LIMIT"
+      ],
+      "collations": [
+        "C"
+      ],
+      "consistency": [
+        "SINGLE_READ_ONLY_TRANSACTION/REPEATABLE_READ"
+      ],
+      "uniqueness": [
+        "PRIMARY_KEY"
+      ],
+      "maxRowsPerPlan": 10000
+    }
+  ]
+}

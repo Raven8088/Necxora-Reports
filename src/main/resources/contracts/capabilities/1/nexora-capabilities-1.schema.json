@@ -1,0 +1,188 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nexora.ai/contracts/capabilities/1",
+  "title": "nexora-capabilities/1",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "format": {
+      "const": "nexora-capabilities/1"
+    },
+    "service": {
+      "enum": [
+        "semantic",
+        "reports"
+      ]
+    },
+    "serviceVersion": {
+      "type": "string"
+    },
+    "contracts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "pattern": "^nexora-[a-z-]+/\\d+$"
+      }
+    },
+    "profiles": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "enum": [
+              "basic-a",
+              "basic-b"
+            ]
+          },
+          "maxDatasets": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "maxSections": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "maxJoinsPerDataset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "datasetModes": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "DETAIL",
+                "AGGREGATE"
+              ]
+            }
+          },
+          "aggregations": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "COUNT",
+                "COUNT_DISTINCT",
+                "SUM",
+                "AVG",
+                "MIN",
+                "MAX"
+              ]
+            }
+          },
+          "filterOperators": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "EQ",
+                "NE",
+                "GT",
+                "GTE",
+                "LT",
+                "LTE",
+                "IN",
+                "IS_NULL",
+                "IS_NOT_NULL"
+              ]
+            }
+          },
+          "itemTypes": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "table",
+                "summaryTable",
+                "kpi",
+                "chart",
+                "text"
+              ]
+            }
+          },
+          "compositions": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "PREVIOUS_PERIOD",
+                "DELTA",
+                "PCT_CHANGE",
+                "SHARE",
+                "FILL_ZERO",
+                "TOP_N_REST",
+                "CALC"
+              ]
+            }
+          },
+          "planOperations": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "SCAN",
+                "JOIN",
+                "FILTER",
+                "AGGREGATE",
+                "PROJECT",
+                "GROUP_FILTER",
+                "ORDER",
+                "LIMIT"
+              ]
+            }
+          },
+          "collations": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "C"
+              ]
+            }
+          },
+          "consistency": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "SINGLE_READ_ONLY_TRANSACTION/REPEATABLE_READ"
+              ]
+            }
+          },
+          "uniqueness": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "PRIMARY_KEY",
+                "UNIQUE_CONSTRAINT"
+              ]
+            }
+          },
+          "maxRowsPerPlan": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "name",
+          "maxDatasets",
+          "maxSections",
+          "maxJoinsPerDataset",
+          "datasetModes",
+          "aggregations",
+          "filterOperators",
+          "itemTypes",
+          "compositions",
+          "planOperations",
+          "collations",
+          "consistency",
+          "uniqueness",
+          "maxRowsPerPlan"
+        ]
+      }
+    }
+  },
+  "required": [
+    "format",
+    "service",
+    "serviceVersion",
+    "contracts",
+    "profiles"
+  ]
+}

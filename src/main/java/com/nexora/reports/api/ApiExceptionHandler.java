@@ -2,7 +2,10 @@ package com.nexora.reports.api;
 
 import com.nexora.reports.execution.domain.ExecutionException;
 import com.nexora.reports.execution.domain.ExecutionException.ErrorCode;
+import com.nexora.reports.execution.domain.RedactedFailure;
+import com.nexora.reports.execution.domain.RunException;
 import com.nexora.reports.plan.domain.PlanNotExecutableException;
+import com.nexora.reports.tenancy.domain.TenancyException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -54,6 +57,12 @@ public class ApiExceptionHandler {
                 "The live database schema does not match the plan.");
         map(ErrorCode.TOO_MANY_EXECUTIONS, HttpStatus.TOO_MANY_REQUESTS, "too_many_executions",
                 "Too many concurrent executions; retry later.");
+        map(ErrorCode.RESULT_TOO_LARGE, HttpStatus.CONFLICT, "result_too_large",
+                "The result exceeds the row or memory limit of an execution.");
+        map(ErrorCode.VALUE_NOT_REPRESENTABLE, HttpStatus.CONFLICT, "value_not_representable",
+                "A value of the data source cannot be represented exactly in its output type.");
+        map(ErrorCode.TENANT_SCOPE_UNVERIFIED, HttpStatus.CONFLICT, "tenant_scope_unverified",
+                "The tenancy of the data source could not be verified; nothing was read.");
         map(ErrorCode.PLAN_VALIDITY_UNCONFIRMED, HttpStatus.SERVICE_UNAVAILABLE, "plan_validity_unconfirmed",
                 "Semantic could not confirm that the plan is current.");
         map(ErrorCode.SEMANTIC_UNAVAILABLE, HttpStatus.SERVICE_UNAVAILABLE, "semantic_unavailable",
@@ -74,11 +83,63 @@ public class ApiExceptionHandler {
                 "The execution failed.");
         map(ErrorCode.AUDIT_UNAVAILABLE, HttpStatus.SERVICE_UNAVAILABLE, "audit_unavailable",
                 "The execution could not be audited; no result is returned.");
+        // A4-B9: report runs and their artifacts.
+        map(ErrorCode.RUN_NOT_FOUND, HttpStatus.NOT_FOUND, "not_found", "Resource not found.");
+        map(ErrorCode.RUN_IN_PROGRESS, HttpStatus.CONFLICT, "run_in_progress",
+                "The run has not finished yet; retry later.");
+        map(ErrorCode.RUN_RECORDED_AS_FAILED, HttpStatus.CONFLICT, "run_failed",
+                "The run failed internally; it has no report.");
+        map(ErrorCode.RUN_INTERRUPTED, HttpStatus.CONFLICT, "run_interrupted",
+                "The run did not finish before its deadline; it has no report.");
+        map(ErrorCode.RUN_FAILED, HttpStatus.INTERNAL_SERVER_ERROR, "run_failed",
+                "The run failed internally; it was recorded and has no report.");
+        map(ErrorCode.REPORT_PLAN_INVALID, HttpStatus.UNPROCESSABLE_CONTENT, "report_plan_invalid",
+                "The report plan is not valid; the run was refused and no report describes it.");
+        map(ErrorCode.ARTIFACT_GONE, HttpStatus.GONE, "artifact_gone", "The file of this run expired or was purged.");
+        map(ErrorCode.ARTIFACT_INTEGRITY_FAILED, HttpStatus.INTERNAL_SERVER_ERROR, "artifact_integrity_failed",
+                "The stored file does not match its metadata; it is not delivered.");
+        map(ErrorCode.TOO_MANY_DOWNLOADS, HttpStatus.TOO_MANY_REQUESTS, "too_many_downloads",
+                "Too many concurrent downloads; retry later.");
+        map(ErrorCode.RUN_STORAGE_UNAVAILABLE, HttpStatus.SERVICE_UNAVAILABLE, "run_storage_unavailable",
+                "The run registry is not available.");
+        // B10-O3 (D-O3-3): only reached as the refusal of a started run; mapped like every code.
+        map(ErrorCode.DATA_SOURCE_CONFIGURATION_CHANGED, HttpStatus.CONFLICT, "data_source_configuration_changed",
+                "The configuration of the data source changed after the run started; nothing was read.");
         for (ErrorCode code : ErrorCode.values()) {
             if (!EXECUTION.containsKey(code)) {
                 throw new ExceptionInInitializerError("unmapped error code " + code);
             }
         }
+    }
+
+    private static final Map<TenancyException.Reason, Mapping> TENANCY = new EnumMap<>(TenancyException.Reason.class);
+
+    static {
+        tenancy(TenancyException.Reason.NOT_A_PERSON, HttpStatus.FORBIDDEN, "tenancy_requires_person",
+                "Only a person can register, approve or revoke the tenancy of a data source.");
+        tenancy(TenancyException.Reason.NOT_FOUND, HttpStatus.NOT_FOUND, "not_found", "Resource not found.");
+        tenancy(TenancyException.Reason.SAME_PERSON, HttpStatus.CONFLICT, "tenancy_same_person",
+                "The approver must be a person other than the one who registered.");
+        tenancy(TenancyException.Reason.NOT_PENDING, HttpStatus.CONFLICT, "tenancy_not_pending",
+                "Only a pending version newer than the active one can be approved; a revoked one stays revoked.");
+        tenancy(TenancyException.Reason.MODEL_NOT_SUPPORTED, HttpStatus.UNPROCESSABLE_CONTENT,
+                "tenancy_model_not_supported", "Only DEDICATED_DATABASE and DEDICATED_SCHEMAS can be registered.");
+        tenancy(TenancyException.Reason.CAPTURE_MISMATCH, HttpStatus.UNPROCESSABLE_CONTENT,
+                "tenancy_capture_mismatch",
+                "The declared schemas or role do not match what the read-only role can use in the database.");
+        tenancy(TenancyException.Reason.NO_CREDENTIALS, HttpStatus.CONFLICT, "data_source_not_configured",
+                "No read-only connection is configured for this data source.");
+        tenancy(TenancyException.Reason.TLS_REQUIRED, HttpStatus.UNPROCESSABLE_CONTENT, "tls_required",
+                "The connection to the data source must use TLS with verify-full.");
+        for (TenancyException.Reason reason : TenancyException.Reason.values()) {
+            if (!TENANCY.containsKey(reason)) {
+                throw new ExceptionInInitializerError("unmapped tenancy reason " + reason);
+            }
+        }
+    }
+
+    private static void tenancy(TenancyException.Reason reason, HttpStatus status, String apiCode, String detail) {
+        TENANCY.put(reason, new Mapping(status, apiCode, detail));
     }
 
     private static void map(ErrorCode code, HttpStatus status, String apiCode, String detail) {
@@ -103,6 +164,37 @@ public class ApiExceptionHandler {
             log.info("execution refused {}: {}", e.code(), e.getMessage());
         }
         return problem(m.status(), Problems.of(m.status(), m.code(), m.detail(), request));
+    }
+
+    /** A4-B9: the same problem, with the id of the run it concerns ({@code X-Run-Id}). */
+    @ExceptionHandler(RunException.class)
+    ResponseEntity<Map<String, Object>> run(RunException e, HttpServletRequest request) {
+        Mapping m = EXECUTION.get(e.code());
+        if (m.status().is5xxServerError()) {
+            log.warn("run {} error {}: {}", e.runId(), e.code(), e.getMessage());
+        } else {
+            log.info("run {} answered {}: {}", e.runId(), e.code(), e.getMessage());
+        }
+        return ResponseEntity.status(m.status()).contentType(Problems.PROBLEM_JSON)
+                .header(ReportRunController.RUN_ID_HEADER, e.runId().toString())
+                .body(Problems.of(m.status(), m.code(), m.detail(), request));
+    }
+
+    /** A4-B9 (D-B9-6): refused registrations, approvals and revocations of tenancy. */
+    @ExceptionHandler(TenancyException.class)
+    ResponseEntity<Map<String, Object>> tenancy(TenancyException e, HttpServletRequest request) {
+        Mapping m = TENANCY.get(e.reason());
+        log.info("tenancy refused {}: {}", e.reason(), e.getMessage());
+        return problem(m.status(), Problems.of(m.status(), m.code(), m.detail(), request));
+    }
+
+    /** Public mapping of tenancy refusals, documented in docs/API.md. */
+    public static HttpStatus status(TenancyException.Reason reason) {
+        return TENANCY.get(reason).status();
+    }
+
+    public static String apiCode(TenancyException.Reason reason) {
+        return TENANCY.get(reason).code();
     }
 
     @ExceptionHandler(PlanNotExecutableException.class)
@@ -170,9 +262,21 @@ public class ApiExceptionHandler {
         return problem(status, Problems.of(status, "not_found", "Resource not found.", request));
     }
 
+    /** A4-B10 (A4 proposal v3, section 5): a body sent to an operation that takes none. */
+    @ExceptionHandler(RequestBodyNotAllowedException.class)
+    ResponseEntity<Map<String, Object>> bodyNotAllowed(HttpServletRequest request) {
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        return problem(status, Problems.of(status, "malformed_request", "This operation takes no request body.",
+                request));
+    }
+
+    /**
+     * A failure nobody anticipated. A4-B10 (D-B10-13): its message, which may carry values from a data source,
+     * a document or another service, is withheld from the logs; its class and stack frames are kept.
+     */
     @ExceptionHandler(Exception.class)
     ResponseEntity<Map<String, Object>> unexpected(Exception e, HttpServletRequest request) {
-        log.error("unexpected error", e);
+        log.error("unexpected error", RedactedFailure.of(e));
         HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
         return problem(status, Problems.of(status, "internal_error", "Unexpected error.", request));
     }

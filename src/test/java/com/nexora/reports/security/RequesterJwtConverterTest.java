@@ -60,6 +60,31 @@ class RequesterJwtConverterTest {
         assertThat(token.getAuthorities()).isEmpty();
     }
 
+    /** A4-B9 (D-B9-5): managing tenancy is for persons only, whatever roles a service or an AI is given. */
+    @Test
+    void onlyPersonsGetTheTenancyPermission() {
+        var person = converter.convert(jwt(Map.of("sub", "steward", "tenant", tenant, "principal_type", "HUMAN",
+                "roles", List.of("REPORTS_TENANCY_ADMIN", "REPORT_RUNNER"))));
+        var service = converter.convert(jwt(Map.of("sub", "svc", "tenant", tenant, "principal_type", "SERVICE",
+                "roles", List.of("REPORTS_TENANCY_ADMIN", "REPORT_RUNNER"))));
+        var ai = converter.convert(jwt(Map.of("sub", "agent", "tenant", tenant, "principal_type", "AI",
+                "roles", List.of("REPORTS_TENANCY_ADMIN"))));
+
+        assertThat(person.getAuthorities()).extracting(GrantedAuthority::getAuthority)
+                .containsExactlyInAnyOrder("reports:execute", "reports:tenancy:manage");
+        assertThat(service.getAuthorities()).extracting(GrantedAuthority::getAuthority)
+                .containsExactly("reports:execute");
+        assertThat(ai.getAuthorities()).isEmpty();
+    }
+
+    @Test
+    void theTenancyRoleAloneDoesNotGrantExecution() {
+        var token = converter.convert(jwt(Map.of("sub", "steward", "tenant", tenant, "principal_type", "HUMAN",
+                "roles", List.of("REPORTS_TENANCY_ADMIN"))));
+        assertThat(token.getAuthorities()).extracting(GrantedAuthority::getAuthority)
+                .containsExactly("reports:tenancy:manage");
+    }
+
     @Test
     void semanticRolesDoNotGrantReportsPermissions() {
         var token = converter.convert(jwt(Map.of("sub", "svc", "tenant", tenant, "principal_type", "SERVICE",

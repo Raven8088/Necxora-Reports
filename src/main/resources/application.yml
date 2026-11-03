@@ -2,7 +2,7 @@
 spring:
   application:
     name: nexora-reports
-  # Reports' own database (execution audit only). Never an enterprise database.
+  # Reports' own database (execution audit, tenancy registry and run registry). Never an enterprise database.
   datasource:
     url: ${REPORTS_DB_URL:jdbc:postgresql://localhost:5434/nexora_reports?currentSchema=reports}
     username: ${REPORTS_DB_USER:nexora_reports_app}
@@ -71,8 +71,27 @@ nexora:
       allowed-ports: []
       # One entry per (tenant, data source), for example through the environment:
       # NEXORA_REPORTS_ENTERPRISE_SOURCES_0_TENANTID, _DATASOURCEID, _HOST, _PORT, _DATABASE, _USERNAME,
-      # _PASSWORD, _SSLMODE, _MAXCONCURRENT
+      # _PASSWORD, _SSLMODE, _MAXCONCURRENT, _SSLROOTCERT (A4-B9: CA certificate path for sslmode=verify-full).
+      # Report runs (/2) and tenancy registrations require verify-full; R1 keeps its configured mode.
       sources: []
+    # A4-B9: Reports' own storage. The directory must be private to Reports (a volume in containers); it holds
+    # "staging" (artifacts between rendering and storing) and "poifiles" (Apache POI temporary files).
+    storage:
+      directory: ${REPORTS_STORAGE_DIR:${java.io.tmpdir}/nexora-reports}
+      retention: ${REPORTS_ARTIFACT_RETENTION:7d}
+      tenant-quota-bytes: ${REPORTS_TENANT_QUOTA_BYTES:524288000}
+      max-file-bytes: ${REPORTS_MAX_FILE_BYTES:20971520}
+    # A4-B9: report runs (POST .../report-plans/{id}/runs) and their housekeeping.
+    runs:
+      max-duration: ${REPORTS_RUN_MAX_DURATION:120s}
+      max-concurrent-renders: ${REPORTS_MAX_CONCURRENT_RENDERS:4}
+      max-concurrent-downloads: ${REPORTS_MAX_CONCURRENT_DOWNLOADS:4}
+      housekeeping-batch: ${REPORTS_HOUSEKEEPING_BATCH:500}
+      staging-max-age: ${REPORTS_STAGING_MAX_AGE:1h}
+      reconcile-interval: ${REPORTS_RECONCILE_INTERVAL:PT1M}
+      purge-interval: ${REPORTS_PURGE_INTERVAL:PT15M}
+      sweep-interval: ${REPORTS_SWEEP_INTERVAL:PT1H}
+      reports-version: "@project.version@"
 
 management:
   endpoints:

@@ -1,6 +1,7 @@
 package com.nexora.reports.credentials.infrastructure;
 
 import com.nexora.reports.credentials.domain.DataSourceCredentials;
+import com.nexora.reports.credentials.domain.SourceTarget;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -23,6 +24,21 @@ class ConfiguredCredentialProviderTest {
         assertThat(provider.resolve(TENANT_B, SOURCE)).as("another tenant never sees it").isEmpty();
         assertThat(provider.resolve(TENANT_A, UUID.randomUUID())).isEmpty();
         assertThat(provider.resolve(TENANT_A, SOURCE).orElseThrow().toString()).doesNotContain("s3cret");
+    }
+
+    /** B10-O3: the destination is found with exactly the same key, and it is the destination of the credentials. */
+    @Test
+    void theConfiguredDestinationIsKeyedLikeTheCredentialsAndCarriesNoSecret() {
+        var provider = new ConfiguredCredentialProvider(properties(List.of("db.internal"), List.of(5432),
+                source(TENANT_A, SOURCE, "db.internal", 5432)));
+
+        SourceTarget target = provider.configured(TENANT_A, SOURCE).orElseThrow();
+        assertThat(target).isEqualTo(provider.resolve(TENANT_A, SOURCE).orElseThrow().target());
+        assertThat(target.host()).isEqualTo("db.internal");
+        assertThat(target.username()).isEqualTo("reader");
+        assertThat(target.toString()).doesNotContain("s3cret");
+        assertThat(provider.configured(TENANT_B, SOURCE)).as("another tenant never sees it").isEmpty();
+        assertThat(provider.configured(TENANT_A, UUID.randomUUID())).isEmpty();
     }
 
     @Test
@@ -63,6 +79,25 @@ class ConfiguredCredentialProviderTest {
 
     private static EnterpriseSourcesProperties.Source source(UUID tenant, UUID source, String host, int port) {
         return new EnterpriseSourcesProperties.Source(tenant, source, host, port, "erp", "reader", "s3cret",
-                "require", 2);
+                "require", 2, null);
+    }
+
+    /** A4-B9 (B5-O3): the CA certificate of {@code verify-full} reaches the credentials; blank means none. */
+    @Test
+    void theCaCertificateOfVerifyFullReachesTheCredentials() {
+        UUID tenant = UUID.randomUUID();
+        UUID withCa = UUID.randomUUID();
+        UUID blank = UUID.randomUUID();
+        ConfiguredCredentialProvider provider = new ConfiguredCredentialProvider(properties(List.of("db.example"),
+                List.of(5432),
+                new EnterpriseSourcesProperties.Source(tenant, withCa, "db.example", 5432, "erp", "reader", "s3cret",
+                        "verify-full", 2, "/run/secrets/ca.crt"),
+                new EnterpriseSourcesProperties.Source(tenant, blank, "db.example", 5432, "erp", "reader", "s3cret",
+                        null, 2, " ")));
+
+        assertThat(provider.resolve(tenant, withCa).orElseThrow().sslRootCert()).isEqualTo("/run/secrets/ca.crt");
+        assertThat(provider.resolve(tenant, withCa).orElseThrow().sslMode()).isEqualTo("verify-full");
+        assertThat(provider.resolve(tenant, blank).orElseThrow().sslRootCert()).isNull();
+        assertThat(provider.resolve(tenant, blank).orElseThrow().sslMode()).isEqualTo("verify-full");
     }
 }

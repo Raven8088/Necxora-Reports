@@ -91,8 +91,9 @@ public class ReportsConfiguration {
         return new SemanticPlanSource(semantic.baseUrl(), http, tokens, reader);
     }
 
+    /** One provider for both ports: credentials ({@link CredentialProvider}) and destinations (B10-O3). */
     @Bean
-    CredentialProvider credentialProvider(EnterpriseSourcesProperties properties) {
+    ConfiguredCredentialProvider credentialProvider(EnterpriseSourcesProperties properties) {
         return new ConfiguredCredentialProvider(properties);
     }
 
@@ -101,8 +102,12 @@ public class ReportsConfiguration {
         return new ConnectionPools(execution.limits());
     }
 
+    /**
+     * One executor for R1 and for report runs (A4-B9, D-B9-7): both share its budget of concurrent executions, in
+     * total and per data source. It is exposed as {@link ReadOnlyExecutor} and as the {@code /2} executor.
+     */
     @Bean
-    ReadOnlyExecutor readOnlyExecutor(ConnectionPools pools, ExecutionProperties execution) {
+    PostgresReadOnlyExecutor readOnlyExecutor(ConnectionPools pools, ExecutionProperties execution) {
         return new PostgresReadOnlyExecutor(pools, execution.concurrency());
     }
 

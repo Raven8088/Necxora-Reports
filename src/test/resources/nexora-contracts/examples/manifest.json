@@ -1,0 +1,245 @@
+{
+  "_nota": "Generado. Cada ejemplo indica su contrato y el resultado esperado de la validación.",
+  "schemas": {
+    "report-spec": "report-spec/1/nexora-report-spec-1.schema.json",
+    "logical-plan": "logical-plan/2/nexora-logical-plan-2.schema.json",
+    "report-plan": "report-plan/1/nexora-report-plan-1.schema.json",
+    "report-run": "report-run/1/nexora-report-run-1.schema.json",
+    "report-artifact": "report-run/1/nexora-report-artifact-1.schema.json",
+    "capabilities": "capabilities/1/nexora-capabilities-1.schema.json"
+  },
+  "examples": [
+    {
+      "file": "valid/pa-a.report-spec.json",
+      "contract": "report-spec",
+      "expect": "valid"
+    },
+    {
+      "file": "valid/pa-a.clarification.report-spec.json",
+      "contract": "report-spec",
+      "expect": "valid"
+    },
+    {
+      "file": "valid/pa-b.report-spec.json",
+      "contract": "report-spec",
+      "expect": "valid"
+    },
+    {
+      "file": "valid/pa-a.gobernado.report-spec.json",
+      "contract": "report-spec",
+      "expect": "valid"
+    },
+    {
+      "file": "valid/pa-a.resumen.logical-plan.json",
+      "contract": "logical-plan",
+      "expect": "valid"
+    },
+    {
+      "file": "valid/pa-a.total.logical-plan.json",
+      "contract": "logical-plan",
+      "expect": "valid"
+    },
+    {
+      "file": "valid/pa-a.detalle.logical-plan.json",
+      "contract": "logical-plan",
+      "expect": "valid"
+    },
+    {
+      "file": "valid/pa-a.gobernado.resumen.logical-plan.json",
+      "contract": "logical-plan",
+      "expect": "valid"
+    },
+    {
+      "file": "valid/pa-a.report-plan.json",
+      "contract": "report-plan",
+      "expect": "valid"
+    },
+    {
+      "file": "valid/pa-a.report-run.json",
+      "contract": "report-run",
+      "expect": "valid"
+    },
+    {
+      "file": "valid/volumen.report-run.partial.json",
+      "contract": "report-run",
+      "expect": "valid"
+    },
+    {
+      "file": "valid/pa-a.report-run.refused.json",
+      "contract": "report-run",
+      "expect": "valid"
+    },
+    {
+      "file": "valid/pa-a.report-artifact.json",
+      "contract": "report-artifact",
+      "expect": "valid"
+    },
+    {
+      "file": "valid/capabilities.semantic.basic-a.json",
+      "contract": "capabilities",
+      "expect": "valid"
+    },
+    {
+      "file": "invalid/spec-campo-desconocido-sql.json",
+      "contract": "report-spec",
+      "expect": "invalid",
+      "reason": "SCHEMA"
+    },
+    {
+      "file": "invalid/spec-medida-gobernada-con-agregacion.json",
+      "contract": "report-spec",
+      "expect": "invalid",
+      "reason": "SCHEMA"
+    },
+    {
+      "file": "invalid/spec-basic-a-cuatro-datasets.json",
+      "contract": "report-spec",
+      "expect": "invalid",
+      "reason": "SCHEMA"
+    },
+    {
+      "file": "invalid/spec-basic-a-con-composicion.json",
+      "contract": "report-spec",
+      "expect": "invalid",
+      "reason": "SCHEMA"
+    },
+    {
+      "file": "invalid/spec-basic-a-con-grafico.json",
+      "contract": "report-spec",
+      "expect": "invalid",
+      "reason": "SCHEMA"
+    },
+    {
+      "file": "invalid/spec-basic-a-count-distinct.json",
+      "contract": "report-spec",
+      "expect": "invalid",
+      "reason": "SCHEMA"
+    },
+    {
+      "file": "invalid/spec-ready-con-aclaraciones.json",
+      "contract": "report-spec",
+      "expect": "invalid",
+      "reason": "SCHEMA"
+    },
+    {
+      "file": "invalid/spec-alias-invalido.json",
+      "contract": "report-spec",
+      "expect": "invalid",
+      "reason": "SCHEMA"
+    },
+    {
+      "file": "invalid/spec-intercalacion-no-determinista.json",
+      "contract": "report-spec",
+      "expect": "invalid",
+      "reason": "SCHEMA"
+    },
+    {
+      "file": "invalid/spec-item-dataset-inexistente.json",
+      "contract": "report-spec",
+      "expect": "invalid",
+      "reason": "SPEC-R6"
+    },
+    {
+      "file": "invalid/spec-orden-select-inexistente.json",
+      "contract": "report-spec",
+      "expect": "invalid",
+      "reason": "SPEC-R4"
+    },
+    {
+      "file": "invalid/spec-detalle-con-medida.json",
+      "contract": "report-spec",
+      "expect": "invalid",
+      "reason": "SPEC-R5"
+    },
+    {
+      "file": "invalid/spec-agregado-sin-agrupar-campo.json",
+      "contract": "report-spec",
+      "expect": "invalid",
+      "reason": "SPEC-R5"
+    },
+    {
+      "file": "invalid/spec-total-no-agregado.json",
+      "contract": "report-spec",
+      "expect": "invalid",
+      "reason": "SPEC-R6"
+    },
+    {
+      "file": "invalid/plan2-limit-antes-de-order.json",
+      "contract": "logical-plan",
+      "expect": "invalid",
+      "reason": "PLAN-R1"
+    },
+    {
+      "file": "invalid/plan2-detalle-sin-desempate-unico.json",
+      "contract": "logical-plan",
+      "expect": "invalid",
+      "reason": "PLAN-R3"
+    },
+    {
+      "file": "invalid/plan2-agregado-orden-incompleto.json",
+      "contract": "logical-plan",
+      "expect": "invalid",
+      "reason": "PLAN-R3"
+    },
+    {
+      "file": "invalid/plan2-columna-no-incluida.json",
+      "contract": "logical-plan",
+      "expect": "invalid",
+      "reason": "PLAN-R5"
+    },
+    {
+      "file": "invalid/report-plan-read-committed.json",
+      "contract": "report-plan",
+      "expect": "invalid",
+      "reason": "SCHEMA"
+    },
+    {
+      "file": "invalid/report-plan-dataset-duplicado.json",
+      "contract": "report-plan",
+      "expect": "invalid",
+      "reason": "RPLAN-R1"
+    },
+    {
+      "file": "invalid/run-varias-transacciones.json",
+      "contract": "report-run",
+      "expect": "invalid",
+      "reason": "SCHEMA"
+    },
+    {
+      "file": "invalid/run-truncado-como-completo.json",
+      "contract": "report-run",
+      "expect": "invalid",
+      "reason": "RUN-R1"
+    },
+    {
+      "file": "invalid/run-rechazado-con-archivo.json",
+      "contract": "report-run",
+      "expect": "invalid",
+      "reason": "RUN-R1"
+    },
+    {
+      "file": "invalid/spec-filtro-por-definicion-no-soportado.json",
+      "contract": "report-spec",
+      "expect": "invalid",
+      "reason": "SCHEMA"
+    },
+    {
+      "file": "invalid/plan2-scope-no-soportado.json",
+      "contract": "logical-plan",
+      "expect": "invalid",
+      "reason": "SCHEMA"
+    },
+    {
+      "file": "invalid/report-plan-scope-con-reglas.json",
+      "contract": "report-plan",
+      "expect": "invalid",
+      "reason": "SCHEMA"
+    },
+    {
+      "file": "invalid/capabilities-anuncia-scope.json",
+      "contract": "capabilities",
+      "expect": "invalid",
+      "reason": "SCHEMA"
+    }
+  ]
+}

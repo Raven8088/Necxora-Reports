@@ -1,0 +1,48 @@
+{
+  "format": "nexora-report-plan/1",
+  "tenantId": "7a3f0000-0000-4000-8000-000000000001",
+  "dataSourceId": "7a3f0000-0000-4000-8000-000000000002",
+  "profile": "basic-a",
+  "specFingerprint": "5b1ae22de609609f3f46461ba92e56e056828883aea822ef582eefd9455cf7f5",
+  "plans": [
+    {
+      "datasetId": "resumen",
+      "planId": "7a3f0000-0000-4000-8000-000000000080",
+      "planFingerprint": "244064b765edf9bd44cc0b3b6b687f56648d49448ede35fe8bbb2402972dcc36"
+    },
+    {
+      "datasetId": "total",
+      "planId": "7a3f0000-0000-4000-8000-000000000081",
+      "planFingerprint": "5d355fb357ae123828b149040959d3962cb59baaec813f7a5f6fe4fcabd24a42"
+    },
+    {
+      "datasetId": "detalle",
+      "planId": "7a3f0000-0000-4000-8000-000000000082",
+      "planFingerprint": "8b30e218758a442edc60fcdcec7af8d27b35fe50e3f045f30c545253314901ee"
+    }
+  ],
+  "consistency": {
+    "mode": "SINGLE_READ_ONLY_TRANSACTION",
+    "isolation": "REPEATABLE_READ",
+    "readOnly": true,
+    "schemaVerification": "IN_TRANSACTION",
+    "onPlanFailure": "REFUSE_RUN"
+  },
+  "scope": {
+    "rules": [
+      {
+        "rule": "empresa_e_hijas",
+        "parameter": "empresa"
+      }
+    ]
+  },
+  "compositions": [],
+  "budget": {
+    "maxPlans": 3,
+    "maxRowsPerPlan": 10000,
+    "maxTotalRows": 30000,
+    "statementTimeoutMs": 30000,
+    "maxDurationMs": 60000
+  },
+  "fingerprint": "15f5283c8c66a1a8ec449f25a5339d706071a354da50547e72f458515fbca4b1"
+}

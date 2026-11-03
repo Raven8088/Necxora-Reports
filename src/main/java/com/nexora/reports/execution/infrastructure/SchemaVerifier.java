@@ -3,10 +3,13 @@ package com.nexora.reports.execution.infrastructure;
 import com.nexora.reports.execution.domain.ExecutionException;
 import com.nexora.reports.execution.domain.ExecutionException.ErrorCode;
 import com.nexora.reports.plan.domain.NaturalKey.RelationName;
+import com.nexora.reports.plan.domain.LogicalPlan.ValueType;
 import com.nexora.reports.plan.domain.TypeCategory;
+import com.nexora.reports.plan2.domain.LogicalPlanV2.Category;
 import com.nexora.reports.translation.domain.SchemaExpectation;
 import com.nexora.reports.translation.domain.SchemaExpectation.ExpectedColumn;
 import com.nexora.reports.translation.domain.SchemaExpectation.ExpectedPrimaryKey;
+import com.nexora.reports.translation2.domain.SchemaRequirementsV2;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -46,6 +49,71 @@ class SchemaVerifier {
             }
             primaryKey(connection, oid, key);
         }
+    }
+
+    /**
+     * A4-B4: the same checks for a {@code /2} query (relations, column categories, exact primary keys, no write
+     * privileges) plus the {@code SELECT} privilege of every column read, so a revoked column stops the execution
+     * before any data is read (D-B4-4: only in the {@code /2} path; the R1 path above is unchanged).
+     */
+    void verify(Connection connection, SchemaRequirementsV2 requirements) throws SQLException {
+        Map<RelationName, Long> oids = new HashMap<>();
+        for (RelationName relation : requirements.relations()) {
+            oids.put(relation, relation(connection, relation));
+        }
+        for (SchemaRequirementsV2.Column column : requirements.columns()) {
+            Long oid = oids.get(column.relation());
+            if (oid == null) {
+                throw mismatch("column of a relation not checked");
+            }
+            readableColumn(connection, oid, column.column(), valueType(column.category()));
+        }
+        for (SchemaRequirementsV2.PrimaryKey key : requirements.primaryKeys()) {
+            Long oid = oids.get(key.relation());
+            if (oid == null) {
+                throw mismatch("primary key of a relation not checked");
+            }
+            primaryKey(connection, oid, new ExpectedPrimaryKey(key.relation(), key.columns()));
+        }
+    }
+
+    private static void readableColumn(Connection connection, long relationOid, String name, ValueType category)
+            throws SQLException {
+        try (PreparedStatement ps = connection.prepareStatement("""
+                SELECT t.typname, t.typtype, has_column_privilege(a.attrelid, a.attnum, 'SELECT')
+                  FROM pg_catalog.pg_attribute a
+                  JOIN pg_catalog.pg_type t ON t.oid = a.atttypid
+                 WHERE a.attrelid = ? AND a.attname = ? AND a.attnum > 0 AND NOT a.attisdropped""")) {
+            ps.setLong(1, relationOid);
+            ps.setString(2, name);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (!rs.next()) {
+                    throw mismatch("column missing");
+                }
+                String type = rs.getString(1);
+                if (!"b".equals(rs.getString(2)) || TypeCategory.of(type) != category
+                        || !TypeCategory.executable(type)) {
+                    throw mismatch("column type category changed");
+                }
+                if (!rs.getBoolean(3)) {
+                    throw mismatch("column not readable by the role");
+                }
+            }
+        }
+    }
+
+    private static ValueType valueType(Category category) {
+        return switch (category) {
+            case NUMERIC -> ValueType.NUMERIC;
+            case TEXT -> ValueType.TEXT;
+            case BOOLEAN -> ValueType.BOOLEAN;
+            case DATE -> ValueType.DATE;
+            case TIMESTAMP -> ValueType.TIMESTAMP;
+            case TIMESTAMP_TZ -> ValueType.TIMESTAMP_TZ;
+            case TIME -> ValueType.TIME;
+            case UUID -> ValueType.UUID;
+            case OTHER -> ValueType.OTHER;
+        };
     }
 
     private static long relation(Connection connection, RelationName relation) throws SQLException {

@@ -1,0 +1,117 @@
+{
+  "format": "nexora-report-spec/1",
+  "profile": "basic-a",
+  "status": "READY",
+  "title": "Pozos de los campos Neuquén y Llanos",
+  "request": {
+    "text": "Lista los pozos de los campos Neuquén y Llanos con su país.",
+    "language": "es"
+  },
+  "parameters": {
+    "timeZone": "America/Mexico_City",
+    "labelLanguage": "es"
+  },
+  "datasets": [
+    {
+      "id": "pozos",
+      "title": "Pozos de los campos Neuquén y Llanos",
+      "mode": "DETAIL",
+      "base": {
+        "alias": "w",
+        "object": "c0a89dea-95c9-46cb-b0fd-f036c6e653c9"
+      },
+      "joins": [],
+      "select": [
+        {
+          "id": "nombre",
+          "label": "Nombre",
+          "origin": "INFERRED",
+          "column": {
+            "alias": "w",
+            "object": "75420aa4-bc43-4014-8b6f-2a3cafa55f56"
+          }
+        },
+        {
+          "id": "campo",
+          "label": "Campo",
+          "origin": "INFERRED",
+          "column": {
+            "alias": "w",
+            "object": "248a033b-bb45-478c-84bb-b24dc5d78170"
+          }
+        },
+        {
+          "id": "pais",
+          "label": "País",
+          "origin": "INFERRED",
+          "column": {
+            "alias": "w",
+            "object": "e73e1477-2c48-4e44-8c69-81b35fd39dcb"
+          }
+        },
+        {
+          "id": "id_pozo",
+          "label": "Identificador",
+          "origin": "INFERRED",
+          "column": {
+            "alias": "w",
+            "object": "3dcd24d2-48f9-4edf-b4fb-4bb70d012325"
+          }
+        }
+      ],
+      "groupBy": [],
+      "filters": [
+        {
+          "column": {
+            "alias": "w",
+            "object": "248a033b-bb45-478c-84bb-b24dc5d78170"
+          },
+          "operator": "IN",
+          "values": [
+            {
+              "type": "TEXT",
+              "value": "Neuquén"
+            },
+            {
+              "type": "TEXT",
+              "value": "Llanos"
+            }
+          ],
+          "literalSource": "QUESTION"
+        }
+      ],
+      "orderBy": [
+        {
+          "select": "nombre",
+          "direction": "ASC",
+          "nulls": "LAST",
+          "collation": "C"
+        }
+      ],
+      "maxRows": 10000
+    }
+  ],
+  "sections": [
+    {
+      "id": "pozos",
+      "title": "Pozos de los campos Neuquén y Llanos",
+      "items": [
+        {
+          "type": "table",
+          "dataset": "pozos"
+        }
+      ]
+    }
+  ],
+  "compositions": [],
+  "provenance": {
+    "terms": [
+      {
+        "text": "campos",
+        "resolution": "INFERRED",
+        "target": "wm_well.field"
+      }
+    ]
+  },
+  "clarifications": []
+}

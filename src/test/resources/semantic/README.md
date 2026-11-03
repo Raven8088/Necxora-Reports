@@ -24,3 +24,19 @@ These JSON documents were **produced by the real Nexora Semantic code (S4.2)**, 
 
 Tests derive further cases (unknown operations, tampered joins, other time zones...) by mutating copies of these
 documents in memory; the files themselves are never modified.
+
+## Planes auténticos de B10-a (`../semantic-b10a/`, B10-c.1)
+
+`src/test/resources/semantic-b10a/` es una copia **byte a byte** de la exportación que generó el Nexora Semantic real
+en B10-a (`ReportPlanExportIntegrationTest`, `mvn -B verify` en Windows, 2026-11-02, 701/0/0/0), tomada de la
+evidencia conservada `Claude outputs/a4-b10a/windows-b10a-2026-11-02/a4-b10a-export/` (54 archivos). Ningún
+documento se editó, regeneró ni volvió a sellar; los ids (tenant, fuente, planes) solo se leen de su `manifest.json`.
+
+Antes de usarla, las pruebas (`support/AuthenticPlans`) comprueban: el pin `../semantic-b10a.sha256` (SHA-256 de
+`manifest.json` `6e49f545…23ea` y de `SHA256SUMS` `c5526b07…1b1b`, registrados en el anexo maestro A2), cada línea
+de `SHA256SUMS` y cada entrada del manifiesto. Los hashes prueban que la copia es la exportación archivada; que la
+emitiera el compilador de Semantic se apoya en el procedimiento de B10-a y en su evidencia conservada, no en ellos.
+
+`.gitattributes` marca `src/test/resources/semantic-b10a/**` como `-text` para que Git no cambie sus saltos de línea.
+Las pruebas sirven estos documentos con el Semantic simulado (`support/TestPlatform`): es evidencia de nivel B
+(Reports real ejecutando planes auténticos), no una integración viva entre servicios.

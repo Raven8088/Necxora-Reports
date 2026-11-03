@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.nexora.reports.translation2.domain.PlanV2TranslatorTest
+-------------------------------------------------------------------------------
+Tests run: 41, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.023 s -- in com.nexora.reports.translation2.domain.PlanV2TranslatorTest

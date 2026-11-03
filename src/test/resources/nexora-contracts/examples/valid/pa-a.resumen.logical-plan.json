@@ -1,0 +1,173 @@
+{
+  "format": "nexora-logical-plan/2",
+  "tenantId": "7a3f0000-0000-4000-8000-000000000001",
+  "dataSourceId": "7a3f0000-0000-4000-8000-000000000002",
+  "metadataSnapshotId": "7a3f0000-0000-4000-8000-000000000003",
+  "specFingerprint": "5b1ae22de609609f3f46461ba92e56e056828883aea822ef582eefd9455cf7f5",
+  "datasetId": "resumen",
+  "objects": [
+    {
+      "id": "7a3f0000-0000-4000-8000-000000000010",
+      "type": "TABLE",
+      "naturalKey": {
+        "schema": "wellnode_sintetico",
+        "name": "wm_well"
+      },
+      "uniqueKeys": [
+        {
+          "kind": "PRIMARY_KEY",
+          "columns": [
+            "7a3f0000-0000-4000-8000-000000000011"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "7a3f0000-0000-4000-8000-000000000011",
+      "type": "COLUMN",
+      "naturalKey": {
+        "schema": "wellnode_sintetico",
+        "name": "wm_well",
+        "column": "dbid"
+      },
+      "parentId": "7a3f0000-0000-4000-8000-000000000010",
+      "typeCategory": "NUMERIC",
+      "nullable": false
+    },
+    {
+      "id": "7a3f0000-0000-4000-8000-000000000014",
+      "type": "COLUMN",
+      "naturalKey": {
+        "schema": "wellnode_sintetico",
+        "name": "wm_well",
+        "column": "country"
+      },
+      "parentId": "7a3f0000-0000-4000-8000-000000000010",
+      "typeCategory": "TEXT",
+      "nullable": true
+    },
+    {
+      "id": "7a3f0000-0000-4000-8000-000000000013",
+      "type": "COLUMN",
+      "naturalKey": {
+        "schema": "wellnode_sintetico",
+        "name": "wm_well",
+        "column": "field"
+      },
+      "parentId": "7a3f0000-0000-4000-8000-000000000010",
+      "typeCategory": "TEXT",
+      "nullable": true
+    }
+  ],
+  "definitions": [
+    {
+      "id": "3b0f0565-dac5-3385-ac6d-3e85dffcc940",
+      "kind": "CONCEPT",
+      "origin": "DERIVED"
+    },
+    {
+      "id": "75225b04-41db-3af7-aac0-a143df616da3",
+      "kind": "METRIC",
+      "origin": "DERIVED"
+    },
+    {
+      "id": "447b7e93-a5f6-3053-a986-14e3ecfae86e",
+      "kind": "DIMENSION",
+      "origin": "DERIVED"
+    },
+    {
+      "id": "bdfa6c89-bf9d-3595-a189-a7412b1dfc5c",
+      "kind": "DIMENSION",
+      "origin": "DERIVED"
+    }
+  ],
+  "relationships": [],
+  "parameters": [],
+  "operations": [
+    {
+      "op": "SCAN",
+      "alias": "w",
+      "object": "7a3f0000-0000-4000-8000-000000000010"
+    },
+    {
+      "op": "AGGREGATE",
+      "groupBy": [
+        {
+          "output": "pais",
+          "column": {
+            "alias": "w",
+            "column": "7a3f0000-0000-4000-8000-000000000014"
+          }
+        },
+        {
+          "output": "campo",
+          "column": {
+            "alias": "w",
+            "column": "7a3f0000-0000-4000-8000-000000000013"
+          }
+        }
+      ],
+      "measures": [
+        {
+          "output": "pozos",
+          "aggregation": "COUNT"
+        }
+      ]
+    },
+    {
+      "op": "ORDER",
+      "keys": [
+        {
+          "output": "pais",
+          "direction": "ASC",
+          "nulls": "LAST",
+          "collation": "C"
+        },
+        {
+          "output": "campo",
+          "direction": "ASC",
+          "nulls": "LAST",
+          "collation": "C"
+        }
+      ],
+      "tieBreaker": {
+        "kind": "GROUP_KEYS",
+        "outputs": [
+          "pais",
+          "campo"
+        ]
+      }
+    },
+    {
+      "op": "LIMIT",
+      "maxRows": 10000,
+      "detectTruncation": true
+    }
+  ],
+  "output": {
+    "columns": [
+      {
+        "output": "pais",
+        "label": "País",
+        "valueType": "TEXT",
+        "role": "DIMENSION",
+        "origin": "INFERRED"
+      },
+      {
+        "output": "campo",
+        "label": "Campo",
+        "valueType": "TEXT",
+        "role": "DIMENSION",
+        "origin": "INFERRED"
+      },
+      {
+        "output": "pozos",
+        "label": "Pozos",
+        "valueType": "INTEGER",
+        "role": "MEASURE",
+        "origin": "INFERRED"
+      }
+    ]
+  },
+  "fingerprint": "6a3c3d394d961d8b56c68ea8f668613b70d790ec6c3bce4df5c3586b53841b27"
+}

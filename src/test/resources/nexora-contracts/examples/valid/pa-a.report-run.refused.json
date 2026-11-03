@@ -1,0 +1,21 @@
+{
+  "format": "nexora-report-run/1",
+  "runId": "7a3f0000-0000-4000-8000-000000000093",
+  "reportPlanFingerprint": "15f5283c8c66a1a8ec449f25a5339d706071a354da50547e72f458515fbca4b1",
+  "status": "REFUSED",
+  "startedAt": "2026-11-01T10:42:03-06:00",
+  "finishedAt": "2026-11-01T10:42:05-06:00",
+  "consistency": {
+    "isolation": "REPEATABLE_READ",
+    "readOnly": true,
+    "transactionCount": 1,
+    "snapshot": "7841:7841:"
+  },
+  "datasets": [],
+  "warnings": [],
+  "refusal": {
+    "code": "physical_schema_mismatch",
+    "message": "La columna wm_well.state ya no existe."
+  },
+  "artifact": null
+}

@@ -1,0 +1,394 @@
+{
+  "_nota": "Generado por datos/semilla.py. Orden: intercalación C, NULLS LAST, desempate por dbid.",
+  "resumen": [
+    {
+      "pais": "Argentina",
+      "campo": "Neuquén",
+      "pozos": 1
+    },
+    {
+      "pais": "Colombia",
+      "campo": "Llanos",
+      "pozos": 4
+    },
+    {
+      "pais": "Colombia",
+      "campo": "Valle Medio",
+      "pozos": 3
+    },
+    {
+      "pais": "Colombia",
+      "campo": null,
+      "pozos": 1
+    },
+    {
+      "pais": "Ecuador",
+      "campo": "Amazonía",
+      "pozos": 2
+    },
+    {
+      "pais": "Ecuador",
+      "campo": "Oriente",
+      "pozos": 3
+    },
+    {
+      "pais": "México",
+      "campo": "Campo Norte",
+      "pozos": 3
+    },
+    {
+      "pais": "México",
+      "campo": "Campo Sur",
+      "pozos": 4
+    },
+    {
+      "pais": "México",
+      "campo": "Litoral",
+      "pozos": 3
+    },
+    {
+      "pais": "México",
+      "campo": null,
+      "pozos": 2
+    },
+    {
+      "pais": "Perú",
+      "campo": "Costa",
+      "pozos": 3
+    },
+    {
+      "pais": "Perú",
+      "campo": "Selva Alta",
+      "pozos": 3
+    },
+    {
+      "pais": null,
+      "campo": "Campo Norte",
+      "pozos": 1
+    },
+    {
+      "pais": null,
+      "campo": "Desconocido",
+      "pozos": 1
+    },
+    {
+      "pais": null,
+      "campo": null,
+      "pozos": 1
+    }
+  ],
+  "total": 35,
+  "detalle": [
+    {
+      "dbid": 401,
+      "nombre": "Pampa-1",
+      "campo": "Neuquén",
+      "pais": "Argentina",
+      "estado": "Neuquén",
+      "estatus": "activo"
+    },
+    {
+      "dbid": 307,
+      "nombre": "Guadua-1",
+      "campo": null,
+      "pais": "Colombia",
+      "estado": "Boyacá",
+      "estatus": "abandonado"
+    },
+    {
+      "dbid": 301,
+      "nombre": "Llano-1",
+      "campo": "Llanos",
+      "pais": "Colombia",
+      "estado": "Meta",
+      "estatus": "activo"
+    },
+    {
+      "dbid": 304,
+      "nombre": "Llano-10",
+      "campo": "Llanos",
+      "pais": "Colombia",
+      "estado": "Casanare",
+      "estatus": "activo"
+    },
+    {
+      "dbid": 302,
+      "nombre": "Llano-2",
+      "campo": "Llanos",
+      "pais": "Colombia",
+      "estado": "Meta",
+      "estatus": "activo"
+    },
+    {
+      "dbid": 303,
+      "nombre": "Llano-3",
+      "campo": "Llanos",
+      "pais": "Colombia",
+      "estado": "Meta",
+      "estatus": "suspendido"
+    },
+    {
+      "dbid": 305,
+      "nombre": "Magdalena-1",
+      "campo": "Valle Medio",
+      "pais": "Colombia",
+      "estado": "Santander",
+      "estatus": "perforando"
+    },
+    {
+      "dbid": 306,
+      "nombre": "Magdalena-2",
+      "campo": "Valle Medio",
+      "pais": "Colombia",
+      "estado": "Santander",
+      "estatus": "activo"
+    },
+    {
+      "dbid": 308,
+      "nombre": "guadua-2",
+      "campo": "Valle Medio",
+      "pais": "Colombia",
+      "estado": "Boyacá",
+      "estatus": "activo"
+    },
+    {
+      "dbid": 504,
+      "nombre": "Cuyabeno-1",
+      "campo": "Amazonía",
+      "pais": "Ecuador",
+      "estado": "Sucumbíos",
+      "estatus": "suspendido"
+    },
+    {
+      "dbid": 505,
+      "nombre": "Cuyabeno-2",
+      "campo": "Amazonía",
+      "pais": "Ecuador",
+      "estado": "Sucumbíos",
+      "estatus": "activo"
+    },
+    {
+      "dbid": 501,
+      "nombre": "Oriente-1",
+      "campo": "Oriente",
+      "pais": "Ecuador",
+      "estado": "Orellana",
+      "estatus": "activo"
+    },
+    {
+      "dbid": 502,
+      "nombre": "Oriente-2",
+      "campo": "Oriente",
+      "pais": "Ecuador",
+      "estado": "Orellana",
+      "estatus": "activo"
+    },
+    {
+      "dbid": 503,
+      "nombre": "Oriente-3",
+      "campo": "Oriente",
+      "pais": "Ecuador",
+      "estado": "Sucumbíos",
+      "estatus": "perforando"
+    },
+    {
+      "dbid": 110,
+      "nombre": "=Cuenca-9",
+      "campo": "Litoral",
+      "pais": "México",
+      "estado": "Campeche",
+      "estatus": "activo"
+    },
+    {
+      "dbid": 105,
+      "nombre": "Ceiba-7",
+      "campo": "Campo Sur",
+      "pais": "México",
+      "estado": "Veracruz",
+      "estatus": "activo"
+    },
+    {
+      "dbid": 108,
+      "nombre": "Mangle-4",
+      "campo": "Litoral",
+      "pais": "México",
+      "estado": "Campeche",
+      "estatus": "perforando"
+    },
+    {
+      "dbid": 109,
+      "nombre": "Mangle-5",
+      "campo": "Litoral",
+      "pais": "México",
+      "estado": "Campeche",
+      "estatus": null
+    },
+    {
+      "dbid": 103,
+      "nombre": "Pitayo-1",
+      "campo": "Campo Norte",
+      "pais": "México",
+      "estado": "Tabasco",
+      "estatus": "activo"
+    },
+    {
+      "dbid": 104,
+      "nombre": "Pitayo-1",
+      "campo": "Campo Sur",
+      "pais": "México",
+      "estado": "Veracruz",
+      "estatus": "suspendido"
+    },
+    {
+      "dbid": 101,
+      "nombre": "Tamarindo-1",
+      "campo": "Campo Norte",
+      "pais": "México",
+      "estado": "Tabasco",
+      "estatus": "activo"
+    },
+    {
+      "dbid": 102,
+      "nombre": "Tamarindo-2",
+      "campo": "Campo Norte",
+      "pais": "México",
+      "estado": "Tabasco",
+      "estatus": "perforando"
+    },
+    {
+      "dbid": 111,
+      "nombre": "Zapote-1",
+      "campo": null,
+      "pais": "México",
+      "estado": "Tabasco",
+      "estatus": "activo"
+    },
+    {
+      "dbid": 107,
+      "nombre": "alfa-3",
+      "campo": "Campo Sur",
+      "pais": "México",
+      "estado": null,
+      "estatus": "activo"
+    },
+    {
+      "dbid": 112,
+      "nombre": "Álamo-1",
+      "campo": null,
+      "pais": "México",
+      "estado": "Tabasco",
+      "estatus": "suspendido"
+    },
+    {
+      "dbid": 106,
+      "nombre": "Ébano-2",
+      "campo": "Campo Sur",
+      "pais": "México",
+      "estado": "Veracruz",
+      "estatus": "abandonado"
+    },
+    {
+      "dbid": 201,
+      "nombre": "Ceibo-1",
+      "campo": "Selva Alta",
+      "pais": "Perú",
+      "estado": "Loreto",
+      "estatus": "activo"
+    },
+    {
+      "dbid": 202,
+      "nombre": "Ceibo-2",
+      "campo": "Selva Alta",
+      "pais": "Perú",
+      "estado": "Loreto",
+      "estatus": "activo"
+    },
+    {
+      "dbid": 203,
+      "nombre": "Ceibo-3",
+      "campo": "Selva Alta",
+      "pais": "Perú",
+      "estado": "Loreto",
+      "estatus": "perforando"
+    },
+    {
+      "dbid": 204,
+      "nombre": "Quinua-1",
+      "campo": "Costa",
+      "pais": "Perú",
+      "estado": "Piura",
+      "estatus": "abandonado"
+    },
+    {
+      "dbid": 205,
+      "nombre": "Quinua-2",
+      "campo": "Costa",
+      "pais": "Perú",
+      "estado": "Piura",
+      "estatus": "activo"
+    },
+    {
+      "dbid": 206,
+      "nombre": "Ñandú-1",
+      "campo": "Costa",
+      "pais": "Perú",
+      "estado": null,
+      "estatus": "activo"
+    },
+    {
+      "dbid": 601,
+      "nombre": "Sin-Pais-1",
+      "campo": "Campo Norte",
+      "pais": null,
+      "estado": null,
+      "estatus": "activo"
+    },
+    {
+      "dbid": 602,
+      "nombre": "Sin-Pais-2",
+      "campo": "Desconocido",
+      "pais": null,
+      "estado": null,
+      "estatus": null
+    },
+    {
+      "dbid": 603,
+      "nombre": "Sin-Pais-3",
+      "campo": null,
+      "pais": null,
+      "estado": null,
+      "estatus": "abandonado"
+    }
+  ],
+  "volumen": {
+    "total": 12000,
+    "por_pais": [
+      {
+        "pais": "Argentina",
+        "pozos": 2400
+      },
+      {
+        "pais": "Colombia",
+        "pozos": 2400
+      },
+      {
+        "pais": "Ecuador",
+        "pozos": 2400
+      },
+      {
+        "pais": "México",
+        "pozos": 2400
+      },
+      {
+        "pais": "Perú",
+        "pozos": 2400
+      }
+    ],
+    "primeros_detalle": [
+      "VOL-00005",
+      "VOL-00010",
+      "VOL-00015"
+    ],
+    "ultimo_detalle": "VOL-11999"
+  }
+}

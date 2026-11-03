@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.nexora.reports.api.ExecutionApiIntegrationTest
+-------------------------------------------------------------------------------
+Tests run: 21, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.023 s -- in com.nexora.reports.api.ExecutionApiIntegrationTest

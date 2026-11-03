@@ -1,0 +1,912 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nexora.ai/contracts/report-spec/1",
+  "title": "nexora-report-spec/1",
+  "description": "Especificación de un reporte. La redacta Intelligence (borrador del modelo traducido a ids) y la valida Semantic. No contiene SQL ni expresiones.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "format": {
+      "const": "nexora-report-spec/1"
+    },
+    "profile": {
+      "enum": [
+        "basic-a",
+        "basic-b"
+      ]
+    },
+    "status": {
+      "enum": [
+        "READY",
+        "NEEDS_CLARIFICATION"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "request": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "language": {
+          "enum": [
+            "es",
+            "en",
+            "fr"
+          ]
+        }
+      },
+      "required": [
+        "text",
+        "language"
+      ]
+    },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "timeZone": {
+          "type": "string",
+          "pattern": "^[A-Za-z_]+(/[A-Za-z0-9_+-]+)*$"
+        },
+        "labelLanguage": {
+          "enum": [
+            "es",
+            "en",
+            "fr"
+          ]
+        }
+      },
+      "required": [
+        "timeZone",
+        "labelLanguage"
+      ]
+    },
+    "datasets": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/dataset"
+      }
+    },
+    "sections": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/section"
+      }
+    },
+    "compositions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/composition"
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "terms": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/term"
+          }
+        }
+      },
+      "required": [
+        "terms"
+      ]
+    },
+    "clarifications": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/clarification"
+      }
+    }
+  },
+  "required": [
+    "format",
+    "profile",
+    "status",
+    "title",
+    "request",
+    "parameters",
+    "datasets",
+    "sections",
+    "compositions",
+    "provenance",
+    "clarifications"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "READY"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "datasets": {
+            "minItems": 1
+          },
+          "sections": {
+            "minItems": 1
+          },
+          "clarifications": {
+            "maxItems": 0
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "NEEDS_CLARIFICATION"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "datasets": {
+            "maxItems": 0
+          },
+          "sections": {
+            "maxItems": 0
+          },
+          "clarifications": {
+            "minItems": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "profile": {
+            "const": "basic-a"
+          }
+        },
+        "required": [
+          "profile"
+        ]
+      },
+      "then": {
+        "properties": {
+          "datasets": {
+            "maxItems": 3,
+            "items": {
+              "properties": {
+                "joins": {
+                  "maxItems": 2
+                },
+                "select": {
+                  "items": {
+                    "properties": {
+                      "measure": {
+                        "properties": {
+                          "aggregation": {
+                            "enum": [
+                              "COUNT"
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "sections": {
+            "maxItems": 1,
+            "items": {
+              "properties": {
+                "items": {
+                  "items": {
+                    "properties": {
+                      "type": {
+                        "enum": [
+                          "table",
+                          "summaryTable"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "compositions": {
+            "maxItems": 0
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "profile": {
+            "const": "basic-b"
+          }
+        },
+        "required": [
+          "profile"
+        ]
+      },
+      "then": {
+        "properties": {
+          "datasets": {
+            "maxItems": 6,
+            "items": {
+              "properties": {
+                "joins": {
+                  "maxItems": 3
+                },
+                "select": {
+                  "items": {
+                    "properties": {
+                      "measure": {
+                        "properties": {
+                          "aggregation": {
+                            "enum": [
+                              "COUNT",
+                              "COUNT_DISTINCT"
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "sections": {
+            "maxItems": 2,
+            "items": {
+              "properties": {
+                "items": {
+                  "items": {
+                    "properties": {
+                      "type": {
+                        "enum": [
+                          "table",
+                          "summaryTable"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "compositions": {
+            "maxItems": 0
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "columnRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "alias": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]{0,62}$"
+        },
+        "object": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        }
+      },
+      "required": [
+        "alias",
+        "object"
+      ]
+    },
+    "literal": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "enum": [
+            "TEXT",
+            "NUMBER",
+            "BOOLEAN",
+            "DATE",
+            "TIMESTAMP"
+          ]
+        },
+        "value": {
+          "type": "string",
+          "maxLength": 1000
+        }
+      },
+      "required": [
+        "type",
+        "value"
+      ]
+    },
+    "selectItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]{0,62}$"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "origin": {
+          "enum": [
+            "GOVERNED",
+            "INFERRED"
+          ]
+        },
+        "column": {
+          "$ref": "#/$defs/columnRef"
+        },
+        "measure": {
+          "$comment": "X-8 (1 nov 2026): dos variantes. Medida inferida: aggregation + column opcional. Medida gobernada: solo el id de una definición METRIC aprobada; la operación la aporta la definición y la valida Semantic contra el catálogo y el perfil.",
+          "type": "object",
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "aggregation": {
+                  "enum": [
+                    "COUNT",
+                    "COUNT_DISTINCT",
+                    "SUM",
+                    "AVG",
+                    "MIN",
+                    "MAX"
+                  ]
+                },
+                "column": {
+                  "$ref": "#/$defs/columnRef"
+                }
+              },
+              "required": [
+                "aggregation"
+              ]
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "definition": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                }
+              },
+              "required": [
+                "definition"
+              ]
+            }
+          ]
+        },
+        "definition": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+          "$comment": "Definición aprobada que no es medida (DIMENSION). Una METRIC se cita en measure.definition (X-8)."
+        },
+        "hidden": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "origin"
+      ],
+      "oneOf": [
+        {
+          "required": [
+            "column"
+          ]
+        },
+        {
+          "required": [
+            "measure"
+          ]
+        },
+        {
+          "required": [
+            "definition"
+          ]
+        }
+      ]
+    },
+    "filter": {
+      "$comment": "C-3 (1 nov 2026): solo predicados sobre columna. El filtro por definición gobernada no existe hasta que el catálogo tenga un tipo de definición de filtro con mecanismo de resolución; se añadirá como variante nueva y se anunciará en nexora-capabilities/1.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "column": {
+          "$ref": "#/$defs/columnRef"
+        },
+        "operator": {
+          "enum": [
+            "EQ",
+            "NE",
+            "GT",
+            "GTE",
+            "LT",
+            "LTE",
+            "IN",
+            "IS_NULL",
+            "IS_NOT_NULL"
+          ]
+        },
+        "values": {
+          "type": "array",
+          "maxItems": 100,
+          "items": {
+            "$ref": "#/$defs/literal"
+          }
+        },
+        "literalSource": {
+          "enum": [
+            "QUESTION",
+            "CLARIFICATION",
+            "PARAMETER"
+          ]
+        }
+      },
+      "required": [
+        "column",
+        "operator",
+        "values",
+        "literalSource"
+      ]
+    },
+    "orderKey": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "select": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]{0,62}$"
+        },
+        "direction": {
+          "enum": [
+            "ASC",
+            "DESC"
+          ]
+        },
+        "nulls": {
+          "enum": [
+            "LAST",
+            "FIRST"
+          ]
+        },
+        "collation": {
+          "enum": [
+            "C"
+          ]
+        }
+      },
+      "required": [
+        "select",
+        "direction"
+      ]
+    },
+    "join": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "alias": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]{0,62}$"
+        },
+        "from": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]{0,62}$"
+        },
+        "via": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "relationship": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                }
+              },
+              "required": [
+                "relationship"
+              ]
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "foreignKey": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                }
+              },
+              "required": [
+                "foreignKey"
+              ]
+            }
+          ]
+        }
+      },
+      "required": [
+        "alias",
+        "from",
+        "via"
+      ]
+    },
+    "dataset": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]{0,62}$"
+        },
+        "title": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "mode": {
+          "enum": [
+            "DETAIL",
+            "AGGREGATE"
+          ]
+        },
+        "base": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "alias": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_]{0,62}$"
+            },
+            "object": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+            }
+          },
+          "required": [
+            "alias",
+            "object"
+          ]
+        },
+        "joins": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/join"
+          }
+        },
+        "select": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 50,
+          "items": {
+            "$ref": "#/$defs/selectItem"
+          }
+        },
+        "groupBy": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]{0,62}$"
+          }
+        },
+        "filters": {
+          "type": "array",
+          "maxItems": 50,
+          "items": {
+            "$ref": "#/$defs/filter"
+          }
+        },
+        "orderBy": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/orderKey"
+          }
+        },
+        "maxRows": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1000000
+        }
+      },
+      "required": [
+        "id",
+        "mode",
+        "base",
+        "joins",
+        "select",
+        "groupBy",
+        "filters",
+        "orderBy"
+      ]
+    },
+    "item": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "const": "table"
+            },
+            "dataset": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_]{0,62}$"
+            }
+          },
+          "required": [
+            "type",
+            "dataset"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "const": "summaryTable"
+            },
+            "dataset": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_]{0,62}$"
+            },
+            "total": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_]{0,62}$"
+            }
+          },
+          "required": [
+            "type",
+            "dataset"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "const": "kpi"
+            },
+            "dataset": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_]{0,62}$"
+            },
+            "value": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_]{0,62}$"
+            },
+            "label": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "type",
+            "dataset",
+            "value",
+            "label"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "const": "chart"
+            },
+            "dataset": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_]{0,62}$"
+            },
+            "chartType": {
+              "enum": [
+                "BAR",
+                "LINE",
+                "PIE"
+              ]
+            },
+            "x": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_]{0,62}$"
+            },
+            "series": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_]{0,62}$"
+              }
+            }
+          },
+          "required": [
+            "type",
+            "dataset",
+            "chartType",
+            "x",
+            "series"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "const": "text"
+            },
+            "text": {
+              "type": "string",
+              "maxLength": 4000
+            }
+          },
+          "required": [
+            "type",
+            "text"
+          ]
+        }
+      ]
+    },
+    "section": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]{0,62}$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "items": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/item"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "items"
+      ]
+    },
+    "composition": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]{0,62}$"
+        },
+        "op": {
+          "enum": [
+            "PREVIOUS_PERIOD",
+            "DELTA",
+            "PCT_CHANGE",
+            "SHARE",
+            "FILL_ZERO",
+            "TOP_N_REST",
+            "CALC"
+          ]
+        },
+        "inputs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]{0,62}$"
+          }
+        },
+        "params": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "id",
+        "op",
+        "inputs",
+        "params"
+      ]
+    },
+    "term": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "resolution": {
+          "enum": [
+            "GOVERNED",
+            "INFERRED",
+            "PARAMETER"
+          ]
+        },
+        "target": {
+          "type": "string",
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "text",
+        "resolution",
+        "target"
+      ]
+    },
+    "clarification": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]{0,62}$"
+        },
+        "question": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "options": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 6,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_]{0,62}$"
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              }
+            },
+            "required": [
+              "id",
+              "label"
+            ]
+          }
+        }
+      },
+      "required": [
+        "id",
+        "question",
+        "options"
+      ]
+    }
+  }
+}

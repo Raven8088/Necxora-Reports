@@ -1,11 +1,16 @@
 package com.nexora.reports.execution.infrastructure;
 
 import com.nexora.reports.credentials.domain.DataSourceCredentials;
+import com.nexora.reports.execution.application.port.PlanV2Executor;
 import com.nexora.reports.execution.application.port.ReadOnlyExecutor;
+import com.nexora.reports.execution.application.port.TenantScopeVerifier;
 import com.nexora.reports.execution.domain.ExecutionException;
 import com.nexora.reports.execution.domain.ExecutionException.ErrorCode;
 import com.nexora.reports.execution.domain.ExecutionLimits;
+import com.nexora.reports.execution.domain.ExecutionRequestV2;
 import com.nexora.reports.execution.domain.QueryResult;
+import com.nexora.reports.execution.domain.RunBudget;
+import com.nexora.reports.execution.domain.SnapshotRead;
 import com.nexora.reports.translation.domain.ResultColumn;
 import com.nexora.reports.translation.domain.SqlParameter;
 import com.nexora.reports.translation.domain.SqlQuery;
@@ -16,6 +21,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLTransientConnectionException;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -24,10 +30,12 @@ import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
+import java.util.function.IntConsumer;
 
 /**
  * Executes one translated query against PostgreSQL with independent read-only defenses:
@@ -44,8 +52,12 @@ import java.util.concurrent.TimeUnit;
  *   <li>concurrency is bounded globally and per data source.</li>
  * </ol>
  * Errors are mapped to stable codes; SQL text, values and connection details are never propagated.
+ * <p>
+ * A4-B4: it is also the {@link PlanV2Executor} of the {@code /2} path ({@link PlanV2SnapshotReader}), sharing the
+ * same pools and the same global and per-source slots, so R1 and {@code /2} executions draw on one concurrency
+ * budget. The R1 method {@link #execute} is unchanged.
  */
-public class PostgresReadOnlyExecutor implements ReadOnlyExecutor {
+public class PostgresReadOnlyExecutor implements ReadOnlyExecutor, PlanV2Executor {
 
     private final ConnectionPools pools;
     private final Semaphore global;
@@ -71,6 +83,56 @@ public class PostgresReadOnlyExecutor implements ReadOnlyExecutor {
             }
         } finally {
             global.release();
+        }
+    }
+
+    /** A4-B4: every dataset of a {@code /2} report plan in one connection, one transaction and one slot. */
+    @Override
+    public SnapshotRead executeAll(DataSourceCredentials credentials, ExecutionRequestV2 request, RunBudget budget,
+                                   TenantScopeVerifier tenantScope) {
+        return executeAll(credentials, request, budget, tenantScope, index -> { });
+    }
+
+    /** Same, with a callback before each dataset query (tests only: it lets a test act between two queries). */
+    SnapshotRead executeAll(DataSourceCredentials credentials, ExecutionRequestV2 request, RunBudget budget,
+                            TenantScopeVerifier tenantScope, IntConsumer beforeQuery) {
+        Objects.requireNonNull(credentials, "credentials");
+        Objects.requireNonNull(request, "request");
+        Objects.requireNonNull(budget, "budget");
+        Objects.requireNonNull(tenantScope, "a tenant scope check is mandatory");
+        Objects.requireNonNull(beforeQuery, "beforeQuery");
+        request.requireSameSource(credentials);
+        Semaphore source = perSource.computeIfAbsent(credentials.dataSourceId(),
+                id -> new Semaphore(credentials.maxConcurrent(), true));
+        acquire(global, budget.acquireTimeout());
+        try {
+            acquire(source, budget.acquireTimeout());
+            try {
+                Connection connection;
+                try {
+                    connection = pools.pool(credentials).getConnection();
+                } catch (SQLException e) {
+                    throw new ExecutionException(ErrorCode.DATA_SOURCE_UNAVAILABLE,
+                            "cannot connect (" + state(e) + ")", e);
+                }
+                return new PlanV2SnapshotReader(verifier).read(connection, credentials, request, budget,
+                        tenantScope, beforeQuery);
+            } finally {
+                source.release();
+            }
+        } finally {
+            global.release();
+        }
+    }
+
+    private static void acquire(Semaphore semaphore, Duration timeout) {
+        try {
+            if (!semaphore.tryAcquire(timeout.toMillis(), TimeUnit.MILLISECONDS)) {
+                throw new ExecutionException(ErrorCode.TOO_MANY_EXECUTIONS, "no execution slot available");
+            }
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new ExecutionException(ErrorCode.EXECUTION_FAILED, "interrupted while waiting for a slot");
         }
     }
 
@@ -121,7 +183,7 @@ public class PostgresReadOnlyExecutor implements ReadOnlyExecutor {
         }
     }
 
-    private static void verifySession(Connection connection) throws SQLException {
+    static void verifySession(Connection connection) throws SQLException {
         try (PreparedStatement ps = connection.prepareStatement(
                 "SELECT current_setting('transaction_read_only'), r.rolsuper"
                         + " FROM pg_catalog.pg_roles r WHERE r.rolname = current_user");
@@ -164,7 +226,7 @@ public class PostgresReadOnlyExecutor implements ReadOnlyExecutor {
         }
     }
 
-    private static void bind(PreparedStatement ps, List<SqlParameter> parameters) throws SQLException {
+    static void bind(PreparedStatement ps, List<SqlParameter> parameters) throws SQLException {
         for (int i = 0; i < parameters.size(); i++) {
             SqlParameter p = parameters.get(i);
             int index = i + 1;
@@ -236,7 +298,7 @@ public class PostgresReadOnlyExecutor implements ReadOnlyExecutor {
         }
     }
 
-    private static void rollbackQuietly(Connection connection) {
+    static void rollbackQuietly(Connection connection) {
         try {
             connection.rollback();
         } catch (SQLException ignored) {
@@ -244,7 +306,7 @@ public class PostgresReadOnlyExecutor implements ReadOnlyExecutor {
         }
     }
 
-    private static String state(SQLException e) {
+    static String state(SQLException e) {
         return e.getSQLState() == null ? "no state" : e.getSQLState();
     }
 

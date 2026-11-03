@@ -1,0 +1,132 @@
+{
+  "_nota": "B10-c.1: casos de los planes auténticos de B10-a (src/test/resources/semantic-b10a). Para cada caso, el resultado esperado de una ejecución en Reports y, por dataset, el SQL de referencia (escrito a mano a partir de la especificación auténtica, independiente del traductor) y su número de filas, comprobado contra el banco sintético. Añadir un caso es añadir datos aquí: ningún código de producción.",
+  "casos": [
+    {
+      "caso": "pa-a",
+      "estado": "COMPLETED",
+      "datasets": [
+        {
+          "datasetId": "resumen",
+          "referencia": "pa-a.resumen.sql",
+          "filas": 15,
+          "truncado": false
+        },
+        {
+          "datasetId": "total",
+          "referencia": "pa-a.total.sql",
+          "filas": 1,
+          "truncado": false
+        },
+        {
+          "datasetId": "detalle",
+          "referencia": "pa-a.detalle.sql",
+          "filas": 35,
+          "truncado": false
+        }
+      ]
+    },
+    {
+      "caso": "pa-a-gobernado",
+      "estado": "COMPLETED",
+      "datasets": [
+        {
+          "datasetId": "resumen",
+          "referencia": "pa-a-gobernado.resumen.sql",
+          "filas": 15,
+          "truncado": false
+        },
+        {
+          "datasetId": "total",
+          "referencia": "pa-a-gobernado.total.sql",
+          "filas": 1,
+          "truncado": false
+        }
+      ]
+    },
+    {
+      "caso": "empresas",
+      "estado": "COMPLETED",
+      "datasets": [
+        {
+          "datasetId": "por_operadora",
+          "referencia": "empresas.por_operadora.sql",
+          "filas": 3,
+          "truncado": false
+        },
+        {
+          "datasetId": "total_empresas",
+          "referencia": "empresas.total_empresas.sql",
+          "filas": 1,
+          "truncado": false
+        },
+        {
+          "datasetId": "detalle_empresas",
+          "referencia": "empresas.detalle_empresas.sql",
+          "filas": 4,
+          "truncado": false
+        }
+      ]
+    },
+    {
+      "caso": "filtro-in",
+      "estado": "COMPLETED",
+      "datasets": [
+        {
+          "datasetId": "pozos",
+          "referencia": "filtro-in.pozos.sql",
+          "filas": 5,
+          "truncado": false
+        }
+      ]
+    },
+    {
+      "caso": "filtro-numero",
+      "estado": "COMPLETED",
+      "datasets": [
+        {
+          "datasetId": "pozos",
+          "referencia": "filtro-numero.pozos.sql",
+          "filas": 17,
+          "truncado": false
+        }
+      ]
+    },
+    {
+      "caso": "filtro-nulo",
+      "estado": "COMPLETED",
+      "datasets": [
+        {
+          "datasetId": "pozos",
+          "referencia": "filtro-nulo.pozos.sql",
+          "filas": 4,
+          "truncado": false
+        }
+      ]
+    },
+    {
+      "caso": "volumen",
+      "estado": "PARTIAL",
+      "datasets": [
+        {
+          "datasetId": "resumen",
+          "referencia": "volumen.resumen.sql",
+          "filas": 35,
+          "truncado": false
+        },
+        {
+          "datasetId": "total",
+          "referencia": "volumen.total.sql",
+          "filas": 1,
+          "truncado": false
+        },
+        {
+          "datasetId": "detalle",
+          "referencia": "volumen.detalle.sql",
+          "filas": 10000,
+          "truncado": true
+        }
+      ]
+    }
+  ],
+  "stale": "caducado"
+}

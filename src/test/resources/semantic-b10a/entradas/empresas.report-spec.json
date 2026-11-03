@@ -1,0 +1,236 @@
+{
+  "format": "nexora-report-spec/1",
+  "profile": "basic-a",
+  "status": "READY",
+  "title": "Empresas activas por operadora",
+  "request": {
+    "text": "Cuántas empresas activas tiene cada operadora, con el total, y el listado de las empresas GPA, SIC-FLU, GEA y GPA-SER con su matriz.",
+    "language": "es"
+  },
+  "parameters": {
+    "timeZone": "America/Bogota",
+    "labelLanguage": "es"
+  },
+  "datasets": [
+    {
+      "id": "por_operadora",
+      "title": "Empresas activas por operadora",
+      "mode": "AGGREGATE",
+      "base": {
+        "alias": "e",
+        "object": "b113deb2-b00f-49ca-96b9-ffa27489773b"
+      },
+      "joins": [
+        {
+          "alias": "o",
+          "from": "e",
+          "via": {
+            "relationship": "52c92af4-2b97-4c08-b61f-2026be2971d7"
+          }
+        }
+      ],
+      "select": [
+        {
+          "id": "operadora",
+          "label": "Operadora",
+          "origin": "INFERRED",
+          "column": {
+            "alias": "o",
+            "object": "900232ac-b901-459d-a1b0-41e40c0696c6"
+          }
+        },
+        {
+          "id": "empresas",
+          "label": "Empresas",
+          "origin": "INFERRED",
+          "measure": {
+            "aggregation": "COUNT"
+          }
+        }
+      ],
+      "groupBy": [
+        "operadora"
+      ],
+      "filters": [
+        {
+          "column": {
+            "alias": "e",
+            "object": "9b7d8da5-4f9e-42dc-971a-19355f278159"
+          },
+          "operator": "EQ",
+          "values": [
+            {
+              "type": "BOOLEAN",
+              "value": "true"
+            }
+          ],
+          "literalSource": "QUESTION"
+        }
+      ],
+      "orderBy": [
+        {
+          "select": "operadora",
+          "direction": "ASC",
+          "nulls": "LAST",
+          "collation": "C"
+        }
+      ]
+    },
+    {
+      "id": "total_empresas",
+      "title": "Total de empresas activas",
+      "mode": "AGGREGATE",
+      "base": {
+        "alias": "e",
+        "object": "b113deb2-b00f-49ca-96b9-ffa27489773b"
+      },
+      "joins": [],
+      "select": [
+        {
+          "id": "empresas",
+          "label": "Total de empresas",
+          "origin": "INFERRED",
+          "measure": {
+            "aggregation": "COUNT"
+          }
+        }
+      ],
+      "groupBy": [],
+      "filters": [
+        {
+          "column": {
+            "alias": "e",
+            "object": "9b7d8da5-4f9e-42dc-971a-19355f278159"
+          },
+          "operator": "EQ",
+          "values": [
+            {
+              "type": "BOOLEAN",
+              "value": "true"
+            }
+          ],
+          "literalSource": "QUESTION"
+        }
+      ],
+      "orderBy": []
+    },
+    {
+      "id": "detalle_empresas",
+      "title": "Detalle de empresas",
+      "mode": "DETAIL",
+      "base": {
+        "alias": "e",
+        "object": "b113deb2-b00f-49ca-96b9-ffa27489773b"
+      },
+      "joins": [],
+      "select": [
+        {
+          "id": "nombre",
+          "label": "Nombre",
+          "origin": "INFERRED",
+          "column": {
+            "alias": "e",
+            "object": "20d4cefe-71e9-4e8e-8d28-3115f6d77b4e"
+          }
+        },
+        {
+          "id": "codigo",
+          "label": "Código",
+          "origin": "INFERRED",
+          "column": {
+            "alias": "e",
+            "object": "0534283d-467e-459f-9ea1-d0f95d5f758a"
+          }
+        },
+        {
+          "id": "matriz",
+          "label": "Matriz",
+          "origin": "INFERRED",
+          "column": {
+            "alias": "e",
+            "object": "9f83b236-a283-4385-923a-1e44f9ce58a5"
+          }
+        }
+      ],
+      "groupBy": [],
+      "filters": [
+        {
+          "column": {
+            "alias": "e",
+            "object": "0534283d-467e-459f-9ea1-d0f95d5f758a"
+          },
+          "operator": "IN",
+          "values": [
+            {
+              "type": "TEXT",
+              "value": "GPA"
+            },
+            {
+              "type": "TEXT",
+              "value": "SIC-FLU"
+            },
+            {
+              "type": "TEXT",
+              "value": "GEA"
+            },
+            {
+              "type": "TEXT",
+              "value": "GPA-SER"
+            }
+          ],
+          "literalSource": "QUESTION"
+        },
+        {
+          "column": {
+            "alias": "e",
+            "object": "20d4cefe-71e9-4e8e-8d28-3115f6d77b4e"
+          },
+          "operator": "IS_NOT_NULL",
+          "values": [],
+          "literalSource": "QUESTION"
+        }
+      ],
+      "orderBy": [
+        {
+          "select": "matriz",
+          "direction": "DESC",
+          "nulls": "FIRST"
+        }
+      ],
+      "maxRows": 10000
+    }
+  ],
+  "sections": [
+    {
+      "id": "empresas",
+      "title": "Empresas por operadora",
+      "items": [
+        {
+          "type": "summaryTable",
+          "dataset": "por_operadora",
+          "total": "total_empresas"
+        },
+        {
+          "type": "table",
+          "dataset": "detalle_empresas"
+        }
+      ]
+    }
+  ],
+  "compositions": [],
+  "provenance": {
+    "terms": [
+      {
+        "text": "empresas activas",
+        "resolution": "INFERRED",
+        "target": "etp_company.is_active"
+      },
+      {
+        "text": "operadora",
+        "resolution": "INFERRED",
+        "target": "bkw_operators.name"
+      }
+    ]
+  },
+  "clarifications": []
+}

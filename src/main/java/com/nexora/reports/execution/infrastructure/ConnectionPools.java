@@ -41,6 +41,9 @@ public class ConnectionPools implements AutoCloseable {
         pg.setUser(c.username());
         pg.setPassword(c.password());
         pg.setSslmode(c.sslMode());
+        if (c.sslRootCert() != null) {
+            pg.setSslRootCert(c.sslRootCert());
+        }
         pg.setApplicationName("nexora-reports");
         pg.setReadOnly(true);
         pg.setReadOnlyMode("always");

@@ -1,0 +1,113 @@
+{
+  "format": "nexora-report-spec/1",
+  "profile": "basic-a",
+  "status": "READY",
+  "title": "Pozos con identificador desde 300",
+  "request": {
+    "text": "Lista los pozos cuyo identificador es 300.0 o mayor.",
+    "language": "es"
+  },
+  "parameters": {
+    "timeZone": "America/Mexico_City",
+    "labelLanguage": "es"
+  },
+  "datasets": [
+    {
+      "id": "pozos",
+      "title": "Pozos con identificador desde 300",
+      "mode": "DETAIL",
+      "base": {
+        "alias": "w",
+        "object": "c0a89dea-95c9-46cb-b0fd-f036c6e653c9"
+      },
+      "joins": [],
+      "select": [
+        {
+          "id": "nombre",
+          "label": "Nombre",
+          "origin": "INFERRED",
+          "column": {
+            "alias": "w",
+            "object": "75420aa4-bc43-4014-8b6f-2a3cafa55f56"
+          }
+        },
+        {
+          "id": "campo",
+          "label": "Campo",
+          "origin": "INFERRED",
+          "column": {
+            "alias": "w",
+            "object": "248a033b-bb45-478c-84bb-b24dc5d78170"
+          }
+        },
+        {
+          "id": "pais",
+          "label": "País",
+          "origin": "INFERRED",
+          "column": {
+            "alias": "w",
+            "object": "e73e1477-2c48-4e44-8c69-81b35fd39dcb"
+          }
+        },
+        {
+          "id": "id_pozo",
+          "label": "Identificador",
+          "origin": "INFERRED",
+          "column": {
+            "alias": "w",
+            "object": "3dcd24d2-48f9-4edf-b4fb-4bb70d012325"
+          }
+        }
+      ],
+      "groupBy": [],
+      "filters": [
+        {
+          "column": {
+            "alias": "w",
+            "object": "3dcd24d2-48f9-4edf-b4fb-4bb70d012325"
+          },
+          "operator": "GTE",
+          "values": [
+            {
+              "type": "NUMBER",
+              "value": "300.000"
+            }
+          ],
+          "literalSource": "QUESTION"
+        }
+      ],
+      "orderBy": [
+        {
+          "select": "nombre",
+          "direction": "ASC",
+          "nulls": "LAST",
+          "collation": "C"
+        }
+      ],
+      "maxRows": 10000
+    }
+  ],
+  "sections": [
+    {
+      "id": "pozos",
+      "title": "Pozos con identificador desde 300",
+      "items": [
+        {
+          "type": "table",
+          "dataset": "pozos"
+        }
+      ]
+    }
+  ],
+  "compositions": [],
+  "provenance": {
+    "terms": [
+      {
+        "text": "identificador",
+        "resolution": "INFERRED",
+        "target": "wm_well.dbid"
+      }
+    ]
+  },
+  "clarifications": []
+}
