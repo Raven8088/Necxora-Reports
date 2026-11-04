@@ -253,6 +253,32 @@ PUBLIC conserva USAGE sobre él.
 | 422 | `tenancy_model_not_supported` | `SHARED_ROWS` |
 | 422 | `tenancy_capture_mismatch` | Los esquemas declarados no son los que el rol puede usar, o el rol tiene acceso más allá de sus esquemas |
 | 422 | `tls_required` | La conexión no usa `verify-full` o la sesión no está cifrada |
+| 422 | `transport_exception_expired` | EX-TLS-1: la excepción temporal de transporte de la fuente ha caducado (registro o aprobación) |
+| 409 | `transport_exception_mismatch` | EX-TLS-1: al aprobar, la fuente ya no usa la misma excepción con la que se capturó la versión |
+
+### EX-TLS-1 — Excepción temporal de transporte (solo compilación de desarrollo)
+
+Para fuentes que no ofrecen TLS a los clientes (bloqueo de V-C2), una **compilación separada** de Reports puede
+conectarse a **una** fuente concreta con `sslmode=disable`. Con ella **no** están garantizados ni el cifrado de la
+conexión ni la identidad del servidor, aunque exista una VPN o `pg_stat_ssl` declare cifrado (detrás de un pooler o
+proxy puede describir otro tramo; bajo la excepción se ignora y nunca se presenta como cifrado).
+
+| Control | Regla (incumplirla impide arrancar o rechaza la operación) |
+|---|---|
+| F1 compilación | Solo `mvn -Pdev-insecure-transport` incluye `META-INF/nexora/insecure-transport.properties` (con el instante de la compilación). Una compilación normal rechaza al arrancar cualquier excepción configurada. Una compilación con la capacidad nunca arranca con el perfil `prod` |
+| F2 perfil | Perfil Spring `insecure-transport-dev` |
+| Fuente y destino | `nexora.reports.enterprise.sources[i].transport-exception.{id, expires-at, binding}`; `binding` = SHA-256 de `nexora-reports-transport-exception/1` (tenant, fuente, host, puerto, base, usuario, `sslMode=disable`, id, caducidad); host = IPv4 privada literal dentro de `allowed-hosts` |
+| F4 caducidad | `expires-at` futura y como máximo 14 días después de la compilación; se comprueba al arrancar, al registrar, al aprobar y en cada ejecución |
+| F5 modo | Solo `sslMode=disable` |
+| Tenencia | La versión guarda la excepción (`transportException` en la respuesta, con `encrypted=false` y `serverIdentityVerified=false`; parte de la huella). Ejecución y aprobación exigen **la misma** excepción vigente; un registro con `verify-full` nunca autoriza una ejecución sin TLS ni al revés |
+| Ejecución | Mismas comprobaciones de identidad, rol, esquemas, relaciones y RLS; REFUSED `tenant_scope_unverified` si el transporte no cuadra o la excepción caducó. Cada ejecución lleva el aviso `transport_not_verified` (sin `datasetId`) en `nexora-report-run/1`; el estado y el Excel (`nexora-excel-report/1`) no cambian |
+
+Implementación: `credentials.domain.TransportPolicy` (única decisión de transporte, usada por
+`TenancyRegistrationService` y `TenantScopeProbe`), `TransportException`, `ConfiguredCredentialProvider`
+(validación al arrancar), `TransportCapability`, migraciones `V5__record_transport_exceptions.sql` (columnas) y
+`V6__enforce_complete_transport_exceptions.sql` (restricción «las tres o ninguna» corregida: con V5 una `CHECK` que
+se evalúa a NULL se daba por cumplida). Al leer, `JdbcTenancyRegistry` rechaza como corrupta una fila con la excepción
+parcial o mal formada en lugar de leerla como «sin excepción».
 
 ### Llamadas que Reports hace a Semantic (A4-B9)
 

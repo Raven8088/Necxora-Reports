@@ -1,0 +1,182 @@
+== sheet 0 "Detalle"
+freeze 1,0
+filter A1:G26
+merged 0
+lastRow 25
+A1	STRING	"Código"	"General"	-
+B1	STRING	"Nombre completo del registro con un encabezado muy largo"	"General"	-
+C1	STRING	"Cantidad"	"General"	-
+D1	STRING	"Importe"	"General"	-
+E1	STRING	"Fecha"	"General"	-
+F1	STRING	"Registrado (UTC)"	"General"	-
+G1	STRING	"Activo"	"General"	-
+A2	STRING	"C-100"	"General"	-
+C2	NUMERIC	-5000.0	"#,##0"	-
+D2	NUMERIC	0.0	"#,##0.000"	-
+E2	NUMERIC	45658.0	"yyyy-mm-dd"	-
+F2	NUMERIC	45809.00005787037	"yyyy-mm-dd hh:mm:ss"	-
+G2	STRING	"Sí"	"General"	-
+A3	STRING	"C-101"	"General"	-
+B3	STRING	"Elemento número 1"	"General"	-
+C3	NUMERIC	-3766.0	"#,##0"	-
+D3	NUMERIC	1234.567	"#,##0.000"	-
+E3	NUMERIC	45690.0	"yyyy-mm-dd"	-
+F3	NUMERIC	45809.04241898148	"yyyy-mm-dd hh:mm:ss"	-
+G3	STRING	"No"	"General"	-
+A4	STRING	"C-102"	"General"	-
+B4	STRING	"Elemento número 2"	"General"	-
+C4	NUMERIC	-2532.0	"#,##0"	-
+D4	NUMERIC	2469.134	"#,##0.000"	-
+E4	NUMERIC	45719.0	"yyyy-mm-dd"	-
+F4	NUMERIC	45809.08478009259	"yyyy-mm-dd hh:mm:ss"	-
+G4	STRING	"Sí"	"General"	-
+A5	STRING	"=Cuenca-9"	"General"	quote
+B5	STRING	"Elemento número 3"	"General"	-
+C5	NUMERIC	-1298.0	"#,##0"	-
+D5	NUMERIC	3703.701	"#,##0.000"	-
+E5	NUMERIC	45751.0	"yyyy-mm-dd"	-
+F5	NUMERIC	45809.1271412037	"yyyy-mm-dd hh:mm:ss"	-
+G5	STRING	"No"	"General"	-
+A6	STRING	"C-104"	"General"	-
+B6	STRING	"Elemento número 4"	"General"	-
+C6	NUMERIC	-64.0	"#,##0"	-
+D6	NUMERIC	4938.268	"#,##0.000"	-
+E6	NUMERIC	45782.0	"yyyy-mm-dd"	-
+F6	NUMERIC	45809.16950231481	"yyyy-mm-dd hh:mm:ss"	-
+G6	STRING	"Sí"	"General"	-
+A7	STRING	"C-105"	"General"	-
+C7	NUMERIC	1170.0	"#,##0"	-
+D7	NUMERIC	6172.835	"#,##0.000"	-
+E7	NUMERIC	45814.0	"yyyy-mm-dd"	-
+F7	NUMERIC	45809.211863425924	"yyyy-mm-dd hh:mm:ss"	-
+G7	STRING	"No"	"General"	-
+A8	STRING	"C-106"	"General"	-
+B8	STRING	"Elemento número 6"	"General"	-
+C8	NUMERIC	2404.0	"#,##0"	-
+D8	NUMERIC	7407.402	"#,##0.000"	-
+E8	NUMERIC	45845.0	"yyyy-mm-dd"	-
+F8	NUMERIC	45809.254224537035	"yyyy-mm-dd hh:mm:ss"	-
+G8	STRING	"Sí"	"General"	-
+A9	STRING	"C-107"	"General"	-
+B9	STRING	"Elemento número 7"	"General"	-
+C9	NUMERIC	3638.0	"#,##0"	-
+D9	NUMERIC	8641.969000000001	"#,##0.000"	-
+E9	NUMERIC	45877.0	"yyyy-mm-dd"	-
+F9	NUMERIC	45809.296585648146	"yyyy-mm-dd hh:mm:ss"	-
+G9	STRING	"No"	"General"	-
+A10	STRING	"C-108"	"General"	-
+B10	STRING	"Elemento número 8"	"General"	-
+C10	NUMERIC	4872.0	"#,##0"	-
+D10	NUMERIC	9876.536	"#,##0.000"	-
+E10	NUMERIC	45909.0	"yyyy-mm-dd"	-
+F10	NUMERIC	45809.33894675926	"yyyy-mm-dd hh:mm:ss"	-
+G10	STRING	"Sí"	"General"	-
+A11	STRING	"C-109"	"General"	-
+B11	STRING	"Elemento número 9"	"General"	-
+C11	NUMERIC	6106.0	"#,##0"	-
+D11	NUMERIC	11111.103	"#,##0.000"	-
+E11	NUMERIC	45940.0	"yyyy-mm-dd"	-
+F11	NUMERIC	45809.38130787037	"yyyy-mm-dd hh:mm:ss"	-
+G11	STRING	"No"	"General"	-
+A12	STRING	"C-110"	"General"	-
+C12	NUMERIC	7340.0	"#,##0"	-
+D12	NUMERIC	12345.67	"#,##0.000"	-
+E12	NUMERIC	45972.0	"yyyy-mm-dd"	-
+F12	NUMERIC	45809.42366898148	"yyyy-mm-dd hh:mm:ss"	-
+G12	STRING	"Sí"	"General"	-
+A13	STRING	"C-111"	"General"	-
+B13	STRING	"Elemento número 11"	"General"	-
+C13	NUMERIC	8574.0	"#,##0"	-
+D13	NUMERIC	13580.237000000001	"#,##0.000"	-
+E13	NUMERIC	46003.0	"yyyy-mm-dd"	-
+F13	NUMERIC	45809.46603009259	"yyyy-mm-dd hh:mm:ss"	-
+G13	STRING	"No"	"General"	-
+A14	STRING	"C-112"	"General"	-
+B14	STRING	"Elemento número 12"	"General"	-
+C14	NUMERIC	9808.0	"#,##0"	-
+D14	NUMERIC	14814.804	"#,##0.000"	-
+E14	NUMERIC	45670.0	"yyyy-mm-dd"	-
+F14	NUMERIC	45809.5083912037	"yyyy-mm-dd hh:mm:ss"	-
+G14	STRING	"Sí"	"General"	-
+A15	STRING	"C-113"	"General"	-
+B15	STRING	"Elemento número 13"	"General"	-
+C15	NUMERIC	11042.0	"#,##0"	-
+D15	NUMERIC	16049.371	"#,##0.000"	-
+E15	NUMERIC	45702.0	"yyyy-mm-dd"	-
+F15	NUMERIC	45809.55075231481	"yyyy-mm-dd hh:mm:ss"	-
+G15	STRING	"No"	"General"	-
+A16	STRING	"C-114"	"General"	-
+B16	STRING	"Elemento número 14"	"General"	-
+C16	NUMERIC	12276.0	"#,##0"	-
+D16	NUMERIC	17283.938000000002	"#,##0.000"	-
+E16	NUMERIC	45731.0	"yyyy-mm-dd"	-
+F16	NUMERIC	45809.59311342592	"yyyy-mm-dd hh:mm:ss"	-
+G16	STRING	"Sí"	"General"	-
+A17	STRING	"C-115"	"General"	-
+C17	NUMERIC	13510.0	"#,##0"	-
+D17	NUMERIC	18518.505	"#,##0.000"	-
+E17	NUMERIC	45763.0	"yyyy-mm-dd"	-
+F17	NUMERIC	45809.63547453703	"yyyy-mm-dd hh:mm:ss"	-
+G17	STRING	"No"	"General"	-
+A18	STRING	"C-116"	"General"	-
+B18	STRING	"Elemento número 16"	"General"	-
+C18	NUMERIC	14744.0	"#,##0"	-
+D18	NUMERIC	19753.072	"#,##0.000"	-
+E18	NUMERIC	45794.0	"yyyy-mm-dd"	-
+F18	NUMERIC	45809.677835648145	"yyyy-mm-dd hh:mm:ss"	-
+G18	STRING	"Sí"	"General"	-
+A19	STRING	"C-117"	"General"	-
+B19	STRING	"Elemento número 17"	"General"	-
+C19	NUMERIC	15978.0	"#,##0"	-
+D19	NUMERIC	20987.639	"#,##0.000"	-
+E19	NUMERIC	45826.0	"yyyy-mm-dd"	-
+F19	NUMERIC	45809.72019675926	"yyyy-mm-dd hh:mm:ss"	-
+G19	STRING	"No"	"General"	-
+A20	STRING	"C-118"	"General"	-
+B20	STRING	"Elemento número 18"	"General"	-
+C20	NUMERIC	17212.0	"#,##0"	-
+D20	NUMERIC	22222.206	"#,##0.000"	-
+E20	NUMERIC	45857.0	"yyyy-mm-dd"	-
+F20	NUMERIC	45809.762557870374	"yyyy-mm-dd hh:mm:ss"	-
+G20	STRING	"Sí"	"General"	-
+A21	STRING	"C-119"	"General"	-
+B21	STRING	"Elemento número 19"	"General"	-
+C21	NUMERIC	18446.0	"#,##0"	-
+D21	NUMERIC	23456.773	"#,##0.000"	-
+E21	NUMERIC	45889.0	"yyyy-mm-dd"	-
+F21	NUMERIC	45809.804918981485	"yyyy-mm-dd hh:mm:ss"	-
+G21	STRING	"No"	"General"	-
+A22	STRING	"C-120"	"General"	-
+C22	NUMERIC	19680.0	"#,##0"	-
+D22	NUMERIC	24691.34	"#,##0.000"	-
+E22	NUMERIC	45921.0	"yyyy-mm-dd"	-
+F22	NUMERIC	45809.847280092596	"yyyy-mm-dd hh:mm:ss"	-
+G22	STRING	"Sí"	"General"	-
+A23	STRING	"C-121"	"General"	-
+B23	STRING	"Elemento número 21"	"General"	-
+C23	NUMERIC	20914.0	"#,##0"	-
+D23	NUMERIC	25925.907	"#,##0.000"	-
+E23	NUMERIC	45952.0	"yyyy-mm-dd"	-
+F23	NUMERIC	45809.88964120371	"yyyy-mm-dd hh:mm:ss"	-
+G23	STRING	"No"	"General"	-
+A24	STRING	"C-122"	"General"	-
+B24	STRING	"Elemento número 22"	"General"	-
+C24	NUMERIC	22148.0	"#,##0"	-
+D24	NUMERIC	27160.474000000002	"#,##0.000"	-
+E24	NUMERIC	45984.0	"yyyy-mm-dd"	-
+F24	NUMERIC	45809.93200231482	"yyyy-mm-dd hh:mm:ss"	-
+G24	STRING	"Sí"	"General"	-
+A25	STRING	"C-123"	"General"	-
+B25	STRING	"Elemento número 23"	"General"	-
+C25	NUMERIC	23382.0	"#,##0"	-
+D25	NUMERIC	28395.041	"#,##0.000"	-
+E25	NUMERIC	46015.0	"yyyy-mm-dd"	-
+F25	NUMERIC	45809.97436342593	"yyyy-mm-dd hh:mm:ss"	-
+G25	STRING	"No"	"General"	-
+A26	STRING	"C-124"	"General"	-
+B26	STRING	"Elemento número 24"	"General"	-
+C26	NUMERIC	24616.0	"#,##0"	-
+D26	NUMERIC	29629.608	"#,##0.000"	-
+E26	NUMERIC	45682.0	"yyyy-mm-dd"	-
+F26	NUMERIC	45809.01672453704	"yyyy-mm-dd hh:mm:ss"	-
+G26	STRING	"Sí"	"General"	-

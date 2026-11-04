@@ -5,6 +5,7 @@ import com.nexora.reports.execution.application.port.TenantScopes;
 import com.nexora.reports.execution.domain.ExecutionRequestV2;
 import com.nexora.reports.tenancy.application.TenancyRegistrationService;
 
+import java.time.Clock;
 import java.util.Objects;
 
 /**
@@ -14,14 +15,21 @@ import java.util.Objects;
 public class RegisteredTenantScopes implements TenantScopes {
 
     private final TenancyRegistrationService registrations;
+    private final Clock clock;
 
     public RegisteredTenantScopes(TenancyRegistrationService registrations) {
+        this(registrations, Clock.systemUTC());
+    }
+
+    /** @param clock decides whether a transport exception has expired (EX-TLS-1) */
+    public RegisteredTenantScopes(TenancyRegistrationService registrations, Clock clock) {
         this.registrations = Objects.requireNonNull(registrations, "registrations");
+        this.clock = Objects.requireNonNull(clock, "clock");
     }
 
     @Override
     public TenantScopeVerifier forExecution(ExecutionRequestV2 request) {
         return TenantScopeProbe.forExecution(registrations.active(request.tenantId(), request.dataSourceId()),
-                request);
+                request, clock);
     }
 }

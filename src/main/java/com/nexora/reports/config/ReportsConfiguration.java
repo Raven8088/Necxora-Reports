@@ -3,6 +3,7 @@ package com.nexora.reports.config;
 import com.nexora.reports.audit.infrastructure.JdbcExecutionAuditRepository;
 import com.nexora.reports.credentials.infrastructure.ConfiguredCredentialProvider;
 import com.nexora.reports.credentials.infrastructure.EnterpriseSourcesProperties;
+import com.nexora.reports.credentials.infrastructure.TransportCapability;
 import com.nexora.reports.execution.application.ReportExecutionService;
 import com.nexora.reports.execution.application.port.AuditPort;
 import com.nexora.reports.execution.application.port.CredentialProvider;
@@ -20,6 +21,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.security.oauth2.server.resource.autoconfigure.OAuth2ResourceServerProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.security.oauth2.core.DelegatingOAuth2TokenValidator;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
@@ -27,6 +29,7 @@ import org.springframework.security.oauth2.jwt.JwtValidators;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 
 import java.time.Clock;
+import java.util.Set;
 import java.util.UUID;
 import java.util.function.Supplier;
 
@@ -93,8 +96,12 @@ public class ReportsConfiguration {
 
     /** One provider for both ports: credentials ({@link CredentialProvider}) and destinations (B10-O3). */
     @Bean
-    ConfiguredCredentialProvider credentialProvider(EnterpriseSourcesProperties properties) {
-        return new ConfiguredCredentialProvider(properties);
+    ConfiguredCredentialProvider credentialProvider(EnterpriseSourcesProperties properties, Environment environment,
+                                                    Clock clock) {
+        // EX-TLS-1: a normal build has no capability resource, so any transport exception stops the startup.
+        return new ConfiguredCredentialProvider(properties,
+                TransportCapability.load(ConfiguredCredentialProvider.class.getClassLoader()),
+                Set.of(environment.getActiveProfiles()), clock);
     }
 
     @Bean(destroyMethod = "close")

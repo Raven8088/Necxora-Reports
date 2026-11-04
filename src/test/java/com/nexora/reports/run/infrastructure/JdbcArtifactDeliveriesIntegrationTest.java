@@ -107,10 +107,16 @@ class JdbcArtifactDeliveriesIntegrationTest {
         }
         try (Connection c = db.superuser(); Statement s = c.createStatement()) {
             assertThatThrownBy(() -> s.execute("DELETE FROM report_run_event")).isInstanceOf(SQLException.class);
-            try (ResultSet rs = s.executeQuery("SELECT max(version) FROM flyway_schema_history WHERE success")) {
-                rs.next();
-                assertThat(rs.getString(1)).isEqualTo("4");
+            // Every migration, in order and successful: a new migration must be reviewed here (V5 and V6 only touch
+            // tenancy_registration; the closed list of event kinds above is still the one of V4).
+            List<String> applied = new ArrayList<>();
+            try (ResultSet rs = s.executeQuery("SELECT version, success FROM flyway_schema_history"
+                    + " WHERE version IS NOT NULL ORDER BY installed_rank")) {
+                while (rs.next()) {
+                    applied.add(rs.getString(1) + ":" + rs.getBoolean(2));
+                }
             }
+            assertThat(applied).containsExactly("1:true", "2:true", "3:true", "4:true", "5:true", "6:true");
         }
     }
 

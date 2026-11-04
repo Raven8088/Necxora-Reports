@@ -13,8 +13,8 @@ import com.nexora.reports.execution.application.port.RunStore;
 import com.nexora.reports.execution.application.port.SourceAvailability;
 import com.nexora.reports.execution.application.port.StagingArea;
 import com.nexora.reports.execution.application.port.TenantScopes;
-import com.nexora.reports.execution.domain.ExecutionException;
 import com.nexora.reports.execution.domain.ExecutionException.ErrorCode;
+import com.nexora.reports.execution.domain.ExecutionException;
 import com.nexora.reports.execution.domain.ExecutionLimits;
 import com.nexora.reports.execution.domain.ExecutionRequestV2;
 import com.nexora.reports.execution.domain.RedactedFailure;
@@ -37,6 +37,7 @@ import com.nexora.reports.result.domain.RenderedArtifact;
 import com.nexora.reports.result.domain.ReportResult;
 import com.nexora.reports.result.domain.ResultAssembler;
 import com.nexora.reports.result.domain.ResultAssemblyException;
+import com.nexora.reports.result.domain.ResultWarning;
 import com.nexora.reports.result.domain.SpecPresentation;
 import com.nexora.reports.run.domain.FailureCode;
 import com.nexora.reports.run.domain.FinishResult;
@@ -354,6 +355,13 @@ public class ReportRunService {
             return store.finish(ref, RunOutcome.refused(e.code().refusalCode(), planFingerprint, specFingerprint));
         }
         RunOutcome outcome = RunOutcome.of(result);
+        if (source.transportException() != null) {
+            // EX-TLS-1: recorded in the run (nexora-report-run/1 warnings), never in the Excel file.
+            LOG.warn("run {} read data source {} under transport exception {}: the connection was NOT encrypted and"
+                    + " the server identity was NOT verified", ref.runId(), dataSourceId,
+                    source.transportException().id());
+            outcome = outcome.withWarning(ResultWarning.transportNotVerified());
+        }
         try (StagingArea.Staged file = staging.create()) {
             RenderedArtifact artifact;
             try (OutputStream out = file.openOutput()) {

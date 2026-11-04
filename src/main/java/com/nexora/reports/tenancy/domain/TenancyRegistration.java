@@ -1,5 +1,7 @@
 package com.nexora.reports.tenancy.domain;
 
+import com.nexora.reports.credentials.domain.TransportException;
+
 import java.time.Instant;
 import java.util.List;
 import java.util.Objects;
@@ -11,11 +13,22 @@ import java.util.UUID;
  * and the exact set of schemas captured from the database, who registered it and when, and the SHA-256 fingerprint
  * of all of that ({@link TenancyRules#fingerprint}). A change produces a new version; versions are never edited.
  *
- * @param schemas the non-system schemas on which the read-only role has effective USAGE, sorted and distinct
+ * @param schemas            the non-system schemas on which the read-only role has effective USAGE, sorted and distinct
+ * @param transportException EX-TLS-1: the transport exception under which this version was captured, or {@code null}
+ *                           when it was captured with {@code verify-full}. Part of the fingerprint when present; a
+ *                           run or an approval must rely on exactly the same transport
  */
 public record TenancyRegistration(UUID id, UUID tenantId, UUID dataSourceId, int version, TenancyModel model,
                                   DatabaseIdentity identity, List<String> schemas, String registeredBy,
-                                  Instant registeredAt, String fingerprint) {
+                                  Instant registeredAt, String fingerprint, TransportException transportException) {
+
+    /** A version captured with {@code verify-full} (no transport exception). */
+    public TenancyRegistration(UUID id, UUID tenantId, UUID dataSourceId, int version, TenancyModel model,
+                               DatabaseIdentity identity, List<String> schemas, String registeredBy,
+                               Instant registeredAt, String fingerprint) {
+        this(id, tenantId, dataSourceId, version, model, identity, schemas, registeredBy, registeredAt, fingerprint,
+                null);
+    }
 
     public TenancyRegistration {
         Objects.requireNonNull(id, "id");

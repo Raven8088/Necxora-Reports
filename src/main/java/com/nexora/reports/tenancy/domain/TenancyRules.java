@@ -1,5 +1,6 @@
 package com.nexora.reports.tenancy.domain;
 
+import com.nexora.reports.credentials.domain.TransportException;
 import com.nexora.reports.execution.domain.Requester;
 import com.nexora.reports.plan2.domain.CanonicalJson;
 import com.nexora.reports.plan2.domain.Sha256;
@@ -99,6 +100,16 @@ public final class TenancyRules {
     public static String fingerprint(UUID tenantId, UUID dataSourceId, int version, TenancyModel model,
                                      DatabaseIdentity identity, List<String> schemas, String registeredBy,
                                      Sha256 sha256) {
+        return fingerprint(tenantId, dataSourceId, version, model, identity, schemas, registeredBy, null, sha256);
+    }
+
+    /**
+     * EX-TLS-1: the same fingerprint, plus the transport exception when the version was captured under one. Without
+     * exception the content, and therefore the fingerprint, is exactly the one of A4-B5.
+     */
+    public static String fingerprint(UUID tenantId, UUID dataSourceId, int version, TenancyModel model,
+                                     DatabaseIdentity identity, List<String> schemas, String registeredBy,
+                                     TransportException transportException, Sha256 sha256) {
         Map<String, Object> content = new LinkedHashMap<>();
         content.put("tenantId", tenantId.toString());
         content.put("dataSourceId", dataSourceId.toString());
@@ -112,6 +123,11 @@ public final class TenancyRules {
         content.put("role", identity.role());
         content.put("schemas", List.copyOf(new java.util.TreeSet<>(schemas)));
         content.put("registeredBy", registeredBy);
+        if (transportException != null) {
+            content.put("transportExceptionId", transportException.id());
+            content.put("transportExceptionExpiresAt", transportException.expiresAt().toString());
+            content.put("transportExceptionBinding", transportException.binding());
+        }
         return CanonicalJson.sha256(content, sha256);
     }
 

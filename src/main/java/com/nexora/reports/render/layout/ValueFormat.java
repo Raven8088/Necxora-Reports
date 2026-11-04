@@ -67,6 +67,21 @@ public final class ValueFormat {
         };
     }
 
+    /**
+     * The category of the values of a column of {@code type} (EX-19); a group key that is null is
+     * {@link ValueKind#NO_VALUE}. It only steers the presentation: the value and its format are {@link #format}'s.
+     */
+    public static ValueKind kindOf(OutputValueType type) {
+        return switch (type) {
+            case TEXT -> ValueKind.TEXT;
+            case INTEGER -> ValueKind.INTEGER;
+            case NUMBER -> ValueKind.DECIMAL;
+            case BOOLEAN -> ValueKind.BOOLEAN;
+            case DATE -> ValueKind.DATE;
+            case TIMESTAMP, TIMESTAMP_TZ -> ValueKind.DATE_TIME;
+        };
+    }
+
     static String numberFormat(int scale) {
         return scale <= 0 ? INTEGER_FORMAT : INTEGER_FORMAT + "." + "0".repeat(Math.min(scale, MAX_SIGNIFICANT_DIGITS));
     }

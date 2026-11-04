@@ -1164,3 +1164,75 @@ exactas para referencias comprimidas más una comprobación al arrancar (más c�
 ### 26.7 Verificación final en Windows y estado («PROCEDE con el cierre documental de B10-c.2» (2026-11-02))
 
 **Verificación final en Windows (2026-11-02; «PROCEDE con el cierre documental de B10-c.2» (2026-11-02)).** Respaldado por el log de Maven conservado (`mvn-verify-b10c2-jol.log`, SHA-256 `4622109c2112c29f72bdfadbe75fdda60376443a44d0ca977ca936692ef8cabb`) y Surefire: `mvn -B clean verify` ⇒ ejecución por defecto **792 pruebas, 0 fallos, 0 errores, 0 omitidas** (68 clases) y ejecución sin referencias comprimidas **26/0/0/0** (solo `ResultSizeEstimateLayoutTest`), `BUILD SUCCESS`, 02:44 min, Windows 11, Java 21.0.6. C2-1: 27/27 casos dentro en cada modo (peor razón real/E 1,000, `Long`); C2-2: tres repeticiones idénticas, A/E 0,6499 y B/E 0,6597, presupuesto `E` lee y `E − 1` se rechaza; JOL contrastado con `Instrumentation.getObjectSize` sin diferencias (20, 15 y 48 clases); C2-3: éxito y rechazo con 0 archivos y 0 bytes residuales (máximo observado 340 275 B y 204 122 B, cota inferior). Código ejecutado = transferido (14 huellas; `src/main` `e66afbfb…2084`). Evidencia en `Claude outputs/a4-b10c2/windows-2026-11-02-final/` (`SHA256SUMS.txt` `157adad4451ec9c99a094165b11ca6f097bc611d55e409e69ca54cabfcdc1155`). **A4-B10-c.2 queda verificado en Windows dentro de su alcance.** Historial conservado arriba: C2-1 10/19 antes de corregir la estimación y 791/792 por JOL y records. **R4-6:** «Criterios de medición y verificación de B10-c.2 demostrados satisfactoriamente en Windows. Documentación del heap recomendado parcialmente completada. R4-6 permanece abierto y será reevaluado en B11 conforme a sus criterios originales de aceptación, sin considerar garantizado su cierre». Límites: sin referencias comprimidas, en Windows solo se ejecutó C2-1 (el volumen en ese modo, B/E 0,904, está medido solo en local); la comprobación con `Instrumentation` usa el agente de Byte Buddy de Mockito (si un JDK lo impidiera, pasaría a la cuenta de asignación). Siguen abiertas B10c2-O1 (128 MiB de temporales), B10c2-O2 (memoria agregada), B10c2-O5 (alcance de la estimación) y B10c2-O6 (vía interna de JOL); B10c2-O3 y B10c2-O4 resueltas.
+
+## 27. Presentación de los reportes Excel (EX-19, 2026-11-04)
+
+Autorización: «PROCEDE con la implementación de la mejora de presentación dinámica de los reportes Excel de Nexora AI»
+(usuario, 2026-11-04 13:18), alternativa A y decisiones D-XL-1 a D-XL-8. Estado: **implementado; pendiente de
+`mvn -B clean verify` en Windows y de comprobación visual en Excel 365, LibreOffice y Google Sheets.**
+
+**Principio (D-XL-1, «misma rejilla»).** La presentación cambia cómo se ve un reporte, nunca lo que contiene: las
+hojas, sus nombres y orden, cada celda (coordenada, tipo, valor exacto, formato numérico, prefijo de cita), las filas
+inmovilizadas, los autofiltros y la ausencia de celdas combinadas son los de antes. Lo demuestra
+`PresentationGridTest` contra referencias escritas por el renderizador **anterior** (`GridBaselines`,
+`src/test/resources/com/nexora/reports/render/xlsx/grid/*.grid`, con su SHA-256 fijado en la prueba).
+
+**`render.layout` (sin POI).**
+
+- `ValueKind` (nuevo): categoría del valor de una celda — `TEXT`, `INTEGER`, `DECIMAL`, `DATE`, `DATE_TIME`,
+  `BOOLEAN`, `NO_VALUE` —, derivada del tipo genérico de la columna (`ValueFormat.kindOf(OutputValueType)`) o, si
+  nadie la indica, de lo que contiene la celda (`ValueKind.of`). `NO_VALUE` es la clave de grupo nula de un AGGREGATE
+  (función DIMENSION, EX-10). Nunca se mira el nombre de una columna ni su contenido.
+- `LayoutCell` gana `kind` (constructor de tres argumentos compatible). `LayoutBuilder` la fija en encabezados,
+  datos y totales (por el tipo de la columna) y en las tablas de la metodología.
+- `StyleKind.HEADER_VALUE` (nuevo): valor de un campo del encabezado del informe; **no ensancha columnas** (corrige
+  que una solicitud larga llevara la columna B de «Reporte», compartida con las tablas de resumen, a 60 caracteres).
+  El estado «Parcial» se presenta como `WARNING`. Las filas de las tablas de la metodología pasan de `VALUE` a `DATA`
+  (mismo valor y formato; ahora con bordes y alineación de tabla).
+- `SheetLayout.Kind` (`REPORT`, `DETAIL`, `METHODOLOGY`) y `WorkbookLayout.pageFooter` (`Label.PAGE_FOOTER` en
+  es/en/fr). Constructores anteriores conservados.
+
+**`render.xlsx`.**
+
+- `PresentationTheme` (nuevo, D-XL-3): colores principal, de texto de encabezado, de acento y de banda (`RRGGBB`),
+  fuente (Calibri, Arial o Aptos), tamaño (9–14) y bandas (D-XL-2, desactivadas por defecto). Validado al crearse:
+  contraste WCAG ≥ 4,5:1 del texto de encabezado sobre el principal y del negro sobre acento y banda. Por defecto:
+  `1F3864`, `FFFFFF`, `D9E1F2`, `F2F2F2`, Calibri 11, sin bandas. Los colores de avisos, etiquetas y notas son fijos
+  y cumplen el mismo contraste.
+- `XlsxStyles` (nuevo): un estilo por (tipo de celda, categoría, formato, prefijo de cita, banda), en caché sin crear
+  objetos por celda; < 60 estilos en los reportes de prueba e independiente del número de filas. Fuentes en caché; la
+  fuente por defecto del libro es la del tema. Alineación en tablas: texto a la izquierda, números a la derecha,
+  fechas y booleanos centrados; el encabezado como su columna.
+- `XlsxWriter`: anchos por tipo (números según su texto con formato en lugar de 16 fijos; fechas según su formato;
+  texto por puntos de código), entre 8 y 60; un encabezado de tabla de más de 24 caracteres se ajusta (hasta 3 líneas,
+  con la altura de fila calculada) y, con autofiltro, reserva 2 caracteres para su botón. «Reporte» y «Metodología»
+  sin cuadrícula (D-XL-8). Impresión (D-XL-5): horizontal con más de 6 columnas, pie «Página &P de &N» (con `&`
+  escapado y sin caracteres de control), y en las hojas de detalle ajuste a una página de ancho y fila 1 repetida
+  (`_xlnm.Print_Titles`). «Reporte» y «Metodología» no se ajustan al ancho: sus textos largos continúan sobre celdas
+  vacías y reducirían toda la página. Propiedad de título = título del informe, sin caracteres de control, ≤ 255
+  (D-XL-6); la solicitud no se copia.
+- `XlsxRenderer(maxConcurrent, temporaryDirectory, theme)`; los constructores anteriores usan el tema de Nexora.
+
+**Configuración.** `config.PresentationProperties` (`nexora.reports.presentation.*`, `application.yml`): `primary-color`,
+`header-text-color`, `accent-color`, `band-color`, `font-name`, `font-size`, `banding`, con variables
+`REPORTS_PRESENTATION_*`. Vacío = tema de Nexora; un valor no válido impide arrancar. Un tema por tenant queda para
+una etapa posterior. `compose.yaml` de `nexora-deploy` no se cambió: el contenedor usa los valores por defecto.
+
+**Pruebas (28 nuevas).** `PresentationGridTest` (2: identidad de la rejilla en 10 fixtures —PA-A en español, inglés,
+parcial, con valor como texto, con textos recortados y con 300 filas; «Empresas»; un reporte sencillo y uno compuesto
+escritos directamente; el libro de `XlsxWriterTest`— y huellas de las referencias), `PresentationStyleTest` (14),
+`PresentationThemeTest` (4), `PresentationLayoutTest` (5), `PresentationPropertiesTest` (2) y una en
+`XlsxSecurityTest` (título de impresión de una hoja con nombre hostil, pie escapado, sin fórmulas, formato
+condicional, validación ni vínculos). Ajustes justificados de pruebas existentes: `XlsxWriterTest` (ancho de una
+columna numérica: 18 → 10, por el nuevo cálculo) y `XlsxSecurityTest` (nombres permitidos: `_xlnm._FilterDatabase`
+y `_xlnm.Print_Titles`, con el contenido de este limitado a `'hoja'!$1:$1`).
+
+**Rendimiento (local, mismo JVM, medianas de 15/15/7 renderizaciones tras calentamiento, 3 rondas).** Tiempo: dentro
+del ruido de medición (10 000 filas: 166–179 ms antes y 170–188 ms después; 50 000 filas: 665–728 ms antes y
+655–720 ms después). Memoria asignada por renderización: −22 % (58,5 → 45,5 MB con 10 000 filas; 285,1 → 216,9 MB
+con 50 000). Tamaño: +0,34 % (10 000 filas) y +0,07 % (50 000); PA-A pequeño +741 bytes (+9 %), coste fijo de la
+hoja de estilos.
+
+**Límites.** Las celdas nulas no se escriben (EX-10, D-XL-1): no tienen borde y la cuadrícula de una tabla muestra
+huecos. Al imprimir «Reporte», un texto largo del encabezado puede continuar en páginas adicionales. La altura de una fila de encabezado ajustada se
+calcula al escribir (líneas × altura de línea del tema), sin depender del programa que abre el archivo.

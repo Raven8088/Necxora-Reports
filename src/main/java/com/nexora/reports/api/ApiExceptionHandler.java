@@ -131,6 +131,11 @@ public class ApiExceptionHandler {
                 "No read-only connection is configured for this data source.");
         tenancy(TenancyException.Reason.TLS_REQUIRED, HttpStatus.UNPROCESSABLE_CONTENT, "tls_required",
                 "The connection to the data source must use TLS with verify-full.");
+        tenancy(TenancyException.Reason.TRANSPORT_EXCEPTION_EXPIRED, HttpStatus.UNPROCESSABLE_CONTENT,
+                "transport_exception_expired", "The temporary transport exception of the data source has expired.");
+        tenancy(TenancyException.Reason.TRANSPORT_EXCEPTION_MISMATCH, HttpStatus.CONFLICT,
+                "transport_exception_mismatch",
+                "The transport of the data source is not the one this tenancy version was captured with.");
         for (TenancyException.Reason reason : TenancyException.Reason.values()) {
             if (!TENANCY.containsKey(reason)) {
                 throw new ExceptionInInitializerError("unmapped tenancy reason " + reason);

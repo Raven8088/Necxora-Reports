@@ -5,6 +5,7 @@ import com.nexora.reports.result.domain.ReportResult;
 import com.nexora.reports.result.domain.ResultStatus;
 import com.nexora.reports.result.domain.ResultWarning;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.regex.Pattern;
@@ -89,6 +90,14 @@ public record RunOutcome(RunOutcomeKind kind, String reportPlanFingerprint, Stri
     public RunOutcome withRefusal(String code) {
         return new RunOutcome(RunOutcomeKind.REFUSED, reportPlanFingerprint, specFingerprint, code, null, snapshot,
                 datasets, warnings);
+    }
+
+    /** The same outcome with one more warning at the end (EX-TLS-1: {@link ResultWarning#transportNotVerified}). */
+    public RunOutcome withWarning(ResultWarning warning) {
+        List<ResultWarning> all = new ArrayList<>(warnings);
+        all.add(Objects.requireNonNull(warning, "warning"));
+        return new RunOutcome(kind, reportPlanFingerprint, specFingerprint, refusalCode, failureCode, snapshot,
+                datasets, all);
     }
 
     /** This run failed after the fact (for example while storing), keeping what is already known. */

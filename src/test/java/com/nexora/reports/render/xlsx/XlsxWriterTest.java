@@ -101,7 +101,9 @@ class XlsxWriterTest {
             assertThat(sheet.getCTWorksheet().getAutoFilter().getRef()).isEqualTo("A1:C2");
             assertThat(sheet.getNumMergedRegions()).isEqualTo(0);
             assertThat(sheet.getColumnWidth(0)).isEqualTo(XlsxWriter.MAX_WIDTH * 256);
-            assertThat(sheet.getColumnWidth(1)).isEqualTo(18 * 256);
+            // EX-19 (D-XL-1): a number is as wide as its formatted text («1,234.50»: 8) instead of a fixed 16, and the
+            // header («Valor») asks for its length plus the autofilter button: max(8, 5 + 2) + 2 = 10 (it was 16 + 2).
+            assertThat(sheet.getColumnWidth(1)).isEqualTo(10 * 256);
             assertThat(sheet.getColumnWidth(2)).isEqualTo(25 * 256);
             XSSFSheet other = wb.getSheet("Otra");
             assertThat(other.getPaneInformation()).isNull();

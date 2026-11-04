@@ -4,7 +4,7 @@
 
 | Campo | Valor |
 |---|---|
-| Última actualización | 2 nov 2026 (A4-B10-c.2 **verificado en Windows** dentro de su alcance: 792 + 26 pruebas, 0 fallos, BUILD SUCCESS; R4-6 sigue abierto (B11); antes: B10-c.2: corrección mínima JOL/records aplicada (solo pruebas), pendiente de Windows; Windows tras corregir la estimación: 792 con 1 error de JOL; antes: corrección de `ResultSizeEstimate` aplicada (B10-c.2), pendiente de Windows: 792 + 26 pruebas esperadas; C2-1 en Windows antes de corregir: 10/19 fallos; antes: A4-B10-c.2 implementado, pendiente de Windows; R4-6 no completo: subestimación medida localmente; antes: A4-B10-c.1 con FIX1 **verificado en Windows**: 757 pruebas, 0 fallos, BUILD SUCCESS; antes: A4-B10-c.1-FIX1 aplicado, pendiente de Windows: 757 pruebas esperadas; A4-B10-c.1 en Windows: 755/756, 1 fallo, BUILD FAILURE; antes: A4-B10-c.1 implementado, pendiente de Windows: 756 pruebas esperadas; B10-O3 / DS-20 verificado en Windows: 730 pruebas, 0 fallos (DS-27); antes: B10-O3 / DS-20 implementado, pendiente de Windows: 730 pruebas esperadas; A4-B10-b verificado en Windows: 707 pruebas, 0 fallos; antes: implementado, pendiente de Windows; A4-B9 verificado en Windows según el usuario: 643 pruebas, 0 fallos) |
+| Última actualización | 4 nov 2026 (presentación de los reportes Excel, EX-19: implementada, pendiente de Windows; ver «Presentación Excel (EX-19)»); antes: 2 nov 2026 (A4-B10-c.2 **verificado en Windows** dentro de su alcance: 792 + 26 pruebas, 0 fallos, BUILD SUCCESS; R4-6 sigue abierto (B11); antes: B10-c.2: corrección mínima JOL/records aplicada (solo pruebas), pendiente de Windows; Windows tras corregir la estimación: 792 con 1 error de JOL; antes: corrección de `ResultSizeEstimate` aplicada (B10-c.2), pendiente de Windows: 792 + 26 pruebas esperadas; C2-1 en Windows antes de corregir: 10/19 fallos; antes: A4-B10-c.2 implementado, pendiente de Windows; R4-6 no completo: subestimación medida localmente; antes: A4-B10-c.1 con FIX1 **verificado en Windows**: 757 pruebas, 0 fallos, BUILD SUCCESS; antes: A4-B10-c.1-FIX1 aplicado, pendiente de Windows: 757 pruebas esperadas; A4-B10-c.1 en Windows: 755/756, 1 fallo, BUILD FAILURE; antes: A4-B10-c.1 implementado, pendiente de Windows: 756 pruebas esperadas; B10-O3 / DS-20 verificado en Windows: 730 pruebas, 0 fallos (DS-27); antes: B10-O3 / DS-20 implementado, pendiente de Windows: 730 pruebas esperadas; A4-B10-b verificado en Windows: 707 pruebas, 0 fallos; antes: implementado, pendiente de Windows; A4-B9 verificado en Windows según el usuario: 643 pruebas, 0 fallos) |
 | Versión del artefacto | `0.1.0-SNAPSHOT` |
 | Etapa actual | **A4** (propuesta v3), por bloques: **A4-B1** y **A4-B2** cerrados y verificados en Windows (240 pruebas, 1 nov 2026; B2 con la corrección A4-B2-FIX1); **A4-B3** y **A4-B4** cerrados y verificados en Windows (331 pruebas, 1 nov 2026); **A4-B5** cerrado y verificado en Windows (388 pruebas, 1 nov 2026); **A4-B6** cerrado y verificado en Windows (424 pruebas, 1 nov 2026); **A4-B7** (Excel genérico) cerrado y verificado en Windows (485 pruebas, 1 nov 2026, con A4-B7-FIX1) y aceptado en Excel; **A4-B8** (almacenamiento y recuperación de artefactos) cerrado y verificado en Windows (536 pruebas, 1 nov 2026). Base: R1, verificada en Windows (127 pruebas, 29 oct 2026); **A4-B9** (integración, API y seguridad) implementado y verificado en Windows según el usuario (643 pruebas, 2 nov 2026); **A4-B10-b** (capacidades, POST sin cuerpo y endurecimiento) implementado y **verificado en Windows** (707 pruebas, 2 nov 2026); **B10-O3 / DS-20** verificado en Windows (730 pruebas, 2 nov 2026); **A4-B10-c.1** (planes auténticos de Semantic) implementado, pendiente de Windows; **verificado en Windows** (757 pruebas, 2 nov 2026, con FIX1); **A4-B10-c.2** (memoria y temporales del volumen) verificado en Windows dentro de su alcance (792 + 26 pruebas, 2 nov 2026); R4-6 abierto |
 | Próxima tarea autorizada | **Ninguna.** A4-B10-c.2 verificado en Windows dentro de su alcance; R4-6 abierto, a reevaluar en B11; B10-d, B11, A5 y A6 necesitan su propia «Procede». Antes: A4-B10-c.2 con la corrección de `ResultSizeEstimate` aplicada, pendiente de verificación integral en Windows; R4-6 no completo hasta entonces. Antes: A4-B10-c.2 implementado (solo pruebas), pendiente de Windows; la corrección de `ResultSizeEstimate` requiere nueva autorización. Antes: A4-B10-c.1 verificado en Windows (757/757, con FIX1); B10-c.2, B10-d, B11 y A5 necesitan su propia «Procede». Antes: A4-B10-c.1 con la corrección FIX1, pendiente de verificación en Windows (antes de FIX1: 755/756). Antes: A4-B10-c.1 implementado, pendiente de verificación en Windows. B10-c.2, B10-d, B11 y A5 necesitan su propia «Procede» (antes: B10-O3 / DS-20 implementado, pendiente de Windows; ya verificado: 730 pruebas) |
@@ -551,6 +551,77 @@ ambas referencias; 43 clases comprobadas en el volumen (17 records). **Esperado 
 0 errores. B10-c.2 y R4-6 no se declaran completos hasta esa verificación.
 
 **Verificación final en Windows (2026-11-02; «PROCEDE con el cierre documental de B10-c.2» (2026-11-02)).** Respaldado por el log de Maven conservado (`mvn-verify-b10c2-jol.log`, SHA-256 `4622109c2112c29f72bdfadbe75fdda60376443a44d0ca977ca936692ef8cabb`) y Surefire: `mvn -B clean verify` ⇒ ejecución por defecto **792 pruebas, 0 fallos, 0 errores, 0 omitidas** (68 clases) y ejecución sin referencias comprimidas **26/0/0/0** (solo `ResultSizeEstimateLayoutTest`), `BUILD SUCCESS`, 02:44 min, Windows 11, Java 21.0.6. C2-1: 27/27 casos dentro en cada modo (peor razón real/E 1,000, `Long`); C2-2: tres repeticiones idénticas, A/E 0,6499 y B/E 0,6597, presupuesto `E` lee y `E − 1` se rechaza; JOL contrastado con `Instrumentation.getObjectSize` sin diferencias (20, 15 y 48 clases); C2-3: éxito y rechazo con 0 archivos y 0 bytes residuales (máximo observado 340 275 B y 204 122 B, cota inferior). Código ejecutado = transferido (14 huellas; `src/main` `e66afbfb…2084`). Evidencia en `Claude outputs/a4-b10c2/windows-2026-11-02-final/` (`SHA256SUMS.txt` `157adad4451ec9c99a094165b11ca6f097bc611d55e409e69ca54cabfcdc1155`). **A4-B10-c.2 queda verificado en Windows dentro de su alcance.** Historial conservado arriba: C2-1 10/19 antes de corregir la estimación y 791/792 por JOL y records. **R4-6:** «Criterios de medición y verificación de B10-c.2 demostrados satisfactoriamente en Windows. Documentación del heap recomendado parcialmente completada. R4-6 permanece abierto y será reevaluado en B11 conforme a sus criterios originales de aceptación, sin considerar garantizado su cierre». Límites: sin referencias comprimidas, en Windows solo se ejecutó C2-1 (el volumen en ese modo, B/E 0,904, está medido solo en local); la comprobación con `Instrumentation` usa el agente de Byte Buddy de Mockito (si un JDK lo impidiera, pasaría a la cuenta de asignación). Siguen abiertas B10c2-O1 (128 MiB de temporales), B10c2-O2 (memoria agregada), B10c2-O5 (alcance de la estimación) y B10c2-O6 (vía interna de JOL); B10c2-O3 y B10c2-O4 resueltas.
+
+## EX-TLS-1 — Excepción temporal de transporte para desarrollo (2026-11-04)
+
+Autorizada por el usuario el 2026-11-04 («PROCEDE con la implementación de EX-TLS-1»), para desbloquear el registro
+de tenencia y la primera ejecución con una fuente que no ofrece TLS (V-C2). **Implementada; pendiente de
+`mvn -B clean verify` en Windows** (incluidas las pruebas de integración con Testcontainers) y de uso real.
+
+- Compilación separada (`-Pdev-insecure-transport`, imagen `…-insecure-transport`), perfil `insecure-transport-dev`,
+  autorización por fuente y destino (`binding`), caducidad técnica ≤ 14 días desde la compilación, solo
+  `sslMode=disable` hacia una IPv4 privada. Detalle y reglas: `docs/API.md`, «EX-TLS-1».
+- Validación en registro (antes de conectar y con la sesión), aprobación y cada ejecución (`TransportPolicy`); las
+  validaciones de tenencia, identidad, roles, esquemas, RLS y aislamiento no cambian.
+- `verify-full` sigue siendo obligatorio en toda compilación normal (sin la capacidad, cualquier excepción impide
+  arrancar).
+- Constancia: `transportException` en la respuesta de registro; aviso `transport_not_verified` en cada ejecución
+  (contratos `nexora-report-run/1` y `nexora-excel-report/1` sin cambios); registros `WARN`.
+- Migración V5: tres columnas nulas en `tenancy_registration` con restricción «todas o ninguna» (corregida por V6,
+  ver EX-TLS-1.1).
+- Pruebas nuevas: `TransportPolicyTest`, `TransportExceptionTest`, `TransportCapabilityTest`,
+  `ConfiguredCredentialProviderTransportExceptionTest`, `TenancyRegistrationServiceTransportTest`,
+  `TenantScopeProbeTransportTest`; añadidas a `ReportRunDocumentsTest`, `ReportRunServiceTest` y
+  `JdbcTenancyRegistryIntegrationTest`.
+- Verificado por Claude sin Maven (Maven Central no accesible desde su entorno): compilación con `javac` del código
+  principal y comprobación de tipos de las pruebas; 34/34 comprobaciones de comportamiento con el código real
+  (arnés local); el documento de ejecución con el aviso valida contra el esquema del contrato. **No sustituye** a
+  `mvn -B clean verify` en Windows.
+
+### EX-TLS-1.1 — Corrección de integridad (2026-11-04)
+
+Windows, `mvn -B clean verify` tras EX-TLS-1: 877 pruebas, 875 correctas, **2 fallidas** (BUILD FAILURE):
+
+1. `JdbcTenancyRegistryIntegrationTest.theDatabaseRefusesAPartialOrMalformedTransportException`: la restricción de V5
+   aceptaba excepciones parciales. PostgreSQL da por cumplida una `CHECK` que se evalúa a NULL, y con una columna NULL
+   las comparaciones con patrón de V5 daban NULL: `(NULL, now(), NULL)`, `('EX-TLS-1', now(), NULL)` y
+   `(NULL, now(), binding)` se aceptaban. Defecto real de integridad (sin camino hacia una conexión sin TLS: la
+   aplicación siempre escribe las tres o ninguna).
+2. `JdbcArtifactDeliveriesIntegrationTest.theListOfEventKindsIsStillClosedAndEventsStillAppendOnly`: fijaba la última
+   migración en `"4"` (y comparaba texto con `max`).
+
+Correcciones («PROCEDE con las correcciones A, B y C», 2026-11-04 05:00):
+
+- **A — V6** `V6__enforce_complete_transport_exceptions.sql`: sustituye la restricción por una que exige
+  explícitamente las tres columnas (nunca se evalúa a NULL). V5 **no** se modifica: no se pudo verificar que no esté
+  aplicada en una base persistente. Si una fila guardada ya viola la regla, V6 falla (transaccional) y Reports no arranca.
+- **B — lectura defensiva:** `JdbcTenancyRegistry.transportException` rechaza una fila parcial o mal formada con
+  `IllegalStateException` («corrupt tenancy registration: …», sin valores) en lugar de leerla como «sin excepción».
+- **C —** `JdbcArtifactDeliveriesIntegrationTest` exige la lista exacta y ordenada de migraciones correctas (1–6).
+- Pruebas nuevas: `JdbcTenancyRegistryTransportRowTest` (14 casos); en `JdbcTenancyRegistryIntegrationTest`, 11 casos
+  negativos parametrizados (SQLSTATE `23514` y nombre de la restricción), un control positivo con la misma sentencia
+  y la comprobación de que V6 dejó una sola restricción con la nueva definición. Ninguna prueba eliminada ni debilitada.
+- Verificado por Claude: V1–V6 reales en PostgreSQL 16 local desechable (V5 acepta los 3 casos parciales; V6 rechaza
+  los 11 y acepta los 2 controles; V6 falla con SQLSTATE `23514` si ya hay filas parciales); lectura defensiva 14/14;
+  compilación con `javac`. **Pendiente:** `mvn -B clean verify` en Windows (PostgreSQL 17.6 con Testcontainers).
+
+## Presentación Excel (EX-19) (2026-11-04)
+
+Autorizada por el usuario («PROCEDE con la implementación de la mejora de presentación dinámica de los reportes Excel
+de Nexora AI», 2026-11-04 13:18; alternativa A y D-XL-1 a D-XL-8). **Implementada; pendiente de `mvn -B clean verify`
+en Windows y de comprobación visual en Excel 365, LibreOffice y Google Sheets.** Diseño: [ARCHITECTURE.md](ARCHITECTURE.md)
+§27; contrato: `nexora-contracts/excel-report/1` (EX-19, aditivo).
+
+- Estilos automáticos por tipo de celda y categoría de valor (`ValueKind`), tema global configurable y validado
+  (`PresentationTheme`, `nexora.reports.presentation.*`), anchos por tipo, encabezados largos ajustados, sin cuadrícula
+  en «Reporte» y «Metodología», impresión (pie con página, ajuste al ancho y fila de encabezado repetida en el
+  detalle), propiedad de título. Corregido: una solicitud larga ya no ensancha las columnas de las tablas de resumen.
+- Sin cambios en hojas, celdas, valores, tipos, formatos numéricos, orden de columnas, totales, inmovilización,
+  autofiltros, streaming ni protecciones (EX-11): `PresentationGridTest` contra referencias del renderizador anterior.
+- Verificado por Claude sin Maven: compilación con `javac`; **668/668** pruebas que se pueden ejecutar sin Spring Test,
+  Testcontainers, ArchUnit ni JOL (640 antes + 28 nuevas); 5 mutaciones detectadas; rendimiento comparado
+  (ARCHITECTURE §27). **Pendiente:** `mvn -B clean verify` en Windows (incluye ArchUnit e integración) y revisión
+  visual.
 
 ## Funcionalidades
 

@@ -76,10 +76,11 @@ public final class LayoutBuilder {
 
     private WorkbookLayout layout() {
         List<SheetLayout> sheets = new ArrayList<>();
-        sheets.add(new SheetLayout(Label.SHEET_REPORT.in(lang), reportSheet(), 0, null));
+        sheets.add(new SheetLayout(Label.SHEET_REPORT.in(lang), reportSheet(), 0, null, SheetLayout.Kind.REPORT));
         detailSheets.forEach((datasetId, name) -> sheets.add(detailSheet(result.dataset(datasetId), name)));
-        sheets.add(new SheetLayout(Label.SHEET_METHODOLOGY.in(lang), methodologySheet(), 0, null));
-        return new WorkbookLayout(header.title(), sheets);
+        sheets.add(new SheetLayout(Label.SHEET_METHODOLOGY.in(lang), methodologySheet(), 0, null,
+                SheetLayout.Kind.METHODOLOGY));
+        return new WorkbookLayout(header.title(), sheets, Label.PAGE_FOOTER.in(lang));
     }
 
     // ------------------------------------------------------------------ «Reporte»
@@ -88,24 +89,26 @@ public final class LayoutBuilder {
         RowStream rows = new RowStream();
         rows.add(LayoutRow.of(text(0, header.title(), StyleKind.TITLE)));
         rows.add(LayoutRow.EMPTY);
-        pair(rows, Label.TITLE, header.title());
-        pair(rows, Label.REQUEST, header.requestText() == null ? "" : header.requestText());
-        pair(rows, Label.SOURCE, withId(header.sourceName(), header.dataSourceId().toString()));
-        pair(rows, Label.TENANT, withId(header.tenantName(), header.tenantId().toString()));
-        pair(rows, Label.GENERATED, when(header.generatedAt()));
+        // EX-19: the values of the header never widen the columns of the tables below (HEADER_VALUE).
+        field(rows, Label.TITLE, header.title());
+        field(rows, Label.REQUEST, header.requestText() == null ? "" : header.requestText());
+        field(rows, Label.SOURCE, withId(header.sourceName(), header.dataSourceId().toString()));
+        field(rows, Label.TENANT, withId(header.tenantName(), header.tenantId().toString()));
+        field(rows, Label.GENERATED, when(header.generatedAt()));
         if (header.filters().isEmpty()) {
-            pair(rows, Label.FILTERS, Label.NO_FILTERS.in(lang));
+            field(rows, Label.FILTERS, Label.NO_FILTERS.in(lang));
         } else {
             for (int i = 0; i < header.filters().size(); i++) {
                 String phrase = filter(header.filters().get(i));
-                rows.add(i == 0 ? LayoutRow.of(label(0, Label.FILTERS), text(1, phrase, StyleKind.VALUE))
-                        : LayoutRow.of(text(1, phrase, StyleKind.VALUE)));
+                rows.add(i == 0 ? LayoutRow.of(label(0, Label.FILTERS), text(1, phrase, StyleKind.HEADER_VALUE))
+                        : LayoutRow.of(text(1, phrase, StyleKind.HEADER_VALUE)));
             }
         }
-        pair(rows, Label.PERIOD, Label.NOT_APPLICABLE.in(lang));
-        pair(rows, Label.VERSION, header.reportsVersion() == null ? "" : header.reportsVersion());
-        pair(rows, Label.STATUS, (result.status() == ResultStatus.PARTIAL ? Label.STATUS_PARTIAL
-                : Label.STATUS_COMPLETED).in(lang));
+        field(rows, Label.PERIOD, Label.NOT_APPLICABLE.in(lang));
+        field(rows, Label.VERSION, header.reportsVersion() == null ? "" : header.reportsVersion());
+        boolean partial = result.status() == ResultStatus.PARTIAL;
+        rows.add(LayoutRow.of(label(0, Label.STATUS), text(1, (partial ? Label.STATUS_PARTIAL
+                : Label.STATUS_COMPLETED).in(lang), partial ? StyleKind.WARNING : StyleKind.HEADER_VALUE)));
         List<String> warnings = new ArrayList<>();
         for (ResultWarning w : result.warnings()) {
             warnings.add(warning(w));
@@ -147,7 +150,7 @@ public final class LayoutBuilder {
                 Optional<ReportItem.TotalCell> cell = total.get().cell(columns.get(j).output());
                 if (cell.isPresent()) {
                     cells.add(new LayoutCell(j, values.format(cell.get().value(), cell.get().valueType(), false)
-                            .value(), StyleKind.TOTAL_VALUE));
+                            .value(), StyleKind.TOTAL_VALUE, ValueFormat.kindOf(cell.get().valueType())));
                 } else if (!labelled) {
                     cells.add(label(j, Label.TOTAL, StyleKind.TOTAL_LABEL));
                     labelled = true;
@@ -172,7 +175,9 @@ public final class LayoutBuilder {
     private LayoutRow headerRow(List<ResultColumn2> columns) {
         List<LayoutCell> cells = new ArrayList<>(columns.size());
         for (int j = 0; j < columns.size(); j++) {
-            cells.add(text(j, columnLabel(columns.get(j)), StyleKind.TABLE_HEADER));
+            ResultColumn2 c = columns.get(j);
+            cells.add(new LayoutCell(j, CellValue.text(CellText.limit(columnLabel(c), EXCEL_MAX_TEXT)),
+                    StyleKind.TABLE_HEADER, ValueFormat.kindOf(c.valueType())));
         }
         return new LayoutRow(cells);
     }
@@ -187,9 +192,12 @@ public final class LayoutBuilder {
         List<LayoutCell> cells = new ArrayList<>(columns.size());
         for (int j = 0; j < columns.size(); j++) {
             ResultColumn2 c = columns.get(j);
-            CellValue v = values.format(row.get(c.position() - 1), c.valueType(), groupKey(d, c)).value();
+            Object raw = row.get(c.position() - 1);
+            boolean key = groupKey(d, c);
+            CellValue v = values.format(raw, c.valueType(), key).value();
             if (v != CellValue.BLANK) {
-                cells.add(new LayoutCell(j, v, StyleKind.DATA));
+                cells.add(new LayoutCell(j, v, StyleKind.DATA, raw == null && key ? ValueKind.NO_VALUE
+                        : ValueFormat.kindOf(c.valueType())));
             }
         }
         return new LayoutRow(cells);
@@ -243,41 +251,41 @@ public final class LayoutBuilder {
         rows.add(LayoutRow.EMPTY);
         rows.add(tableHeader(Label.M_DATASET, Label.M_ROWS, Label.M_TRUNCATED, Label.M_LIMIT));
         for (Methodology.DatasetExecution e : m.datasets()) {
-            rows.add(LayoutRow.of(text(0, e.datasetId(), StyleKind.VALUE), integer(1, e.rowCount()),
-                    text(2, (e.truncated() ? Label.YES : Label.NO).in(lang), StyleKind.VALUE),
-                    integer(3, e.maxRows())));
+            rows.add(LayoutRow.of(text(0, e.datasetId(), StyleKind.DATA), integer(1, e.rowCount(), StyleKind.DATA),
+                    new LayoutCell(2, CellValue.text((e.truncated() ? Label.YES : Label.NO).in(lang)), StyleKind.DATA,
+                            ValueKind.BOOLEAN), integer(3, e.maxRows(), StyleKind.DATA)));
         }
         rows.add(tableHeader(Label.M_DATASET, Label.M_PLAN, Label.M_DURATION));
         for (Methodology.DatasetExecution e : m.datasets()) {
-            rows.add(LayoutRow.of(text(0, e.datasetId(), StyleKind.VALUE),
-                    text(1, e.planFingerprint(), StyleKind.VALUE), integer(2, e.durationMs())));
+            rows.add(LayoutRow.of(text(0, e.datasetId(), StyleKind.DATA),
+                    text(1, e.planFingerprint(), StyleKind.DATA), integer(2, e.durationMs(), StyleKind.DATA)));
         }
 
         rows.add(LayoutRow.EMPTY);
         rows.add(LayoutRow.of(label(0, Label.M_ORIGIN, StyleKind.SECTION_TITLE)));
         rows.add(tableHeader(Label.M_OBJECT, Label.M_TYPE));
         for (SourceObject o : m.relations()) {
-            rows.add(LayoutRow.of(text(0, qualified(o), StyleKind.VALUE), text(1, o.type(), StyleKind.VALUE)));
+            rows.add(LayoutRow.of(text(0, qualified(o), StyleKind.DATA), text(1, o.type(), StyleKind.DATA)));
         }
         rows.add(tableHeader(Label.M_RELATIONSHIP, Label.M_ORIGIN, Label.M_STATE, Label.M_APPROVED_BY));
         for (Methodology.RelationshipUse r : m.relationships()) {
-            rows.add(LayoutRow.of(text(0, String.valueOf(r.id()), StyleKind.VALUE),
-                    text(1, orElse(r.origin(), ""), StyleKind.VALUE), text(2, orElse(r.status(), ""), StyleKind.VALUE),
-                    text(3, fact(r.approvedBy()), StyleKind.VALUE)));
+            rows.add(LayoutRow.of(text(0, String.valueOf(r.id()), StyleKind.DATA),
+                    text(1, orElse(r.origin(), ""), StyleKind.DATA), text(2, orElse(r.status(), ""), StyleKind.DATA),
+                    text(3, fact(r.approvedBy()), StyleKind.DATA)));
         }
         rows.add(tableHeader(Label.M_TERM, Label.M_RESOLUTION, Label.M_TARGET));
         for (Methodology.Term t : m.terms()) {
-            rows.add(LayoutRow.of(text(0, orElse(t.text(), ""), StyleKind.VALUE),
-                    text(1, orElse(t.resolution(), ""), StyleKind.VALUE),
-                    text(2, orElse(t.target(), ""), StyleKind.VALUE)));
+            rows.add(LayoutRow.of(text(0, orElse(t.text(), ""), StyleKind.DATA),
+                    text(1, orElse(t.resolution(), ""), StyleKind.DATA),
+                    text(2, orElse(t.target(), ""), StyleKind.DATA)));
         }
         rows.add(tableHeader(Label.M_DATASET, Label.M_COLUMN, Label.M_DEFINITION, Label.M_REVISION));
         for (Methodology.DefinitionUse u : m.definitions()) {
-            List<LayoutCell> cells = new ArrayList<>(List.of(text(0, u.datasetId(), StyleKind.VALUE),
-                    text(1, outputLabel(u.datasetId(), u.output()), StyleKind.VALUE),
-                    text(2, u.definition().kind() + " " + u.definition().key(), StyleKind.VALUE)));
+            List<LayoutCell> cells = new ArrayList<>(List.of(text(0, u.datasetId(), StyleKind.DATA),
+                    text(1, outputLabel(u.datasetId(), u.output()), StyleKind.DATA),
+                    text(2, u.definition().kind() + " " + u.definition().key(), StyleKind.DATA)));
             if (u.definition().revision() != null) {
-                cells.add(integer(3, u.definition().revision()));
+                cells.add(integer(3, u.definition().revision(), StyleKind.DATA));
             }
             rows.add(new LayoutRow(cells));
         }
@@ -287,11 +295,11 @@ public final class LayoutBuilder {
         pair(rows, Label.M_NULLS, Label.M_NULLS_RULE.in(lang));
         rows.add(tableHeader(Label.M_DATASET, Label.M_COLUMN, Label.M_ORDER, Label.M_COLLATION));
         for (Methodology.OrderRule o : m.orderRules()) {
-            List<LayoutCell> cells = new ArrayList<>(List.of(text(0, o.datasetId(), StyleKind.VALUE),
-                    text(1, outputLabel(o.datasetId(), o.output()), StyleKind.VALUE),
-                    text(2, o.direction() + (o.nulls() == null ? "" : ", NULLS " + o.nulls()), StyleKind.VALUE)));
+            List<LayoutCell> cells = new ArrayList<>(List.of(text(0, o.datasetId(), StyleKind.DATA),
+                    text(1, outputLabel(o.datasetId(), o.output()), StyleKind.DATA),
+                    text(2, o.direction() + (o.nulls() == null ? "" : ", NULLS " + o.nulls()), StyleKind.DATA)));
             if (o.collation() != null) {
-                cells.add(text(3, o.collation(), StyleKind.VALUE));
+                cells.add(text(3, o.collation(), StyleKind.DATA));
             }
             rows.add(new LayoutRow(cells));
         }
@@ -368,6 +376,11 @@ public final class LayoutBuilder {
         rows.add(LayoutRow.of(label(0, label), text(1, value, StyleKind.VALUE)));
     }
 
+    /** A field of the report header: its label and its value, which never widens a column (EX-19). */
+    private void field(RowStream rows, Label label, String value) {
+        rows.add(LayoutRow.of(label(0, label), text(1, value, StyleKind.HEADER_VALUE)));
+    }
+
     private LayoutRow tableHeader(Label... labels) {
         List<LayoutCell> cells = new ArrayList<>();
         for (int j = 0; j < labels.length; j++) {
@@ -393,6 +406,11 @@ public final class LayoutBuilder {
     }
 
     private static LayoutCell integer(int column, long value) {
-        return new LayoutCell(column, new CellValue.Number(value, ValueFormat.INTEGER_FORMAT), StyleKind.VALUE);
+        return integer(column, value, StyleKind.VALUE);
+    }
+
+    private static LayoutCell integer(int column, long value, StyleKind style) {
+        return new LayoutCell(column, new CellValue.Number(value, ValueFormat.INTEGER_FORMAT), style,
+                ValueKind.INTEGER);
     }
 }

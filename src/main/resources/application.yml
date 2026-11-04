@@ -92,6 +92,18 @@ nexora:
       purge-interval: ${REPORTS_PURGE_INTERVAL:PT15M}
       sweep-interval: ${REPORTS_SWEEP_INTERVAL:PT1H}
       reports-version: "@project.version@"
+    # EX-19 (D-XL-3): global presentation theme of the Excel reports. Empty = the Nexora theme (shown). Colours are
+    # RRGGBB; font-name one of Calibri, Arial, Aptos; font-size 9..14; header text on primary and black text on accent
+    # and band need a contrast of at least 4.5:1. An invalid value stops Reports from starting. It changes only how
+    # reports look (never cells, values or number formats).
+    presentation:
+      primary-color: ${REPORTS_PRESENTATION_PRIMARY_COLOR:1F3864}
+      header-text-color: ${REPORTS_PRESENTATION_HEADER_TEXT_COLOR:FFFFFF}
+      accent-color: ${REPORTS_PRESENTATION_ACCENT_COLOR:D9E1F2}
+      band-color: ${REPORTS_PRESENTATION_BAND_COLOR:F2F2F2}
+      font-name: ${REPORTS_PRESENTATION_FONT_NAME:Calibri}
+      font-size: ${REPORTS_PRESENTATION_FONT_SIZE:11}
+      banding: ${REPORTS_PRESENTATION_BANDING:false}
 
 management:
   endpoints:

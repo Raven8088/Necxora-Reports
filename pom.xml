@@ -149,4 +149,44 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <!-- EX-TLS-1 (factor F1): the ONLY way to build Reports with the capability to accept a temporary transport
+             exception (sslmode=disable for one authorized source). It adds META-INF/nexora/insecure-transport.properties
+             with the instant of the build; a build without this profile (every normal and production build) has no
+             such resource and refuses any transport exception at startup. Never use it for production images. -->
+        <profile>
+            <id>dev-insecure-transport</id>
+            <properties>
+                <maven.build.timestamp.format>yyyy-MM-dd'T'HH:mm:ss'Z'</maven.build.timestamp.format>
+                <nexora.insecure-transport.built-at>${maven.build.timestamp}</nexora.insecure-transport.built-at>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-resources-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>ex-tls-1-capability</id>
+                                <phase>process-resources</phase>
+                                <goals>
+                                    <goal>copy-resources</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>${project.build.outputDirectory}/META-INF/nexora</outputDirectory>
+                                    <resources>
+                                        <resource>
+                                            <directory>src/insecure-transport/resources</directory>
+                                            <filtering>true</filtering>
+                                        </resource>
+                                    </resources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

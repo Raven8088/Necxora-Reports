@@ -26,7 +26,11 @@ public class TenancyException extends RuntimeException {
         /** There are no read-only credentials for (tenant, data source). */
         NO_CREDENTIALS,
         /** The connection does not use TLS with {@code verify-full}. */
-        TLS_REQUIRED
+        TLS_REQUIRED,
+        /** EX-TLS-1: the transport exception of the source has expired. */
+        TRANSPORT_EXCEPTION_EXPIRED,
+        /** EX-TLS-1: the transport of the configured source is not the one the version was captured with. */
+        TRANSPORT_EXCEPTION_MISMATCH
     }
 
     private final Reason reason;

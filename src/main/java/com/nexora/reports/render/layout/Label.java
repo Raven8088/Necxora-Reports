@@ -39,6 +39,7 @@ public enum Label {
     NO("No", "No", "Non"),
     TOTAL("Total general", "Grand total", "Total général"),
     SEE_SHEET("Ver la hoja «{0}» ({1} filas).", "See sheet «{0}» ({1} rows).", "Voir la feuille «{0}» ({1} lignes)."),
+    PAGE_FOOTER("Página {0} de {1}", "Page {0} of {1}", "Page {0} sur {1}"),
     UNAVAILABLE("No disponible: {0}", "Not available: {0}", "Non disponible : {0}"),
     OP_EQ("es igual a", "equals", "est égal à"),
     OP_NE("es distinto de", "is not", "est différent de"),

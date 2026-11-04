@@ -207,6 +207,37 @@ class ReportRunDocumentsTest {
         assertThat(DOCUMENTS.runVerdict(doc)).isEqualTo("SCHEMA");
     }
 
+    @Test
+    void aRunUnderATransportExceptionCarriesARunLevelWarningAndStaysAValidDocument() {
+        // EX-TLS-1: the warning has no dataset; the document still validates against nexora-report-run/1.
+        RunOutcome outcome = new RunOutcome(RunOutcomeKind.COMPLETED, FP, SPEC_FP, null, null, "1:1:",
+                datasets(false), List.of()).withWarning(ResultWarning.transportNotVerified());
+
+        Map<String, Object> doc = DOCUMENTS.reportRun(view(outcome, true)).orElseThrow();
+
+        assertThat(DOCUMENTS.runVerdict(doc)).isEqualTo("OK");
+        assertThat(doc.get("status")).isEqualTo("COMPLETED");
+        Map<?, ?> warning = m(l(doc.get("warnings")).getFirst());
+        assertThat(warning.get("code")).isEqualTo("transport_not_verified");
+        assertThat(warning.containsKey("datasetId")).isFalse();
+        assertThat((String) warning.get("message")).contains("no estaba cifrada", "EX-TLS-1");
+    }
+
+    @Test
+    void theTransportWarningIsRunLevelOnlyAndOtherWarningsStillNeedTheirDataset() {
+        assertThatThrownBy(() -> new ResultWarning(ResultWarning.TRANSPORT_NOT_VERIFIED, "detalle", null, 0, 0))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new ResultWarning(ResultWarning.DATASET_TRUNCATED, null, null, 3, 3))
+                .isInstanceOf(NullPointerException.class);
+        RunOutcome partial = new RunOutcome(RunOutcomeKind.PARTIAL, FP, SPEC_FP, null, null, "1:1:", datasets(true),
+                List.of(new ResultWarning(ResultWarning.DATASET_TRUNCATED, "detalle", null, 3, 3)))
+                .withWarning(ResultWarning.transportNotVerified());
+        assertThat(partial.kind()).isEqualTo(RunOutcomeKind.PARTIAL);
+        assertThat(partial.warnings()).extracting(ResultWarning::code)
+                .containsExactly("dataset_truncated", "transport_not_verified");
+        assertThat(DOCUMENTS.runVerdict(DOCUMENTS.reportRun(view(partial, true)).orElseThrow())).isEqualTo("OK");
+    }
+
     private static String sha256(byte[] bytes) throws Exception {
         return HexFormat.of().formatHex(MessageDigest.getInstance("SHA-256").digest(bytes));
     }

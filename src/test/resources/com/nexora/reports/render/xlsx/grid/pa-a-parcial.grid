@@ -1,0 +1,216 @@
+== sheet 0 "Reporte"
+freeze none
+filter none
+merged 0
+lastRow 33
+A1	STRING	"Reporte de pozos registrados"	"General"	-
+A3	STRING	"Título"	"General"	-
+B3	STRING	"Reporte de pozos registrados"	"General"	-
+A4	STRING	"Solicitud"	"General"	-
+B4	STRING	"Genera un reporte de los pozos registrados: un resumen por país y campo con cuántos pozos hay en cada uno y el total general, y el listado de pozos con nombre, campo, país, estado o región y estatus, ordenado por país y nombre."	"General"	-
+A5	STRING	"Fuente"	"General"	-
+B5	STRING	"Banco sintético (7a3f0000-0000-4000-8000-000000000002)"	"General"	-
+A6	STRING	"Tenant"	"General"	-
+B6	STRING	"7a3f0000-0000-4000-8000-000000000001 (No disponible: Reports no conoce el nombre del tenant)"	"General"	-
+A7	STRING	"Generado"	"General"	-
+B7	STRING	"2026-11-01 12:00:03 (America/Mexico_City)"	"General"	-
+A8	STRING	"Filtros"	"General"	-
+B8	STRING	"Sin filtros"	"General"	-
+A9	STRING	"Periodo"	"General"	-
+B9	STRING	"No aplica"	"General"	-
+A10	STRING	"Versión de Nexora"	"General"	-
+B10	STRING	"0.1.0-SNAPSHOT"	"General"	-
+A11	STRING	"Estado"	"General"	-
+B11	STRING	"Parcial"	"General"	-
+A12	STRING	"Aviso"	"General"	-
+B12	STRING	"«Listado de pozos» entregó 3 filas, el límite; la fuente tiene más filas."	"General"	-
+A14	STRING	"Pozos registrados"	"General"	-
+A16	STRING	"Pozos por país y campo"	"General"	-
+A17	STRING	"País"	"General"	-
+B17	STRING	"Campo"	"General"	-
+C17	STRING	"Pozos"	"General"	-
+A18	STRING	"Argentina"	"General"	-
+B18	STRING	"Neuquén"	"General"	-
+C18	NUMERIC	1.0	"#,##0"	-
+A19	STRING	"Colombia"	"General"	-
+B19	STRING	"Llanos"	"General"	-
+C19	NUMERIC	4.0	"#,##0"	-
+A20	STRING	"Colombia"	"General"	-
+B20	STRING	"Valle Medio"	"General"	-
+C20	NUMERIC	3.0	"#,##0"	-
+A21	STRING	"Colombia"	"General"	-
+B21	STRING	"(sin valor)"	"General"	-
+C21	NUMERIC	1.0	"#,##0"	-
+A22	STRING	"Ecuador"	"General"	-
+B22	STRING	"Amazonía"	"General"	-
+C22	NUMERIC	2.0	"#,##0"	-
+A23	STRING	"Ecuador"	"General"	-
+B23	STRING	"Oriente"	"General"	-
+C23	NUMERIC	3.0	"#,##0"	-
+A24	STRING	"México"	"General"	-
+B24	STRING	"Campo Norte"	"General"	-
+C24	NUMERIC	3.0	"#,##0"	-
+A25	STRING	"México"	"General"	-
+B25	STRING	"Campo Sur"	"General"	-
+C25	NUMERIC	4.0	"#,##0"	-
+A26	STRING	"México"	"General"	-
+B26	STRING	"Litoral"	"General"	-
+C26	NUMERIC	3.0	"#,##0"	-
+A27	STRING	"México"	"General"	-
+B27	STRING	"(sin valor)"	"General"	-
+C27	NUMERIC	2.0	"#,##0"	-
+A28	STRING	"Perú"	"General"	-
+B28	STRING	"Costa"	"General"	-
+C28	NUMERIC	3.0	"#,##0"	-
+A29	STRING	"Perú"	"General"	-
+B29	STRING	"Selva Alta"	"General"	-
+C29	NUMERIC	3.0	"#,##0"	-
+A30	STRING	"(sin valor)"	"General"	-
+B30	STRING	"Campo Norte"	"General"	-
+C30	NUMERIC	1.0	"#,##0"	-
+A31	STRING	"(sin valor)"	"General"	-
+B31	STRING	"Desconocido"	"General"	-
+C31	NUMERIC	1.0	"#,##0"	-
+A32	STRING	"(sin valor)"	"General"	-
+B32	STRING	"(sin valor)"	"General"	-
+C32	NUMERIC	1.0	"#,##0"	-
+A33	STRING	"Total general"	"General"	-
+C33	NUMERIC	35.0	"#,##0"	-
+A34	STRING	"Ver la hoja «Listado de pozos» (3 filas)."	"General"	-
+== sheet 1 "Listado de pozos"
+freeze 1,0
+filter A1:E4
+merged 0
+lastRow 3
+A1	STRING	"Nombre"	"General"	-
+B1	STRING	"Campo"	"General"	-
+C1	STRING	"País"	"General"	-
+D1	STRING	"Estado o región"	"General"	-
+E1	STRING	"Estatus"	"General"	-
+A2	STRING	"Pampa-1"	"General"	-
+B2	STRING	"Neuquén"	"General"	-
+C2	STRING	"Argentina"	"General"	-
+D2	STRING	"Neuquén"	"General"	-
+E2	STRING	"activo"	"General"	-
+A3	STRING	"Guadua-1"	"General"	-
+C3	STRING	"Colombia"	"General"	-
+D3	STRING	"Boyacá"	"General"	-
+E3	STRING	"abandonado"	"General"	-
+A4	STRING	"Llano-1"	"General"	-
+B4	STRING	"Llanos"	"General"	-
+C4	STRING	"Colombia"	"General"	-
+D4	STRING	"Meta"	"General"	-
+E4	STRING	"activo"	"General"	-
+== sheet 2 "Metodología"
+freeze none
+filter none
+merged 0
+lastRow 41
+A1	STRING	"Ejecución"	"General"	-
+A2	STRING	"Huella de la especificación"	"General"	-
+B2	STRING	"5b1ae22de609609f3f46461ba92e56e056828883aea822ef582eefd9455cf7f5"	"General"	-
+A3	STRING	"Huella del plan de reporte"	"General"	-
+B3	STRING	"9680fec7caf0041ef7f782d32c0164afe6d8fff6e3f2e340b4468f8e442af02e"	"General"	-
+A4	STRING	"Instantánea de metadatos"	"General"	-
+B4	STRING	"7a3f0000-0000-4000-8000-000000000003"	"General"	-
+A5	STRING	"Aislamiento"	"General"	-
+B5	STRING	"REPEATABLE_READ, solo lectura, 1 transacción"	"General"	-
+A6	STRING	"Instantánea de la lectura (pg_current_snapshot)"	"General"	-
+B6	STRING	"1234:1234:"	"General"	-
+A7	STRING	"Inicio"	"General"	-
+B7	STRING	"2026-11-01 12:00:00 (America/Mexico_City)"	"General"	-
+A8	STRING	"Fin"	"General"	-
+B8	STRING	"2026-11-01 12:00:02 (America/Mexico_City)"	"General"	-
+A9	STRING	"Duración de la lectura (ms)"	"General"	-
+B9	NUMERIC	40.0	"#,##0"	-
+A11	STRING	"Conjunto de datos"	"General"	-
+B11	STRING	"Filas"	"General"	-
+C11	STRING	"Truncado"	"General"	-
+D11	STRING	"Límite"	"General"	-
+A12	STRING	"resumen"	"General"	-
+B12	NUMERIC	15.0	"#,##0"	-
+C12	STRING	"No"	"General"	-
+D12	NUMERIC	10000.0	"#,##0"	-
+A13	STRING	"total"	"General"	-
+B13	NUMERIC	1.0	"#,##0"	-
+C13	STRING	"No"	"General"	-
+D13	NUMERIC	10000.0	"#,##0"	-
+A14	STRING	"detalle"	"General"	-
+B14	NUMERIC	3.0	"#,##0"	-
+C14	STRING	"Sí"	"General"	-
+D14	NUMERIC	3.0	"#,##0"	-
+A15	STRING	"Conjunto de datos"	"General"	-
+B15	STRING	"Huella del plan"	"General"	-
+C15	STRING	"Duración (ms)"	"General"	-
+A16	STRING	"resumen"	"General"	-
+B16	STRING	"6a3c3d394d961d8b56c68ea8f668613b70d790ec6c3bce4df5c3586b53841b27"	"General"	-
+C16	NUMERIC	10.0	"#,##0"	-
+A17	STRING	"total"	"General"	-
+B17	STRING	"124b174868f9809df7a9b1b709a5f0a776fd537fa56e3a98bc8dc9df0f2b4dcc"	"General"	-
+C17	NUMERIC	11.0	"#,##0"	-
+A18	STRING	"detalle"	"General"	-
+B18	STRING	"de2dc29cbe86200e43b6b1b157529403776bc4e24bbc3aa7ef77dfe97e350b6d"	"General"	-
+C18	NUMERIC	12.0	"#,##0"	-
+A20	STRING	"Origen"	"General"	-
+A21	STRING	"Objeto"	"General"	-
+B21	STRING	"Tipo"	"General"	-
+A22	STRING	"wellnode_sintetico.wm_well"	"General"	-
+B22	STRING	"TABLE"	"General"	-
+A23	STRING	"Relación"	"General"	-
+B23	STRING	"Origen"	"General"	-
+C23	STRING	"Estado"	"General"	-
+D23	STRING	"Aprobada por"	"General"	-
+A24	STRING	"Término"	"General"	-
+B24	STRING	"Resolución"	"General"	-
+C24	STRING	"Destino"	"General"	-
+A25	STRING	"pozos registrados"	"General"	-
+B25	STRING	"INFERRED"	"General"	-
+C25	STRING	"wellnode_sintetico.wm_well (una fila por pozo)"	"General"	-
+A26	STRING	"país"	"General"	-
+B26	STRING	"INFERRED"	"General"	-
+C26	STRING	"wm_well.country"	"General"	-
+A27	STRING	"campo"	"General"	-
+B27	STRING	"INFERRED"	"General"	-
+C27	STRING	"wm_well.field"	"General"	-
+A28	STRING	"estado o región"	"General"	-
+B28	STRING	"INFERRED"	"General"	-
+C28	STRING	"wm_well.state"	"General"	-
+A29	STRING	"estatus"	"General"	-
+B29	STRING	"INFERRED"	"General"	-
+C29	STRING	"wm_well.statuswell"	"General"	-
+A30	STRING	"Conjunto de datos"	"General"	-
+B30	STRING	"Columna"	"General"	-
+C30	STRING	"Definición"	"General"	-
+D30	STRING	"Revisión"	"General"	-
+A32	STRING	"Reglas"	"General"	-
+A33	STRING	"Nulos"	"General"	-
+B33	STRING	"Una clave de grupo nula aparece como «(sin valor)»; un valor nulo de detalle o de medida queda vacío, nunca 0."	"General"	-
+A34	STRING	"Conjunto de datos"	"General"	-
+B34	STRING	"Columna"	"General"	-
+C34	STRING	"Orden"	"General"	-
+D34	STRING	"Intercalación"	"General"	-
+A35	STRING	"resumen"	"General"	-
+B35	STRING	"País"	"General"	-
+C35	STRING	"ASC, NULLS LAST"	"General"	-
+D35	STRING	"C"	"General"	-
+A36	STRING	"resumen"	"General"	-
+B36	STRING	"Campo"	"General"	-
+C36	STRING	"ASC, NULLS LAST"	"General"	-
+D36	STRING	"C"	"General"	-
+A37	STRING	"detalle"	"General"	-
+B37	STRING	"País"	"General"	-
+C37	STRING	"ASC, NULLS LAST"	"General"	-
+D37	STRING	"C"	"General"	-
+A38	STRING	"detalle"	"General"	-
+B38	STRING	"Nombre"	"General"	-
+C38	STRING	"ASC, NULLS LAST"	"General"	-
+D38	STRING	"C"	"General"	-
+A39	STRING	"detalle"	"General"	-
+B39	STRING	"dbid"	"General"	-
+C39	STRING	"ASC, NULLS LAST"	"General"	-
+A40	STRING	"Columnas excluidas"	"General"	-
+B40	STRING	"No disponible: las columnas excluidas no se proporcionaron"	"General"	-
+A41	STRING	"Modelo"	"General"	-
+B41	STRING	"No disponible: la especificación no registra el modelo"	"General"	-
+A42	STRING	"Unidades"	"General"	-
+B42	STRING	"No disponible: los contratos no transportan unidades"	"General"	-

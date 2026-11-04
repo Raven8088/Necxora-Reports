@@ -122,7 +122,9 @@ public final class ReportRunDocuments {
             Map<String, Object> warning = new LinkedHashMap<>();
             warning.put("code", w.code());
             warning.put("message", warningMessage(w));
-            warning.put("datasetId", w.datasetId());
+            if (w.datasetId() != null) {
+                warning.put("datasetId", w.datasetId());
+            }
             warnings.add(warning);
         }
         doc.put("warnings", warnings);
@@ -214,6 +216,9 @@ public final class ReportRunDocuments {
                     + w.limit() + "; se entregan las primeras " + w.delivered() + " en el orden indicado.";
             case ResultWarning.CELL_TEXT_TRUNCATED -> "Se recortaron " + w.delivered() + " textos del dataset "
                     + w.datasetId() + " que superaban " + w.limit() + " caracteres.";
+            case ResultWarning.TRANSPORT_NOT_VERIFIED -> "La ejecución se hizo con una excepción temporal de"
+                    + " transporte (EX-TLS-1): la conexión con la fuente no estaba cifrada y la identidad del"
+                    + " servidor no se verificó.";
             default -> "Aviso " + w.code() + " en el dataset " + w.datasetId() + ".";
         };
     }

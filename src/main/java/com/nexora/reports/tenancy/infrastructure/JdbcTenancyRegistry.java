@@ -1,5 +1,6 @@
 package com.nexora.reports.tenancy.infrastructure;
 
+import com.nexora.reports.credentials.domain.TransportException;
 import com.nexora.reports.tenancy.application.port.TenancyRegistry;
 import com.nexora.reports.tenancy.domain.DatabaseIdentity;
 import com.nexora.reports.tenancy.domain.TenancyDecision;
@@ -21,7 +22,8 @@ import java.util.Optional;
 import java.util.UUID;
 
 /**
- * Tenancy registry in Reports' own database (migration V2): {@code tenancy_registration} holds immutable versions
+ * Tenancy registry in Reports' own database (migration V2; transport exception columns V5/V6):
+ * {@code tenancy_registration} holds immutable versions
  * and {@code tenancy_decision} the approvals and revocations. Both are append-only (triggers) and every read is
  * scoped by tenant. The database also refuses {@code SHARED_ROWS} and an approval by the registrant.
  */
@@ -29,7 +31,7 @@ public class JdbcTenancyRegistry implements TenancyRegistry {
 
     private static final String REGISTRATION_COLUMNS = "id, tenant_id, data_source_id, version, model, host, port,"
             + " database_name, database_oid, system_identifier, role_name, schemas, registered_by, registered_at,"
-            + " fingerprint";
+            + " fingerprint, transport_exception_id, transport_exception_expires_at, transport_exception_binding";
 
     private final DataSource dataSource;
 
@@ -75,7 +77,7 @@ public class JdbcTenancyRegistry implements TenancyRegistry {
     public void insert(TenancyRegistration r) {
         try (Connection c = dataSource.getConnection(); PreparedStatement ps = c.prepareStatement(
                 "INSERT INTO tenancy_registration (" + REGISTRATION_COLUMNS + ")"
-                        + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
+                        + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
             DatabaseIdentity identity = r.identity();
             ps.setObject(1, r.id());
             ps.setObject(2, r.tenantId());
@@ -92,6 +94,10 @@ public class JdbcTenancyRegistry implements TenancyRegistry {
             ps.setString(13, r.registeredBy());
             ps.setTimestamp(14, Timestamp.from(r.registeredAt()));
             ps.setString(15, r.fingerprint());
+            TransportException t = r.transportException();
+            ps.setString(16, t == null ? null : t.id());
+            ps.setTimestamp(17, t == null ? null : Timestamp.from(t.expiresAt()));
+            ps.setString(18, t == null ? null : t.binding());
             ps.executeUpdate();
         } catch (SQLException e) {
             throw failure(e);
@@ -127,12 +133,33 @@ public class JdbcTenancyRegistry implements TenancyRegistry {
                             TenancyModel.valueOf(rs.getString(5)), new DatabaseIdentity(rs.getString(6),
                             rs.getInt(7), rs.getString(8), rs.getLong(9), rs.getString(10), rs.getString(11)),
                             Arrays.stream((Object[]) schemas.getArray()).map(String.class::cast).toList(),
-                            rs.getString(13), rs.getTimestamp(14).toInstant(), rs.getString(15)));
+                            rs.getString(13), rs.getTimestamp(14).toInstant(), rs.getString(15),
+                            transportException(rs.getString(16), rs.getTimestamp(17), rs.getString(18))));
                 }
             }
             return registrations;
         } catch (SQLException e) {
             throw failure(e);
+        }
+    }
+
+    /**
+     * EX-TLS-1: the three transport exception columns of a stored version, read defensively. None set: the version was
+     * captured with verify-full. All set and well-formed: the exception. Anything else is a corrupt row (the database
+     * constraint of V6 should make it impossible) and is refused instead of being read as "no exception"; the message
+     * carries no stored value.
+     */
+    static TransportException transportException(String id, Timestamp expiresAt, String binding) {
+        if (id == null && expiresAt == null && binding == null) {
+            return null;
+        }
+        if (id == null || expiresAt == null || binding == null) {
+            throw new IllegalStateException("corrupt tenancy registration: partial transport exception");
+        }
+        try {
+            return new TransportException(id, expiresAt.toInstant(), binding);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalStateException("corrupt tenancy registration: malformed transport exception");
         }
     }
 

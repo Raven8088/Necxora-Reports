@@ -30,6 +30,7 @@ import java.util.concurrent.TimeUnit;
  *   <li>the file is written to a temporary file of its own, digested while written (EX-17), and copied to the
  *       caller's stream only when complete; the temporary file is deleted in every case (precision 8).</li>
  * </ul>
+ * Every report is presented with one {@link PresentationTheme} (EX-19, D-XL-3: global; the Nexora theme by default).
  */
 public final class XlsxRenderer implements ReportRenderer {
 
@@ -37,6 +38,7 @@ public final class XlsxRenderer implements ReportRenderer {
 
     private final Semaphore permits;
     private final Path temporaryDirectory;
+    private final PresentationTheme theme;
 
     public XlsxRenderer() {
         this(DEFAULT_MAX_CONCURRENT, null);
@@ -44,11 +46,21 @@ public final class XlsxRenderer implements ReportRenderer {
 
     /** @param temporaryDirectory where the file is written before it is delivered; {@code null}: the system's. */
     public XlsxRenderer(int maxConcurrent, Path temporaryDirectory) {
+        this(maxConcurrent, temporaryDirectory, PresentationTheme.DEFAULT);
+    }
+
+    /** @param theme the presentation of every report (EX-19) */
+    public XlsxRenderer(int maxConcurrent, Path temporaryDirectory, PresentationTheme theme) {
         if (maxConcurrent < 1) {
             throw new IllegalArgumentException("maxConcurrent must be positive");
         }
         this.permits = new Semaphore(maxConcurrent, true);
         this.temporaryDirectory = temporaryDirectory;
+        this.theme = Objects.requireNonNull(theme, "theme");
+    }
+
+    public PresentationTheme theme() {
+        return theme;
     }
 
     @Override
@@ -97,7 +109,7 @@ public final class XlsxRenderer implements ReportRenderer {
             try (LimitedDigestOutputStream s = new LimitedDigestOutputStream(Files.newOutputStream(file),
                     limits.maxFileBytes())) {
                 counted = s;
-                written = XlsxWriter.write(layout, result.header().generatedAt(), limits.rowWindow(), s);
+                written = XlsxWriter.write(layout, result.header().generatedAt(), limits.rowWindow(), theme, s);
             }
             if (written != cells) {
                 throw new PresentationException(PresentationException.Code.RENDER_FAILED,

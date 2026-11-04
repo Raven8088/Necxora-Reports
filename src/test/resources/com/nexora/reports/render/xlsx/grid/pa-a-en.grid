@@ -1,0 +1,361 @@
+== sheet 0 "Reporte"
+freeze none
+filter none
+merged 0
+lastRow 32
+A1	STRING	"Reporte de pozos registrados"	"General"	-
+A3	STRING	"Title"	"General"	-
+B3	STRING	"Reporte de pozos registrados"	"General"	-
+A4	STRING	"Request"	"General"	-
+B4	STRING	"Genera un reporte de los pozos registrados: un resumen por país y campo con cuántos pozos hay en cada uno y el total general, y el listado de pozos con nombre, campo, país, estado o región y estatus, ordenado por país y nombre."	"General"	-
+A5	STRING	"Source"	"General"	-
+B5	STRING	"Banco sintético (7a3f0000-0000-4000-8000-000000000002)"	"General"	-
+A6	STRING	"Tenant"	"General"	-
+B6	STRING	"7a3f0000-0000-4000-8000-000000000001 (Not available: Reports does not know the tenant's name)"	"General"	-
+A7	STRING	"Generated"	"General"	-
+B7	STRING	"2026-11-01 12:00:03 (America/Mexico_City)"	"General"	-
+A8	STRING	"Filters"	"General"	-
+B8	STRING	"No filters"	"General"	-
+A9	STRING	"Period"	"General"	-
+B9	STRING	"Not applicable"	"General"	-
+A10	STRING	"Nexora version"	"General"	-
+B10	STRING	"0.1.0-SNAPSHOT"	"General"	-
+A11	STRING	"Status"	"General"	-
+B11	STRING	"Complete"	"General"	-
+A13	STRING	"Pozos registrados"	"General"	-
+A15	STRING	"Pozos por país y campo"	"General"	-
+A16	STRING	"País"	"General"	-
+B16	STRING	"Campo"	"General"	-
+C16	STRING	"Pozos"	"General"	-
+A17	STRING	"Argentina"	"General"	-
+B17	STRING	"Neuquén"	"General"	-
+C17	NUMERIC	1.0	"#,##0"	-
+A18	STRING	"Colombia"	"General"	-
+B18	STRING	"Llanos"	"General"	-
+C18	NUMERIC	4.0	"#,##0"	-
+A19	STRING	"Colombia"	"General"	-
+B19	STRING	"Valle Medio"	"General"	-
+C19	NUMERIC	3.0	"#,##0"	-
+A20	STRING	"Colombia"	"General"	-
+B20	STRING	"(no value)"	"General"	-
+C20	NUMERIC	1.0	"#,##0"	-
+A21	STRING	"Ecuador"	"General"	-
+B21	STRING	"Amazonía"	"General"	-
+C21	NUMERIC	2.0	"#,##0"	-
+A22	STRING	"Ecuador"	"General"	-
+B22	STRING	"Oriente"	"General"	-
+C22	NUMERIC	3.0	"#,##0"	-
+A23	STRING	"México"	"General"	-
+B23	STRING	"Campo Norte"	"General"	-
+C23	NUMERIC	3.0	"#,##0"	-
+A24	STRING	"México"	"General"	-
+B24	STRING	"Campo Sur"	"General"	-
+C24	NUMERIC	4.0	"#,##0"	-
+A25	STRING	"México"	"General"	-
+B25	STRING	"Litoral"	"General"	-
+C25	NUMERIC	3.0	"#,##0"	-
+A26	STRING	"México"	"General"	-
+B26	STRING	"(no value)"	"General"	-
+C26	NUMERIC	2.0	"#,##0"	-
+A27	STRING	"Perú"	"General"	-
+B27	STRING	"Costa"	"General"	-
+C27	NUMERIC	3.0	"#,##0"	-
+A28	STRING	"Perú"	"General"	-
+B28	STRING	"Selva Alta"	"General"	-
+C28	NUMERIC	3.0	"#,##0"	-
+A29	STRING	"(no value)"	"General"	-
+B29	STRING	"Campo Norte"	"General"	-
+C29	NUMERIC	1.0	"#,##0"	-
+A30	STRING	"(no value)"	"General"	-
+B30	STRING	"Desconocido"	"General"	-
+C30	NUMERIC	1.0	"#,##0"	-
+A31	STRING	"(no value)"	"General"	-
+B31	STRING	"(no value)"	"General"	-
+C31	NUMERIC	1.0	"#,##0"	-
+A32	STRING	"Grand total"	"General"	-
+C32	NUMERIC	35.0	"#,##0"	-
+A33	STRING	"See sheet «Listado de pozos» (35 rows)."	"General"	-
+== sheet 1 "Listado de pozos"
+freeze 1,0
+filter A1:E36
+merged 0
+lastRow 35
+A1	STRING	"Nombre"	"General"	-
+B1	STRING	"Campo"	"General"	-
+C1	STRING	"País"	"General"	-
+D1	STRING	"Estado o región"	"General"	-
+E1	STRING	"Estatus"	"General"	-
+A2	STRING	"Pampa-1"	"General"	-
+B2	STRING	"Neuquén"	"General"	-
+C2	STRING	"Argentina"	"General"	-
+D2	STRING	"Neuquén"	"General"	-
+E2	STRING	"activo"	"General"	-
+A3	STRING	"Guadua-1"	"General"	-
+C3	STRING	"Colombia"	"General"	-
+D3	STRING	"Boyacá"	"General"	-
+E3	STRING	"abandonado"	"General"	-
+A4	STRING	"Llano-1"	"General"	-
+B4	STRING	"Llanos"	"General"	-
+C4	STRING	"Colombia"	"General"	-
+D4	STRING	"Meta"	"General"	-
+E4	STRING	"activo"	"General"	-
+A5	STRING	"Llano-10"	"General"	-
+B5	STRING	"Llanos"	"General"	-
+C5	STRING	"Colombia"	"General"	-
+D5	STRING	"Casanare"	"General"	-
+E5	STRING	"activo"	"General"	-
+A6	STRING	"Llano-2"	"General"	-
+B6	STRING	"Llanos"	"General"	-
+C6	STRING	"Colombia"	"General"	-
+D6	STRING	"Meta"	"General"	-
+E6	STRING	"activo"	"General"	-
+A7	STRING	"Llano-3"	"General"	-
+B7	STRING	"Llanos"	"General"	-
+C7	STRING	"Colombia"	"General"	-
+D7	STRING	"Meta"	"General"	-
+E7	STRING	"suspendido"	"General"	-
+A8	STRING	"Magdalena-1"	"General"	-
+B8	STRING	"Valle Medio"	"General"	-
+C8	STRING	"Colombia"	"General"	-
+D8	STRING	"Santander"	"General"	-
+E8	STRING	"perforando"	"General"	-
+A9	STRING	"Magdalena-2"	"General"	-
+B9	STRING	"Valle Medio"	"General"	-
+C9	STRING	"Colombia"	"General"	-
+D9	STRING	"Santander"	"General"	-
+E9	STRING	"activo"	"General"	-
+A10	STRING	"guadua-2"	"General"	-
+B10	STRING	"Valle Medio"	"General"	-
+C10	STRING	"Colombia"	"General"	-
+D10	STRING	"Boyacá"	"General"	-
+E10	STRING	"activo"	"General"	-
+A11	STRING	"Cuyabeno-1"	"General"	-
+B11	STRING	"Amazonía"	"General"	-
+C11	STRING	"Ecuador"	"General"	-
+D11	STRING	"Sucumbíos"	"General"	-
+E11	STRING	"suspendido"	"General"	-
+A12	STRING	"Cuyabeno-2"	"General"	-
+B12	STRING	"Amazonía"	"General"	-
+C12	STRING	"Ecuador"	"General"	-
+D12	STRING	"Sucumbíos"	"General"	-
+E12	STRING	"activo"	"General"	-
+A13	STRING	"Oriente-1"	"General"	-
+B13	STRING	"Oriente"	"General"	-
+C13	STRING	"Ecuador"	"General"	-
+D13	STRING	"Orellana"	"General"	-
+E13	STRING	"activo"	"General"	-
+A14	STRING	"Oriente-2"	"General"	-
+B14	STRING	"Oriente"	"General"	-
+C14	STRING	"Ecuador"	"General"	-
+D14	STRING	"Orellana"	"General"	-
+E14	STRING	"activo"	"General"	-
+A15	STRING	"Oriente-3"	"General"	-
+B15	STRING	"Oriente"	"General"	-
+C15	STRING	"Ecuador"	"General"	-
+D15	STRING	"Sucumbíos"	"General"	-
+E15	STRING	"perforando"	"General"	-
+A16	STRING	"=Cuenca-9"	"General"	quote
+B16	STRING	"Litoral"	"General"	-
+C16	STRING	"México"	"General"	-
+D16	STRING	"Campeche"	"General"	-
+E16	STRING	"activo"	"General"	-
+A17	STRING	"Ceiba-7"	"General"	-
+B17	STRING	"Campo Sur"	"General"	-
+C17	STRING	"México"	"General"	-
+D17	STRING	"Veracruz"	"General"	-
+E17	STRING	"activo"	"General"	-
+A18	STRING	"Mangle-4"	"General"	-
+B18	STRING	"Litoral"	"General"	-
+C18	STRING	"México"	"General"	-
+D18	STRING	"Campeche"	"General"	-
+E18	STRING	"perforando"	"General"	-
+A19	STRING	"Mangle-5"	"General"	-
+B19	STRING	"Litoral"	"General"	-
+C19	STRING	"México"	"General"	-
+D19	STRING	"Campeche"	"General"	-
+A20	STRING	"Pitayo-1"	"General"	-
+B20	STRING	"Campo Norte"	"General"	-
+C20	STRING	"México"	"General"	-
+D20	STRING	"Tabasco"	"General"	-
+E20	STRING	"activo"	"General"	-
+A21	STRING	"Pitayo-1"	"General"	-
+B21	STRING	"Campo Sur"	"General"	-
+C21	STRING	"México"	"General"	-
+D21	STRING	"Veracruz"	"General"	-
+E21	STRING	"suspendido"	"General"	-
+A22	STRING	"Tamarindo-1"	"General"	-
+B22	STRING	"Campo Norte"	"General"	-
+C22	STRING	"México"	"General"	-
+D22	STRING	"Tabasco"	"General"	-
+E22	STRING	"activo"	"General"	-
+A23	STRING	"Tamarindo-2"	"General"	-
+B23	STRING	"Campo Norte"	"General"	-
+C23	STRING	"México"	"General"	-
+D23	STRING	"Tabasco"	"General"	-
+E23	STRING	"perforando"	"General"	-
+A24	STRING	"Zapote-1"	"General"	-
+C24	STRING	"México"	"General"	-
+D24	STRING	"Tabasco"	"General"	-
+E24	STRING	"activo"	"General"	-
+A25	STRING	"alfa-3"	"General"	-
+B25	STRING	"Campo Sur"	"General"	-
+C25	STRING	"México"	"General"	-
+E25	STRING	"activo"	"General"	-
+A26	STRING	"Álamo-1"	"General"	-
+C26	STRING	"México"	"General"	-
+D26	STRING	"Tabasco"	"General"	-
+E26	STRING	"suspendido"	"General"	-
+A27	STRING	"Ébano-2"	"General"	-
+B27	STRING	"Campo Sur"	"General"	-
+C27	STRING	"México"	"General"	-
+D27	STRING	"Veracruz"	"General"	-
+E27	STRING	"abandonado"	"General"	-
+A28	STRING	"Ceibo-1"	"General"	-
+B28	STRING	"Selva Alta"	"General"	-
+C28	STRING	"Perú"	"General"	-
+D28	STRING	"Loreto"	"General"	-
+E28	STRING	"activo"	"General"	-
+A29	STRING	"Ceibo-2"	"General"	-
+B29	STRING	"Selva Alta"	"General"	-
+C29	STRING	"Perú"	"General"	-
+D29	STRING	"Loreto"	"General"	-
+E29	STRING	"activo"	"General"	-
+A30	STRING	"Ceibo-3"	"General"	-
+B30	STRING	"Selva Alta"	"General"	-
+C30	STRING	"Perú"	"General"	-
+D30	STRING	"Loreto"	"General"	-
+E30	STRING	"perforando"	"General"	-
+A31	STRING	"Quinua-1"	"General"	-
+B31	STRING	"Costa"	"General"	-
+C31	STRING	"Perú"	"General"	-
+D31	STRING	"Piura"	"General"	-
+E31	STRING	"abandonado"	"General"	-
+A32	STRING	"Quinua-2"	"General"	-
+B32	STRING	"Costa"	"General"	-
+C32	STRING	"Perú"	"General"	-
+D32	STRING	"Piura"	"General"	-
+E32	STRING	"activo"	"General"	-
+A33	STRING	"Ñandú-1"	"General"	-
+B33	STRING	"Costa"	"General"	-
+C33	STRING	"Perú"	"General"	-
+E33	STRING	"activo"	"General"	-
+A34	STRING	"Sin-Pais-1"	"General"	-
+B34	STRING	"Campo Norte"	"General"	-
+E34	STRING	"activo"	"General"	-
+A35	STRING	"Sin-Pais-2"	"General"	-
+B35	STRING	"Desconocido"	"General"	-
+A36	STRING	"Sin-Pais-3"	"General"	-
+E36	STRING	"abandonado"	"General"	-
+== sheet 2 "Metodología"
+freeze none
+filter none
+merged 0
+lastRow 41
+A1	STRING	"Execution"	"General"	-
+A2	STRING	"Specification fingerprint"	"General"	-
+B2	STRING	"9d78ee7632eaa71bfae9b0b67d6b8961176d924a9d06267e51ccb43d52a2b14b"	"General"	-
+A3	STRING	"Report plan fingerprint"	"General"	-
+B3	STRING	"5096daf943f99515f3ecc04ad35c7e8c9a86a36019ebccd57e94ad5c1899eeb6"	"General"	-
+A4	STRING	"Metadata snapshot"	"General"	-
+B4	STRING	"7a3f0000-0000-4000-8000-000000000003"	"General"	-
+A5	STRING	"Isolation"	"General"	-
+B5	STRING	"REPEATABLE_READ, read only, 1 transaction"	"General"	-
+A6	STRING	"Read snapshot (pg_current_snapshot)"	"General"	-
+B6	STRING	"1234:1234:"	"General"	-
+A7	STRING	"Started"	"General"	-
+B7	STRING	"2026-11-01 12:00:00 (America/Mexico_City)"	"General"	-
+A8	STRING	"Finished"	"General"	-
+B8	STRING	"2026-11-01 12:00:02 (America/Mexico_City)"	"General"	-
+A9	STRING	"Read duration (ms)"	"General"	-
+B9	NUMERIC	40.0	"#,##0"	-
+A11	STRING	"Dataset"	"General"	-
+B11	STRING	"Rows"	"General"	-
+C11	STRING	"Truncated"	"General"	-
+D11	STRING	"Limit"	"General"	-
+A12	STRING	"resumen"	"General"	-
+B12	NUMERIC	15.0	"#,##0"	-
+C12	STRING	"No"	"General"	-
+D12	NUMERIC	10000.0	"#,##0"	-
+A13	STRING	"total"	"General"	-
+B13	NUMERIC	1.0	"#,##0"	-
+C13	STRING	"No"	"General"	-
+D13	NUMERIC	10000.0	"#,##0"	-
+A14	STRING	"detalle"	"General"	-
+B14	NUMERIC	35.0	"#,##0"	-
+C14	STRING	"No"	"General"	-
+D14	NUMERIC	10000.0	"#,##0"	-
+A15	STRING	"Dataset"	"General"	-
+B15	STRING	"Plan fingerprint"	"General"	-
+C15	STRING	"Duration (ms)"	"General"	-
+A16	STRING	"resumen"	"General"	-
+B16	STRING	"6d792cdc863d93e1ed85594816605ad9a6813beb58214a890c58cfe4ff3d187a"	"General"	-
+C16	NUMERIC	10.0	"#,##0"	-
+A17	STRING	"total"	"General"	-
+B17	STRING	"b29d1781475ca09ebcf109c0254c6af469db12e35bb7702d773f57ed6b9e31ab"	"General"	-
+C17	NUMERIC	11.0	"#,##0"	-
+A18	STRING	"detalle"	"General"	-
+B18	STRING	"981fb563b751d14543ad8259fb98461d59f6cb0b85a08cb9970e13535ff32c01"	"General"	-
+C18	NUMERIC	12.0	"#,##0"	-
+A20	STRING	"Origin"	"General"	-
+A21	STRING	"Object"	"General"	-
+B21	STRING	"Type"	"General"	-
+A22	STRING	"wellnode_sintetico.wm_well"	"General"	-
+B22	STRING	"TABLE"	"General"	-
+A23	STRING	"Relationship"	"General"	-
+B23	STRING	"Origin"	"General"	-
+C23	STRING	"State"	"General"	-
+D23	STRING	"Approved by"	"General"	-
+A24	STRING	"Term"	"General"	-
+B24	STRING	"Resolution"	"General"	-
+C24	STRING	"Target"	"General"	-
+A25	STRING	"pozos registrados"	"General"	-
+B25	STRING	"INFERRED"	"General"	-
+C25	STRING	"wellnode_sintetico.wm_well (una fila por pozo)"	"General"	-
+A26	STRING	"país"	"General"	-
+B26	STRING	"INFERRED"	"General"	-
+C26	STRING	"wm_well.country"	"General"	-
+A27	STRING	"campo"	"General"	-
+B27	STRING	"INFERRED"	"General"	-
+C27	STRING	"wm_well.field"	"General"	-
+A28	STRING	"estado o región"	"General"	-
+B28	STRING	"INFERRED"	"General"	-
+C28	STRING	"wm_well.state"	"General"	-
+A29	STRING	"estatus"	"General"	-
+B29	STRING	"INFERRED"	"General"	-
+C29	STRING	"wm_well.statuswell"	"General"	-
+A30	STRING	"Dataset"	"General"	-
+B30	STRING	"Column"	"General"	-
+C30	STRING	"Definition"	"General"	-
+D30	STRING	"Revision"	"General"	-
+A32	STRING	"Rules"	"General"	-
+A33	STRING	"Nulls"	"General"	-
+B33	STRING	"A null group key appears as «(no value)»; a null detail or measure value is left empty, never 0."	"General"	-
+A34	STRING	"Dataset"	"General"	-
+B34	STRING	"Column"	"General"	-
+C34	STRING	"Order"	"General"	-
+D34	STRING	"Collation"	"General"	-
+A35	STRING	"resumen"	"General"	-
+B35	STRING	"País"	"General"	-
+C35	STRING	"ASC, NULLS LAST"	"General"	-
+D35	STRING	"C"	"General"	-
+A36	STRING	"resumen"	"General"	-
+B36	STRING	"Campo"	"General"	-
+C36	STRING	"ASC, NULLS LAST"	"General"	-
+D36	STRING	"C"	"General"	-
+A37	STRING	"detalle"	"General"	-
+B37	STRING	"País"	"General"	-
+C37	STRING	"ASC, NULLS LAST"	"General"	-
+D37	STRING	"C"	"General"	-
+A38	STRING	"detalle"	"General"	-
+B38	STRING	"Nombre"	"General"	-
+C38	STRING	"ASC, NULLS LAST"	"General"	-
+D38	STRING	"C"	"General"	-
+A39	STRING	"detalle"	"General"	-
+B39	STRING	"dbid"	"General"	-
+C39	STRING	"ASC, NULLS LAST"	"General"	-
+A40	STRING	"Excluded columns"	"General"	-
+B40	STRING	"Not available: the excluded columns were not provided"	"General"	-
+A41	STRING	"Model"	"General"	-
+B41	STRING	"Not available: the specification does not record the model"	"General"	-
+A42	STRING	"Units"	"General"	-
+B42	STRING	"Not available: the contracts carry no units"	"General"	-

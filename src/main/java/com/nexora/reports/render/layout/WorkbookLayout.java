@@ -4,8 +4,16 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Objects;
 
-/** Every sheet of the workbook, in order, with the counts the renderer checks before writing. */
-public record WorkbookLayout(String title, List<SheetLayout> sheets) {
+/**
+ * Every sheet of the workbook, in order, with the counts the renderer checks before writing.
+ *
+ * @param pageFooter the printed page footer in the report's language, with {@code {0}} for the page number and
+ *                   {@code {1}} for the number of pages (EX-19); it is not a cell
+ */
+public record WorkbookLayout(String title, List<SheetLayout> sheets, String pageFooter) {
+
+    /** Without a language: the footer is «{0} / {1}». */
+    public static final String NEUTRAL_PAGE_FOOTER = "{0} / {1}";
 
     /**
      * Lower bound of the compression of spreadsheet XML assumed by {@link #minimumBytes()}: a workbook can be refused
@@ -16,7 +24,12 @@ public record WorkbookLayout(String title, List<SheetLayout> sheets) {
 
     public WorkbookLayout {
         Objects.requireNonNull(title, "title");
+        Objects.requireNonNull(pageFooter, "pageFooter");
         sheets = List.copyOf(sheets);
+    }
+
+    public WorkbookLayout(String title, List<SheetLayout> sheets) {
+        this(title, sheets, NEUTRAL_PAGE_FOOTER);
     }
 
     public List<String> sheetNames() {

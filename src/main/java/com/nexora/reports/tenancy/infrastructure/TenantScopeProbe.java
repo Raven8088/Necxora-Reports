@@ -1,10 +1,12 @@
 package com.nexora.reports.tenancy.infrastructure;
 
 import com.nexora.reports.credentials.domain.DataSourceCredentials;
+import com.nexora.reports.credentials.domain.TransportException;
+import com.nexora.reports.credentials.domain.TransportPolicy;
 import com.nexora.reports.execution.application.port.CatalogReader;
 import com.nexora.reports.execution.application.port.TenantScopeVerifier;
-import com.nexora.reports.execution.domain.ExecutionException;
 import com.nexora.reports.execution.domain.ExecutionException.ErrorCode;
+import com.nexora.reports.execution.domain.ExecutionException;
 import com.nexora.reports.execution.domain.ExecutionRequestV2;
 import com.nexora.reports.plan.domain.NaturalKey.RelationName;
 import com.nexora.reports.tenancy.domain.DatabaseIdentity;
@@ -13,6 +15,7 @@ import com.nexora.reports.tenancy.domain.TenancyRegistration;
 import com.nexora.reports.tenancy.domain.TenancyStatus;
 import com.nexora.reports.translation2.domain.SqlQueryV2;
 
+import java.time.Clock;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.HashSet;
@@ -35,7 +38,10 @@ import java.util.regex.Pattern;
  *       database, user) equal to the registered ones;</li>
  *   <li>{@code sslmode=verify-full} in the credentials, so the driver has verified the server certificate and host
  *       name before the session exists, <b>and</b> {@code pg_stat_ssl} confirming that this session is encrypted.
- *       The second check is not a certificate check: it only proves encryption;</li>
+ *       The second check is not a certificate check: it only proves encryption. EX-TLS-1: the only alternative is
+ *       the transport exception of the source, valid and identical to the one the active registration was captured
+ *       with ({@link TransportPolicy}); {@code pg_stat_ssl} is then ignored. A verify-full registration never
+ *       authorizes a plaintext run, nor the reverse. Every following check is the same in both cases;</li>
  *   <li>database name and OID and the cluster's {@code system_identifier} equal to the registered ones. The system
  *       identifier identifies the cluster, not the database; together they detect another server, another database
  *       or a re-created database, but not every restore (a physical copy keeps them), which is why every change of
@@ -80,19 +86,28 @@ public final class TenantScopeProbe {
      * always refuses when there is none.
      */
     public static TenantScopeVerifier forExecution(Optional<TenancyRecord> active, ExecutionRequestV2 request) {
+        return forExecution(active, request, Clock.systemUTC());
+    }
+
+    /** The same check, with the clock that decides whether a transport exception has expired (EX-TLS-1). */
+    public static TenantScopeVerifier forExecution(Optional<TenancyRecord> active, ExecutionRequestV2 request,
+                                                   Clock clock) {
         Objects.requireNonNull(active, "active");
         Objects.requireNonNull(request, "request");
-        return new RegisteredScope(active, request);
+        Objects.requireNonNull(clock, "clock");
+        return new RegisteredScope(active, request, clock);
     }
 
     private static final class RegisteredScope implements TenantScopeVerifier {
 
         private final Optional<TenancyRecord> active;
         private final ExecutionRequestV2 request;
+        private final Clock clock;
 
-        RegisteredScope(Optional<TenancyRecord> active, ExecutionRequestV2 request) {
+        RegisteredScope(Optional<TenancyRecord> active, ExecutionRequestV2 request, Clock clock) {
             this.active = active;
             this.request = request;
+            this.clock = clock;
         }
 
         @Override
@@ -101,9 +116,7 @@ public final class TenantScopeProbe {
             DatabaseIdentity expected = registration.identity();
             TenancyCatalog catalog = new TenancyCatalog(reader);
 
-            if (!"verify-full".equals(credentials.sslMode()) || !catalog.encrypted()) {
-                throw refused("TLS with verify-full is required");
-            }
+            transport(credentials, registration, catalog);
             if (!catalog.canReadSystemIdentifier()) {
                 throw refused("the cluster system identifier cannot be read");
             }
@@ -134,6 +147,27 @@ public final class TenantScopeProbe {
                     // A missing relation is reported by the schema check that follows (PHYSICAL_SCHEMA_MISMATCH).
                     checkRelation(catalog, live.get(), schemas, new HashSet<>());
                 }
+            }
+        }
+
+        /**
+         * The transport (TransportPolicy): verify-full with an encrypted session, or the valid transport exception of
+         * the source; and in both cases the same transport as the registration. Nothing is read before this passes.
+         */
+        private void transport(DataSourceCredentials credentials, TenancyRegistration registration,
+                               TenancyCatalog catalog) {
+            try {
+                // pg_stat_ssl is consulted only without exception: under one it proves nothing about this connection.
+                boolean encrypted = credentials.transportException() == null && catalog.encrypted();
+                TransportException current = TransportPolicy.assess(credentials, encrypted, clock.instant())
+                        .orElse(null);
+                TransportPolicy.requireSame(registration.transportException(), current);
+            } catch (TransportPolicy.RefusedException e) {
+                throw refused(switch (e.refusal()) {
+                    case TLS_REQUIRED -> "TLS with verify-full is required";
+                    case EXCEPTION_EXPIRED -> "the transport exception has expired";
+                    case EXCEPTION_MISMATCH -> "the transport differs from the registration";
+                });
             }
         }
 

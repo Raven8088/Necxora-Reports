@@ -1,18 +1,23 @@
 package com.nexora.reports.tenancy.application;
 
 import com.nexora.reports.credentials.domain.DataSourceCredentials;
+import com.nexora.reports.credentials.domain.TransportException;
+import com.nexora.reports.credentials.domain.TransportPolicy;
 import com.nexora.reports.execution.application.port.CredentialProvider;
 import com.nexora.reports.execution.domain.Requester;
 import com.nexora.reports.plan2.domain.Sha256;
 import com.nexora.reports.tenancy.application.port.TenancyCapture;
 import com.nexora.reports.tenancy.application.port.TenancyRegistry;
 import com.nexora.reports.tenancy.domain.TenancyDecision;
-import com.nexora.reports.tenancy.domain.TenancyException;
 import com.nexora.reports.tenancy.domain.TenancyException.Reason;
+import com.nexora.reports.tenancy.domain.TenancyException;
 import com.nexora.reports.tenancy.domain.TenancyModel;
 import com.nexora.reports.tenancy.domain.TenancyRecord;
 import com.nexora.reports.tenancy.domain.TenancyRegistration;
 import com.nexora.reports.tenancy.domain.TenancyRules;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.Clock;
 import java.util.List;
@@ -20,6 +25,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.TreeSet;
 import java.util.UUID;
+import java.util.function.Supplier;
 
 /**
  * Registration, approval and revocation of the tenancy of a data source (D-B5-1, D-B5-2, P-1b, P-1+ d). The tenant
@@ -34,6 +40,8 @@ import java.util.UUID;
  * registered and approved; older versions stay, and the data source id (and so Semantic's knowledge) is unchanged.
  */
 public class TenancyRegistrationService {
+
+    private static final Logger LOG = LoggerFactory.getLogger(TenancyRegistrationService.class);
 
     private final TenancyRegistry registry;
     private final TenancyCapture capture;
@@ -56,13 +64,12 @@ public class TenancyRegistrationService {
         TenancyRules.requireExecutableModel(model);
         DataSourceCredentials source = credentials.resolve(registrant.tenantId(), dataSourceId)
                 .orElseThrow(() -> new TenancyException(Reason.NO_CREDENTIALS, "no credentials for the source"));
-        if (!"verify-full".equals(source.sslMode())) {
-            throw new TenancyException(Reason.TLS_REQUIRED, "sslmode is not verify-full");
-        }
+        // The transport is decided before connecting (no unauthorized connection is opened) and again with the
+        // session (TransportPolicy, EX-TLS-1). Without exception: verify-full and an encrypted session, as in A4-B5.
+        checkTransport(() -> TransportPolicy.requireConnectable(source, clock.instant()));
         TenancyCapture.Captured captured = capture.capture(source);
-        if (!captured.encrypted()) {
-            throw new TenancyException(Reason.TLS_REQUIRED, "session is not encrypted");
-        }
+        TransportException transport = transportOf(() -> TransportPolicy.assess(source, captured.encrypted(),
+                clock.instant())).orElse(null);
         if (!captured.forbiddenRoles().isEmpty()) {
             throw new TenancyException(Reason.CAPTURE_MISMATCH, "the role has access beyond schema grants");
         }
@@ -74,8 +81,13 @@ public class TenancyRegistrationService {
         TenancyRegistration registration = new TenancyRegistration(UUID.randomUUID(), registrant.tenantId(),
                 dataSourceId, version, model, captured.identity(), captured.schemas(), registrant.subject(),
                 clock.instant(), TenancyRules.fingerprint(registrant.tenantId(), dataSourceId, version, model,
-                captured.identity(), captured.schemas(), registrant.subject(), sha256));
+                captured.identity(), captured.schemas(), registrant.subject(), transport, sha256), transport);
         registry.insert(registration);
+        if (transport != null) {
+            LOG.warn("EX-TLS-1: tenancy version {} of data source {} captured under transport exception {}: the"
+                    + " connection is NOT encrypted and the server identity is NOT verified", version, dataSourceId,
+                    transport.id());
+        }
         return registration;
     }
 
@@ -86,6 +98,7 @@ public class TenancyRegistrationService {
         TenancyRecord target = history.stream().filter(r -> r.registration().id().equals(registrationId))
                 .findFirst().orElseThrow();
         TenancyRules.requireApprovable(approver, target, history);
+        requireSameTransport(approver, registration);
         TenancyDecision decision = new TenancyDecision(UUID.randomUUID(), registrationId,
                 TenancyDecision.Kind.APPROVED, approver.subject(), clock.instant());
         registry.insert(decision);
@@ -114,6 +127,45 @@ public class TenancyRegistrationService {
     public List<TenancyRecord> history(UUID tenantId, UUID dataSourceId) {
         return TenancyRules.history(registry.registrations(tenantId, dataSourceId),
                 registry.decisions(tenantId, dataSourceId));
+    }
+
+    /**
+     * EX-TLS-1: a version captured under a transport exception can be approved only while the configured source
+     * relies on that same exception, not expired. A version captured with verify-full is approved as in A4-B5.
+     */
+    private void requireSameTransport(Requester approver, TenancyRegistration registration) {
+        TransportException registered = registration.transportException();
+        if (registered == null) {
+            return;
+        }
+        DataSourceCredentials source = credentials.resolve(approver.tenantId(), registration.dataSourceId())
+                .orElseThrow(() -> new TenancyException(Reason.NO_CREDENTIALS, "no credentials for the source"));
+        checkTransport(() -> {
+            TransportPolicy.requireSame(registered, source.transportException());
+            TransportPolicy.requireConnectable(source, clock.instant());
+        });
+        LOG.warn("EX-TLS-1: approving tenancy version {} of data source {} captured under transport exception {}",
+                registration.version(), registration.dataSourceId(), registered.id());
+    }
+
+    private static void checkTransport(Runnable check) {
+        transportOf(() -> {
+            check.run();
+            return null;
+        });
+    }
+
+    private static <T> T transportOf(Supplier<T> check) {
+        try {
+            return check.get();
+        } catch (TransportPolicy.RefusedException e) {
+            Reason reason = switch (e.refusal()) {
+                case TLS_REQUIRED -> Reason.TLS_REQUIRED;
+                case EXCEPTION_EXPIRED -> Reason.TRANSPORT_EXCEPTION_EXPIRED;
+                case EXCEPTION_MISMATCH -> Reason.TRANSPORT_EXCEPTION_MISMATCH;
+            };
+            throw new TenancyException(reason, e.getMessage());
+        }
     }
 
     private TenancyRegistration find(Requester requester, UUID registrationId) {

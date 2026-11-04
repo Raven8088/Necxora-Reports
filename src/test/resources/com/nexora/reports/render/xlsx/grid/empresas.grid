@@ -1,0 +1,154 @@
+== sheet 0 "Reporte"
+freeze none
+filter none
+merged 0
+lastRow 23
+A1	STRING	"Empresas activas por operadora"	"General"	-
+A3	STRING	"Título"	"General"	-
+B3	STRING	"Empresas activas por operadora"	"General"	-
+A4	STRING	"Solicitud"	"General"	-
+B4	STRING	"Cuántas empresas activas tiene cada operadora, con el total, y el listado de las empresas GPA, SIC-FLU, GEA y GPA-SER con su matriz."	"General"	-
+A5	STRING	"Fuente"	"General"	-
+B5	STRING	"Banco sintético (36cd38f4-9b9a-3a08-a22c-0dc9ebfe35eb)"	"General"	-
+A6	STRING	"Tenant"	"General"	-
+B6	STRING	"adfb6898-97b2-3525-9adc-aee72945c791 (No disponible: Reports no conoce el nombre del tenant)"	"General"	-
+A7	STRING	"Generado"	"General"	-
+B7	STRING	"2026-11-01 13:00:03 (America/Bogota)"	"General"	-
+A8	STRING	"Filtros"	"General"	-
+B8	STRING	"Empresas activas por operadora: wellnode_sintetico.etp_company.is_active es igual a Sí"	"General"	-
+B9	STRING	"Total de empresas activas: wellnode_sintetico.etp_company.is_active es igual a Sí"	"General"	-
+B10	STRING	"Detalle de empresas: Código es uno de GPA, SIC-FLU, GEA, GPA-SER"	"General"	-
+B11	STRING	"Detalle de empresas: Nombre no está vacío"	"General"	-
+A12	STRING	"Periodo"	"General"	-
+B12	STRING	"No aplica"	"General"	-
+A13	STRING	"Versión de Nexora"	"General"	-
+B13	STRING	"0.1.0-SNAPSHOT"	"General"	-
+A14	STRING	"Estado"	"General"	-
+B14	STRING	"Completo"	"General"	-
+A16	STRING	"Empresas por operadora"	"General"	-
+A18	STRING	"Empresas activas por operadora"	"General"	-
+A19	STRING	"Operadora"	"General"	-
+B19	STRING	"Empresas"	"General"	-
+A20	STRING	"Operadora Ficticia Dos"	"General"	-
+B20	NUMERIC	1.0	"#,##0"	-
+A21	STRING	"Operadora Ficticia Uno"	"General"	-
+B21	NUMERIC	3.0	"#,##0"	-
+A22	STRING	"(sin valor)"	"General"	-
+B22	NUMERIC	1.0	"#,##0"	-
+A23	STRING	"Total general"	"General"	-
+B23	NUMERIC	5.0	"#,##0"	-
+A24	STRING	"Ver la hoja «Detalle de empresas» (2 filas)."	"General"	-
+== sheet 1 "Detalle de empresas"
+freeze 1,0
+filter A1:C3
+merged 0
+lastRow 2
+A1	STRING	"Nombre"	"General"	-
+B1	STRING	"Código"	"General"	-
+C1	STRING	"Matriz"	"General"	-
+A2	STRING	"Grupo Petrolero Atlas"	"General"	-
+B2	STRING	"GPA"	"General"	-
+A3	STRING	"Servicios GPA"	"General"	-
+B3	STRING	"GPA-SER"	"General"	-
+C3	NUMERIC	10.0	"#,##0"	-
+== sheet 2 "Metodología"
+freeze none
+filter none
+merged 0
+lastRow 38
+A1	STRING	"Ejecución"	"General"	-
+A2	STRING	"Huella de la especificación"	"General"	-
+B2	STRING	"903f9c24cc19afc3105a0b8dc4896ef5eb548841dcf08398bd382bc14beb8c83"	"General"	-
+A3	STRING	"Huella del plan de reporte"	"General"	-
+B3	STRING	"5a45a91342f0051fd60836fe0d71ffc24490682e3052962b649f384b32d3e676"	"General"	-
+A4	STRING	"Instantánea de metadatos"	"General"	-
+B4	STRING	"c322d3de-29d2-30c5-a2e0-11dad5e77df2"	"General"	-
+A5	STRING	"Aislamiento"	"General"	-
+B5	STRING	"REPEATABLE_READ, solo lectura, 1 transacción"	"General"	-
+A6	STRING	"Instantánea de la lectura (pg_current_snapshot)"	"General"	-
+B6	STRING	"1234:1234:"	"General"	-
+A7	STRING	"Inicio"	"General"	-
+B7	STRING	"2026-11-01 13:00:00 (America/Bogota)"	"General"	-
+A8	STRING	"Fin"	"General"	-
+B8	STRING	"2026-11-01 13:00:02 (America/Bogota)"	"General"	-
+A9	STRING	"Duración de la lectura (ms)"	"General"	-
+B9	NUMERIC	40.0	"#,##0"	-
+A11	STRING	"Conjunto de datos"	"General"	-
+B11	STRING	"Filas"	"General"	-
+C11	STRING	"Truncado"	"General"	-
+D11	STRING	"Límite"	"General"	-
+A12	STRING	"por_operadora"	"General"	-
+B12	NUMERIC	3.0	"#,##0"	-
+C12	STRING	"No"	"General"	-
+D12	NUMERIC	100.0	"#,##0"	-
+A13	STRING	"total_empresas"	"General"	-
+B13	NUMERIC	1.0	"#,##0"	-
+C13	STRING	"No"	"General"	-
+D13	NUMERIC	100.0	"#,##0"	-
+A14	STRING	"detalle_empresas"	"General"	-
+B14	NUMERIC	2.0	"#,##0"	-
+C14	STRING	"No"	"General"	-
+D14	NUMERIC	100.0	"#,##0"	-
+A15	STRING	"Conjunto de datos"	"General"	-
+B15	STRING	"Huella del plan"	"General"	-
+C15	STRING	"Duración (ms)"	"General"	-
+A16	STRING	"por_operadora"	"General"	-
+B16	STRING	"aab6bbaa33915740598f1c65b44910eb75e163178cc33aa271871bd44970a1f4"	"General"	-
+C16	NUMERIC	10.0	"#,##0"	-
+A17	STRING	"total_empresas"	"General"	-
+B17	STRING	"d280f003e955b97501cd51867e075ad17358126f6f64e6026ffc841fd42d4a30"	"General"	-
+C17	NUMERIC	11.0	"#,##0"	-
+A18	STRING	"detalle_empresas"	"General"	-
+B18	STRING	"669e2adbd2be78a223df597cde48ec20f96145a04008a9e44446134aff0190ca"	"General"	-
+C18	NUMERIC	12.0	"#,##0"	-
+A20	STRING	"Origen"	"General"	-
+A21	STRING	"Objeto"	"General"	-
+B21	STRING	"Tipo"	"General"	-
+A22	STRING	"wellnode_sintetico.etp_company"	"General"	-
+B22	STRING	"TABLE"	"General"	-
+A23	STRING	"wellnode_sintetico.bkw_operators"	"General"	-
+B23	STRING	"TABLE"	"General"	-
+A24	STRING	"Relación"	"General"	-
+B24	STRING	"Origen"	"General"	-
+C24	STRING	"Estado"	"General"	-
+D24	STRING	"Aprobada por"	"General"	-
+A25	STRING	"c0000000-0000-4000-8000-000000000021"	"General"	-
+B25	STRING	"SEMANTIC"	"General"	-
+C25	STRING	"APPROVED"	"General"	-
+D25	STRING	"No disponible: el plan no indica quién aprobó la relación"	"General"	-
+A26	STRING	"Término"	"General"	-
+B26	STRING	"Resolución"	"General"	-
+C26	STRING	"Destino"	"General"	-
+A27	STRING	"empresas activas"	"General"	-
+B27	STRING	"INFERRED"	"General"	-
+C27	STRING	"etp_company.is_active"	"General"	-
+A28	STRING	"operadora"	"General"	-
+B28	STRING	"INFERRED"	"General"	-
+C28	STRING	"bkw_operators.name"	"General"	-
+A29	STRING	"Conjunto de datos"	"General"	-
+B29	STRING	"Columna"	"General"	-
+C29	STRING	"Definición"	"General"	-
+D29	STRING	"Revisión"	"General"	-
+A31	STRING	"Reglas"	"General"	-
+A32	STRING	"Nulos"	"General"	-
+B32	STRING	"Una clave de grupo nula aparece como «(sin valor)»; un valor nulo de detalle o de medida queda vacío, nunca 0."	"General"	-
+A33	STRING	"Conjunto de datos"	"General"	-
+B33	STRING	"Columna"	"General"	-
+C33	STRING	"Orden"	"General"	-
+D33	STRING	"Intercalación"	"General"	-
+A34	STRING	"por_operadora"	"General"	-
+B34	STRING	"Operadora"	"General"	-
+C34	STRING	"ASC, NULLS LAST"	"General"	-
+D34	STRING	"C"	"General"	-
+A35	STRING	"detalle_empresas"	"General"	-
+B35	STRING	"Matriz"	"General"	-
+C35	STRING	"DESC, NULLS FIRST"	"General"	-
+A36	STRING	"detalle_empresas"	"General"	-
+B36	STRING	"id"	"General"	-
+C36	STRING	"ASC, NULLS LAST"	"General"	-
+A37	STRING	"Columnas excluidas"	"General"	-
+B37	STRING	"No disponible: las columnas excluidas no se proporcionaron"	"General"	-
+A38	STRING	"Modelo"	"General"	-
+B38	STRING	"No disponible: la especificación no registra el modelo"	"General"	-
+A39	STRING	"Unidades"	"General"	-
+B39	STRING	"No disponible: los contratos no transportan unidades"	"General"	-

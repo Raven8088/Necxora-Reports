@@ -14,13 +14,18 @@ FROM ${BUILD_IMAGE} AS build
 WORKDIR /build
 COPY pom.xml ./
 COPY src ./src
+# EX-TLS-1: empty for every normal image. Only "dev-insecure-transport" builds the development image that can accept a
+# temporary transport exception (nexora-deploy/compose.insecure-transport.yaml); never use it for production.
+ARG MAVEN_PROFILES=
 RUN --mount=type=cache,target=/root/.m2 \
-    mvn -B -ntp -Dmaven.test.skip=true package \
+    mvn -B -ntp -Dmaven.test.skip=true ${MAVEN_PROFILES:+-P${MAVEN_PROFILES}} package \
     && cp target/nexora-reports-*.jar /build/app.jar
 
 FROM ${RUNTIME_IMAGE}
+ARG MAVEN_PROFILES=
 LABEL org.opencontainers.image.title="Nexora Reports" \
-      org.opencontainers.image.vendor="Nexora AI"
+      org.opencontainers.image.vendor="Nexora AI" \
+      ai.nexora.reports.build-profiles="${MAVEN_PROFILES}"
 RUN groupadd --system --gid 10001 nexora \
     && useradd --system --uid 10001 --gid nexora --no-create-home --home-dir /nonexistent \
        --shell /usr/sbin/nologin nexora

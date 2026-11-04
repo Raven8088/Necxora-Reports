@@ -1,0 +1,20 @@
+== sheet 0 "Datos"
+freeze 1,0
+filter A1:C2
+merged 0
+lastRow 3
+A1	STRING	"Nombre"	"General"	-
+B1	STRING	"Valor"	"General"	-
+C1	STRING	"Fecha"	"General"	-
+A2	STRING	"=1+1"	"General"	quote
+B2	NUMERIC	1234.5	"#,##0.00"	-
+C2	NUMERIC	46327.35422592593	"yyyy-mm-dd hh:mm:ss.000"	-
+A4	STRING	"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"	"General"	-
+D4	NUMERIC	7.0	"#,##0"	-
+== sheet 1 "Otra"
+freeze none
+filter none
+merged 0
+lastRow 1
+A1	STRING	"Un título largo que ocupa varias columnas vacías"	"General"	-
+A2	STRING	"a"	"General"	-

@@ -34,14 +34,26 @@ public record EnterpriseSourcesProperties(List<String> allowedHosts, List<Intege
      * @param maxConcurrent simultaneous executions allowed against this source
      * @param sslRootCert   A4-B9 (B5-O3): optional path of the CA certificate that {@code verify-full} trusts; absent,
      *                      the driver's default location is used (R1 behaviour unchanged)
+     * @param transportException EX-TLS-1: temporary authorization to connect to this source without TLS; refused at
+     *                      startup unless the build has the capability and every condition holds
+     *                      ({@link ConfiguredCredentialProvider}). Absent in every normal configuration
      */
     public record Source(@NotNull UUID tenantId, @NotNull UUID dataSourceId, @NotBlank String host, int port,
                          @NotBlank String database, @NotBlank String username, @NotBlank String password,
-                         String sslMode, int maxConcurrent, String sslRootCert) {
+                         String sslMode, int maxConcurrent, String sslRootCert,
+                         TransportExceptionSettings transportException) {
 
         @Override
         public String toString() {
             return "Source[tenantId=" + tenantId + ", dataSourceId=" + dataSourceId + ", password=***]";
         }
+    }
+
+    /**
+     * EX-TLS-1: the authorization as configured ({@code transport-exception.id}, {@code .expires-at} as an ISO-8601
+     * instant, {@code .binding}). Validated by {@link ConfiguredCredentialProvider}; the expiry is parsed there so
+     * that a malformed value is a clear startup error.
+     */
+    public record TransportExceptionSettings(String id, String expiresAt, String binding) {
     }
 }

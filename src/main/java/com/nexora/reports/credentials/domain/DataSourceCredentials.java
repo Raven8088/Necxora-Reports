@@ -11,10 +11,12 @@ import java.util.UUID;
  * @param maxConcurrent       maximum simultaneous executions against this source (pool size)
  * @param sslRootCert         A4-B5: optional path of the CA certificate that {@code verify-full} trusts; {@code null}
  *                            keeps the driver's default location (R1 behaviour unchanged)
+ * @param transportException  EX-TLS-1: the temporary authorization to connect without TLS to exactly this source and
+ *                            destination ({@link TransportPolicy}), or {@code null} (always in normal builds)
  */
 public record DataSourceCredentials(UUID tenantId, UUID dataSourceId, String host, int port, String database,
                                     String username, String password, String sslMode, int maxConcurrent,
-                                    String sslRootCert) {
+                                    String sslRootCert, TransportException transportException) {
 
     public DataSourceCredentials {
         Objects.requireNonNull(tenantId, "tenantId");
@@ -35,10 +37,18 @@ public record DataSourceCredentials(UUID tenantId, UUID dataSourceId, String hos
                 sslRootCert);
     }
 
+    /** The A4-B5 form, without a transport exception. */
+    public DataSourceCredentials(UUID tenantId, UUID dataSourceId, String host, int port, String database,
+                                 String username, String password, String sslMode, int maxConcurrent,
+                                 String sslRootCert) {
+        this(tenantId, dataSourceId, host, port, database, username, password, sslMode, maxConcurrent, sslRootCert,
+                null);
+    }
+
     /** The R1 form, without a CA certificate path. */
     public DataSourceCredentials(UUID tenantId, UUID dataSourceId, String host, int port, String database,
                                  String username, String password, String sslMode, int maxConcurrent) {
-        this(tenantId, dataSourceId, host, port, database, username, password, sslMode, maxConcurrent, null);
+        this(tenantId, dataSourceId, host, port, database, username, password, sslMode, maxConcurrent, null, null);
     }
 
     @Override

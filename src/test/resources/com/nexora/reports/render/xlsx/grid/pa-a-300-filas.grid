@@ -1,0 +1,1657 @@
+== sheet 0 "Reporte"
+freeze none
+filter none
+merged 0
+lastRow 32
+A1	STRING	"Reporte de pozos registrados"	"General"	-
+A3	STRING	"Título"	"General"	-
+B3	STRING	"Reporte de pozos registrados"	"General"	-
+A4	STRING	"Solicitud"	"General"	-
+B4	STRING	"Genera un reporte de los pozos registrados: un resumen por país y campo con cuántos pozos hay en cada uno y el total general, y el listado de pozos con nombre, campo, país, estado o región y estatus, ordenado por país y nombre."	"General"	-
+A5	STRING	"Fuente"	"General"	-
+B5	STRING	"Banco sintético (7a3f0000-0000-4000-8000-000000000002)"	"General"	-
+A6	STRING	"Tenant"	"General"	-
+B6	STRING	"7a3f0000-0000-4000-8000-000000000001 (No disponible: Reports no conoce el nombre del tenant)"	"General"	-
+A7	STRING	"Generado"	"General"	-
+B7	STRING	"2026-11-01 12:00:03 (America/Mexico_City)"	"General"	-
+A8	STRING	"Filtros"	"General"	-
+B8	STRING	"Sin filtros"	"General"	-
+A9	STRING	"Periodo"	"General"	-
+B9	STRING	"No aplica"	"General"	-
+A10	STRING	"Versión de Nexora"	"General"	-
+B10	STRING	"0.1.0-SNAPSHOT"	"General"	-
+A11	STRING	"Estado"	"General"	-
+B11	STRING	"Completo"	"General"	-
+A13	STRING	"Pozos registrados"	"General"	-
+A15	STRING	"Pozos por país y campo"	"General"	-
+A16	STRING	"País"	"General"	-
+B16	STRING	"Campo"	"General"	-
+C16	STRING	"Pozos"	"General"	-
+A17	STRING	"Argentina"	"General"	-
+B17	STRING	"Neuquén"	"General"	-
+C17	NUMERIC	1.0	"#,##0"	-
+A18	STRING	"Colombia"	"General"	-
+B18	STRING	"Llanos"	"General"	-
+C18	NUMERIC	4.0	"#,##0"	-
+A19	STRING	"Colombia"	"General"	-
+B19	STRING	"Valle Medio"	"General"	-
+C19	NUMERIC	3.0	"#,##0"	-
+A20	STRING	"Colombia"	"General"	-
+B20	STRING	"(sin valor)"	"General"	-
+C20	NUMERIC	1.0	"#,##0"	-
+A21	STRING	"Ecuador"	"General"	-
+B21	STRING	"Amazonía"	"General"	-
+C21	NUMERIC	2.0	"#,##0"	-
+A22	STRING	"Ecuador"	"General"	-
+B22	STRING	"Oriente"	"General"	-
+C22	NUMERIC	3.0	"#,##0"	-
+A23	STRING	"México"	"General"	-
+B23	STRING	"Campo Norte"	"General"	-
+C23	NUMERIC	3.0	"#,##0"	-
+A24	STRING	"México"	"General"	-
+B24	STRING	"Campo Sur"	"General"	-
+C24	NUMERIC	4.0	"#,##0"	-
+A25	STRING	"México"	"General"	-
+B25	STRING	"Litoral"	"General"	-
+C25	NUMERIC	3.0	"#,##0"	-
+A26	STRING	"México"	"General"	-
+B26	STRING	"(sin valor)"	"General"	-
+C26	NUMERIC	2.0	"#,##0"	-
+A27	STRING	"Perú"	"General"	-
+B27	STRING	"Costa"	"General"	-
+C27	NUMERIC	3.0	"#,##0"	-
+A28	STRING	"Perú"	"General"	-
+B28	STRING	"Selva Alta"	"General"	-
+C28	NUMERIC	3.0	"#,##0"	-
+A29	STRING	"(sin valor)"	"General"	-
+B29	STRING	"Campo Norte"	"General"	-
+C29	NUMERIC	1.0	"#,##0"	-
+A30	STRING	"(sin valor)"	"General"	-
+B30	STRING	"Desconocido"	"General"	-
+C30	NUMERIC	1.0	"#,##0"	-
+A31	STRING	"(sin valor)"	"General"	-
+B31	STRING	"(sin valor)"	"General"	-
+C31	NUMERIC	1.0	"#,##0"	-
+A32	STRING	"Total general"	"General"	-
+C32	NUMERIC	35.0	"#,##0"	-
+A33	STRING	"Ver la hoja «Listado de pozos» (300 filas)."	"General"	-
+== sheet 1 "Listado de pozos"
+freeze 1,0
+filter A1:E301
+merged 0
+lastRow 300
+A1	STRING	"Nombre"	"General"	-
+B1	STRING	"Campo"	"General"	-
+C1	STRING	"País"	"General"	-
+D1	STRING	"Estado o región"	"General"	-
+E1	STRING	"Estatus"	"General"	-
+A2	STRING	"Pozo-0"	"General"	-
+C2	STRING	"País 0"	"General"	-
+D2	STRING	"Estado 0"	"General"	-
+E2	STRING	"activo"	"General"	-
+A3	STRING	"Pozo-1"	"General"	-
+B3	STRING	"Campo 1"	"General"	-
+C3	STRING	"País 1"	"General"	-
+D3	STRING	"Estado 1"	"General"	-
+E3	STRING	"activo"	"General"	-
+A4	STRING	"Pozo-2"	"General"	-
+B4	STRING	"Campo 2"	"General"	-
+C4	STRING	"País 2"	"General"	-
+D4	STRING	"Estado 2"	"General"	-
+E4	STRING	"activo"	"General"	-
+A5	STRING	"Pozo-3"	"General"	-
+B5	STRING	"Campo 3"	"General"	-
+C5	STRING	"País 3"	"General"	-
+D5	STRING	"Estado 3"	"General"	-
+E5	STRING	"activo"	"General"	-
+A6	STRING	"Pozo-4"	"General"	-
+B6	STRING	"Campo 4"	"General"	-
+C6	STRING	"País 4"	"General"	-
+D6	STRING	"Estado 4"	"General"	-
+E6	STRING	"activo"	"General"	-
+A7	STRING	"Pozo-5"	"General"	-
+B7	STRING	"Campo 5"	"General"	-
+C7	STRING	"País 0"	"General"	-
+D7	STRING	"Estado 5"	"General"	-
+E7	STRING	"activo"	"General"	-
+A8	STRING	"Pozo-6"	"General"	-
+B8	STRING	"Campo 6"	"General"	-
+C8	STRING	"País 1"	"General"	-
+D8	STRING	"Estado 6"	"General"	-
+E8	STRING	"activo"	"General"	-
+A9	STRING	"Pozo-7"	"General"	-
+C9	STRING	"País 2"	"General"	-
+D9	STRING	"Estado 7"	"General"	-
+E9	STRING	"activo"	"General"	-
+A10	STRING	"Pozo-8"	"General"	-
+B10	STRING	"Campo 8"	"General"	-
+C10	STRING	"País 3"	"General"	-
+D10	STRING	"Estado 8"	"General"	-
+E10	STRING	"activo"	"General"	-
+A11	STRING	"Pozo-9"	"General"	-
+B11	STRING	"Campo 9"	"General"	-
+C11	STRING	"País 4"	"General"	-
+D11	STRING	"Estado 9"	"General"	-
+E11	STRING	"activo"	"General"	-
+A12	STRING	"Pozo-10"	"General"	-
+B12	STRING	"Campo 10"	"General"	-
+C12	STRING	"País 0"	"General"	-
+D12	STRING	"Estado 10"	"General"	-
+E12	STRING	"activo"	"General"	-
+A13	STRING	"Pozo-11"	"General"	-
+B13	STRING	"Campo 11"	"General"	-
+C13	STRING	"País 1"	"General"	-
+D13	STRING	"Estado 0"	"General"	-
+E13	STRING	"activo"	"General"	-
+A14	STRING	"Pozo-12"	"General"	-
+B14	STRING	"Campo 12"	"General"	-
+C14	STRING	"País 2"	"General"	-
+D14	STRING	"Estado 1"	"General"	-
+E14	STRING	"activo"	"General"	-
+A15	STRING	"Pozo-13"	"General"	-
+B15	STRING	"Campo 0"	"General"	-
+C15	STRING	"País 3"	"General"	-
+D15	STRING	"Estado 2"	"General"	-
+E15	STRING	"activo"	"General"	-
+A16	STRING	"Pozo-14"	"General"	-
+C16	STRING	"País 4"	"General"	-
+D16	STRING	"Estado 3"	"General"	-
+E16	STRING	"activo"	"General"	-
+A17	STRING	"Pozo-15"	"General"	-
+B17	STRING	"Campo 2"	"General"	-
+C17	STRING	"País 0"	"General"	-
+D17	STRING	"Estado 4"	"General"	-
+E17	STRING	"activo"	"General"	-
+A18	STRING	"Pozo-16"	"General"	-
+B18	STRING	"Campo 3"	"General"	-
+C18	STRING	"País 1"	"General"	-
+D18	STRING	"Estado 5"	"General"	-
+E18	STRING	"activo"	"General"	-
+A19	STRING	"Pozo-17"	"General"	-
+B19	STRING	"Campo 4"	"General"	-
+C19	STRING	"País 2"	"General"	-
+D19	STRING	"Estado 6"	"General"	-
+E19	STRING	"activo"	"General"	-
+A20	STRING	"Pozo-18"	"General"	-
+B20	STRING	"Campo 5"	"General"	-
+C20	STRING	"País 3"	"General"	-
+D20	STRING	"Estado 7"	"General"	-
+E20	STRING	"activo"	"General"	-
+A21	STRING	"Pozo-19"	"General"	-
+B21	STRING	"Campo 6"	"General"	-
+C21	STRING	"País 4"	"General"	-
+D21	STRING	"Estado 8"	"General"	-
+E21	STRING	"activo"	"General"	-
+A22	STRING	"Pozo-20"	"General"	-
+B22	STRING	"Campo 7"	"General"	-
+C22	STRING	"País 0"	"General"	-
+D22	STRING	"Estado 9"	"General"	-
+E22	STRING	"activo"	"General"	-
+A23	STRING	"Pozo-21"	"General"	-
+C23	STRING	"País 1"	"General"	-
+D23	STRING	"Estado 10"	"General"	-
+E23	STRING	"activo"	"General"	-
+A24	STRING	"Pozo-22"	"General"	-
+B24	STRING	"Campo 9"	"General"	-
+C24	STRING	"País 2"	"General"	-
+D24	STRING	"Estado 0"	"General"	-
+E24	STRING	"activo"	"General"	-
+A25	STRING	"Pozo-23"	"General"	-
+B25	STRING	"Campo 10"	"General"	-
+C25	STRING	"País 3"	"General"	-
+D25	STRING	"Estado 1"	"General"	-
+E25	STRING	"activo"	"General"	-
+A26	STRING	"Pozo-24"	"General"	-
+B26	STRING	"Campo 11"	"General"	-
+C26	STRING	"País 4"	"General"	-
+D26	STRING	"Estado 2"	"General"	-
+E26	STRING	"activo"	"General"	-
+A27	STRING	"Pozo-25"	"General"	-
+B27	STRING	"Campo 12"	"General"	-
+C27	STRING	"País 0"	"General"	-
+D27	STRING	"Estado 3"	"General"	-
+E27	STRING	"activo"	"General"	-
+A28	STRING	"Pozo-26"	"General"	-
+B28	STRING	"Campo 0"	"General"	-
+C28	STRING	"País 1"	"General"	-
+D28	STRING	"Estado 4"	"General"	-
+E28	STRING	"activo"	"General"	-
+A29	STRING	"Pozo-27"	"General"	-
+B29	STRING	"Campo 1"	"General"	-
+C29	STRING	"País 2"	"General"	-
+D29	STRING	"Estado 5"	"General"	-
+E29	STRING	"activo"	"General"	-
+A30	STRING	"Pozo-28"	"General"	-
+C30	STRING	"País 3"	"General"	-
+D30	STRING	"Estado 6"	"General"	-
+E30	STRING	"activo"	"General"	-
+A31	STRING	"Pozo-29"	"General"	-
+B31	STRING	"Campo 3"	"General"	-
+C31	STRING	"País 4"	"General"	-
+D31	STRING	"Estado 7"	"General"	-
+E31	STRING	"activo"	"General"	-
+A32	STRING	"Pozo-30"	"General"	-
+B32	STRING	"Campo 4"	"General"	-
+C32	STRING	"País 0"	"General"	-
+D32	STRING	"Estado 8"	"General"	-
+E32	STRING	"activo"	"General"	-
+A33	STRING	"Pozo-31"	"General"	-
+B33	STRING	"Campo 5"	"General"	-
+C33	STRING	"País 1"	"General"	-
+D33	STRING	"Estado 9"	"General"	-
+E33	STRING	"activo"	"General"	-
+A34	STRING	"Pozo-32"	"General"	-
+B34	STRING	"Campo 6"	"General"	-
+C34	STRING	"País 2"	"General"	-
+D34	STRING	"Estado 10"	"General"	-
+E34	STRING	"activo"	"General"	-
+A35	STRING	"Pozo-33"	"General"	-
+B35	STRING	"Campo 7"	"General"	-
+C35	STRING	"País 3"	"General"	-
+D35	STRING	"Estado 0"	"General"	-
+E35	STRING	"activo"	"General"	-
+A36	STRING	"Pozo-34"	"General"	-
+B36	STRING	"Campo 8"	"General"	-
+C36	STRING	"País 4"	"General"	-
+D36	STRING	"Estado 1"	"General"	-
+E36	STRING	"activo"	"General"	-
+A37	STRING	"Pozo-35"	"General"	-
+C37	STRING	"País 0"	"General"	-
+D37	STRING	"Estado 2"	"General"	-
+E37	STRING	"activo"	"General"	-
+A38	STRING	"Pozo-36"	"General"	-
+B38	STRING	"Campo 10"	"General"	-
+C38	STRING	"País 1"	"General"	-
+D38	STRING	"Estado 3"	"General"	-
+E38	STRING	"activo"	"General"	-
+A39	STRING	"Pozo-37"	"General"	-
+B39	STRING	"Campo 11"	"General"	-
+C39	STRING	"País 2"	"General"	-
+D39	STRING	"Estado 4"	"General"	-
+E39	STRING	"activo"	"General"	-
+A40	STRING	"Pozo-38"	"General"	-
+B40	STRING	"Campo 12"	"General"	-
+C40	STRING	"País 3"	"General"	-
+D40	STRING	"Estado 5"	"General"	-
+E40	STRING	"activo"	"General"	-
+A41	STRING	"Pozo-39"	"General"	-
+B41	STRING	"Campo 0"	"General"	-
+C41	STRING	"País 4"	"General"	-
+D41	STRING	"Estado 6"	"General"	-
+E41	STRING	"activo"	"General"	-
+A42	STRING	"Pozo-40"	"General"	-
+B42	STRING	"Campo 1"	"General"	-
+C42	STRING	"País 0"	"General"	-
+D42	STRING	"Estado 7"	"General"	-
+E42	STRING	"activo"	"General"	-
+A43	STRING	"Pozo-41"	"General"	-
+B43	STRING	"Campo 2"	"General"	-
+C43	STRING	"País 1"	"General"	-
+D43	STRING	"Estado 8"	"General"	-
+E43	STRING	"activo"	"General"	-
+A44	STRING	"Pozo-42"	"General"	-
+C44	STRING	"País 2"	"General"	-
+D44	STRING	"Estado 9"	"General"	-
+E44	STRING	"activo"	"General"	-
+A45	STRING	"Pozo-43"	"General"	-
+B45	STRING	"Campo 4"	"General"	-
+C45	STRING	"País 3"	"General"	-
+D45	STRING	"Estado 10"	"General"	-
+E45	STRING	"activo"	"General"	-
+A46	STRING	"Pozo-44"	"General"	-
+B46	STRING	"Campo 5"	"General"	-
+C46	STRING	"País 4"	"General"	-
+D46	STRING	"Estado 0"	"General"	-
+E46	STRING	"activo"	"General"	-
+A47	STRING	"Pozo-45"	"General"	-
+B47	STRING	"Campo 6"	"General"	-
+C47	STRING	"País 0"	"General"	-
+D47	STRING	"Estado 1"	"General"	-
+E47	STRING	"activo"	"General"	-
+A48	STRING	"Pozo-46"	"General"	-
+B48	STRING	"Campo 7"	"General"	-
+C48	STRING	"País 1"	"General"	-
+D48	STRING	"Estado 2"	"General"	-
+E48	STRING	"activo"	"General"	-
+A49	STRING	"Pozo-47"	"General"	-
+B49	STRING	"Campo 8"	"General"	-
+C49	STRING	"País 2"	"General"	-
+D49	STRING	"Estado 3"	"General"	-
+E49	STRING	"activo"	"General"	-
+A50	STRING	"Pozo-48"	"General"	-
+B50	STRING	"Campo 9"	"General"	-
+C50	STRING	"País 3"	"General"	-
+D50	STRING	"Estado 4"	"General"	-
+E50	STRING	"activo"	"General"	-
+A51	STRING	"Pozo-49"	"General"	-
+C51	STRING	"País 4"	"General"	-
+D51	STRING	"Estado 5"	"General"	-
+E51	STRING	"activo"	"General"	-
+A52	STRING	"Pozo-50"	"General"	-
+B52	STRING	"Campo 11"	"General"	-
+C52	STRING	"País 0"	"General"	-
+D52	STRING	"Estado 6"	"General"	-
+E52	STRING	"activo"	"General"	-
+A53	STRING	"Pozo-51"	"General"	-
+B53	STRING	"Campo 12"	"General"	-
+C53	STRING	"País 1"	"General"	-
+D53	STRING	"Estado 7"	"General"	-
+E53	STRING	"activo"	"General"	-
+A54	STRING	"Pozo-52"	"General"	-
+B54	STRING	"Campo 0"	"General"	-
+C54	STRING	"País 2"	"General"	-
+D54	STRING	"Estado 8"	"General"	-
+E54	STRING	"activo"	"General"	-
+A55	STRING	"Pozo-53"	"General"	-
+B55	STRING	"Campo 1"	"General"	-
+C55	STRING	"País 3"	"General"	-
+D55	STRING	"Estado 9"	"General"	-
+E55	STRING	"activo"	"General"	-
+A56	STRING	"Pozo-54"	"General"	-
+B56	STRING	"Campo 2"	"General"	-
+C56	STRING	"País 4"	"General"	-
+D56	STRING	"Estado 10"	"General"	-
+E56	STRING	"activo"	"General"	-
+A57	STRING	"Pozo-55"	"General"	-
+B57	STRING	"Campo 3"	"General"	-
+C57	STRING	"País 0"	"General"	-
+D57	STRING	"Estado 0"	"General"	-
+E57	STRING	"activo"	"General"	-
+A58	STRING	"Pozo-56"	"General"	-
+C58	STRING	"País 1"	"General"	-
+D58	STRING	"Estado 1"	"General"	-
+E58	STRING	"activo"	"General"	-
+A59	STRING	"Pozo-57"	"General"	-
+B59	STRING	"Campo 5"	"General"	-
+C59	STRING	"País 2"	"General"	-
+D59	STRING	"Estado 2"	"General"	-
+E59	STRING	"activo"	"General"	-
+A60	STRING	"Pozo-58"	"General"	-
+B60	STRING	"Campo 6"	"General"	-
+C60	STRING	"País 3"	"General"	-
+D60	STRING	"Estado 3"	"General"	-
+E60	STRING	"activo"	"General"	-
+A61	STRING	"Pozo-59"	"General"	-
+B61	STRING	"Campo 7"	"General"	-
+C61	STRING	"País 4"	"General"	-
+D61	STRING	"Estado 4"	"General"	-
+E61	STRING	"activo"	"General"	-
+A62	STRING	"Pozo-60"	"General"	-
+B62	STRING	"Campo 8"	"General"	-
+C62	STRING	"País 0"	"General"	-
+D62	STRING	"Estado 5"	"General"	-
+E62	STRING	"activo"	"General"	-
+A63	STRING	"Pozo-61"	"General"	-
+B63	STRING	"Campo 9"	"General"	-
+C63	STRING	"País 1"	"General"	-
+D63	STRING	"Estado 6"	"General"	-
+E63	STRING	"activo"	"General"	-
+A64	STRING	"Pozo-62"	"General"	-
+B64	STRING	"Campo 10"	"General"	-
+C64	STRING	"País 2"	"General"	-
+D64	STRING	"Estado 7"	"General"	-
+E64	STRING	"activo"	"General"	-
+A65	STRING	"Pozo-63"	"General"	-
+C65	STRING	"País 3"	"General"	-
+D65	STRING	"Estado 8"	"General"	-
+E65	STRING	"activo"	"General"	-
+A66	STRING	"Pozo-64"	"General"	-
+B66	STRING	"Campo 12"	"General"	-
+C66	STRING	"País 4"	"General"	-
+D66	STRING	"Estado 9"	"General"	-
+E66	STRING	"activo"	"General"	-
+A67	STRING	"Pozo-65"	"General"	-
+B67	STRING	"Campo 0"	"General"	-
+C67	STRING	"País 0"	"General"	-
+D67	STRING	"Estado 10"	"General"	-
+E67	STRING	"activo"	"General"	-
+A68	STRING	"Pozo-66"	"General"	-
+B68	STRING	"Campo 1"	"General"	-
+C68	STRING	"País 1"	"General"	-
+D68	STRING	"Estado 0"	"General"	-
+E68	STRING	"activo"	"General"	-
+A69	STRING	"Pozo-67"	"General"	-
+B69	STRING	"Campo 2"	"General"	-
+C69	STRING	"País 2"	"General"	-
+D69	STRING	"Estado 1"	"General"	-
+E69	STRING	"activo"	"General"	-
+A70	STRING	"Pozo-68"	"General"	-
+B70	STRING	"Campo 3"	"General"	-
+C70	STRING	"País 3"	"General"	-
+D70	STRING	"Estado 2"	"General"	-
+E70	STRING	"activo"	"General"	-
+A71	STRING	"Pozo-69"	"General"	-
+B71	STRING	"Campo 4"	"General"	-
+C71	STRING	"País 4"	"General"	-
+D71	STRING	"Estado 3"	"General"	-
+E71	STRING	"activo"	"General"	-
+A72	STRING	"Pozo-70"	"General"	-
+C72	STRING	"País 0"	"General"	-
+D72	STRING	"Estado 4"	"General"	-
+E72	STRING	"activo"	"General"	-
+A73	STRING	"Pozo-71"	"General"	-
+B73	STRING	"Campo 6"	"General"	-
+C73	STRING	"País 1"	"General"	-
+D73	STRING	"Estado 5"	"General"	-
+E73	STRING	"activo"	"General"	-
+A74	STRING	"Pozo-72"	"General"	-
+B74	STRING	"Campo 7"	"General"	-
+C74	STRING	"País 2"	"General"	-
+D74	STRING	"Estado 6"	"General"	-
+E74	STRING	"activo"	"General"	-
+A75	STRING	"Pozo-73"	"General"	-
+B75	STRING	"Campo 8"	"General"	-
+C75	STRING	"País 3"	"General"	-
+D75	STRING	"Estado 7"	"General"	-
+E75	STRING	"activo"	"General"	-
+A76	STRING	"Pozo-74"	"General"	-
+B76	STRING	"Campo 9"	"General"	-
+C76	STRING	"País 4"	"General"	-
+D76	STRING	"Estado 8"	"General"	-
+E76	STRING	"activo"	"General"	-
+A77	STRING	"Pozo-75"	"General"	-
+B77	STRING	"Campo 10"	"General"	-
+C77	STRING	"País 0"	"General"	-
+D77	STRING	"Estado 9"	"General"	-
+E77	STRING	"activo"	"General"	-
+A78	STRING	"Pozo-76"	"General"	-
+B78	STRING	"Campo 11"	"General"	-
+C78	STRING	"País 1"	"General"	-
+D78	STRING	"Estado 10"	"General"	-
+E78	STRING	"activo"	"General"	-
+A79	STRING	"Pozo-77"	"General"	-
+C79	STRING	"País 2"	"General"	-
+D79	STRING	"Estado 0"	"General"	-
+E79	STRING	"activo"	"General"	-
+A80	STRING	"Pozo-78"	"General"	-
+B80	STRING	"Campo 0"	"General"	-
+C80	STRING	"País 3"	"General"	-
+D80	STRING	"Estado 1"	"General"	-
+E80	STRING	"activo"	"General"	-
+A81	STRING	"Pozo-79"	"General"	-
+B81	STRING	"Campo 1"	"General"	-
+C81	STRING	"País 4"	"General"	-
+D81	STRING	"Estado 2"	"General"	-
+E81	STRING	"activo"	"General"	-
+A82	STRING	"Pozo-80"	"General"	-
+B82	STRING	"Campo 2"	"General"	-
+C82	STRING	"País 0"	"General"	-
+D82	STRING	"Estado 3"	"General"	-
+E82	STRING	"activo"	"General"	-
+A83	STRING	"Pozo-81"	"General"	-
+B83	STRING	"Campo 3"	"General"	-
+C83	STRING	"País 1"	"General"	-
+D83	STRING	"Estado 4"	"General"	-
+E83	STRING	"activo"	"General"	-
+A84	STRING	"Pozo-82"	"General"	-
+B84	STRING	"Campo 4"	"General"	-
+C84	STRING	"País 2"	"General"	-
+D84	STRING	"Estado 5"	"General"	-
+E84	STRING	"activo"	"General"	-
+A85	STRING	"Pozo-83"	"General"	-
+B85	STRING	"Campo 5"	"General"	-
+C85	STRING	"País 3"	"General"	-
+D85	STRING	"Estado 6"	"General"	-
+E85	STRING	"activo"	"General"	-
+A86	STRING	"Pozo-84"	"General"	-
+C86	STRING	"País 4"	"General"	-
+D86	STRING	"Estado 7"	"General"	-
+E86	STRING	"activo"	"General"	-
+A87	STRING	"Pozo-85"	"General"	-
+B87	STRING	"Campo 7"	"General"	-
+C87	STRING	"País 0"	"General"	-
+D87	STRING	"Estado 8"	"General"	-
+E87	STRING	"activo"	"General"	-
+A88	STRING	"Pozo-86"	"General"	-
+B88	STRING	"Campo 8"	"General"	-
+C88	STRING	"País 1"	"General"	-
+D88	STRING	"Estado 9"	"General"	-
+E88	STRING	"activo"	"General"	-
+A89	STRING	"Pozo-87"	"General"	-
+B89	STRING	"Campo 9"	"General"	-
+C89	STRING	"País 2"	"General"	-
+D89	STRING	"Estado 10"	"General"	-
+E89	STRING	"activo"	"General"	-
+A90	STRING	"Pozo-88"	"General"	-
+B90	STRING	"Campo 10"	"General"	-
+C90	STRING	"País 3"	"General"	-
+D90	STRING	"Estado 0"	"General"	-
+E90	STRING	"activo"	"General"	-
+A91	STRING	"Pozo-89"	"General"	-
+B91	STRING	"Campo 11"	"General"	-
+C91	STRING	"País 4"	"General"	-
+D91	STRING	"Estado 1"	"General"	-
+E91	STRING	"activo"	"General"	-
+A92	STRING	"Pozo-90"	"General"	-
+B92	STRING	"Campo 12"	"General"	-
+C92	STRING	"País 0"	"General"	-
+D92	STRING	"Estado 2"	"General"	-
+E92	STRING	"activo"	"General"	-
+A93	STRING	"Pozo-91"	"General"	-
+C93	STRING	"País 1"	"General"	-
+D93	STRING	"Estado 3"	"General"	-
+E93	STRING	"activo"	"General"	-
+A94	STRING	"Pozo-92"	"General"	-
+B94	STRING	"Campo 1"	"General"	-
+C94	STRING	"País 2"	"General"	-
+D94	STRING	"Estado 4"	"General"	-
+E94	STRING	"activo"	"General"	-
+A95	STRING	"Pozo-93"	"General"	-
+B95	STRING	"Campo 2"	"General"	-
+C95	STRING	"País 3"	"General"	-
+D95	STRING	"Estado 5"	"General"	-
+E95	STRING	"activo"	"General"	-
+A96	STRING	"Pozo-94"	"General"	-
+B96	STRING	"Campo 3"	"General"	-
+C96	STRING	"País 4"	"General"	-
+D96	STRING	"Estado 6"	"General"	-
+E96	STRING	"activo"	"General"	-
+A97	STRING	"Pozo-95"	"General"	-
+B97	STRING	"Campo 4"	"General"	-
+C97	STRING	"País 0"	"General"	-
+D97	STRING	"Estado 7"	"General"	-
+E97	STRING	"activo"	"General"	-
+A98	STRING	"Pozo-96"	"General"	-
+B98	STRING	"Campo 5"	"General"	-
+C98	STRING	"País 1"	"General"	-
+D98	STRING	"Estado 8"	"General"	-
+E98	STRING	"activo"	"General"	-
+A99	STRING	"Pozo-97"	"General"	-
+B99	STRING	"Campo 6"	"General"	-
+C99	STRING	"País 2"	"General"	-
+D99	STRING	"Estado 9"	"General"	-
+E99	STRING	"activo"	"General"	-
+A100	STRING	"Pozo-98"	"General"	-
+C100	STRING	"País 3"	"General"	-
+D100	STRING	"Estado 10"	"General"	-
+E100	STRING	"activo"	"General"	-
+A101	STRING	"Pozo-99"	"General"	-
+B101	STRING	"Campo 8"	"General"	-
+C101	STRING	"País 4"	"General"	-
+D101	STRING	"Estado 0"	"General"	-
+E101	STRING	"activo"	"General"	-
+A102	STRING	"Pozo-100"	"General"	-
+B102	STRING	"Campo 9"	"General"	-
+C102	STRING	"País 0"	"General"	-
+D102	STRING	"Estado 1"	"General"	-
+E102	STRING	"activo"	"General"	-
+A103	STRING	"Pozo-101"	"General"	-
+B103	STRING	"Campo 10"	"General"	-
+C103	STRING	"País 1"	"General"	-
+D103	STRING	"Estado 2"	"General"	-
+E103	STRING	"activo"	"General"	-
+A104	STRING	"Pozo-102"	"General"	-
+B104	STRING	"Campo 11"	"General"	-
+C104	STRING	"País 2"	"General"	-
+D104	STRING	"Estado 3"	"General"	-
+E104	STRING	"activo"	"General"	-
+A105	STRING	"Pozo-103"	"General"	-
+B105	STRING	"Campo 12"	"General"	-
+C105	STRING	"País 3"	"General"	-
+D105	STRING	"Estado 4"	"General"	-
+E105	STRING	"activo"	"General"	-
+A106	STRING	"Pozo-104"	"General"	-
+B106	STRING	"Campo 0"	"General"	-
+C106	STRING	"País 4"	"General"	-
+D106	STRING	"Estado 5"	"General"	-
+E106	STRING	"activo"	"General"	-
+A107	STRING	"Pozo-105"	"General"	-
+C107	STRING	"País 0"	"General"	-
+D107	STRING	"Estado 6"	"General"	-
+E107	STRING	"activo"	"General"	-
+A108	STRING	"Pozo-106"	"General"	-
+B108	STRING	"Campo 2"	"General"	-
+C108	STRING	"País 1"	"General"	-
+D108	STRING	"Estado 7"	"General"	-
+E108	STRING	"activo"	"General"	-
+A109	STRING	"Pozo-107"	"General"	-
+B109	STRING	"Campo 3"	"General"	-
+C109	STRING	"País 2"	"General"	-
+D109	STRING	"Estado 8"	"General"	-
+E109	STRING	"activo"	"General"	-
+A110	STRING	"Pozo-108"	"General"	-
+B110	STRING	"Campo 4"	"General"	-
+C110	STRING	"País 3"	"General"	-
+D110	STRING	"Estado 9"	"General"	-
+E110	STRING	"activo"	"General"	-
+A111	STRING	"Pozo-109"	"General"	-
+B111	STRING	"Campo 5"	"General"	-
+C111	STRING	"País 4"	"General"	-
+D111	STRING	"Estado 10"	"General"	-
+E111	STRING	"activo"	"General"	-
+A112	STRING	"Pozo-110"	"General"	-
+B112	STRING	"Campo 6"	"General"	-
+C112	STRING	"País 0"	"General"	-
+D112	STRING	"Estado 0"	"General"	-
+E112	STRING	"activo"	"General"	-
+A113	STRING	"Pozo-111"	"General"	-
+B113	STRING	"Campo 7"	"General"	-
+C113	STRING	"País 1"	"General"	-
+D113	STRING	"Estado 1"	"General"	-
+E113	STRING	"activo"	"General"	-
+A114	STRING	"Pozo-112"	"General"	-
+C114	STRING	"País 2"	"General"	-
+D114	STRING	"Estado 2"	"General"	-
+E114	STRING	"activo"	"General"	-
+A115	STRING	"Pozo-113"	"General"	-
+B115	STRING	"Campo 9"	"General"	-
+C115	STRING	"País 3"	"General"	-
+D115	STRING	"Estado 3"	"General"	-
+E115	STRING	"activo"	"General"	-
+A116	STRING	"Pozo-114"	"General"	-
+B116	STRING	"Campo 10"	"General"	-
+C116	STRING	"País 4"	"General"	-
+D116	STRING	"Estado 4"	"General"	-
+E116	STRING	"activo"	"General"	-
+A117	STRING	"Pozo-115"	"General"	-
+B117	STRING	"Campo 11"	"General"	-
+C117	STRING	"País 0"	"General"	-
+D117	STRING	"Estado 5"	"General"	-
+E117	STRING	"activo"	"General"	-
+A118	STRING	"Pozo-116"	"General"	-
+B118	STRING	"Campo 12"	"General"	-
+C118	STRING	"País 1"	"General"	-
+D118	STRING	"Estado 6"	"General"	-
+E118	STRING	"activo"	"General"	-
+A119	STRING	"Pozo-117"	"General"	-
+B119	STRING	"Campo 0"	"General"	-
+C119	STRING	"País 2"	"General"	-
+D119	STRING	"Estado 7"	"General"	-
+E119	STRING	"activo"	"General"	-
+A120	STRING	"Pozo-118"	"General"	-
+B120	STRING	"Campo 1"	"General"	-
+C120	STRING	"País 3"	"General"	-
+D120	STRING	"Estado 8"	"General"	-
+E120	STRING	"activo"	"General"	-
+A121	STRING	"Pozo-119"	"General"	-
+C121	STRING	"País 4"	"General"	-
+D121	STRING	"Estado 9"	"General"	-
+E121	STRING	"activo"	"General"	-
+A122	STRING	"Pozo-120"	"General"	-
+B122	STRING	"Campo 3"	"General"	-
+C122	STRING	"País 0"	"General"	-
+D122	STRING	"Estado 10"	"General"	-
+E122	STRING	"activo"	"General"	-
+A123	STRING	"Pozo-121"	"General"	-
+B123	STRING	"Campo 4"	"General"	-
+C123	STRING	"País 1"	"General"	-
+D123	STRING	"Estado 0"	"General"	-
+E123	STRING	"activo"	"General"	-
+A124	STRING	"Pozo-122"	"General"	-
+B124	STRING	"Campo 5"	"General"	-
+C124	STRING	"País 2"	"General"	-
+D124	STRING	"Estado 1"	"General"	-
+E124	STRING	"activo"	"General"	-
+A125	STRING	"Pozo-123"	"General"	-
+B125	STRING	"Campo 6"	"General"	-
+C125	STRING	"País 3"	"General"	-
+D125	STRING	"Estado 2"	"General"	-
+E125	STRING	"activo"	"General"	-
+A126	STRING	"Pozo-124"	"General"	-
+B126	STRING	"Campo 7"	"General"	-
+C126	STRING	"País 4"	"General"	-
+D126	STRING	"Estado 3"	"General"	-
+E126	STRING	"activo"	"General"	-
+A127	STRING	"Pozo-125"	"General"	-
+B127	STRING	"Campo 8"	"General"	-
+C127	STRING	"País 0"	"General"	-
+D127	STRING	"Estado 4"	"General"	-
+E127	STRING	"activo"	"General"	-
+A128	STRING	"Pozo-126"	"General"	-
+C128	STRING	"País 1"	"General"	-
+D128	STRING	"Estado 5"	"General"	-
+E128	STRING	"activo"	"General"	-
+A129	STRING	"Pozo-127"	"General"	-
+B129	STRING	"Campo 10"	"General"	-
+C129	STRING	"País 2"	"General"	-
+D129	STRING	"Estado 6"	"General"	-
+E129	STRING	"activo"	"General"	-
+A130	STRING	"Pozo-128"	"General"	-
+B130	STRING	"Campo 11"	"General"	-
+C130	STRING	"País 3"	"General"	-
+D130	STRING	"Estado 7"	"General"	-
+E130	STRING	"activo"	"General"	-
+A131	STRING	"Pozo-129"	"General"	-
+B131	STRING	"Campo 12"	"General"	-
+C131	STRING	"País 4"	"General"	-
+D131	STRING	"Estado 8"	"General"	-
+E131	STRING	"activo"	"General"	-
+A132	STRING	"Pozo-130"	"General"	-
+B132	STRING	"Campo 0"	"General"	-
+C132	STRING	"País 0"	"General"	-
+D132	STRING	"Estado 9"	"General"	-
+E132	STRING	"activo"	"General"	-
+A133	STRING	"Pozo-131"	"General"	-
+B133	STRING	"Campo 1"	"General"	-
+C133	STRING	"País 1"	"General"	-
+D133	STRING	"Estado 10"	"General"	-
+E133	STRING	"activo"	"General"	-
+A134	STRING	"Pozo-132"	"General"	-
+B134	STRING	"Campo 2"	"General"	-
+C134	STRING	"País 2"	"General"	-
+D134	STRING	"Estado 0"	"General"	-
+E134	STRING	"activo"	"General"	-
+A135	STRING	"Pozo-133"	"General"	-
+C135	STRING	"País 3"	"General"	-
+D135	STRING	"Estado 1"	"General"	-
+E135	STRING	"activo"	"General"	-
+A136	STRING	"Pozo-134"	"General"	-
+B136	STRING	"Campo 4"	"General"	-
+C136	STRING	"País 4"	"General"	-
+D136	STRING	"Estado 2"	"General"	-
+E136	STRING	"activo"	"General"	-
+A137	STRING	"Pozo-135"	"General"	-
+B137	STRING	"Campo 5"	"General"	-
+C137	STRING	"País 0"	"General"	-
+D137	STRING	"Estado 3"	"General"	-
+E137	STRING	"activo"	"General"	-
+A138	STRING	"Pozo-136"	"General"	-
+B138	STRING	"Campo 6"	"General"	-
+C138	STRING	"País 1"	"General"	-
+D138	STRING	"Estado 4"	"General"	-
+E138	STRING	"activo"	"General"	-
+A139	STRING	"Pozo-137"	"General"	-
+B139	STRING	"Campo 7"	"General"	-
+C139	STRING	"País 2"	"General"	-
+D139	STRING	"Estado 5"	"General"	-
+E139	STRING	"activo"	"General"	-
+A140	STRING	"Pozo-138"	"General"	-
+B140	STRING	"Campo 8"	"General"	-
+C140	STRING	"País 3"	"General"	-
+D140	STRING	"Estado 6"	"General"	-
+E140	STRING	"activo"	"General"	-
+A141	STRING	"Pozo-139"	"General"	-
+B141	STRING	"Campo 9"	"General"	-
+C141	STRING	"País 4"	"General"	-
+D141	STRING	"Estado 7"	"General"	-
+E141	STRING	"activo"	"General"	-
+A142	STRING	"Pozo-140"	"General"	-
+C142	STRING	"País 0"	"General"	-
+D142	STRING	"Estado 8"	"General"	-
+E142	STRING	"activo"	"General"	-
+A143	STRING	"Pozo-141"	"General"	-
+B143	STRING	"Campo 11"	"General"	-
+C143	STRING	"País 1"	"General"	-
+D143	STRING	"Estado 9"	"General"	-
+E143	STRING	"activo"	"General"	-
+A144	STRING	"Pozo-142"	"General"	-
+B144	STRING	"Campo 12"	"General"	-
+C144	STRING	"País 2"	"General"	-
+D144	STRING	"Estado 10"	"General"	-
+E144	STRING	"activo"	"General"	-
+A145	STRING	"Pozo-143"	"General"	-
+B145	STRING	"Campo 0"	"General"	-
+C145	STRING	"País 3"	"General"	-
+D145	STRING	"Estado 0"	"General"	-
+E145	STRING	"activo"	"General"	-
+A146	STRING	"Pozo-144"	"General"	-
+B146	STRING	"Campo 1"	"General"	-
+C146	STRING	"País 4"	"General"	-
+D146	STRING	"Estado 1"	"General"	-
+E146	STRING	"activo"	"General"	-
+A147	STRING	"Pozo-145"	"General"	-
+B147	STRING	"Campo 2"	"General"	-
+C147	STRING	"País 0"	"General"	-
+D147	STRING	"Estado 2"	"General"	-
+E147	STRING	"activo"	"General"	-
+A148	STRING	"Pozo-146"	"General"	-
+B148	STRING	"Campo 3"	"General"	-
+C148	STRING	"País 1"	"General"	-
+D148	STRING	"Estado 3"	"General"	-
+E148	STRING	"activo"	"General"	-
+A149	STRING	"Pozo-147"	"General"	-
+C149	STRING	"País 2"	"General"	-
+D149	STRING	"Estado 4"	"General"	-
+E149	STRING	"activo"	"General"	-
+A150	STRING	"Pozo-148"	"General"	-
+B150	STRING	"Campo 5"	"General"	-
+C150	STRING	"País 3"	"General"	-
+D150	STRING	"Estado 5"	"General"	-
+E150	STRING	"activo"	"General"	-
+A151	STRING	"Pozo-149"	"General"	-
+B151	STRING	"Campo 6"	"General"	-
+C151	STRING	"País 4"	"General"	-
+D151	STRING	"Estado 6"	"General"	-
+E151	STRING	"activo"	"General"	-
+A152	STRING	"Pozo-150"	"General"	-
+B152	STRING	"Campo 7"	"General"	-
+C152	STRING	"País 0"	"General"	-
+D152	STRING	"Estado 7"	"General"	-
+E152	STRING	"activo"	"General"	-
+A153	STRING	"Pozo-151"	"General"	-
+B153	STRING	"Campo 8"	"General"	-
+C153	STRING	"País 1"	"General"	-
+D153	STRING	"Estado 8"	"General"	-
+E153	STRING	"activo"	"General"	-
+A154	STRING	"Pozo-152"	"General"	-
+B154	STRING	"Campo 9"	"General"	-
+C154	STRING	"País 2"	"General"	-
+D154	STRING	"Estado 9"	"General"	-
+E154	STRING	"activo"	"General"	-
+A155	STRING	"Pozo-153"	"General"	-
+B155	STRING	"Campo 10"	"General"	-
+C155	STRING	"País 3"	"General"	-
+D155	STRING	"Estado 10"	"General"	-
+E155	STRING	"activo"	"General"	-
+A156	STRING	"Pozo-154"	"General"	-
+C156	STRING	"País 4"	"General"	-
+D156	STRING	"Estado 0"	"General"	-
+E156	STRING	"activo"	"General"	-
+A157	STRING	"Pozo-155"	"General"	-
+B157	STRING	"Campo 12"	"General"	-
+C157	STRING	"País 0"	"General"	-
+D157	STRING	"Estado 1"	"General"	-
+E157	STRING	"activo"	"General"	-
+A158	STRING	"Pozo-156"	"General"	-
+B158	STRING	"Campo 0"	"General"	-
+C158	STRING	"País 1"	"General"	-
+D158	STRING	"Estado 2"	"General"	-
+E158	STRING	"activo"	"General"	-
+A159	STRING	"Pozo-157"	"General"	-
+B159	STRING	"Campo 1"	"General"	-
+C159	STRING	"País 2"	"General"	-
+D159	STRING	"Estado 3"	"General"	-
+E159	STRING	"activo"	"General"	-
+A160	STRING	"Pozo-158"	"General"	-
+B160	STRING	"Campo 2"	"General"	-
+C160	STRING	"País 3"	"General"	-
+D160	STRING	"Estado 4"	"General"	-
+E160	STRING	"activo"	"General"	-
+A161	STRING	"Pozo-159"	"General"	-
+B161	STRING	"Campo 3"	"General"	-
+C161	STRING	"País 4"	"General"	-
+D161	STRING	"Estado 5"	"General"	-
+E161	STRING	"activo"	"General"	-
+A162	STRING	"Pozo-160"	"General"	-
+B162	STRING	"Campo 4"	"General"	-
+C162	STRING	"País 0"	"General"	-
+D162	STRING	"Estado 6"	"General"	-
+E162	STRING	"activo"	"General"	-
+A163	STRING	"Pozo-161"	"General"	-
+C163	STRING	"País 1"	"General"	-
+D163	STRING	"Estado 7"	"General"	-
+E163	STRING	"activo"	"General"	-
+A164	STRING	"Pozo-162"	"General"	-
+B164	STRING	"Campo 6"	"General"	-
+C164	STRING	"País 2"	"General"	-
+D164	STRING	"Estado 8"	"General"	-
+E164	STRING	"activo"	"General"	-
+A165	STRING	"Pozo-163"	"General"	-
+B165	STRING	"Campo 7"	"General"	-
+C165	STRING	"País 3"	"General"	-
+D165	STRING	"Estado 9"	"General"	-
+E165	STRING	"activo"	"General"	-
+A166	STRING	"Pozo-164"	"General"	-
+B166	STRING	"Campo 8"	"General"	-
+C166	STRING	"País 4"	"General"	-
+D166	STRING	"Estado 10"	"General"	-
+E166	STRING	"activo"	"General"	-
+A167	STRING	"Pozo-165"	"General"	-
+B167	STRING	"Campo 9"	"General"	-
+C167	STRING	"País 0"	"General"	-
+D167	STRING	"Estado 0"	"General"	-
+E167	STRING	"activo"	"General"	-
+A168	STRING	"Pozo-166"	"General"	-
+B168	STRING	"Campo 10"	"General"	-
+C168	STRING	"País 1"	"General"	-
+D168	STRING	"Estado 1"	"General"	-
+E168	STRING	"activo"	"General"	-
+A169	STRING	"Pozo-167"	"General"	-
+B169	STRING	"Campo 11"	"General"	-
+C169	STRING	"País 2"	"General"	-
+D169	STRING	"Estado 2"	"General"	-
+E169	STRING	"activo"	"General"	-
+A170	STRING	"Pozo-168"	"General"	-
+C170	STRING	"País 3"	"General"	-
+D170	STRING	"Estado 3"	"General"	-
+E170	STRING	"activo"	"General"	-
+A171	STRING	"Pozo-169"	"General"	-
+B171	STRING	"Campo 0"	"General"	-
+C171	STRING	"País 4"	"General"	-
+D171	STRING	"Estado 4"	"General"	-
+E171	STRING	"activo"	"General"	-
+A172	STRING	"Pozo-170"	"General"	-
+B172	STRING	"Campo 1"	"General"	-
+C172	STRING	"País 0"	"General"	-
+D172	STRING	"Estado 5"	"General"	-
+E172	STRING	"activo"	"General"	-
+A173	STRING	"Pozo-171"	"General"	-
+B173	STRING	"Campo 2"	"General"	-
+C173	STRING	"País 1"	"General"	-
+D173	STRING	"Estado 6"	"General"	-
+E173	STRING	"activo"	"General"	-
+A174	STRING	"Pozo-172"	"General"	-
+B174	STRING	"Campo 3"	"General"	-
+C174	STRING	"País 2"	"General"	-
+D174	STRING	"Estado 7"	"General"	-
+E174	STRING	"activo"	"General"	-
+A175	STRING	"Pozo-173"	"General"	-
+B175	STRING	"Campo 4"	"General"	-
+C175	STRING	"País 3"	"General"	-
+D175	STRING	"Estado 8"	"General"	-
+E175	STRING	"activo"	"General"	-
+A176	STRING	"Pozo-174"	"General"	-
+B176	STRING	"Campo 5"	"General"	-
+C176	STRING	"País 4"	"General"	-
+D176	STRING	"Estado 9"	"General"	-
+E176	STRING	"activo"	"General"	-
+A177	STRING	"Pozo-175"	"General"	-
+C177	STRING	"País 0"	"General"	-
+D177	STRING	"Estado 10"	"General"	-
+E177	STRING	"activo"	"General"	-
+A178	STRING	"Pozo-176"	"General"	-
+B178	STRING	"Campo 7"	"General"	-
+C178	STRING	"País 1"	"General"	-
+D178	STRING	"Estado 0"	"General"	-
+E178	STRING	"activo"	"General"	-
+A179	STRING	"Pozo-177"	"General"	-
+B179	STRING	"Campo 8"	"General"	-
+C179	STRING	"País 2"	"General"	-
+D179	STRING	"Estado 1"	"General"	-
+E179	STRING	"activo"	"General"	-
+A180	STRING	"Pozo-178"	"General"	-
+B180	STRING	"Campo 9"	"General"	-
+C180	STRING	"País 3"	"General"	-
+D180	STRING	"Estado 2"	"General"	-
+E180	STRING	"activo"	"General"	-
+A181	STRING	"Pozo-179"	"General"	-
+B181	STRING	"Campo 10"	"General"	-
+C181	STRING	"País 4"	"General"	-
+D181	STRING	"Estado 3"	"General"	-
+E181	STRING	"activo"	"General"	-
+A182	STRING	"Pozo-180"	"General"	-
+B182	STRING	"Campo 11"	"General"	-
+C182	STRING	"País 0"	"General"	-
+D182	STRING	"Estado 4"	"General"	-
+E182	STRING	"activo"	"General"	-
+A183	STRING	"Pozo-181"	"General"	-
+B183	STRING	"Campo 12"	"General"	-
+C183	STRING	"País 1"	"General"	-
+D183	STRING	"Estado 5"	"General"	-
+E183	STRING	"activo"	"General"	-
+A184	STRING	"Pozo-182"	"General"	-
+C184	STRING	"País 2"	"General"	-
+D184	STRING	"Estado 6"	"General"	-
+E184	STRING	"activo"	"General"	-
+A185	STRING	"Pozo-183"	"General"	-
+B185	STRING	"Campo 1"	"General"	-
+C185	STRING	"País 3"	"General"	-
+D185	STRING	"Estado 7"	"General"	-
+E185	STRING	"activo"	"General"	-
+A186	STRING	"Pozo-184"	"General"	-
+B186	STRING	"Campo 2"	"General"	-
+C186	STRING	"País 4"	"General"	-
+D186	STRING	"Estado 8"	"General"	-
+E186	STRING	"activo"	"General"	-
+A187	STRING	"Pozo-185"	"General"	-
+B187	STRING	"Campo 3"	"General"	-
+C187	STRING	"País 0"	"General"	-
+D187	STRING	"Estado 9"	"General"	-
+E187	STRING	"activo"	"General"	-
+A188	STRING	"Pozo-186"	"General"	-
+B188	STRING	"Campo 4"	"General"	-
+C188	STRING	"País 1"	"General"	-
+D188	STRING	"Estado 10"	"General"	-
+E188	STRING	"activo"	"General"	-
+A189	STRING	"Pozo-187"	"General"	-
+B189	STRING	"Campo 5"	"General"	-
+C189	STRING	"País 2"	"General"	-
+D189	STRING	"Estado 0"	"General"	-
+E189	STRING	"activo"	"General"	-
+A190	STRING	"Pozo-188"	"General"	-
+B190	STRING	"Campo 6"	"General"	-
+C190	STRING	"País 3"	"General"	-
+D190	STRING	"Estado 1"	"General"	-
+E190	STRING	"activo"	"General"	-
+A191	STRING	"Pozo-189"	"General"	-
+C191	STRING	"País 4"	"General"	-
+D191	STRING	"Estado 2"	"General"	-
+E191	STRING	"activo"	"General"	-
+A192	STRING	"Pozo-190"	"General"	-
+B192	STRING	"Campo 8"	"General"	-
+C192	STRING	"País 0"	"General"	-
+D192	STRING	"Estado 3"	"General"	-
+E192	STRING	"activo"	"General"	-
+A193	STRING	"Pozo-191"	"General"	-
+B193	STRING	"Campo 9"	"General"	-
+C193	STRING	"País 1"	"General"	-
+D193	STRING	"Estado 4"	"General"	-
+E193	STRING	"activo"	"General"	-
+A194	STRING	"Pozo-192"	"General"	-
+B194	STRING	"Campo 10"	"General"	-
+C194	STRING	"País 2"	"General"	-
+D194	STRING	"Estado 5"	"General"	-
+E194	STRING	"activo"	"General"	-
+A195	STRING	"Pozo-193"	"General"	-
+B195	STRING	"Campo 11"	"General"	-
+C195	STRING	"País 3"	"General"	-
+D195	STRING	"Estado 6"	"General"	-
+E195	STRING	"activo"	"General"	-
+A196	STRING	"Pozo-194"	"General"	-
+B196	STRING	"Campo 12"	"General"	-
+C196	STRING	"País 4"	"General"	-
+D196	STRING	"Estado 7"	"General"	-
+E196	STRING	"activo"	"General"	-
+A197	STRING	"Pozo-195"	"General"	-
+B197	STRING	"Campo 0"	"General"	-
+C197	STRING	"País 0"	"General"	-
+D197	STRING	"Estado 8"	"General"	-
+E197	STRING	"activo"	"General"	-
+A198	STRING	"Pozo-196"	"General"	-
+C198	STRING	"País 1"	"General"	-
+D198	STRING	"Estado 9"	"General"	-
+E198	STRING	"activo"	"General"	-
+A199	STRING	"Pozo-197"	"General"	-
+B199	STRING	"Campo 2"	"General"	-
+C199	STRING	"País 2"	"General"	-
+D199	STRING	"Estado 10"	"General"	-
+E199	STRING	"activo"	"General"	-
+A200	STRING	"Pozo-198"	"General"	-
+B200	STRING	"Campo 3"	"General"	-
+C200	STRING	"País 3"	"General"	-
+D200	STRING	"Estado 0"	"General"	-
+E200	STRING	"activo"	"General"	-
+A201	STRING	"Pozo-199"	"General"	-
+B201	STRING	"Campo 4"	"General"	-
+C201	STRING	"País 4"	"General"	-
+D201	STRING	"Estado 1"	"General"	-
+E201	STRING	"activo"	"General"	-
+A202	STRING	"Pozo-200"	"General"	-
+B202	STRING	"Campo 5"	"General"	-
+C202	STRING	"País 0"	"General"	-
+D202	STRING	"Estado 2"	"General"	-
+E202	STRING	"activo"	"General"	-
+A203	STRING	"Pozo-201"	"General"	-
+B203	STRING	"Campo 6"	"General"	-
+C203	STRING	"País 1"	"General"	-
+D203	STRING	"Estado 3"	"General"	-
+E203	STRING	"activo"	"General"	-
+A204	STRING	"Pozo-202"	"General"	-
+B204	STRING	"Campo 7"	"General"	-
+C204	STRING	"País 2"	"General"	-
+D204	STRING	"Estado 4"	"General"	-
+E204	STRING	"activo"	"General"	-
+A205	STRING	"Pozo-203"	"General"	-
+C205	STRING	"País 3"	"General"	-
+D205	STRING	"Estado 5"	"General"	-
+E205	STRING	"activo"	"General"	-
+A206	STRING	"Pozo-204"	"General"	-
+B206	STRING	"Campo 9"	"General"	-
+C206	STRING	"País 4"	"General"	-
+D206	STRING	"Estado 6"	"General"	-
+E206	STRING	"activo"	"General"	-
+A207	STRING	"Pozo-205"	"General"	-
+B207	STRING	"Campo 10"	"General"	-
+C207	STRING	"País 0"	"General"	-
+D207	STRING	"Estado 7"	"General"	-
+E207	STRING	"activo"	"General"	-
+A208	STRING	"Pozo-206"	"General"	-
+B208	STRING	"Campo 11"	"General"	-
+C208	STRING	"País 1"	"General"	-
+D208	STRING	"Estado 8"	"General"	-
+E208	STRING	"activo"	"General"	-
+A209	STRING	"Pozo-207"	"General"	-
+B209	STRING	"Campo 12"	"General"	-
+C209	STRING	"País 2"	"General"	-
+D209	STRING	"Estado 9"	"General"	-
+E209	STRING	"activo"	"General"	-
+A210	STRING	"Pozo-208"	"General"	-
+B210	STRING	"Campo 0"	"General"	-
+C210	STRING	"País 3"	"General"	-
+D210	STRING	"Estado 10"	"General"	-
+E210	STRING	"activo"	"General"	-
+A211	STRING	"Pozo-209"	"General"	-
+B211	STRING	"Campo 1"	"General"	-
+C211	STRING	"País 4"	"General"	-
+D211	STRING	"Estado 0"	"General"	-
+E211	STRING	"activo"	"General"	-
+A212	STRING	"Pozo-210"	"General"	-
+C212	STRING	"País 0"	"General"	-
+D212	STRING	"Estado 1"	"General"	-
+E212	STRING	"activo"	"General"	-
+A213	STRING	"Pozo-211"	"General"	-
+B213	STRING	"Campo 3"	"General"	-
+C213	STRING	"País 1"	"General"	-
+D213	STRING	"Estado 2"	"General"	-
+E213	STRING	"activo"	"General"	-
+A214	STRING	"Pozo-212"	"General"	-
+B214	STRING	"Campo 4"	"General"	-
+C214	STRING	"País 2"	"General"	-
+D214	STRING	"Estado 3"	"General"	-
+E214	STRING	"activo"	"General"	-
+A215	STRING	"Pozo-213"	"General"	-
+B215	STRING	"Campo 5"	"General"	-
+C215	STRING	"País 3"	"General"	-
+D215	STRING	"Estado 4"	"General"	-
+E215	STRING	"activo"	"General"	-
+A216	STRING	"Pozo-214"	"General"	-
+B216	STRING	"Campo 6"	"General"	-
+C216	STRING	"País 4"	"General"	-
+D216	STRING	"Estado 5"	"General"	-
+E216	STRING	"activo"	"General"	-
+A217	STRING	"Pozo-215"	"General"	-
+B217	STRING	"Campo 7"	"General"	-
+C217	STRING	"País 0"	"General"	-
+D217	STRING	"Estado 6"	"General"	-
+E217	STRING	"activo"	"General"	-
+A218	STRING	"Pozo-216"	"General"	-
+B218	STRING	"Campo 8"	"General"	-
+C218	STRING	"País 1"	"General"	-
+D218	STRING	"Estado 7"	"General"	-
+E218	STRING	"activo"	"General"	-
+A219	STRING	"Pozo-217"	"General"	-
+C219	STRING	"País 2"	"General"	-
+D219	STRING	"Estado 8"	"General"	-
+E219	STRING	"activo"	"General"	-
+A220	STRING	"Pozo-218"	"General"	-
+B220	STRING	"Campo 10"	"General"	-
+C220	STRING	"País 3"	"General"	-
+D220	STRING	"Estado 9"	"General"	-
+E220	STRING	"activo"	"General"	-
+A221	STRING	"Pozo-219"	"General"	-
+B221	STRING	"Campo 11"	"General"	-
+C221	STRING	"País 4"	"General"	-
+D221	STRING	"Estado 10"	"General"	-
+E221	STRING	"activo"	"General"	-
+A222	STRING	"Pozo-220"	"General"	-
+B222	STRING	"Campo 12"	"General"	-
+C222	STRING	"País 0"	"General"	-
+D222	STRING	"Estado 0"	"General"	-
+E222	STRING	"activo"	"General"	-
+A223	STRING	"Pozo-221"	"General"	-
+B223	STRING	"Campo 0"	"General"	-
+C223	STRING	"País 1"	"General"	-
+D223	STRING	"Estado 1"	"General"	-
+E223	STRING	"activo"	"General"	-
+A224	STRING	"Pozo-222"	"General"	-
+B224	STRING	"Campo 1"	"General"	-
+C224	STRING	"País 2"	"General"	-
+D224	STRING	"Estado 2"	"General"	-
+E224	STRING	"activo"	"General"	-
+A225	STRING	"Pozo-223"	"General"	-
+B225	STRING	"Campo 2"	"General"	-
+C225	STRING	"País 3"	"General"	-
+D225	STRING	"Estado 3"	"General"	-
+E225	STRING	"activo"	"General"	-
+A226	STRING	"Pozo-224"	"General"	-
+C226	STRING	"País 4"	"General"	-
+D226	STRING	"Estado 4"	"General"	-
+E226	STRING	"activo"	"General"	-
+A227	STRING	"Pozo-225"	"General"	-
+B227	STRING	"Campo 4"	"General"	-
+C227	STRING	"País 0"	"General"	-
+D227	STRING	"Estado 5"	"General"	-
+E227	STRING	"activo"	"General"	-
+A228	STRING	"Pozo-226"	"General"	-
+B228	STRING	"Campo 5"	"General"	-
+C228	STRING	"País 1"	"General"	-
+D228	STRING	"Estado 6"	"General"	-
+E228	STRING	"activo"	"General"	-
+A229	STRING	"Pozo-227"	"General"	-
+B229	STRING	"Campo 6"	"General"	-
+C229	STRING	"País 2"	"General"	-
+D229	STRING	"Estado 7"	"General"	-
+E229	STRING	"activo"	"General"	-
+A230	STRING	"Pozo-228"	"General"	-
+B230	STRING	"Campo 7"	"General"	-
+C230	STRING	"País 3"	"General"	-
+D230	STRING	"Estado 8"	"General"	-
+E230	STRING	"activo"	"General"	-
+A231	STRING	"Pozo-229"	"General"	-
+B231	STRING	"Campo 8"	"General"	-
+C231	STRING	"País 4"	"General"	-
+D231	STRING	"Estado 9"	"General"	-
+E231	STRING	"activo"	"General"	-
+A232	STRING	"Pozo-230"	"General"	-
+B232	STRING	"Campo 9"	"General"	-
+C232	STRING	"País 0"	"General"	-
+D232	STRING	"Estado 10"	"General"	-
+E232	STRING	"activo"	"General"	-
+A233	STRING	"Pozo-231"	"General"	-
+C233	STRING	"País 1"	"General"	-
+D233	STRING	"Estado 0"	"General"	-
+E233	STRING	"activo"	"General"	-
+A234	STRING	"Pozo-232"	"General"	-
+B234	STRING	"Campo 11"	"General"	-
+C234	STRING	"País 2"	"General"	-
+D234	STRING	"Estado 1"	"General"	-
+E234	STRING	"activo"	"General"	-
+A235	STRING	"Pozo-233"	"General"	-
+B235	STRING	"Campo 12"	"General"	-
+C235	STRING	"País 3"	"General"	-
+D235	STRING	"Estado 2"	"General"	-
+E235	STRING	"activo"	"General"	-
+A236	STRING	"Pozo-234"	"General"	-
+B236	STRING	"Campo 0"	"General"	-
+C236	STRING	"País 4"	"General"	-
+D236	STRING	"Estado 3"	"General"	-
+E236	STRING	"activo"	"General"	-
+A237	STRING	"Pozo-235"	"General"	-
+B237	STRING	"Campo 1"	"General"	-
+C237	STRING	"País 0"	"General"	-
+D237	STRING	"Estado 4"	"General"	-
+E237	STRING	"activo"	"General"	-
+A238	STRING	"Pozo-236"	"General"	-
+B238	STRING	"Campo 2"	"General"	-
+C238	STRING	"País 1"	"General"	-
+D238	STRING	"Estado 5"	"General"	-
+E238	STRING	"activo"	"General"	-
+A239	STRING	"Pozo-237"	"General"	-
+B239	STRING	"Campo 3"	"General"	-
+C239	STRING	"País 2"	"General"	-
+D239	STRING	"Estado 6"	"General"	-
+E239	STRING	"activo"	"General"	-
+A240	STRING	"Pozo-238"	"General"	-
+C240	STRING	"País 3"	"General"	-
+D240	STRING	"Estado 7"	"General"	-
+E240	STRING	"activo"	"General"	-
+A241	STRING	"Pozo-239"	"General"	-
+B241	STRING	"Campo 5"	"General"	-
+C241	STRING	"País 4"	"General"	-
+D241	STRING	"Estado 8"	"General"	-
+E241	STRING	"activo"	"General"	-
+A242	STRING	"Pozo-240"	"General"	-
+B242	STRING	"Campo 6"	"General"	-
+C242	STRING	"País 0"	"General"	-
+D242	STRING	"Estado 9"	"General"	-
+E242	STRING	"activo"	"General"	-
+A243	STRING	"Pozo-241"	"General"	-
+B243	STRING	"Campo 7"	"General"	-
+C243	STRING	"País 1"	"General"	-
+D243	STRING	"Estado 10"	"General"	-
+E243	STRING	"activo"	"General"	-
+A244	STRING	"Pozo-242"	"General"	-
+B244	STRING	"Campo 8"	"General"	-
+C244	STRING	"País 2"	"General"	-
+D244	STRING	"Estado 0"	"General"	-
+E244	STRING	"activo"	"General"	-
+A245	STRING	"Pozo-243"	"General"	-
+B245	STRING	"Campo 9"	"General"	-
+C245	STRING	"País 3"	"General"	-
+D245	STRING	"Estado 1"	"General"	-
+E245	STRING	"activo"	"General"	-
+A246	STRING	"Pozo-244"	"General"	-
+B246	STRING	"Campo 10"	"General"	-
+C246	STRING	"País 4"	"General"	-
+D246	STRING	"Estado 2"	"General"	-
+E246	STRING	"activo"	"General"	-
+A247	STRING	"Pozo-245"	"General"	-
+C247	STRING	"País 0"	"General"	-
+D247	STRING	"Estado 3"	"General"	-
+E247	STRING	"activo"	"General"	-
+A248	STRING	"Pozo-246"	"General"	-
+B248	STRING	"Campo 12"	"General"	-
+C248	STRING	"País 1"	"General"	-
+D248	STRING	"Estado 4"	"General"	-
+E248	STRING	"activo"	"General"	-
+A249	STRING	"Pozo-247"	"General"	-
+B249	STRING	"Campo 0"	"General"	-
+C249	STRING	"País 2"	"General"	-
+D249	STRING	"Estado 5"	"General"	-
+E249	STRING	"activo"	"General"	-
+A250	STRING	"Pozo-248"	"General"	-
+B250	STRING	"Campo 1"	"General"	-
+C250	STRING	"País 3"	"General"	-
+D250	STRING	"Estado 6"	"General"	-
+E250	STRING	"activo"	"General"	-
+A251	STRING	"Pozo-249"	"General"	-
+B251	STRING	"Campo 2"	"General"	-
+C251	STRING	"País 4"	"General"	-
+D251	STRING	"Estado 7"	"General"	-
+E251	STRING	"activo"	"General"	-
+A252	STRING	"Pozo-250"	"General"	-
+B252	STRING	"Campo 3"	"General"	-
+C252	STRING	"País 0"	"General"	-
+D252	STRING	"Estado 8"	"General"	-
+E252	STRING	"activo"	"General"	-
+A253	STRING	"Pozo-251"	"General"	-
+B253	STRING	"Campo 4"	"General"	-
+C253	STRING	"País 1"	"General"	-
+D253	STRING	"Estado 9"	"General"	-
+E253	STRING	"activo"	"General"	-
+A254	STRING	"Pozo-252"	"General"	-
+C254	STRING	"País 2"	"General"	-
+D254	STRING	"Estado 10"	"General"	-
+E254	STRING	"activo"	"General"	-
+A255	STRING	"Pozo-253"	"General"	-
+B255	STRING	"Campo 6"	"General"	-
+C255	STRING	"País 3"	"General"	-
+D255	STRING	"Estado 0"	"General"	-
+E255	STRING	"activo"	"General"	-
+A256	STRING	"Pozo-254"	"General"	-
+B256	STRING	"Campo 7"	"General"	-
+C256	STRING	"País 4"	"General"	-
+D256	STRING	"Estado 1"	"General"	-
+E256	STRING	"activo"	"General"	-
+A257	STRING	"Pozo-255"	"General"	-
+B257	STRING	"Campo 8"	"General"	-
+C257	STRING	"País 0"	"General"	-
+D257	STRING	"Estado 2"	"General"	-
+E257	STRING	"activo"	"General"	-
+A258	STRING	"Pozo-256"	"General"	-
+B258	STRING	"Campo 9"	"General"	-
+C258	STRING	"País 1"	"General"	-
+D258	STRING	"Estado 3"	"General"	-
+E258	STRING	"activo"	"General"	-
+A259	STRING	"Pozo-257"	"General"	-
+B259	STRING	"Campo 10"	"General"	-
+C259	STRING	"País 2"	"General"	-
+D259	STRING	"Estado 4"	"General"	-
+E259	STRING	"activo"	"General"	-
+A260	STRING	"Pozo-258"	"General"	-
+B260	STRING	"Campo 11"	"General"	-
+C260	STRING	"País 3"	"General"	-
+D260	STRING	"Estado 5"	"General"	-
+E260	STRING	"activo"	"General"	-
+A261	STRING	"Pozo-259"	"General"	-
+C261	STRING	"País 4"	"General"	-
+D261	STRING	"Estado 6"	"General"	-
+E261	STRING	"activo"	"General"	-
+A262	STRING	"Pozo-260"	"General"	-
+B262	STRING	"Campo 0"	"General"	-
+C262	STRING	"País 0"	"General"	-
+D262	STRING	"Estado 7"	"General"	-
+E262	STRING	"activo"	"General"	-
+A263	STRING	"Pozo-261"	"General"	-
+B263	STRING	"Campo 1"	"General"	-
+C263	STRING	"País 1"	"General"	-
+D263	STRING	"Estado 8"	"General"	-
+E263	STRING	"activo"	"General"	-
+A264	STRING	"Pozo-262"	"General"	-
+B264	STRING	"Campo 2"	"General"	-
+C264	STRING	"País 2"	"General"	-
+D264	STRING	"Estado 9"	"General"	-
+E264	STRING	"activo"	"General"	-
+A265	STRING	"Pozo-263"	"General"	-
+B265	STRING	"Campo 3"	"General"	-
+C265	STRING	"País 3"	"General"	-
+D265	STRING	"Estado 10"	"General"	-
+E265	STRING	"activo"	"General"	-
+A266	STRING	"Pozo-264"	"General"	-
+B266	STRING	"Campo 4"	"General"	-
+C266	STRING	"País 4"	"General"	-
+D266	STRING	"Estado 0"	"General"	-
+E266	STRING	"activo"	"General"	-
+A267	STRING	"Pozo-265"	"General"	-
+B267	STRING	"Campo 5"	"General"	-
+C267	STRING	"País 0"	"General"	-
+D267	STRING	"Estado 1"	"General"	-
+E267	STRING	"activo"	"General"	-
+A268	STRING	"Pozo-266"	"General"	-
+C268	STRING	"País 1"	"General"	-
+D268	STRING	"Estado 2"	"General"	-
+E268	STRING	"activo"	"General"	-
+A269	STRING	"Pozo-267"	"General"	-
+B269	STRING	"Campo 7"	"General"	-
+C269	STRING	"País 2"	"General"	-
+D269	STRING	"Estado 3"	"General"	-
+E269	STRING	"activo"	"General"	-
+A270	STRING	"Pozo-268"	"General"	-
+B270	STRING	"Campo 8"	"General"	-
+C270	STRING	"País 3"	"General"	-
+D270	STRING	"Estado 4"	"General"	-
+E270	STRING	"activo"	"General"	-
+A271	STRING	"Pozo-269"	"General"	-
+B271	STRING	"Campo 9"	"General"	-
+C271	STRING	"País 4"	"General"	-
+D271	STRING	"Estado 5"	"General"	-
+E271	STRING	"activo"	"General"	-
+A272	STRING	"Pozo-270"	"General"	-
+B272	STRING	"Campo 10"	"General"	-
+C272	STRING	"País 0"	"General"	-
+D272	STRING	"Estado 6"	"General"	-
+E272	STRING	"activo"	"General"	-
+A273	STRING	"Pozo-271"	"General"	-
+B273	STRING	"Campo 11"	"General"	-
+C273	STRING	"País 1"	"General"	-
+D273	STRING	"Estado 7"	"General"	-
+E273	STRING	"activo"	"General"	-
+A274	STRING	"Pozo-272"	"General"	-
+B274	STRING	"Campo 12"	"General"	-
+C274	STRING	"País 2"	"General"	-
+D274	STRING	"Estado 8"	"General"	-
+E274	STRING	"activo"	"General"	-
+A275	STRING	"Pozo-273"	"General"	-
+C275	STRING	"País 3"	"General"	-
+D275	STRING	"Estado 9"	"General"	-
+E275	STRING	"activo"	"General"	-
+A276	STRING	"Pozo-274"	"General"	-
+B276	STRING	"Campo 1"	"General"	-
+C276	STRING	"País 4"	"General"	-
+D276	STRING	"Estado 10"	"General"	-
+E276	STRING	"activo"	"General"	-
+A277	STRING	"Pozo-275"	"General"	-
+B277	STRING	"Campo 2"	"General"	-
+C277	STRING	"País 0"	"General"	-
+D277	STRING	"Estado 0"	"General"	-
+E277	STRING	"activo"	"General"	-
+A278	STRING	"Pozo-276"	"General"	-
+B278	STRING	"Campo 3"	"General"	-
+C278	STRING	"País 1"	"General"	-
+D278	STRING	"Estado 1"	"General"	-
+E278	STRING	"activo"	"General"	-
+A279	STRING	"Pozo-277"	"General"	-
+B279	STRING	"Campo 4"	"General"	-
+C279	STRING	"País 2"	"General"	-
+D279	STRING	"Estado 2"	"General"	-
+E279	STRING	"activo"	"General"	-
+A280	STRING	"Pozo-278"	"General"	-
+B280	STRING	"Campo 5"	"General"	-
+C280	STRING	"País 3"	"General"	-
+D280	STRING	"Estado 3"	"General"	-
+E280	STRING	"activo"	"General"	-
+A281	STRING	"Pozo-279"	"General"	-
+B281	STRING	"Campo 6"	"General"	-
+C281	STRING	"País 4"	"General"	-
+D281	STRING	"Estado 4"	"General"	-
+E281	STRING	"activo"	"General"	-
+A282	STRING	"Pozo-280"	"General"	-
+C282	STRING	"País 0"	"General"	-
+D282	STRING	"Estado 5"	"General"	-
+E282	STRING	"activo"	"General"	-
+A283	STRING	"Pozo-281"	"General"	-
+B283	STRING	"Campo 8"	"General"	-
+C283	STRING	"País 1"	"General"	-
+D283	STRING	"Estado 6"	"General"	-
+E283	STRING	"activo"	"General"	-
+A284	STRING	"Pozo-282"	"General"	-
+B284	STRING	"Campo 9"	"General"	-
+C284	STRING	"País 2"	"General"	-
+D284	STRING	"Estado 7"	"General"	-
+E284	STRING	"activo"	"General"	-
+A285	STRING	"Pozo-283"	"General"	-
+B285	STRING	"Campo 10"	"General"	-
+C285	STRING	"País 3"	"General"	-
+D285	STRING	"Estado 8"	"General"	-
+E285	STRING	"activo"	"General"	-
+A286	STRING	"Pozo-284"	"General"	-
+B286	STRING	"Campo 11"	"General"	-
+C286	STRING	"País 4"	"General"	-
+D286	STRING	"Estado 9"	"General"	-
+E286	STRING	"activo"	"General"	-
+A287	STRING	"Pozo-285"	"General"	-
+B287	STRING	"Campo 12"	"General"	-
+C287	STRING	"País 0"	"General"	-
+D287	STRING	"Estado 10"	"General"	-
+E287	STRING	"activo"	"General"	-
+A288	STRING	"Pozo-286"	"General"	-
+B288	STRING	"Campo 0"	"General"	-
+C288	STRING	"País 1"	"General"	-
+D288	STRING	"Estado 0"	"General"	-
+E288	STRING	"activo"	"General"	-
+A289	STRING	"Pozo-287"	"General"	-
+C289	STRING	"País 2"	"General"	-
+D289	STRING	"Estado 1"	"General"	-
+E289	STRING	"activo"	"General"	-
+A290	STRING	"Pozo-288"	"General"	-
+B290	STRING	"Campo 2"	"General"	-
+C290	STRING	"País 3"	"General"	-
+D290	STRING	"Estado 2"	"General"	-
+E290	STRING	"activo"	"General"	-
+A291	STRING	"Pozo-289"	"General"	-
+B291	STRING	"Campo 3"	"General"	-
+C291	STRING	"País 4"	"General"	-
+D291	STRING	"Estado 3"	"General"	-
+E291	STRING	"activo"	"General"	-
+A292	STRING	"Pozo-290"	"General"	-
+B292	STRING	"Campo 4"	"General"	-
+C292	STRING	"País 0"	"General"	-
+D292	STRING	"Estado 4"	"General"	-
+E292	STRING	"activo"	"General"	-
+A293	STRING	"Pozo-291"	"General"	-
+B293	STRING	"Campo 5"	"General"	-
+C293	STRING	"País 1"	"General"	-
+D293	STRING	"Estado 5"	"General"	-
+E293	STRING	"activo"	"General"	-
+A294	STRING	"Pozo-292"	"General"	-
+B294	STRING	"Campo 6"	"General"	-
+C294	STRING	"País 2"	"General"	-
+D294	STRING	"Estado 6"	"General"	-
+E294	STRING	"activo"	"General"	-
+A295	STRING	"Pozo-293"	"General"	-
+B295	STRING	"Campo 7"	"General"	-
+C295	STRING	"País 3"	"General"	-
+D295	STRING	"Estado 7"	"General"	-
+E295	STRING	"activo"	"General"	-
+A296	STRING	"Pozo-294"	"General"	-
+C296	STRING	"País 4"	"General"	-
+D296	STRING	"Estado 8"	"General"	-
+E296	STRING	"activo"	"General"	-
+A297	STRING	"Pozo-295"	"General"	-
+B297	STRING	"Campo 9"	"General"	-
+C297	STRING	"País 0"	"General"	-
+D297	STRING	"Estado 9"	"General"	-
+E297	STRING	"activo"	"General"	-
+A298	STRING	"Pozo-296"	"General"	-
+B298	STRING	"Campo 10"	"General"	-
+C298	STRING	"País 1"	"General"	-
+D298	STRING	"Estado 10"	"General"	-
+E298	STRING	"activo"	"General"	-
+A299	STRING	"Pozo-297"	"General"	-
+B299	STRING	"Campo 11"	"General"	-
+C299	STRING	"País 2"	"General"	-
+D299	STRING	"Estado 0"	"General"	-
+E299	STRING	"activo"	"General"	-
+A300	STRING	"Pozo-298"	"General"	-
+B300	STRING	"Campo 12"	"General"	-
+C300	STRING	"País 3"	"General"	-
+D300	STRING	"Estado 1"	"General"	-
+E300	STRING	"activo"	"General"	-
+A301	STRING	"Pozo-299"	"General"	-
+B301	STRING	"Campo 0"	"General"	-
+C301	STRING	"País 4"	"General"	-
+D301	STRING	"Estado 2"	"General"	-
+E301	STRING	"activo"	"General"	-
+== sheet 2 "Metodología"
+freeze none
+filter none
+merged 0
+lastRow 41
+A1	STRING	"Ejecución"	"General"	-
+A2	STRING	"Huella de la especificación"	"General"	-
+B2	STRING	"5b1ae22de609609f3f46461ba92e56e056828883aea822ef582eefd9455cf7f5"	"General"	-
+A3	STRING	"Huella del plan de reporte"	"General"	-
+B3	STRING	"5e6ab3808fe7a929aecb6a965d6d2f42ae6f478c1aec771b6832c1c0715d0e3d"	"General"	-
+A4	STRING	"Instantánea de metadatos"	"General"	-
+B4	STRING	"7a3f0000-0000-4000-8000-000000000003"	"General"	-
+A5	STRING	"Aislamiento"	"General"	-
+B5	STRING	"REPEATABLE_READ, solo lectura, 1 transacción"	"General"	-
+A6	STRING	"Instantánea de la lectura (pg_current_snapshot)"	"General"	-
+B6	STRING	"1234:1234:"	"General"	-
+A7	STRING	"Inicio"	"General"	-
+B7	STRING	"2026-11-01 12:00:00 (America/Mexico_City)"	"General"	-
+A8	STRING	"Fin"	"General"	-
+B8	STRING	"2026-11-01 12:00:02 (America/Mexico_City)"	"General"	-
+A9	STRING	"Duración de la lectura (ms)"	"General"	-
+B9	NUMERIC	40.0	"#,##0"	-
+A11	STRING	"Conjunto de datos"	"General"	-
+B11	STRING	"Filas"	"General"	-
+C11	STRING	"Truncado"	"General"	-
+D11	STRING	"Límite"	"General"	-
+A12	STRING	"resumen"	"General"	-
+B12	NUMERIC	15.0	"#,##0"	-
+C12	STRING	"No"	"General"	-
+D12	NUMERIC	10000.0	"#,##0"	-
+A13	STRING	"total"	"General"	-
+B13	NUMERIC	1.0	"#,##0"	-
+C13	STRING	"No"	"General"	-
+D13	NUMERIC	10000.0	"#,##0"	-
+A14	STRING	"detalle"	"General"	-
+B14	NUMERIC	300.0	"#,##0"	-
+C14	STRING	"No"	"General"	-
+D14	NUMERIC	10000.0	"#,##0"	-
+A15	STRING	"Conjunto de datos"	"General"	-
+B15	STRING	"Huella del plan"	"General"	-
+C15	STRING	"Duración (ms)"	"General"	-
+A16	STRING	"resumen"	"General"	-
+B16	STRING	"6a3c3d394d961d8b56c68ea8f668613b70d790ec6c3bce4df5c3586b53841b27"	"General"	-
+C16	NUMERIC	10.0	"#,##0"	-
+A17	STRING	"total"	"General"	-
+B17	STRING	"124b174868f9809df7a9b1b709a5f0a776fd537fa56e3a98bc8dc9df0f2b4dcc"	"General"	-
+C17	NUMERIC	11.0	"#,##0"	-
+A18	STRING	"detalle"	"General"	-
+B18	STRING	"2d2f8b9951a999cd841fe8864972f91890abefda1b448fa3e5132f59bd0d6aa1"	"General"	-
+C18	NUMERIC	12.0	"#,##0"	-
+A20	STRING	"Origen"	"General"	-
+A21	STRING	"Objeto"	"General"	-
+B21	STRING	"Tipo"	"General"	-
+A22	STRING	"wellnode_sintetico.wm_well"	"General"	-
+B22	STRING	"TABLE"	"General"	-
+A23	STRING	"Relación"	"General"	-
+B23	STRING	"Origen"	"General"	-
+C23	STRING	"Estado"	"General"	-
+D23	STRING	"Aprobada por"	"General"	-
+A24	STRING	"Término"	"General"	-
+B24	STRING	"Resolución"	"General"	-
+C24	STRING	"Destino"	"General"	-
+A25	STRING	"pozos registrados"	"General"	-
+B25	STRING	"INFERRED"	"General"	-
+C25	STRING	"wellnode_sintetico.wm_well (una fila por pozo)"	"General"	-
+A26	STRING	"país"	"General"	-
+B26	STRING	"INFERRED"	"General"	-
+C26	STRING	"wm_well.country"	"General"	-
+A27	STRING	"campo"	"General"	-
+B27	STRING	"INFERRED"	"General"	-
+C27	STRING	"wm_well.field"	"General"	-
+A28	STRING	"estado o región"	"General"	-
+B28	STRING	"INFERRED"	"General"	-
+C28	STRING	"wm_well.state"	"General"	-
+A29	STRING	"estatus"	"General"	-
+B29	STRING	"INFERRED"	"General"	-
+C29	STRING	"wm_well.statuswell"	"General"	-
+A30	STRING	"Conjunto de datos"	"General"	-
+B30	STRING	"Columna"	"General"	-
+C30	STRING	"Definición"	"General"	-
+D30	STRING	"Revisión"	"General"	-
+A32	STRING	"Reglas"	"General"	-
+A33	STRING	"Nulos"	"General"	-
+B33	STRING	"Una clave de grupo nula aparece como «(sin valor)»; un valor nulo de detalle o de medida queda vacío, nunca 0."	"General"	-
+A34	STRING	"Conjunto de datos"	"General"	-
+B34	STRING	"Columna"	"General"	-
+C34	STRING	"Orden"	"General"	-
+D34	STRING	"Intercalación"	"General"	-
+A35	STRING	"resumen"	"General"	-
+B35	STRING	"País"	"General"	-
+C35	STRING	"ASC, NULLS LAST"	"General"	-
+D35	STRING	"C"	"General"	-
+A36	STRING	"resumen"	"General"	-
+B36	STRING	"Campo"	"General"	-
+C36	STRING	"ASC, NULLS LAST"	"General"	-
+D36	STRING	"C"	"General"	-
+A37	STRING	"detalle"	"General"	-
+B37	STRING	"País"	"General"	-
+C37	STRING	"ASC, NULLS LAST"	"General"	-
+D37	STRING	"C"	"General"	-
+A38	STRING	"detalle"	"General"	-
+B38	STRING	"Nombre"	"General"	-
+C38	STRING	"ASC, NULLS LAST"	"General"	-
+D38	STRING	"C"	"General"	-
+A39	STRING	"detalle"	"General"	-
+B39	STRING	"dbid"	"General"	-
+C39	STRING	"ASC, NULLS LAST"	"General"	-
+A40	STRING	"Columnas excluidas"	"General"	-
+B40	STRING	"No disponible: las columnas excluidas no se proporcionaron"	"General"	-
+A41	STRING	"Modelo"	"General"	-
+B41	STRING	"No disponible: la especificación no registra el modelo"	"General"	-
+A42	STRING	"Unidades"	"General"	-
+B42	STRING	"No disponible: los contratos no transportan unidades"	"General"	-

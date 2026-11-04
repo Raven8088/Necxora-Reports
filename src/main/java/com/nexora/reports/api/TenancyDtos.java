@@ -1,5 +1,6 @@
 package com.nexora.reports.api;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.nexora.reports.tenancy.domain.TenancyDecision;
 import com.nexora.reports.tenancy.domain.TenancyModel;
 import com.nexora.reports.tenancy.domain.TenancyRecord;
@@ -38,10 +39,16 @@ public final class TenancyDtos {
         }
     }
 
+    /**
+     * @param transportException EX-TLS-1: present only when the version was captured under a transport exception:
+     *                           its connection was NOT encrypted and the server identity was NOT verified
+     */
     public record RegistrationResponse(UUID id, UUID dataSourceId, int version, TenancyModel model,
                                        DatabaseResponse database, List<String> schemas, String registeredBy,
                                        Instant registeredAt, String fingerprint, String status,
-                                       List<DecisionResponse> decisions) {
+                                       List<DecisionResponse> decisions,
+                                       @JsonInclude(JsonInclude.Include.NON_NULL)
+                                       TransportExceptionResponse transportException) {
         static RegistrationResponse pending(TenancyRegistration r) {
             return of(r, "PENDING", List.of());
         }
@@ -55,7 +62,17 @@ public final class TenancyDtos {
             return new RegistrationResponse(r.id(), r.dataSourceId(), r.version(), r.model(),
                     new DatabaseResponse(r.identity().host(), r.identity().port(), r.identity().databaseName(),
                             r.identity().databaseOid(), r.identity().systemIdentifier(), r.identity().role()),
-                    r.schemas(), r.registeredBy(), r.registeredAt(), r.fingerprint(), status, decisions);
+                    r.schemas(), r.registeredBy(), r.registeredAt(), r.fingerprint(), status, decisions,
+                    r.transportException() == null ? null : new TransportExceptionResponse(
+                            r.transportException().id(), r.transportException().expiresAt(), false, false));
         }
+    }
+
+    /**
+     * EX-TLS-1, stated in every registration captured under the exception: {@code encrypted} and
+     * {@code serverIdentityVerified} are always {@code false}.
+     */
+    public record TransportExceptionResponse(String id, Instant expiresAt, boolean encrypted,
+                                             boolean serverIdentityVerified) {
     }
 }

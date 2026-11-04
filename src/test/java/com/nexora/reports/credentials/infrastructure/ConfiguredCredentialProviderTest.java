@@ -79,7 +79,7 @@ class ConfiguredCredentialProviderTest {
 
     private static EnterpriseSourcesProperties.Source source(UUID tenant, UUID source, String host, int port) {
         return new EnterpriseSourcesProperties.Source(tenant, source, host, port, "erp", "reader", "s3cret",
-                "require", 2, null);
+                "require", 2, null, null);
     }
 
     /** A4-B9 (B5-O3): the CA certificate of {@code verify-full} reaches the credentials; blank means none. */
@@ -91,9 +91,9 @@ class ConfiguredCredentialProviderTest {
         ConfiguredCredentialProvider provider = new ConfiguredCredentialProvider(properties(List.of("db.example"),
                 List.of(5432),
                 new EnterpriseSourcesProperties.Source(tenant, withCa, "db.example", 5432, "erp", "reader", "s3cret",
-                        "verify-full", 2, "/run/secrets/ca.crt"),
+                        "verify-full", 2, "/run/secrets/ca.crt", null),
                 new EnterpriseSourcesProperties.Source(tenant, blank, "db.example", 5432, "erp", "reader", "s3cret",
-                        null, 2, " ")));
+                        null, 2, " ", null)));
 
         assertThat(provider.resolve(tenant, withCa).orElseThrow().sslRootCert()).isEqualTo("/run/secrets/ca.crt");
         assertThat(provider.resolve(tenant, withCa).orElseThrow().sslMode()).isEqualTo("verify-full");

@@ -1,0 +1,100 @@
+== sheet 0 "Reporte"
+freeze none
+filter none
+merged 0
+lastRow 25
+A1	STRING	"Informe compuesto"	"General"	-
+A3	STRING	"Solicitud"	"General"	-
+B3	STRING	"una solicitud muy larga una solicitud muy larga una solicitud muy larga una solicitud muy larga una solicitud muy larga una solicitud muy larga una solicitud muy larga una solicitud muy larga "	"General"	-
+A4	STRING	"Estado"	"General"	-
+B4	STRING	"Parcial"	"General"	-
+A5	STRING	"Aviso"	"General"	-
+B5	STRING	"El dataset «Detalle» se truncó a 10 filas."	"General"	-
+A7	STRING	"Sección 1"	"General"	-
+A9	STRING	"Resumen 1"	"General"	-
+A10	STRING	"Grupo"	"General"	-
+B10	STRING	"Subgrupo"	"General"	-
+C10	STRING	"Registros"	"General"	-
+D10	STRING	"Promedio"	"General"	-
+A11	STRING	"Grupo 0"	"General"	-
+B11	STRING	"S0"	"General"	-
+C11	NUMERIC	1.0	"#,##0"	-
+D11	NUMERIC	1.0	"#,##0.00"	-
+A12	STRING	"Grupo 1"	"General"	-
+B12	STRING	"S1"	"General"	-
+C12	NUMERIC	11.0	"#,##0"	-
+D12	NUMERIC	4.25	"#,##0.00"	-
+A13	STRING	"Grupo 2"	"General"	-
+B13	STRING	"S2"	"General"	-
+C13	NUMERIC	21.0	"#,##0"	-
+D13	NUMERIC	7.5	"#,##0.00"	-
+A14	STRING	"(sin valor)"	"General"	-
+B14	STRING	"S3"	"General"	-
+C14	NUMERIC	31.0	"#,##0"	-
+D14	NUMERIC	10.75	"#,##0.00"	-
+A15	STRING	"Total general"	"General"	-
+C15	NUMERIC	64.0	"#,##0"	-
+A17	STRING	"Sección 2"	"General"	-
+A19	STRING	"Resumen 2"	"General"	-
+A20	STRING	"Grupo"	"General"	-
+B20	STRING	"Subgrupo"	"General"	-
+C20	STRING	"Registros"	"General"	-
+D20	STRING	"Promedio"	"General"	-
+A21	STRING	"Grupo 0"	"General"	-
+B21	STRING	"S0"	"General"	-
+C21	NUMERIC	2.0	"#,##0"	-
+D21	NUMERIC	2.0	"#,##0.00"	-
+A22	STRING	"Grupo 1"	"General"	-
+B22	STRING	"S1"	"General"	-
+C22	NUMERIC	12.0	"#,##0"	-
+D22	NUMERIC	5.25	"#,##0.00"	-
+A23	STRING	"Grupo 2"	"General"	-
+B23	STRING	"S2"	"General"	-
+C23	NUMERIC	22.0	"#,##0"	-
+D23	NUMERIC	8.5	"#,##0.00"	-
+A24	STRING	"(sin valor)"	"General"	-
+B24	STRING	"S3"	"General"	-
+C24	NUMERIC	32.0	"#,##0"	-
+D24	NUMERIC	11.75	"#,##0.00"	-
+A25	STRING	"Total general"	"General"	-
+C25	NUMERIC	68.0	"#,##0"	-
+A26	STRING	"Ver la hoja «Detalle» (10 filas)."	"General"	-
+== sheet 1 "Detalle"
+freeze 1,0
+filter A1:B11
+merged 0
+lastRow 10
+A1	STRING	"Grupo"	"General"	-
+B1	STRING	"Valor"	"General"	-
+A2	STRING	"Grupo 0"	"General"	-
+B2	NUMERIC	0.0	"#,##0.0"	-
+A3	STRING	"Grupo 1"	"General"	-
+B3	NUMERIC	0.5	"#,##0.0"	-
+A4	STRING	"Grupo 2"	"General"	-
+B4	NUMERIC	1.0	"#,##0.0"	-
+A5	STRING	"Grupo 3"	"General"	-
+B5	NUMERIC	1.5	"#,##0.0"	-
+A6	STRING	"Grupo 0"	"General"	-
+B6	NUMERIC	2.0	"#,##0.0"	-
+A7	STRING	"Grupo 1"	"General"	-
+B7	NUMERIC	2.5	"#,##0.0"	-
+A8	STRING	"Grupo 2"	"General"	-
+B8	NUMERIC	3.0	"#,##0.0"	-
+A9	STRING	"Grupo 3"	"General"	-
+B9	NUMERIC	3.5	"#,##0.0"	-
+A10	STRING	"Grupo 0"	"General"	-
+B10	NUMERIC	4.0	"#,##0.0"	-
+A11	STRING	"Grupo 1"	"General"	-
+B11	NUMERIC	4.5	"#,##0.0"	-
+== sheet 2 "Metodología"
+freeze none
+filter none
+merged 0
+lastRow 3
+A1	STRING	"Ejecución"	"General"	-
+A2	STRING	"Huella"	"General"	-
+B2	STRING	"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"	"General"	-
+A3	STRING	"Dataset"	"General"	-
+B3	STRING	"Filas"	"General"	-
+A4	STRING	"detalle"	"General"	-
+B4	NUMERIC	10.0	"#,##0"	-

@@ -1,6 +1,7 @@
 package com.nexora.reports.execution.application;
 
 import com.nexora.reports.credentials.domain.DataSourceCredentials;
+import com.nexora.reports.credentials.domain.TransportException;
 import com.nexora.reports.credentials.domain.SourceTarget;
 import com.nexora.reports.execution.application.port.CredentialProvider;
 import com.nexora.reports.execution.application.port.PlanV2Executor;
@@ -314,6 +315,31 @@ class ReportRunServiceTest {
         assertThat(availabilityQueries).isEqualTo(1);
         assertThat(secretResolutions).isEqualTo(1);
         assertThat(readWith).isEqualTo(credentials.orElseThrow());
+    }
+
+    @Test
+    void aRunUnderATransportExceptionIsDeliveredWithItsRunLevelWarning() {
+        // EX-TLS-1: same path, one more warning in nexora-report-run/1; nothing else changes.
+        credentials = Optional.of(new DataSourceCredentials(tenant, source, "10.20.30.40", 9999, "bench", "reader",
+                "secret", "disable", 2, null, new TransportException("EX-TLS-1",
+                Instant.parse("2099-01-01T00:00:00Z"), "a".repeat(64))));
+        available = credentials.map(DataSourceCredentials::target);
+
+        ReportRunService.RunReport report = run();
+
+        Map<String, Object> doc = report.document();
+        assertThat(DOCUMENTS.runVerdict(doc)).isEqualTo("OK");
+        assertThat(doc.get("status")).isEqualTo("COMPLETED");
+        assertThat(l(doc.get("warnings"))).extracting(w -> m(w).get("code")).containsExactly("transport_not_verified");
+        assertThat(registry.kind(report.runId())).isEqualTo(RunOutcomeKind.COMPLETED);
+        assertThat(scopeChecks).isEqualTo(1);
+        assertThat(readWith).isEqualTo(credentials.orElseThrow());
+    }
+
+    @Test
+    void aRunWithoutTransportExceptionHasNoTransportWarning() {
+        Map<String, Object> doc = run().document();
+        assertThat(l(doc.get("warnings"))).extracting(w -> m(w).get("code")).doesNotContain("transport_not_verified");
     }
 
     @Test

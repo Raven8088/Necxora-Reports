@@ -56,7 +56,7 @@ import java.util.UUID;
  * Spring {@link DataSource}, migrated by Flyway); enterprise sources are only ever read through the read-only pools.
  */
 @Configuration(proxyBeanMethods = false)
-@EnableConfigurationProperties({ReportRunProperties.class, StorageProperties.class})
+@EnableConfigurationProperties({ReportRunProperties.class, StorageProperties.class, PresentationProperties.class})
 @EnableScheduling
 public class ReportRunConfiguration {
 
@@ -121,8 +121,8 @@ public class ReportRunConfiguration {
     }
 
     @Bean
-    TenantScopes tenantScopes(TenancyRegistrationService registrations) {
-        return new RegisteredTenantScopes(registrations);
+    TenantScopes tenantScopes(TenancyRegistrationService registrations, Clock clock) {
+        return new RegisteredTenantScopes(registrations, clock);
     }
 
     // ------------------------------------------------------------------ storage (A4-B8)
@@ -166,15 +166,19 @@ public class ReportRunConfiguration {
 
     // ------------------------------------------------------------------ presentation (A4-B7)
 
-    /** POI's temporary files go to Reports' storage (B7-O3); the strategy is global, so it is fixed here, once. */
+    /**
+     * POI's temporary files go to Reports' storage (B7-O3); the strategy is global, so it is fixed here, once. Every
+     * report is presented with the configured theme (EX-19, D-XL-3).
+     */
     @Bean
-    XlsxRenderer reportRenderer(StorageProperties storage, ReportRunProperties runs) {
+    XlsxRenderer reportRenderer(StorageProperties storage, ReportRunProperties runs,
+                                PresentationProperties presentation) {
         try {
             PoiTemporaryFiles.use(storage.poiFiles());
         } catch (IOException e) {
             throw new UncheckedIOException("cannot prepare the POI temporary directory", e);
         }
-        return new XlsxRenderer(runs.maxConcurrentRenders(), storage.poiFiles());
+        return new XlsxRenderer(runs.maxConcurrentRenders(), storage.poiFiles(), presentation.theme());
     }
 
     // ------------------------------------------------------------------ the service
