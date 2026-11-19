@@ -104,7 +104,25 @@ public enum Label {
     M_COLLATION("Intercalación", "Collation", "Collation"),
     M_EXCLUDED("Columnas excluidas", "Excluded columns", "Colonnes exclues"),
     M_MODEL("Modelo", "Model", "Modèle"),
-    M_UNITS("Unidades", "Units", "Unités");
+    M_UNITS("Unidades", "Units", "Unités"),
+    // PR3-INT (EX-20): interpretation of the request and non-governed columns
+    INTERPRETATION("Interpretación", "Interpretation", "Interprétation"),
+    INTERPRETATION_NONE("Sin correspondencias interpretadas por el modelo ni columnas no gobernadas",
+            "No correspondence interpreted by the model and no non-governed column",
+            "Aucune correspondance interprétée par le modèle ni colonne non gouvernée"),
+    INTERPRETED_TERM("«{0}» → {1} (interpretado por el modelo)", "«{0}» → {1} (interpreted by the model)",
+            "«{0}» → {1} (interprété par le modèle)"),
+    // INC-PR3-02 (B+C): the user chose the destination in a clarification of Semantic (evidence CLARIFIED)
+    CLARIFIED_TERM("«{0}» → {1} (elegido por el usuario en una aclaración)",
+            "«{0}» → {1} (chosen by the user in a clarification)",
+            "«{0}» → {1} (choisi par l'utilisateur lors d'une clarification)"),
+    INFERRED_TERM("«{0}» → {1} (inferido, no gobernado)", "«{0}» → {1} (inferred, not governed)",
+            "«{0}» → {1} (inféré, non gouverné)"),
+    NOT_GOVERNED_COLUMNS("Columnas no gobernadas: {0}", "Non-governed columns: {0}", "Colonnes non gouvernées : {0}"),
+    NOT_GOVERNED("(no gobernada)", "(not governed)", "(non gouvernée)"),
+    M_INTENT("Intención", "Intent", "Intention"),
+    M_ENTITY("Entidad", "Entity", "Entité"),
+    M_EVIDENCE("Evidencia", "Evidence", "Preuve");
 
     private final String es;
     private final String en;

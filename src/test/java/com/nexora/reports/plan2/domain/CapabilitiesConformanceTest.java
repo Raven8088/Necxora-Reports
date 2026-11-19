@@ -55,7 +55,7 @@ class CapabilitiesConformanceTest {
                     .isEqualTo(parts[0]);
         }
         assertThat(sha256(ContractFixtures.bytes(RunContractSchemas.CAPABILITIES)))
-                .isEqualTo("182d2413be8c6bfdc94beb642f13805e08dcb98de280c683b3169321b48daa72");
+                .isEqualTo("32ce0c3ebe8a22dcd0d7810f676d73258720432806a512428e24ce681ca986d7");
     }
 
     @Test
@@ -81,6 +81,8 @@ class CapabilitiesConformanceTest {
         // Exactly the list of the A4 proposal v3, section 5 (B10-b.1: report-artifact/1 is not added).
         assertThat(doc.get("contracts")).isEqualTo(List.of("nexora-report-plan/1", "nexora-logical-plan/2",
                 "nexora-logical-plan/1", "nexora-report-run/1", "nexora-excel-report/1"));
+        // PR3-INT: Reports accepts and shows the evidence of the terms of the specification.
+        assertThat(doc.get("policies")).isEqualTo(List.of("term-evidence"));
         List<Object> profiles = l(doc.get("profiles"));
         assertThat(profiles).hasSize(1);
         Map<String, Object> basicA = m(profiles.getFirst());

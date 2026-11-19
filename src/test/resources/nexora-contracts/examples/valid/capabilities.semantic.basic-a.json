@@ -4,9 +4,13 @@
   "serviceVersion": "0.2.0",
   "contracts": [
     "nexora-report-spec/1",
+    "nexora-report-spec/2",
     "nexora-report-plan/1",
     "nexora-logical-plan/2",
     "nexora-logical-plan/1"
+  ],
+  "policies": [
+    "term-evidence"
   ],
   "profiles": [
     {

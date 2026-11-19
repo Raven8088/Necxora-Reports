@@ -25,6 +25,12 @@ public final class ReportsCapabilities {
     public static final List<String> CONTRACTS = List.of("nexora-report-plan/1", "nexora-logical-plan/2",
             "nexora-logical-plan/1", "nexora-report-run/1", "nexora-excel-report/1");
 
+    /**
+     * PR3-INT: Reports accepts the evidence of the terms ({@code intent}, {@code entity}, {@code ref},
+     * {@code evidence}) in the specification Semantic serves, and shows it in the report (EX-20).
+     */
+    public static final List<String> POLICIES = List.of("term-evidence");
+
     private final Map<String, Object> document;
 
     private ReportsCapabilities(Map<String, Object> document) {
@@ -60,6 +66,7 @@ public final class ReportsCapabilities {
         document.put("service", SERVICE);
         document.put("serviceVersion", serviceVersion);
         document.put("contracts", CONTRACTS);
+        document.put("policies", POLICIES);
         document.put("profiles", List.of(Collections.unmodifiableMap(profile)));
         return new ReportsCapabilities(Collections.unmodifiableMap(document));
     }

@@ -28,6 +28,31 @@ class SpecPresentationTest {
         assertThat(spec.terms()).hasSize(5);
     }
 
+    /**
+     * PR3-INT: a specification that declares the evidence of its terms passes the validation of Reports (its copy of
+     * the contract) and its evidence reaches the presentation; without it, the evidence is absent (null).
+     */
+    @Test
+    @SuppressWarnings("unchecked")
+    void theEvidenceOfTheTermsIsReadWhenTheSpecificationDeclaresIt() {
+        assertThat(ResultInputs.paA().spec().terms()).allMatch(t -> t.intent() == null && t.evidence() == null);
+
+        ContractFixtures.PaA paA = new ContractFixtures.PaA();
+        Map<String, Object> term = (Map<String, Object>) ((java.util.List<Object>) ((Map<String, Object>)
+                paA.spec.get("provenance")).get("terms")).getFirst();
+        term.put("intent", "CATEGORY");
+        term.put("entity", "7a3f0000-0000-4000-8000-0000000000aa");
+        term.put("ref", "7a3f0000-0000-4000-8000-000000000011");
+        term.put("evidence", "INTERPRETED");
+        paA.reseal();
+
+        SpecPresentation.Term read = ResultInputs.paA(paA).spec().terms().getFirst();
+        assertThat(read.intent()).isEqualTo("CATEGORY");
+        assertThat(read.entity()).hasToString("7a3f0000-0000-4000-8000-0000000000aa");
+        assertThat(read.ref()).hasToString("7a3f0000-0000-4000-8000-000000000011");
+        assertThat(read.evidence()).isEqualTo("INTERPRETED");
+    }
+
     @Test
     void aSpecificationOtherThanTheValidatedOneIsRefused() {
         ContractFixtures.PaA paA = new ContractFixtures.PaA();

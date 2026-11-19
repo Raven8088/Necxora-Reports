@@ -856,12 +856,108 @@
         "target": {
           "type": "string",
           "maxLength": 200
+        },
+        "intent": {
+          "$comment": "PR3-INT (10 nov 2026): qué pide el término. MEASURE: lo que se cuenta o mide; TIME: una fecha, periodo o condición temporal; CATEGORY: una clasificación, un grupo, una entidad de negocio o un valor de ellos; TEXT: un texto descriptivo; IDENTIFIER: un identificador técnico que el usuario pide expresamente. Lo declara Intelligence (probabilístico); Semantic solo comprueba que el destino sea compatible.",
+          "enum": [
+            "MEASURE",
+            "TIME",
+            "CATEGORY",
+            "TEXT",
+            "IDENTIFIER"
+          ]
+        },
+        "entity": {
+          "$comment": "PR3-INT: id del CONCEPT aprobado del que trata el término (lo que se cuenta, o al que pertenece el atributo). Obligatorio con intent MEASURE.",
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        "ref": {
+          "$comment": "PR3-INT: id del destino del término: una definición aprobada, una columna, una tabla o vista, o una relación aprobada.",
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        "evidence": {
+          "$comment": "PR3-INT: NAMED si el nombre aprobado o técnico del destino aparece literalmente en la solicitud (hecho comprobable, no equivalencia semántica); INTERPRETED si la correspondencia la decidió el modelo. INC-PR3-02 (B+C, 10 nov 2026): CLARIFIED si el usuario eligió el destino en una aclaración de Semantic; solo Semantic lo escribe (al continuar una sesión de aclaración) y lo rechaza (evidence_mismatch) si lo declara cualquier otro.",
+          "enum": [
+            "NAMED",
+            "INTERPRETED",
+            "CLARIFIED"
+          ]
         }
       },
       "required": [
         "text",
         "resolution",
         "target"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "required": [
+              "intent"
+            ]
+          },
+          "then": {
+            "required": [
+              "ref",
+              "evidence"
+            ]
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "ref"
+            ]
+          },
+          "then": {
+            "required": [
+              "intent"
+            ]
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "evidence"
+            ]
+          },
+          "then": {
+            "required": [
+              "intent"
+            ]
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "entity"
+            ]
+          },
+          "then": {
+            "required": [
+              "intent"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "intent": {
+                "const": "MEASURE"
+              }
+            },
+            "required": [
+              "intent"
+            ]
+          },
+          "then": {
+            "required": [
+              "entity"
+            ]
+          }
+        }
       ]
     },
     "clarification": {

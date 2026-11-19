@@ -59,7 +59,15 @@ public record SpecPresentation(String fingerprint, String title, String requestT
     public record Item(String type, String dataset, String total) {
     }
 
-    public record Term(String text, String resolution, String target) {
+    /**
+     * PR3-INT: {@code intent}, {@code entity}, {@code ref} and {@code evidence} are null when the specification does
+     * not declare them (every specification before PR3-INT).
+     */
+    public record Term(String text, String resolution, String target, String intent, UUID entity, UUID ref,
+                       String evidence) {
+        public Term(String text, String resolution, String target) {
+            this(text, resolution, target, null, null, null, null);
+        }
     }
 
     public Dataset dataset(String id) {
@@ -116,7 +124,8 @@ public record SpecPresentation(String fingerprint, String title, String requestT
         }
         List<Term> terms = new ArrayList<>();
         for (Map<String, Object> t : maps(map(tree, "provenance"), "terms")) {
-            terms.add(new Term(text(t, "text"), text(t, "resolution"), text(t, "target")));
+            terms.add(new Term(text(t, "text"), text(t, "resolution"), text(t, "target"), (String) t.get("intent"),
+                    uuid(t.get("entity")), uuid(t.get("ref")), (String) t.get("evidence")));
         }
         return new SpecPresentation(fingerprint, text(tree, "title"), text(request, "text"),
                 text(request, "language"), text(parameters, "timeZone"), text(parameters, "labelLanguage"),

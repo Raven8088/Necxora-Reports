@@ -48,6 +48,8 @@ public final class LayoutBuilder {
     private final ReportResult result;
     private final ReportHeader header;
     private final String lang;
+    /** PR3-INT: the specification declares the evidence of its terms (EX-20 applies). */
+    private final boolean declared;
     private final ValueFormat values;
     private final Map<String, String> detailSheets = new LinkedHashMap<>();
     /** «dataset» «column» → values written as text to keep their precision (R-3), in order of appearance. */
@@ -57,6 +59,7 @@ public final class LayoutBuilder {
         this.result = result;
         this.header = result.header();
         this.lang = header.labelLanguage();
+        this.declared = result.methodology().terms().stream().anyMatch(Methodology.Term::declared);
         this.values = new ValueFormat(header.timeZone(), lang);
         SheetNames names = new SheetNames(Label.SHEET_REPORT.in(lang), Label.SHEET_METHODOLOGY.in(lang));
         for (ReportSection section : result.sections()) {
@@ -92,6 +95,7 @@ public final class LayoutBuilder {
         // EX-19: the values of the header never widen the columns of the tables below (HEADER_VALUE).
         field(rows, Label.TITLE, header.title());
         field(rows, Label.REQUEST, header.requestText() == null ? "" : header.requestText());
+        interpretation(rows);
         field(rows, Label.SOURCE, withId(header.sourceName(), header.dataSourceId().toString()));
         field(rows, Label.TENANT, withId(header.tenantName(), header.tenantId().toString()));
         field(rows, Label.GENERATED, when(header.generatedAt()));
@@ -135,6 +139,48 @@ public final class LayoutBuilder {
             }
         }
         return rows;
+    }
+
+    /**
+     * PR3-INT (EX-20): the summary of the interpretation, under the request: every term whose correspondence the
+     * model interpreted or inferred (never presented as approved), every term the user chose in a clarification
+     * (INC-PR3-02, evidence CLARIFIED) and the columns that no approved definition
+     * governs. The detail (intent, entity, evidence) is in the methodology. Only for a specification that declares
+     * the evidence of its terms: the report of any other specification keeps exactly its grid (EX-01 to EX-19).
+     */
+    private void interpretation(RowStream rows) {
+        if (!declared) {
+            return;
+        }
+        List<String> lines = new ArrayList<>();
+        for (Methodology.Term t : result.methodology().terms()) {
+            if ("INFERRED".equals(t.resolution())) {
+                lines.add(Label.INFERRED_TERM.format(lang, orElse(t.text(), ""), orElse(t.target(), "")));
+            } else if ("INTERPRETED".equals(t.evidence())) {
+                lines.add(Label.INTERPRETED_TERM.format(lang, orElse(t.text(), ""), orElse(t.target(), "")));
+            } else if ("CLARIFIED".equals(t.evidence())) {
+                lines.add(Label.CLARIFIED_TERM.format(lang, orElse(t.text(), ""), orElse(t.target(), "")));
+            }
+        }
+        java.util.Set<String> inferred = new java.util.LinkedHashSet<>();
+        for (DatasetResult d : result.datasets()) {
+            for (ResultColumn2 c : d.visibleColumns()) {
+                if ("INFERRED".equals(c.origin())) {
+                    inferred.add(c.label());
+                }
+            }
+        }
+        if (!inferred.isEmpty()) {
+            lines.add(Label.NOT_GOVERNED_COLUMNS.format(lang, String.join(", ", inferred)));
+        }
+        if (lines.isEmpty()) {
+            field(rows, Label.INTERPRETATION, Label.INTERPRETATION_NONE.in(lang));
+            return;
+        }
+        for (int i = 0; i < lines.size(); i++) {
+            rows.add(i == 0 ? LayoutRow.of(label(0, Label.INTERPRETATION), text(1, lines.get(i),
+                    StyleKind.HEADER_VALUE)) : LayoutRow.of(text(1, lines.get(i), StyleKind.HEADER_VALUE)));
+        }
     }
 
     private void summary(RowStream rows, DatasetResult d, Optional<ReportItem.Total> total) {
@@ -182,10 +228,15 @@ public final class LayoutBuilder {
         return new LayoutRow(cells);
     }
 
-    /** EX-06: a TIMESTAMP_TZ column is written in the report's zone, named in its header. */
+    /**
+     * EX-06: a TIMESTAMP_TZ column is written in the report's zone, named in its header. PR3-INT (EX-20): in a report
+     * whose specification declares the evidence of its terms, a column that no approved definition governs (origin
+     * INFERRED in the plan) is marked as such, whatever its label.
+     */
     private String columnLabel(ResultColumn2 c) {
-        return c.valueType() == OutputValueType.TIMESTAMP_TZ ? c.label() + " (" + header.timeZone().getId() + ")"
-                : c.label();
+        String label = c.valueType() == OutputValueType.TIMESTAMP_TZ ? c.label() + " (" + header.timeZone().getId()
+                + ")" : c.label();
+        return declared && "INFERRED".equals(c.origin()) ? label + " " + Label.NOT_GOVERNED.in(lang) : label;
     }
 
     private LayoutRow dataRow(DatasetResult d, List<ResultColumn2> columns, List<Object> row) {
@@ -273,11 +324,18 @@ public final class LayoutBuilder {
                     text(1, orElse(r.origin(), ""), StyleKind.DATA), text(2, orElse(r.status(), ""), StyleKind.DATA),
                     text(3, fact(r.approvedBy()), StyleKind.DATA)));
         }
-        rows.add(tableHeader(Label.M_TERM, Label.M_RESOLUTION, Label.M_TARGET));
+        rows.add(declared ? tableHeader(Label.M_TERM, Label.M_RESOLUTION, Label.M_TARGET, Label.M_INTENT,
+                Label.M_ENTITY, Label.M_EVIDENCE) : tableHeader(Label.M_TERM, Label.M_RESOLUTION, Label.M_TARGET));
         for (Methodology.Term t : m.terms()) {
-            rows.add(LayoutRow.of(text(0, orElse(t.text(), ""), StyleKind.DATA),
+            List<LayoutCell> cells = new ArrayList<>(List.of(text(0, orElse(t.text(), ""), StyleKind.DATA),
                     text(1, orElse(t.resolution(), ""), StyleKind.DATA),
                     text(2, orElse(t.target(), ""), StyleKind.DATA)));
+            if (t.declared()) {
+                cells.add(text(3, orElse(t.intent(), ""), StyleKind.DATA));
+                cells.add(text(4, orElse(t.entity(), ""), StyleKind.DATA));
+                cells.add(text(5, t.evidence(), StyleKind.DATA));
+            }
+            rows.add(new LayoutRow(cells));
         }
         rows.add(tableHeader(Label.M_DATASET, Label.M_COLUMN, Label.M_DEFINITION, Label.M_REVISION));
         for (Methodology.DefinitionUse u : m.definitions()) {

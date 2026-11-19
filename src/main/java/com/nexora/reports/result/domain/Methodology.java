@@ -44,7 +44,21 @@ public record Methodology(List<SourceObject> relations, List<RelationshipUse> re
     public record RelationshipUse(UUID id, String origin, String status, Fact approvedBy) {
     }
 
-    public record Term(String text, String resolution, String target) {
+    /**
+     * PR3-INT: {@code intent} and {@code evidence} as the specification declares them, and {@code entity} as the key
+     * of the approved concept when the plans name it (else its id); all null when the specification does not declare
+     * them.
+     */
+    public record Term(String text, String resolution, String target, String intent, String entity,
+                       String evidence) {
+        public Term(String text, String resolution, String target) {
+            this(text, resolution, target, null, null, null);
+        }
+
+        /** Whether the specification declares the evidence of this term. */
+        public boolean declared() {
+            return evidence != null;
+        }
     }
 
     public record DefinitionUse(String datasetId, String output, GovernedDefinition definition) {

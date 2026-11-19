@@ -240,6 +240,18 @@
       "contract": "capabilities",
       "expect": "invalid",
       "reason": "SCHEMA"
+    },
+    {
+      "file": "invalid/spec-termino-evidencia-sin-intencion.json",
+      "contract": "report-spec",
+      "expect": "invalid",
+      "reason": "SCHEMA"
+    },
+    {
+      "file": "invalid/capabilities-politica-desconocida.json",
+      "contract": "capabilities",
+      "expect": "invalid",
+      "reason": "SCHEMA"
     }
   ]
 }

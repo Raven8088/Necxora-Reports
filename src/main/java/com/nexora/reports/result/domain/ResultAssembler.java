@@ -402,8 +402,14 @@ public final class ResultAssembler {
         List<Methodology.DatasetExecution> executions = datasets.stream().map(d -> new Methodology.DatasetExecution(
                 d.datasetId(), d.planId(), d.planFingerprint(), d.rowCount(), d.truncated(), d.maxRows(),
                 d.duration().toMillis())).toList();
+        Map<UUID, String> conceptKeys = new LinkedHashMap<>();
+        for (ValidatedReportPlan.Dataset d : plan.datasets()) {
+            d.plan().definitions().forEach(def -> conceptKeys.putIfAbsent(def.id(), def.key()));
+        }
         List<Methodology.Term> terms = spec.terms().stream()
-                .map(t -> new Methodology.Term(t.text(), t.resolution(), t.target())).toList();
+                .map(t -> new Methodology.Term(t.text(), t.resolution(), t.target(), t.intent(),
+                        t.entity() == null ? null : conceptKeys.getOrDefault(t.entity(), t.entity().toString()),
+                        t.evidence())).toList();
         UUID snapshot = plan.datasets().getFirst().plan().metadataSnapshotId();
         return new Methodology(relations, List.copyOf(relationships.values()), terms, definitions, orders, executions,
                 snapshot == null ? Fact.unavailable("metadata_snapshot_not_in_plan") : Fact.known(snapshot.toString()),

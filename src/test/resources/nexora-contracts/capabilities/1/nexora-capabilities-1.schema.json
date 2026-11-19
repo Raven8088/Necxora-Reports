@@ -25,6 +25,16 @@
         "pattern": "^nexora-[a-z-]+/\\d+$"
       }
     },
+    "policies": {
+      "$comment": "PR3-INT (10 nov 2026), opcional. term-evidence: el servicio acepta y comprueba los campos intent, entity, ref y evidence de provenance.terms; term-evidence-required: además, una nexora-report-spec/2 sin ellos en cada término se rechaza (política de compilación de Semantic).",
+      "type": "array",
+      "items": {
+        "enum": [
+          "term-evidence",
+          "term-evidence-required"
+        ]
+      }
+    },
     "profiles": {
       "type": "array",
       "minItems": 1,

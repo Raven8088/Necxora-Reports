@@ -32,7 +32,7 @@ class ContractExamplesTest {
     @Test
     void theCopiedContractsAreUnaltered() throws Exception {
         Map<String, String> manifest = manifest();
-        assertThat(manifest).hasSize(36);
+        assertThat(manifest).hasSize(38);
         for (Map.Entry<String, String> entry : manifest.entrySet()) {
             assertThat(sha256(ContractFixtures.bytes(ContractFixtures.ROOT + entry.getKey())))
                     .as(entry.getKey()).isEqualTo(entry.getValue());
